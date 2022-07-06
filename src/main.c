@@ -9,11 +9,14 @@
 #include "network.h"
 
 int main(int argc, char *argv[]) {
+    // Initialize network
+    Network *network = new_network();
+
     // Nodes
-    Node *nodeA = new_node("Albisrieden", 0.0, 0.0);
-    Node *nodeB = new_node("Buelach", 1.0, 0.0);
-    Node *nodeC = new_node("Chur", 1.0, 1.0);
-    Node *nodeD = new_node("Dietikon", 0.0, 1.);
+    Node *nodeA = new_node(network, "Albisrieden", 0.0, 0.0);
+    Node *nodeB = new_node(network, "Buelach", 1.0, 0.0);
+    Node *nodeC = new_node(network, "Chur", 1.0, 1.0);
+    Node *nodeD = new_node(network, "Dietikon", 0.0, 1.);
 
     // Define route attributes
     Node *nodes[] = {nodeA, nodeB, nodeC, nodeD};
@@ -28,10 +31,12 @@ int main(int argc, char *argv[]) {
 
     // Create route and print
     Route *route =
-        new_route(nodes, times, route_size,          // Route properties
-                  departures, capacities, trip_size  // Trip properties
+        new_route(network, nodes, times, route_size,  // Route properties
+                  departures, capacities, trip_size   // Trip properties
         );
-    print_route(route);
+
+    // Print network
+    print_network(network);
 
     return 0;
 }

@@ -12,11 +12,31 @@
 
 #include "network.h"
 
-Node *new_node(char *name, double x, double y) {
+Network *new_network() {
+    Network *network = (Network *)malloc(sizeof(Network));
+    network->nodes = (Node **)malloc(sizeof(Node *) * INIT_SIZE);
+    network->node_size = INIT_SIZE;
+    network->node_counter = 0;
+    network->routes = (Route **)malloc(sizeof(Route *) * INIT_SIZE);
+    network->route_size = INIT_SIZE;
+    network->route_counter = 0;
+    return network;
+}
+
+Node *new_node(Network *network, char *name, double x, double y) {
     Node *node = (Node *)malloc(sizeof(Node));
     node->name = name;
     node->x = x;
     node->y = y;
+
+    if (network->node_counter == network->node_size) {
+        printf("Need to reallocate size!\n");
+        network->node_size += INIT_SIZE;
+        network->nodes = (Node **)realloc(network->nodes,
+                                          sizeof(Node *) * network->node_size);
+    }
+    network->nodes[network->node_counter++] = node;
+
     return node;
 }
 
@@ -38,8 +58,9 @@ Trip *new_trip(int departure, int capacity, Trip *next, Route *route) {
     return trip;
 }
 
-Route *new_route(Node *nodes[], int times[], size_t route_size,
-                 int departures[], int capacities[], size_t trip_size) {
+Route *new_route(Network *network, Node *nodes[], int times[],
+                 size_t route_size, int departures[], int capacities[],
+                 size_t trip_size) {
     // Initialize route
     Route *route = (Route *)malloc(sizeof(Route));
 
@@ -68,6 +89,15 @@ Route *new_route(Node *nodes[], int times[], size_t route_size,
         last_trip->next = curr_trip;
         last_trip = curr_trip;
     }
+
+    // Add route to network
+    if (network->route_counter == network->route_size) {
+        printf("Need to reallocate size!\n");
+        network->route_size += INIT_SIZE;
+        network->routes = (Route **)realloc(
+            network->routes, sizeof(Route *) * network->route_size);
+    }
+    network->routes[network->route_counter++] = route;
 
     return route;
 }
@@ -99,5 +129,16 @@ void print_route(Route *route) {
     while (curr_trip != NULL) {
         print_trip(curr_trip);
         curr_trip = curr_trip->next;
+    }
+}
+
+void print_network(Network *network) {
+    printf("Network <Nodes>:\n");
+    for (int i = 0; i < network->node_counter; ++i) {
+        print_node(network->nodes[i]);
+    }
+    printf("Network <Routes>:\n");
+    for (int i = 0; i < network->route_counter; ++i) {
+        print_route(network->routes[i]);
     }
 }

@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define INIT_SIZE 100
 #define MINUTES 60
 #define HOURS 3600
 
@@ -62,6 +63,19 @@ typedef struct route_t {
     struct trip_t *root_trip;
 } Route;
 
+/*
+ * Network
+ * A node is a stop location used by different routes.
+ */
+typedef struct network_t {
+    Node **nodes;
+    size_t node_counter;
+    size_t node_size;
+    Route **routes;
+    size_t route_counter;
+    size_t route_size;
+} Network;
+
 // Not yet used...
 typedef struct reservation_t {
     int id;
@@ -74,8 +88,11 @@ typedef struct reservation_t {
  * Constructor-like helpers
  */
 
-// Create a Node struct
-Node *new_node(char *name, double x, double y);
+// Create a Network struct
+Network *new_network();
+
+// Create a Node struct and add it to the network
+Node *new_node(Network *network, char *name, double x, double y);
 
 // Create a Stop struct
 Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next);
@@ -83,9 +100,10 @@ Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next);
 // Create a Trip struct
 Trip *new_trip(int departure, int capacity, Trip *next, Route *route);
 
-// Create a Route struct
-Route *new_route(Node *nodes[], int times[], size_t route_size,
-                 int departures[], int capacities[], size_t trip_size);
+// Create a Route struct and add it to the network
+Route *new_route(Network *network, Node *nodes[], int times[],
+                 size_t route_size, int departures[], int capacities[],
+                 size_t trip_size);
 
 /*
  * Print helpers
@@ -102,5 +120,8 @@ void print_trip(Trip *trip);
 
 // Print Route
 void print_route(Route *route);
+
+// Print Network
+void print_network(Network *network);
 
 #endif  // NETWORK_H_
