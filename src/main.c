@@ -19,14 +19,14 @@ int main(int argc, char *argv[]) {
     Node *nodeA = new_node(network, "Albisrieden", 0.0, 0.0);
     Node *nodeB = new_node(network, "Buelach", 1.0, 0.0);
     Node *nodeC = new_node(network, "Chur", 1.0, 1.0);
-    Node *nodeD = new_node(network, "Dietikon", 0.0, 1.);
+    Node *nodeD = new_node(network, "Dietikon", 0.0, 1.0);
     Node *nodeE = new_node(network, "Nirgendwo", -1.0, -1.0);
 
-    // Route 1
-    // Define route attributes
-    Node *nodes[] = {nodeA, nodeB, nodeC, nodeD};
-    int times[] = {15 * MINUTES, 30 * MINUTES, 45 * MINUTES};
-    size_t route_size = 4;
+    // Route 1s
+    // Define route attributes (closed, circular route)
+    Node *nodes[] = {nodeA, nodeB, nodeC, nodeD, nodeA};
+    int times[] = {15 * MINUTES, 30 * MINUTES, 45 * MINUTES, 60 * MINUTES};
+    size_t route_size = 5;
 
     // Define trip attributes
     int departures[] = {6 * HOURS, 9 * HOURS, 12 * HOURS, 15 * HOURS,
