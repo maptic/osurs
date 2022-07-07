@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     int capacities[] = {12, 6, 9, 6, 12};
     size_t trip_size = 5;
 
-    // Create route and print
+    // Create route
     Route *route =
         new_route(network, nodes, times, route_size,  // Route properties
                   departures, capacities, trip_size   // Trip properties
