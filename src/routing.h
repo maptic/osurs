@@ -21,14 +21,16 @@
  * A connection is a route between two nodes with seats.
  */
 typedef struct connection_t {
-    int departure;       // Departure time in seconds
-    int arrival;         // Arrival time in seconds
-    int available;       // Available seats (capacity - reserved)
-    struct stop_t orig;  // Origin stop
-    struct stop_t dest;  // Destination stop
-    struct trip_t trip;  // The trip on the route on which the connection is
+    int departure;        // Departure time in seconds
+    int arrival;          // Arrival time in seconds
+    int available;        // Available seats (capacity - reserved)
+    struct stop_t *orig;  // Origin stop
+    struct stop_t *dest;  // Destination stop
+    struct trip_t *trip;  // The trip on the route on which the connection is
     struct connection_t *next;  // If there are more than one result, chain of
                                 // connections, NULL if at the end of the chain.
+    struct connection_t
+        *last;  // Last connection or NULL if at the start of the chain.
 } Connection;
 
 /*
@@ -42,6 +44,12 @@ typedef struct reservation_t {
     struct connection_t connection;  // The booked connection
 } Reservation;
 
+// Routing
+
 Connection *find_connection(Node *orig, Node *dest, int departure);
+
+// Print helpers
+
+void print_connection(Connection *connection);
 
 #endif  // ROUTING_H_

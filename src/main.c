@@ -6,6 +6,8 @@
  * Author:  Merlin Unterfinger
  */
 
+#include <stdio.h>
+
 #include "network.h"
 #include "routing.h"
 
@@ -18,6 +20,7 @@ int main(int argc, char *argv[]) {
     Node *nodeB = new_node(network, "Buelach", 1.0, 0.0);
     Node *nodeC = new_node(network, "Chur", 1.0, 1.0);
     Node *nodeD = new_node(network, "Dietikon", 0.0, 1.);
+    Node *nodeE = new_node(network, "Nirgendwo", -1.0, -1.0);
 
     // Route 1
     // Define route attributes
@@ -50,16 +53,35 @@ int main(int argc, char *argv[]) {
     size_t trip_size2 = 3;
 
     // Create route
-    route =
-        new_route(network, nodes2, times2, route_size2,  // Route properties
-                  departures2, capacities2, trip_size2    // Trip properties
-        );
+    route = new_route(network, nodes2, times2, route_size2,  // Route properties
+                      departures2, capacities2, trip_size2   // Trip properties
+    );
 
     // Print network
+    printf("TEST: NETWORK\n");
     print_network(network);
 
+    printf("\nTEST: ROUTING\n");
     // Route
-    find_connection(nodeA, nodeD, 12 * HOURS);
+    Connection *connection = find_connection(nodeA, nodeD, 12 * HOURS);
+    print_connection(connection);
+
+    // One result
+    Connection *connection2 =
+        find_connection(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
+    print_connection(connection2);
+
+    // No result: Time
+    Connection *connection3 = find_connection(nodeA, nodeD, 24 * HOURS);
+    print_connection(connection3);
+
+    // No result: No direct route
+    Connection *connection4 = find_connection(nodeA, nodeE, 24 * HOURS);
+    print_connection(connection4);
+
+    // No result: Same place
+    Connection *connection5 = find_connection(nodeA, nodeA, 0 * HOURS);
+    print_connection(connection5);
 
     return 0;
 }
