@@ -30,7 +30,7 @@ void network_add_node(Network *network, Node *node) {
 
 void node_add_route(Node *node, Route *route) {
     // Check if route already exists (only check last)
-    if (node->routes[node->route_counter-1] == route) return;
+    if (node->routes[node->route_counter - 1] == route) return;
     if (node->route_counter == node->route_size) {
         printf("Need to reallocate size!\n");
         node->route_size += INIT_SIZE;
@@ -68,12 +68,14 @@ Node *new_node(Network *network, char *name, double x, double y) {
     return node;
 }
 
-Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next) {
+Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
+               size_t trip_size) {
     Stop *stop = (Stop *)malloc(sizeof(Stop));
     stop->node = node;
     stop->last = last;
     stop->next = next;
     stop->time_to_next = time_to_next;
+    stop->reserved = (int *)calloc(trip_size, sizeof(int));  // Initialized to 0
     return stop;
 }
 
@@ -93,7 +95,7 @@ Route *new_route(Network *network, Node *nodes[], int times[],
     Route *route = (Route *)malloc(sizeof(Route));
 
     // Set root stop
-    Stop *root_stop = new_stop(nodes[0], NULL, NULL, times[0]);
+    Stop *root_stop = new_stop(nodes[0], NULL, NULL, times[0], trip_size);
     route->root_stop = root_stop;
 
     // Set root trip
@@ -104,7 +106,7 @@ Route *new_route(Network *network, Node *nodes[], int times[],
     Stop *last_stop = root_stop;
     Stop *curr_stop;
     for (size_t i = 1; i < route_size; ++i) {
-        curr_stop = new_stop(nodes[i], last_stop, NULL, times[i]);
+        curr_stop = new_stop(nodes[i], last_stop, NULL, times[i], trip_size);
         last_stop->next = curr_stop;
         last_stop = curr_stop;
     }

@@ -46,6 +46,7 @@ typedef struct node_t {
  */
 typedef struct stop_t {
     int time_to_next;
+    int *reserved;
     struct node_t *node;
     struct stop_t *last;
     struct stop_t *next;
@@ -97,7 +98,8 @@ Network *new_network();
 Node *new_node(Network *network, char *name, double x, double y);
 
 // Create a Stop struct
-Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next);
+Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
+               size_t trip_size);
 
 // Create a Trip struct
 Trip *new_trip(int departure, int capacity, Trip *next, Route *route);

@@ -1,15 +1,16 @@
 /*
- * Network routing algorithm
+ * Network routing algorithm and reservation
  *
  * Author:  Merlin Unterfinger
  */
 
 #include "routing.h"
 
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-Connection *find_connection(Node *orig, Node *dest, int departure) {
+Connection *find(Node *orig, Node *dest, int departure) {
     Connection *root_connection = (Connection *)malloc(sizeof(Connection));
     Connection *connection = root_connection;
 
@@ -38,8 +39,11 @@ Connection *find_connection(Node *orig, Node *dest, int departure) {
                     // Get trip departure time and set as arrival time of
                     // starting stop
                     int arrival = trip->departure;
+                    int capacity = trip->capacity;
+                    int available = INT_MAX;
 
-                    // Iterate over the stops until origin of connection request
+                    // Iterate over the stops until origin of connection
+                    // request
                     Stop *stop = route->root_stop;
                     while (1) {
                         // Stop if arrived at origin, no need to check for
@@ -53,6 +57,15 @@ Connection *find_connection(Node *orig, Node *dest, int departure) {
 
                                 // Follow stops until destination
                                 while (1) {
+                                    // Update availabilities, the minimum is the
+                                    // bottle neck
+                                    available = min(
+                                        available,
+                                        capacity - stop->reserved[trip_count]);
+
+                                    // Check if more than 0 available seats
+                                    // if (available <= 0) break;
+
                                     // Stop if arrived at destination
                                     if (stop->node == dest) {
                                         // Fill in values for connection
@@ -61,7 +74,7 @@ Connection *find_connection(Node *orig, Node *dest, int departure) {
                                         connection->dest = stop;
                                         connection->departure = orig_departure;
                                         connection->arrival = arrival;
-                                        connection->available = 9999;
+                                        connection->available = available;
 
                                         // Create next connection and set
                                         // current connection as last
@@ -116,6 +129,52 @@ Connection *find_connection(Node *orig, Node *dest, int departure) {
 
     return root_connection;
 }
+
+int check(Connection *connection, int seats, int *trip_count) {
+    // Get trip number of route
+    Trip *curr_trip = connection->trip->route->root_trip;
+    *trip_count = 0;
+    while (1) {
+        if (curr_trip == connection->trip) break;
+        curr_trip = curr_trip->next;
+        ++(*trip_count);
+    }
+
+    // Check available seats over on all stops
+    Stop *curr_stop = connection->orig;
+    int capacity = connection->trip->capacity;
+    while (1) {
+        if (seats > (capacity - curr_stop->reserved[*trip_count])) return 0;
+        // Stop if destination is reached
+        if (curr_stop == connection->dest) break;
+        curr_stop = curr_stop->next;
+    }
+
+    return 1;
+}
+
+int reserve(Connection *connection, int seats) {
+    int trip_count;
+    if (connection == NULL || seats > connection->available ||
+        !check(connection, seats, &trip_count))
+        return 0;
+
+    // Book connection on individual stops
+    Stop *curr_stop = connection->orig;
+    while (1) {
+        // Increase reservation counter
+        curr_stop->reserved[trip_count] += seats;
+        // Stop if destination is reached
+        if (curr_stop == connection->dest) break;
+        curr_stop = curr_stop->next;
+    }
+
+    return 1;
+}
+
+// Helpers
+
+int min(int a, int b) { return (a > b) ? b : a; }
 
 // Print helpers
 

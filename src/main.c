@@ -63,25 +63,32 @@ int main(int argc, char *argv[]) {
 
     printf("\nTEST: ROUTING\n");
     // Route
-    Connection *connection = find_connection(nodeA, nodeD, 12 * HOURS);
+    Connection *connection = find(nodeA, nodeD, 12 * HOURS);
     print_connection(connection);
 
     // One result
-    Connection *connection2 =
-        find_connection(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
+    Connection *connection2 = find(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
     print_connection(connection2);
 
     // No result: Time
-    Connection *connection3 = find_connection(nodeA, nodeD, 24 * HOURS);
+    Connection *connection3 = find(nodeA, nodeD, 24 * HOURS);
     print_connection(connection3);
 
     // No result: No direct route
-    Connection *connection4 = find_connection(nodeA, nodeE, 24 * HOURS);
+    Connection *connection4 = find(nodeA, nodeE, 24 * HOURS);
     print_connection(connection4);
 
     // No result: Same place
-    Connection *connection5 = find_connection(nodeA, nodeA, 0 * HOURS);
+    Connection *connection5 = find(nodeA, nodeA, 0 * HOURS);
     print_connection(connection5);
+
+    // Reservation
+    printf("\nTEST: RESERVATION\n");
+    print_connection(connection);
+    printf("Reserve 9: %s\n", reserve(connection, 9) ? "success" : "failure");
+    printf("Reserve 2: %s\n", reserve(connection, 2) ? "success" : "failure");
+    printf("Reserve 2: %s\n", reserve(connection2, 2) ? "success" : "failure");
+    print_connection(find(nodeA, nodeD, 12 * HOURS));
 
     return 0;
 }
