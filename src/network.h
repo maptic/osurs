@@ -20,6 +20,13 @@
 #define MINUTES 60
 #define HOURS 3600
 
+// Forward declarations to enable circular dependencies
+struct note_t;
+struct stop_t;
+struct trip_t;
+struct route_t;
+struct network_t;
+
 /*
  * Node
  * A node is a stop location used by different routes.
@@ -28,6 +35,9 @@ typedef struct node_t {
     double x;
     double y;
     char *name;
+    struct route_t **routes;
+    size_t route_counter;
+    size_t route_size;
 } Node;
 
 /*
@@ -36,6 +46,7 @@ typedef struct node_t {
  */
 typedef struct stop_t {
     int time_to_next;
+    int *reserved;
     struct node_t *node;
     struct stop_t *last;
     struct stop_t *next;
@@ -68,21 +79,13 @@ typedef struct route_t {
  * A node is a stop location used by different routes.
  */
 typedef struct network_t {
-    Node **nodes;
+    struct node_t **nodes;
     size_t node_counter;
     size_t node_size;
-    Route **routes;
+    struct route_t **routes;
     size_t route_counter;
     size_t route_size;
 } Network;
-
-// Not yet used...
-typedef struct reservation_t {
-    int id;
-    struct trip_t *trip;
-    struct stop_t *orig;
-    struct stop_t *dest;
-} Reservation;
 
 /*
  * Constructor-like helpers
@@ -95,7 +98,8 @@ Network *new_network();
 Node *new_node(Network *network, char *name, double x, double y);
 
 // Create a Stop struct
-Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next);
+Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
+               size_t trip_size);
 
 // Create a Trip struct
 Trip *new_trip(int departure, int capacity, Trip *next, Route *route);
