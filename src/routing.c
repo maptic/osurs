@@ -4,13 +4,13 @@
  * Author:  Merlin Unterfinger
  */
 
-#include "routing.h"
+#include "osurs/routing.h"
 
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-Connection *find(Node *orig, Node *dest, int departure) {
+Connection *find(const Node *orig, const Node *dest, int departure) {
     Connection *root_connection = (Connection *)malloc(sizeof(Connection));
     Connection *connection = root_connection;
 
@@ -113,16 +113,17 @@ Connection *find(Node *orig, Node *dest, int departure) {
         }
     }
 
+    // Check for no results
+    if (connection->last == NULL && connection->next == NULL) {
+        free(connection);
+        return NULL;
+    }
+
     // Delete last empty connection to avoid memory leak.
     // Check if only one result
     if (connection->last != NULL) {
         connection->last->next = NULL;
         free(connection);
-    }
-
-    // Check for no results
-    if (connection->last == NULL && connection->next == NULL) {
-        return NULL;
     }
 
     // TODO: Sort connections according to arrival times.

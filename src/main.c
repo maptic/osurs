@@ -8,8 +8,8 @@
 
 #include <stdio.h>
 
-#include "network.h"
-#include "routing.h"
+#include "osurs/network.h"
+#include "osurs/routing.h"
 
 int main(int argc, char *argv[]) {
     // Initialize network
@@ -35,10 +35,9 @@ int main(int argc, char *argv[]) {
     size_t trip_size = 5;
 
     // Create route
-    Route *route =
-        new_route(network, nodes, times, route_size,  // Route properties
-                  departures, capacities, trip_size   // Trip properties
-        );
+    new_route(network, nodes, times, route_size,  // Route properties
+              departures, capacities, trip_size   // Trip properties
+    );
 
     // Route 2: Direct and fast
     // Define route attributes
@@ -53,8 +52,8 @@ int main(int argc, char *argv[]) {
     size_t trip_size2 = 3;
 
     // Create route
-    route = new_route(network, nodes2, times2, route_size2,  // Route properties
-                      departures2, capacities2, trip_size2   // Trip properties
+    new_route(network, nodes2, times2, route_size2,  // Route properties
+              departures2, capacities2, trip_size2   // Trip properties
     );
 
     // Print network
