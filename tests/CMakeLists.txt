@@ -5,10 +5,10 @@
 enable_testing()
 
 # Build test binaries and link googletest and libosurs
-add_executable(network_test network_test.cpp ../src/network.c)
-target_link_libraries(network_test gtest_main osurs)
+add_executable(network_test network_test.cpp)
+target_link_libraries(network_test PRIVATE gtest_main osurs)
 add_executable(routing_test routing_test.cpp)
-target_link_libraries(routing_test gtest_main osurs)
+target_link_libraries(routing_test PRIVATE gtest_main osurs)
 
 # GoogleTest
 include(GoogleTest)

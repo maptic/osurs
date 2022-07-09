@@ -1,5 +1,9 @@
 #include <gtest/gtest.h>
 
+extern "C" {
+#include <osurs/routing.h>
+}
+
 // Demonstrate some basic assertions.
 TEST(HelloTest2, BasicAssertions2) {
     // Expect two strings not to be equal.
