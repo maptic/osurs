@@ -16,6 +16,11 @@ of the trips (without transfers).
 
 ## To do
 
+- **Project Setup**
+  - Alternative: https://matgomes.com/integrate-google-test-into-cmake/
+  - C code in CPP: // https://stackoverflow.com/questions/23646595/how-to-use-a-c-file-to-write-a-test-class-in-google-test-instead-of-cpp-file
+  - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html
+
 - **Optimierung der Reservationen**:
 
   - Die Reservationen speichern keine Sitzplatzzuweisungen? --> Wird immer neu berechnet?
