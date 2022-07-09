@@ -4,7 +4,7 @@
  * Author:  Merlin Unterfinger
  */
 
-#include "network.h"
+#include "osurs/network.h"
 
 // Helpers to add references
 

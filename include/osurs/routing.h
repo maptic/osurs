@@ -55,7 +55,7 @@ typedef struct reservation_t {
  *
  * Returns a connection chain or NULL if no connection was found.
  */
-Connection *find(Node *orig, Node *dest, int departure);
+Connection *find(const Node *orig, const Node *dest, int departure);
 
 // Reservation
 
