@@ -46,7 +46,6 @@ typedef struct reservation_t {
 } Reservation;
 
 // Routing
-
 /*
  * Find connections between nodes.
  *
