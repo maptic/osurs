@@ -4,43 +4,15 @@
  * Author:  Merlin Unterfinger
  */
 
-#include "osurs/network.h"
+#include <osurs/network.h>
 
-// Helpers to add references
+// Private methods
 
-void network_add_route(Network *network, Route *route) {
-    if (network->route_counter == network->route_size) {
-        printf("Need to reallocate size!\n");
-        network->route_size += INIT_SIZE;
-        network->routes = (Route **)realloc(
-            network->routes, sizeof(Route *) * network->route_size);
-    }
-    network->routes[network->route_counter++] = route;
-}
+void network_add_route(Network *network, Route *route);
+void network_add_node(Network *network, Node *node);
+void node_add_route(Node *node, Route *route);
 
-void network_add_node(Network *network, Node *node) {
-    if (network->node_counter == network->node_size) {
-        printf("Need to reallocate size!\n");
-        network->node_size += INIT_SIZE;
-        network->nodes = (Node **)realloc(network->nodes,
-                                          sizeof(Node *) * network->node_size);
-    }
-    network->nodes[network->node_counter++] = node;
-}
-
-void node_add_route(Node *node, Route *route) {
-    // Check if route already exists (only check last)
-    if (node->routes[node->route_counter - 1] == route) return;
-    if (node->route_counter == node->route_size) {
-        printf("Need to reallocate size!\n");
-        node->route_size += INIT_SIZE;
-        node->routes =
-            (Route **)realloc(node->routes, sizeof(Route *) * node->route_size);
-    }
-    node->routes[node->route_counter++] = route;
-}
-
-// Constructors
+// Constructor-like methods
 
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
@@ -53,7 +25,7 @@ Network *new_network() {
     return network;
 }
 
-Node *new_node(Network *network, char *name, double x, double y) {
+Node *new_node(Network *network, const char *name, double x, double y) {
     Node *node = (Node *)malloc(sizeof(Node));
     node->name = name;
     node->x = x;
@@ -127,6 +99,40 @@ Route *new_route(Network *network, Node *nodes[], int times[],
     for (size_t i = 0; i < route_size; ++i) node_add_route(nodes[i], route);
 
     return route;
+}
+
+// Helpers to create relations in the network
+
+void network_add_route(Network *network, Route *route) {
+    if (network->route_counter == network->route_size) {
+        printf("Need to reallocate size!\n");
+        network->route_size += INIT_SIZE;
+        network->routes = (Route **)realloc(
+            network->routes, sizeof(Route *) * network->route_size);
+    }
+    network->routes[network->route_counter++] = route;
+}
+
+void network_add_node(Network *network, Node *node) {
+    if (network->node_counter == network->node_size) {
+        printf("Need to reallocate size!\n");
+        network->node_size += INIT_SIZE;
+        network->nodes = (Node **)realloc(network->nodes,
+                                          sizeof(Node *) * network->node_size);
+    }
+    network->nodes[network->node_counter++] = node;
+}
+
+void node_add_route(Node *node, Route *route) {
+    // Check if route already exists (only check last)
+    if (node->routes[node->route_counter - 1] == route) return;
+    if (node->route_counter == node->route_size) {
+        printf("Need to reallocate size!\n");
+        node->route_size += INIT_SIZE;
+        node->routes =
+            (Route **)realloc(node->routes, sizeof(Route *) * node->route_size);
+    }
+    node->routes[node->route_counter++] = route;
 }
 
 // Print helpers

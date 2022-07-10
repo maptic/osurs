@@ -16,10 +16,29 @@ of the trips (without transfers).
 
 ## To do
 
+- Headers:
+  - `types.h`
+  - `error.h`
+  - `io.h`
+  - `optim.h`
+
 - **Project Setup**
-  - Alternative: https://matgomes.com/integrate-google-test-into-cmake/
-  - C code in CPP: // https://stackoverflow.com/questions/23646595/how-to-use-a-c-file-to-write-a-test-class-in-google-test-instead-of-cpp-file
-  - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html
+  - Alternative: [Good structure](https://matgomes.com/integrate-google-test-into-cmake/)
+  - C code in CPP: [extern "C"](https://stackoverflow.com/questions/23646595/how-to-use-a-c-file-to-write-a-test-class-in-google-test-instead-of-cpp-file)
+  - [open-std](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html)
+
+```txt
+# Example structure: https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project
+# Note that headers are optional, and do not affect add_library, but they will not
+# show up in IDEs unless they are listed in add_library.
+# set(HEADER_LIST "${PROJECT_SOURCE_DIR}/include/osurs/types.h")
+# Optionally glob, but only for CMake 3.12 or later:
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/modern/*.h")
+# See: 
+# - CTest: https://coderefinery.github.io/cmake-workshop/testing/
+# - CTest: https://coderefinery.github.io/cmake-workshop/testing/#test-properties-labels-timeout-and-cost
+# - Googletest: https://google.github.io/googletest/quickstart-cmake.html
+```
 
 - **Optimierung der Reservationen**:
 

@@ -8,8 +8,10 @@
 
 #include <stdio.h>
 
-#include "osurs/network.h"
-#include "osurs/routing.h"
+#include <osurs/network.h>
+#include <osurs/routing.h>
+
+
 
 int main(int argc, char *argv[]) {
     // Initialize network

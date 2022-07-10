@@ -10,8 +10,8 @@
  * Author:  Merlin Unterfinger
  */
 
-#ifndef NETWORK_H_
-#define NETWORK_H_
+#ifndef OSURS_NETWORK_H_
+#define OSURS_NETWORK_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,7 +34,7 @@ struct network_t;
 typedef struct node_t {
     double x;
     double y;
-    char *name;
+    const char *name;
     struct route_t **routes;
     size_t route_counter;
     size_t route_size;
@@ -88,14 +88,14 @@ typedef struct network_t {
 } Network;
 
 /*
- * Constructor-like helpers
+ * Constructor-like methods
  */
 
 // Create a Network struct
 Network *new_network();
 
 // Create a Node struct and add it to the network
-Node *new_node(Network *network, char *name, double x, double y);
+Node *new_node(Network *network, const char *name, double x, double y);
 
 // Create a Stop struct
 Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
@@ -128,4 +128,4 @@ void print_route(Route *route);
 // Print Network
 void print_network(Network *network);
 
-#endif  // NETWORK_H_
+#endif  // OSURS_NETWORK_H_

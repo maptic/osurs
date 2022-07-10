@@ -9,8 +9,8 @@
  *
  * Author:  Merlin Unterfinger
  */
-#ifndef ROUTING_H_
-#define ROUTING_H_
+#ifndef OSURS_ROUTING_H_
+#define OSURS_ROUTING_H_
 
 #include <stdio.h>
 
@@ -81,12 +81,8 @@ int check(Connection *connection, int seats, int *trip_count);
  */
 int reserve(Connection *connection, int seats);
 
-// Helpers
-
-int min(int a, int b);
-
 // Print helpers
 
 void print_connection(Connection *connection);
 
-#endif  // ROUTING_H_
+#endif  // OSURS_ROUTING_H_

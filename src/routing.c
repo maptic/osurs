@@ -4,11 +4,15 @@
  * Author:  Merlin Unterfinger
  */
 
-#include "osurs/routing.h"
+#include <osurs/routing.h>
 
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+// Private methods
+
+int min(int a, int b);
 
 Connection *find(const Node *orig, const Node *dest, int departure) {
     Connection *root_connection = (Connection *)malloc(sizeof(Connection));

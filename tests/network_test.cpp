@@ -5,9 +5,8 @@ extern "C" {
 #include <osurs/network.h>
 }
 
-// Demonstrate some basic assertions.
-TEST(HelloTest, BasicAssertions) {
-
+// Create a network
+TEST(NetworkTest, Setup) {
     // Initialize network
     Network *network = new_network();
 
@@ -55,6 +54,14 @@ TEST(HelloTest, BasicAssertions) {
     // Print network
     // print_network(network);
 
+    // Expect two strings not to be equal.
+    EXPECT_STRNE("hello", "world");
+    // Expect equality.
+    EXPECT_EQ(7 * 6, 42);
+}
+
+// Destroy a network
+TEST(NetworkTest, Destroy) {
     // Expect two strings not to be equal.
     EXPECT_STRNE("hello", "world");
     // Expect equality.
