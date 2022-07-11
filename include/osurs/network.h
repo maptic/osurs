@@ -21,7 +21,7 @@
 #define HOURS 3600
 
 // Forward declarations to enable circular dependencies
-struct note_t;
+struct node_t;
 struct stop_t;
 struct trip_t;
 struct route_t;
@@ -108,6 +108,16 @@ Trip *new_trip(int departure, int capacity, Trip *next, Route *route);
 Route *new_route(Network *network, Node *nodes[], int times[],
                  size_t route_size, int departures[], int capacities[],
                  size_t trip_size);
+
+/*
+ * Destructor-like methods
+ */
+
+void delete_node(Node *node);
+void delete_stop(Stop *stop);
+void delete_trip(Trip *trip);
+void delete_route(Route *route);
+void delete_network(Network *network);
 
 /*
  * Print helpers

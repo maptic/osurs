@@ -101,6 +101,69 @@ Route *new_route(Network *network, Node *nodes[], int times[],
     return route;
 }
 
+// Destructor-like methods
+void delete_node(Node *node) {
+    free(node->routes);
+    free(node);
+}
+
+void delete_stop(Stop *stop) {
+    free(stop->reserved);
+    free(stop);
+}
+
+void delete_trip(Trip *trip) { free(trip); }
+
+void delete_route(Route *route) {
+    // Free stops
+    Stop *next_stop;
+    Stop *curr_stop = route->root_stop;
+    while (1) {
+        printf("  - Dropping stop\n");
+        next_stop = curr_stop->next;
+        delete_stop(curr_stop);
+        if (next_stop == NULL) {
+            break;
+        }
+        curr_stop = next_stop;
+    }
+    // Free trips
+    Trip *next_trip;
+    Trip *curr_trip = route->root_trip;
+    while (1) {
+        next_trip = curr_trip->next;
+        delete_trip(curr_trip);
+        if (next_trip == NULL) {
+            break;
+        }
+        curr_trip = next_trip;
+    }
+    // Free struct
+    free(route);
+}
+
+void delete_network(Network *network) {
+    // Free routes
+    printf("Dropping routes\n");
+    for (size_t i = 0; i < network->route_counter; ++i) {
+        printf("- Dropping route\n");
+        delete_route(network->routes[i]);
+    }
+    // Free nodes
+    printf("Dropping nodes\n");
+    for (size_t i = 0; i < network->node_counter; ++i) {
+        printf("- Dropping nodes\n");
+        delete_node(network->nodes[i]);
+    }
+    // Free arrays
+    printf("Dropping arrays\n");
+    free(network->routes);
+    free(network->nodes);
+    // Free struct
+    printf("Dropping network struct\n");
+    free(network);
+}
+
 // Helpers to create relations in the network
 
 void network_add_route(Network *network, Route *route) {
