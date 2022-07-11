@@ -80,6 +80,10 @@ int check(Connection *connection, int seats, int *trip_count);
  */
 int reserve(Connection *connection, int seats);
 
+// Destructor-like methods
+
+void delete_connection(Connection *connection);
+
 // Print helpers
 
 void print_connection(Connection *connection);

@@ -4,9 +4,8 @@
  * Author:  Merlin Unterfinger
  */
 
-#include <osurs/reserve.h>
-
 #include <limits.h>
+#include <osurs/reserve.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,13 +14,14 @@
 int min(int a, int b);
 
 Connection *find(const Node *orig, const Node *dest, int departure) {
-    Connection *root_connection = (Connection *)malloc(sizeof(Connection));
-    Connection *connection = root_connection;
-
     // Avoid same origin and destination
     if (orig == dest) {
         return NULL;
     }
+
+    // Allocate connection root and current
+    Connection *root_connection = (Connection *)malloc(sizeof(Connection));
+    Connection *connection = root_connection;
 
     // Mark start of the chain
     connection->next = NULL;
@@ -180,6 +180,43 @@ int reserve(Connection *connection, int seats) {
 // Helpers
 
 int min(int a, int b) { return (a > b) ? b : a; }
+
+// Destructor-like methods
+
+void delete_connection(Connection *connection) {
+    if (connection == NULL) return;
+
+    Connection *last_conn;
+    Connection *next_conn;
+    Connection *curr_conn;
+    Connection *root_conn = connection;
+
+    // Check for next
+    curr_conn = root_conn->next;
+    while (1) {
+        if (curr_conn == NULL) break;
+        next_conn = curr_conn->next;
+        printf("Delete connection (next)\n");
+        free(curr_conn);
+        printf("Deleted connection (next)\n");
+        curr_conn = next_conn;
+    }
+    // Check for last
+    curr_conn = root_conn->last;
+    while (1) {
+        if (curr_conn == NULL) break;
+        last_conn = curr_conn->last;
+        printf("Delete connection (last)\n");
+        free(curr_conn);
+        curr_conn = last_conn;
+    }
+    // Finally free root
+    printf("Delete connection (root)\n");
+    free(root_conn);
+    printf("Deleted connection (root)\n");
+}
+
+void delete_node(Node *node);
 
 // Print helpers
 

@@ -62,36 +62,43 @@ int main(int argc, char *argv[]) {
     printf("TEST: NETWORK\n");
     print_network(network);
 
-    // printf("\nTEST: ROUTING\n");
-    // // Route
-    // Connection *connection = find(nodeA, nodeD, 12 * HOURS);
-    // print_connection(connection);
+    printf("\nTEST: ROUTING\n");
+    // Route
+    Connection *connection = find(nodeA, nodeD, 12 * HOURS);
+    print_connection(connection);
 
-    // // One result
-    // Connection *connection2 = find(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
-    // print_connection(connection2);
+    // One result
+    Connection *connection2 = find(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
+    print_connection(connection2);
 
-    // // No result: Time
-    // Connection *connection3 = find(nodeA, nodeD, 24 * HOURS);
-    // print_connection(connection3);
+    // No result: Time
+    Connection *connection3 = find(nodeA, nodeD, 24 * HOURS);
+    print_connection(connection3);
 
-    // // No result: No direct route
-    // Connection *connection4 = find(nodeA, nodeE, 24 * HOURS);
-    // print_connection(connection4);
+    // No result: No direct route
+    Connection *connection4 = find(nodeA, nodeE, 24 * HOURS);
+    print_connection(connection4);
 
-    // // No result: Same place
-    // Connection *connection5 = find(nodeA, nodeA, 0 * HOURS);
-    // print_connection(connection5);
+    // No result: Same place
+    Connection *connection5 = find(nodeA, nodeA, 0 * HOURS);
+    print_connection(connection5);
 
-    // // Reservation
-    // printf("\nTEST: RESERVATION\n");
-    // print_connection(connection);
-    // printf("Reserve 9: %s\n", reserve(connection, 9) ? "success" : "failure");
-    // printf("Reserve 2: %s\n", reserve(connection, 2) ? "success" : "failure");
-    // printf("Reserve 2: %s\n", reserve(connection2, 2) ? "success" : "failure");
-    // print_connection(find(nodeA, nodeD, 12 * HOURS));
+    // Reservation
+    printf("\nTEST: RESERVATION\n");
+    print_connection(connection);
+    printf("Reserve 9: %s\n", reserve(connection, 9) ? "success" : "failure");
+    printf("Reserve 2: %s\n", reserve(connection, 2) ? "success" : "failure");
+    printf("Reserve 2: %s\n", reserve(connection2, 2) ? "success" : "failure");
+    Connection *connection6 = find(nodeA, nodeD, 12 * HOURS);
+    print_connection(connection6);
 
     // Free memory
+    delete_connection(connection);
+    delete_connection(connection2);
+    delete_connection(connection3);
+    delete_connection(connection4);
+    delete_connection(connection5);
+    delete_connection(connection6);
     delete_network(network);
 
     return 0;
