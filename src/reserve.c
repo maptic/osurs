@@ -4,7 +4,7 @@
  * Author:  Merlin Unterfinger
  */
 
-#include <osurs/routing.h>
+#include <osurs/reserve.h>
 
 #include <limits.h>
 #include <stdio.h>

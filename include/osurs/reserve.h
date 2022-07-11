@@ -9,8 +9,8 @@
  *
  * Author:  Merlin Unterfinger
  */
-#ifndef OSURS_ROUTING_H_
-#define OSURS_ROUTING_H_
+#ifndef OSURS_RESERVE_H_
+#define OSURS_RESERVE_H_
 
 #include <stdio.h>
 
@@ -84,4 +84,4 @@ int reserve(Connection *connection, int seats);
 
 void print_connection(Connection *connection);
 
-#endif  // OSURS_ROUTING_H_
+#endif  // OSURS_RESERVE_H_

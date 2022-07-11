@@ -22,6 +22,13 @@ of the trips (without transfers).
   - `io.h`
   - `optim.h`
 
+## DevDeps
+
+- cmake
+- valgrind (`valgrind -s --leak-check=full ./main`)
+- doxygen
+- googletest (installed via cmake)
+
 - **Project Setup**
   - Alternative: [Good structure](https://matgomes.com/integrate-google-test-into-cmake/)
   - C code in CPP: [extern "C"](https://stackoverflow.com/questions/23646595/how-to-use-a-c-file-to-write-a-test-class-in-google-test-instead-of-cpp-file)
