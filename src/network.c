@@ -188,7 +188,9 @@ void network_add_node(Network *network, Node *node) {
 
 void node_add_route(Node *node, Route *route) {
     // Check if route already exists (only check last)
-    if (node->routes[node->route_counter - 1] == route) return;
+    if (node->route_counter > 0 &&
+        node->routes[node->route_counter - 1] == route)
+        return;
     if (node->route_counter == node->route_size) {
         printf("Need to reallocate size!\n");
         node->route_size += INIT_SIZE;
