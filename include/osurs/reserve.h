@@ -45,16 +45,14 @@ typedef struct reservation_t {
     struct connection_t connection;  // The booked connection
 } Reservation;
 
-// Routing
 /*
- * Find connections between nodes.
+ * Create connection between nodes.
  *
- * Searches connections between nodes considering seat avalability and departure
- * times.
+ * Searches connections between nodes considering departure times.
  *
  * Returns a connection chain or NULL if no connection was found.
  */
-Connection *find(const Node *orig, const Node *dest, int departure);
+Connection *new_connection(const Node *orig, const Node *dest, int departure);
 
 // Reservation
 
@@ -65,7 +63,7 @@ Connection *find(const Node *orig, const Node *dest, int departure);
  * This is important since reservations can change or avoid double booking of a
  * serached connection. Note: This function is called internally by reserve().
  *
- * Returns 0 if failure and 1 in success.
+ * Returns 0 if failure and 1 if success.
  */
 int check(Connection *connection, int seats, int *trip_count);
 
@@ -76,7 +74,7 @@ int check(Connection *connection, int seats, int *trip_count);
  * enough seats are available the reservation counts of the corresponding trip
  * on the stops of the routes are increased.
  *
- * Returns 0 if failure and 1 in success.
+ * Returns 0 if failure and 1 if success.
  */
 int reserve(Connection *connection, int seats);
 

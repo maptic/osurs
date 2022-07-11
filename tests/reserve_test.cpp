@@ -5,7 +5,7 @@ extern "C" {
 }
 
 // Find a connection in the network
-TEST(ReserveTest, Find) {
+TEST(ReserveTest, NewConnection) {
     // Expect two strings not to be equal.
     EXPECT_STRNE("hello", "world");
     // Expect equality.

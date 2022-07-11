@@ -119,7 +119,6 @@ void delete_route(Route *route) {
     Stop *next_stop;
     Stop *curr_stop = route->root_stop;
     while (1) {
-        printf("  - Dropping stop\n");
         next_stop = curr_stop->next;
         delete_stop(curr_stop);
         if (next_stop == NULL) {
@@ -144,23 +143,17 @@ void delete_route(Route *route) {
 
 void delete_network(Network *network) {
     // Free routes
-    printf("Dropping routes\n");
     for (size_t i = 0; i < network->route_counter; ++i) {
-        printf("- Dropping route\n");
         delete_route(network->routes[i]);
     }
     // Free nodes
-    printf("Dropping nodes\n");
     for (size_t i = 0; i < network->node_counter; ++i) {
-        printf("- Dropping nodes\n");
         delete_node(network->nodes[i]);
     }
     // Free arrays
-    printf("Dropping arrays\n");
     free(network->routes);
     free(network->nodes);
     // Free struct
-    printf("Dropping network struct\n");
     free(network);
 }
 
@@ -168,7 +161,6 @@ void delete_network(Network *network) {
 
 void network_add_route(Network *network, Route *route) {
     if (network->route_counter == network->route_size) {
-        printf("Need to reallocate size!\n");
         network->route_size += INIT_ALLOC_SIZE;
         network->routes = (Route **)realloc(
             network->routes, sizeof(Route *) * network->route_size);
@@ -178,7 +170,6 @@ void network_add_route(Network *network, Route *route) {
 
 void network_add_node(Network *network, Node *node) {
     if (network->node_counter == network->node_size) {
-        printf("Need to reallocate size!\n");
         network->node_size += INIT_ALLOC_SIZE;
         network->nodes = (Node **)realloc(network->nodes,
                                           sizeof(Node *) * network->node_size);
@@ -192,7 +183,6 @@ void node_add_route(Node *node, Route *route) {
         node->routes[node->route_counter - 1] == route)
         return;
     if (node->route_counter == node->route_size) {
-        printf("Need to reallocate size!\n");
         node->route_size += INIT_ALLOC_SIZE;
         node->routes =
             (Route **)realloc(node->routes, sizeof(Route *) * node->route_size);
