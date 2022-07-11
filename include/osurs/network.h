@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define INIT_SIZE 100
+#define INIT_ALLOC_SIZE 2
 #define MINUTES 60
 #define HOURS 3600
 

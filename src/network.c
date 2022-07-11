@@ -16,11 +16,11 @@ void node_add_route(Node *node, Route *route);
 
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
-    network->nodes = (Node **)malloc(sizeof(Node *) * INIT_SIZE);
-    network->node_size = INIT_SIZE;
+    network->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
+    network->node_size = INIT_ALLOC_SIZE;
     network->node_counter = 0;
-    network->routes = (Route **)malloc(sizeof(Route *) * INIT_SIZE);
-    network->route_size = INIT_SIZE;
+    network->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
+    network->route_size = INIT_ALLOC_SIZE;
     network->route_counter = 0;
     return network;
 }
@@ -30,8 +30,8 @@ Node *new_node(Network *network, const char *name, double x, double y) {
     node->name = name;
     node->x = x;
     node->y = y;
-    node->routes = (Route **)malloc(sizeof(Route *) * INIT_SIZE);
-    node->route_size = INIT_SIZE;
+    node->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
+    node->route_size = INIT_ALLOC_SIZE;
     node->route_counter = 0;
 
     // Add node to network
@@ -169,7 +169,7 @@ void delete_network(Network *network) {
 void network_add_route(Network *network, Route *route) {
     if (network->route_counter == network->route_size) {
         printf("Need to reallocate size!\n");
-        network->route_size += INIT_SIZE;
+        network->route_size += INIT_ALLOC_SIZE;
         network->routes = (Route **)realloc(
             network->routes, sizeof(Route *) * network->route_size);
     }
@@ -179,7 +179,7 @@ void network_add_route(Network *network, Route *route) {
 void network_add_node(Network *network, Node *node) {
     if (network->node_counter == network->node_size) {
         printf("Need to reallocate size!\n");
-        network->node_size += INIT_SIZE;
+        network->node_size += INIT_ALLOC_SIZE;
         network->nodes = (Node **)realloc(network->nodes,
                                           sizeof(Node *) * network->node_size);
     }
@@ -193,7 +193,7 @@ void node_add_route(Node *node, Route *route) {
         return;
     if (node->route_counter == node->route_size) {
         printf("Need to reallocate size!\n");
-        node->route_size += INIT_SIZE;
+        node->route_size += INIT_ALLOC_SIZE;
         node->routes =
             (Route **)realloc(node->routes, sizeof(Route *) * node->route_size);
     }

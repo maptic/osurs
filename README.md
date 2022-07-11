@@ -26,7 +26,7 @@ of the trips (without transfers).
 
 - cmake
 - valgrind (`valgrind -s --leak-check=full ./main`)
-- doxygen
+- doxygen, graphviz
 - googletest (installed via cmake)
 
 - **Project Setup**
