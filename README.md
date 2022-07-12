@@ -31,6 +31,8 @@ of the trips (without transfers).
 
 The network consists of nodes where vehicles stop and passengers can get on and off. A route stores the order in which the nodes are approached by a vehicle in a chain of stops. Each stop contains information about which stop is next and how long it takes to reach it. On routes, trips indicate the departure times at which a vehicle leaves from the route's root stop. Vehicle information such as capacity and reservations are stored at the trip level.
 
+All objects of the network are located on the heap and are directly or indirectly linked to the network structure. If the memory of the network is released (`delete_network()`) all associated structures of the network are also cleared.
+
 ```mermaid
 graph TD;
     Network-->Node;
@@ -43,12 +45,18 @@ graph TD;
     Trip-->Vehicle;
 ```
 
+The found connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists in the heap until the entire network is released.
+
 ```mermaid
 graph TD;
-  Network-->Reservation;
-  Trip-->Reservation;
-  Connection-->Stop;
-  Connection-->Trip;
+  subgraph network.h;
+    Network-->Reservation;
+    Trip-->Reservation;
+  end;
+  subgraph reserve.h;
+    Connection-->Stop;
+    Connection-->Trip;
+  end;
 ```
 
 ## Development
