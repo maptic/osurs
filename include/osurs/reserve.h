@@ -19,57 +19,42 @@
 
 #include <limits.h>
 #include <osurs/network.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-/*
- * Connection
+/**
+ * @brief Create connection between nodes.
  *
- * A connection is a route between two nodes with seats.
+ * Searches connections between nodes on the network considering a departure
+ * time. If more than one connection is possible between to nodes on the
+ * network, a connection chain is created. In a connection chain, the .last
+ * property of the connection structure points to the last connection or NULL if
+ * it is the root of the chain. Identically, the .next property points to the
+ * next connection or to NULL if it is the end of the chain.
+ *
+ * @note Queried connections are not stored on the network and must be released
+ * individually to prevent a memory leak (delete_connection(Connection*)).
+ *
+ * @param orig Origin node in network for connection.
+ * @param dest Destination node in network for connection.
+ * @param time The departure time in seconds after midnight (00:00:00).
+ * @return Returns a pointer to a connection chain or NULL if no connection was
+ * found.
  */
-typedef struct connection_t {
-    int departure;        // Departure time in seconds
-    int arrival;          // Arrival time in seconds
-    int available;        // Available seats (capacity - reserved)
-    struct stop_t *orig;  // Origin stop
-    struct stop_t *dest;  // Destination stop
-    struct trip_t *trip;  // The trip on the route on which the connection is
-    struct connection_t *next;  // If there are more than one result, chain of
-                                // connections, NULL if at the end of the chain.
-    struct connection_t
-        *last;  // Last connection or NULL if at the start of the chain.
-} Connection;
+Connection *new_connection(const Node *orig, const Node *dest, int time);
 
-/*
- * Reservation
- *
- * A reservation is a booked connection. The booked seats have to be smaller or
- * equal to the avalable seats.
- */
-typedef struct reservation_t {
-    int seats;                       // Reserved seats
-    struct connection_t connection;  // The booked connection
-} Reservation;
-
-/*
- * Create connection between nodes.
- *
- * Searches connections between nodes considering departure times.
- *
- * Returns a connection chain or NULL if no connection was found.
- */
-Connection *new_connection(const Node *orig, const Node *dest, int departure);
-
-// Reservation
-
-/*
- * Check connection
+/**
+ * @brief Check if seats are available in connection.
  *
  * Check a connection if the desired number of seats is available.
  * This is important since reservations can change or avoid double booking of a
- * serached connection. Note: This function is called internally by reserve().
+ * serached connection.
  *
- * Returns 0 if failure and 1 if success.
+ * @note This function is called internally by new_reservation(Connection).
+ *
+ * @param connection The queried connection to check.
+ * @param seats The number of seats to check.
+ * @param trip_count The trip number on the route, needed for getting the
+ * reserved count.
+ * @return Returns 0 if failure and 1 if success.
  */
 int check(Connection *connection, int seats, int *trip_count);
 
@@ -82,14 +67,33 @@ int check(Connection *connection, int seats, int *trip_count);
  *
  * Returns 0 if failure and 1 if success.
  */
-int reserve(Connection *connection, int seats);
+
+/**
+ * @brief Create a new reservation.
+ *
+ * Books a connection on the network, if the desired seats are available. If
+ * enough seats are available the reservation counts of the corresponding trip
+ * on the stops of the routes are increased and a new reservation is allocated
+ * and connected to the network.
+ *
+ * @param connection The connection to reserve.
+ * @param seats The number of seats to reserve.
+ * @return int Will be replaced with reservation struct.
+ */
+int new_reservation(Connection *connection, int seats);
 
 // Destructor-like methods
 
+/**
+ * @brief Delete a connection
+ *
+ * Frees the memory from a connection chain on the heap.
+ *
+ * @note This function has to be called for every queried connection to prevent
+ * memory leaks.
+ *
+ * @param connection The connection chain to delete.
+ */
 void delete_connection(Connection *connection);
-
-// Print helpers
-
-void print_connection(Connection *connection);
 
 #endif  // OSURS_RESERVE_H_

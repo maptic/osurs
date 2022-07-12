@@ -6,3 +6,11 @@
  */
 
 #include <osurs/optimize.h>
+
+// Private declarations
+
+// Public definitions
+
+void optimize() { return; }
+
+// Private definitions

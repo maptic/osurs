@@ -6,9 +6,8 @@
  * Author:  Merlin Unterfinger
  */
 
-#include <osurs/network.h>
+#include <osurs/io.h>
 #include <osurs/reserve.h>
-#include <stdio.h>
 
 int main(int argc, char *argv[]) {
     printf("TEST: NETWORK\n");
@@ -85,9 +84,12 @@ int main(int argc, char *argv[]) {
     // Reservation
     printf("\nTEST: RESERVATION\n");
     print_connection(conn_1);
-    printf("Reserve 9: %s\n", reserve(conn_1, 9) ? "success" : "failure");
-    printf("Reserve 2: %s\n", reserve(conn_1, 2) ? "success" : "failure");
-    printf("Reserve 2: %s\n", reserve(conn_2, 2) ? "success" : "failure");
+    printf("Reserve 9: %s\n",
+           new_reservation(conn_1, 9) ? "success" : "failure");
+    printf("Reserve 2: %s\n",
+           new_reservation(conn_1, 2) ? "success" : "failure");
+    printf("Reserve 2: %s\n",
+           new_reservation(conn_2, 2) ? "success" : "failure");
 
     // Free memory
     printf("\nTEST: FREE MEMORY\n");
