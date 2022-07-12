@@ -34,7 +34,7 @@ The network consists of nodes where vehicles stop and passengers can get on and 
 ```mermaid
 graph TD;
   Network-->Node;
-  Network-->Routes;
+  Network-->Route;
   Network-->Reservations;
   Network-->Vehicles;
   Route-->Stop;
