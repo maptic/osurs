@@ -13,18 +13,16 @@ The **osurs** library contains the following modules with corresponding headers:
 **Interdependencies**
 
 ```mermaid
-graph LR;
+graph RL;
   subgraph libosurs;
-    types.h-->network.h;
-    types.h-->io.h;
-    network.h-->io.h
-    network.h-->reserve.h;
-    optimize.h-->reserve.h;
+    osurs/network.h-->|#include|osurs/types.h;
+    osurs/io.h-->|#include|osurs/network.h
+    osurs/reserve.h-->|#include|osurs/network.h;
+    osurs/reserve.h-->|#include|osurs/optimize.h;
   end;
 ```
 
-Note: The core functionality of **osurs** is in the **optimize** package.
-There are already powerful routing algorithms for public transport,
+**Note:** The core functionality of **osurs** is in the `optimize.h` module. There are already powerful routing algorithms for public transport,
 so the algorithm included here is minimal and only serves to book
 reservations on already known/found connections to the right segments
 of the trips (without transfers).
@@ -38,14 +36,17 @@ All objects of the network are located on the heap and are directly or indirectl
 ```mermaid
 graph LR;
   subgraph network.h;
-    Network-->Node;
-    Network-->Route;
-    Network-->Vehicle;
-    Route-->Stop;
-    Route-->Trip;
-    Node-->Route;
-    Stop-->Node;
-    Trip-->Vehicle;
+    Network-->|"nodes[]"|Node;
+    Network-->|"routes[]"|Route;
+    Network-->|"vehicles[]"|Vehicle;
+    Route-->|*root_stop|Stop;
+    Stop-->|*last|Stop;
+    Stop-->|*next|Stop;
+    Route-->|*root_trip|Trip;
+    Trip-->|*next|Trip;
+    Node-->|"routes[]"|Route;
+    Stop-->|*node|Node;
+    Trip-->|*vehicle|Vehicle;
   end;
 ```
 
@@ -53,12 +54,12 @@ Queried connections are not stored on the network and must be released individua
 
 ```mermaid
 graph LR;
-  Connection_1-->|.next|Connection_2;
-  Connection_2-->|.next|Connection_3;
-  Connection_3-->|.next|NULL;
-  Connection_3-->|.last|Connection_2;
-  Connection_2-->|.last|Connection_1;
-  Connection_1-->|.last|NULL;
+  Connection_1-->|*next|Connection_2;
+  Connection_2-->|*next|Connection_3;
+  Connection_3-->|*next|NULL;
+  Connection_3-->|*last|Connection_2;
+  Connection_2-->|*last|Connection_1;
+  Connection_1-->|*last|NULL;
 ```
 
 When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists on the heap until the entire network is released.
@@ -66,15 +67,17 @@ When a reservation is made, it is stored as a reservation struct on the network 
 ```mermaid
 graph LR;
   subgraph network.h;
-    Trip-->Reservation;
-    Reservation-->Trip;
-    Reservation-->Stop;
-    Trip-->Stop;
+    Trip-->|"reservations[]"|Reservation;
+    Reservation-->|*trip|Trip;
+    Reservation-->|*orig|Stop;
+    Reservation-->|*dest|Stop;
+    Trip-->|*root_stop|Stop;
   end;
   subgraph reserve.h;
     direction LR;
-    Connection-->Stop;
-    Connection-->Trip
+    Connection-->|*orig|Stop;
+    Connection-->|*dest|Stop;
+    Connection-->|*trip|Trip
   end
 ```
 
