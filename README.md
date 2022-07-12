@@ -35,8 +35,8 @@ The network consists of nodes where vehicles stop and passengers can get on and 
 graph TD;
   Network-->Node;
   Network-->Route;
-  Network-->Reservations;
-  Network-->Vehicles;
+  Network-->Reservation;
+  Network-->Vehicle;
   Route-->Stop;
   Route-->Trip;
   Stop-->Node;
