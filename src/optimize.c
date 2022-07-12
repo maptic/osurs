@@ -1,7 +1,16 @@
-/*
- * Optimization of space utilization on trips
- *
- * Authors: Tobias Meier, Merlin Unterfinger
+/**
+ * @brief Optimization of space utilization on trips
+ * @file optimize.c
+ * @date: 2022-07-12
+ * @author: Tobias Meier, Merlin Unterfinger
  */
 
 #include <osurs/optimize.h>
+
+// Private declarations
+
+// Public definitions
+
+void optimize() { return; }
+
+// Private definitions

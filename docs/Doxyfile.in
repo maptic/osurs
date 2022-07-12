@@ -1,2 +1,17 @@
-OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/doc_doxygen/
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/include/ @CMAKE_CURRENT_SOURCE_DIR@/docs
+PROJECT_NAME           = "@CMAKE_PROJECT_NAME@"
+PROJECT_NUMBER         = "@CMAKE_PROJECT_VERSION@"
+# PROJECT_BRIEF          = "@CMAKE_PROJECT_DESCRIPTION@"
+MARKDOWN_SUPPORT       = YES
+USE_MDFILE_AS_MAINPAGE = MAINPAGE.md
+DOXYFILE_ENCODING      = UTF-8
+JAVADOC_AUTOBRIEF      = NO
+OPTIMIZE_OUTPUT_FOR_C  = YES
+STRIP_FROM_PATH        = @PROJECT_SOURCE_DIR@ \
+                         @PROJECT_BINARY_DIR@
+INPUT                  = @CMAKE_SOURCE_DIR@/include \
+                         @CMAKE_SOURCE_DIR@/src \ 
+                         @CMAKE_SOURCE_DIR@/docs
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.h *.hpp *.cpp *.md
+OUTPUT_DIRECTORY       = @CMAKE_BINARY_DIR@/doc/
+OUTPUT_LANGUAGE        = English    

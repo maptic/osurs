@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-// Avoid undefined-symbol errors at linktime
 extern "C" {
 #include <osurs/network.h>
 }

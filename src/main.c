@@ -6,14 +6,12 @@
  * Author:  Merlin Unterfinger
  */
 
-#include <stdio.h>
-
-#include <osurs/network.h>
-#include <osurs/routing.h>
-
-
+#include <osurs/io.h>
+#include <osurs/reserve.h>
 
 int main(int argc, char *argv[]) {
+    printf("TEST: NETWORK\n");
+
     // Initialize network
     Network *network = new_network();
 
@@ -59,37 +57,48 @@ int main(int argc, char *argv[]) {
     );
 
     // Print network
-    printf("TEST: NETWORK\n");
     print_network(network);
 
     printf("\nTEST: ROUTING\n");
     // Route
-    Connection *connection = find(nodeA, nodeD, 12 * HOURS);
-    print_connection(connection);
+    Connection *conn_1 = new_connection(nodeA, nodeD, 12 * HOURS);
+    print_connection(conn_1);
 
     // One result
-    Connection *connection2 = find(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
-    print_connection(connection2);
+    Connection *conn_2 =
+        new_connection(nodeA, nodeD, 18 * HOURS + 30 * MINUTES);
+    print_connection(conn_2);
 
     // No result: Time
-    Connection *connection3 = find(nodeA, nodeD, 24 * HOURS);
-    print_connection(connection3);
+    Connection *conn_3 = new_connection(nodeA, nodeD, 24 * HOURS);
+    print_connection(conn_3);
 
     // No result: No direct route
-    Connection *connection4 = find(nodeA, nodeE, 24 * HOURS);
-    print_connection(connection4);
+    Connection *conn_4 = new_connection(nodeA, nodeE, 24 * HOURS);
+    print_connection(conn_4);
 
     // No result: Same place
-    Connection *connection5 = find(nodeA, nodeA, 0 * HOURS);
-    print_connection(connection5);
+    Connection *conn_5 = new_connection(nodeA, nodeA, 0 * HOURS);
+    print_connection(conn_5);
 
     // Reservation
     printf("\nTEST: RESERVATION\n");
-    print_connection(connection);
-    printf("Reserve 9: %s\n", reserve(connection, 9) ? "success" : "failure");
-    printf("Reserve 2: %s\n", reserve(connection, 2) ? "success" : "failure");
-    printf("Reserve 2: %s\n", reserve(connection2, 2) ? "success" : "failure");
-    print_connection(find(nodeA, nodeD, 12 * HOURS));
+    print_connection(conn_1);
+    printf("Reserve 9: %s\n",
+           new_reservation(conn_1, 9) ? "success" : "failure");
+    printf("Reserve 2: %s\n",
+           new_reservation(conn_1, 2) ? "success" : "failure");
+    printf("Reserve 2: %s\n",
+           new_reservation(conn_2, 2) ? "success" : "failure");
+
+    // Free memory
+    printf("\nTEST: FREE MEMORY\n");
+    delete_connection(conn_1->next->next);
+    delete_connection(conn_2);
+    delete_connection(conn_3);
+    delete_connection(conn_4);
+    delete_connection(conn_5);
+    delete_network(network);
 
     return 0;
 }

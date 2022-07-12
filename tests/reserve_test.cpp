@@ -1,11 +1,11 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include <osurs/routing.h>
+#include <osurs/reserve.h>
 }
 
 // Find a connection in the network
-TEST(RoutingTest, Find) {
+TEST(ReserveTest, NewConnection) {
     // Expect two strings not to be equal.
     EXPECT_STRNE("hello", "world");
     // Expect equality.
@@ -13,7 +13,7 @@ TEST(RoutingTest, Find) {
 }
 
 // Check a found connection in the network
-TEST(RoutingTest, Check) {
+TEST(ReserveTest, Check) {
     // Expect two strings not to be equal.
     EXPECT_STRNE("hello", "world");
     // Expect equality.
@@ -21,7 +21,7 @@ TEST(RoutingTest, Check) {
 }
 
 // Reserve a found connection in the network
-TEST(RoutingTest, Reserve) {
+TEST(ReserveTest, NewReservation) {
     // Expect two strings not to be equal.
     EXPECT_STRNE("hello", "world");
     // Expect equality.
