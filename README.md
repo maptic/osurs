@@ -1,51 +1,58 @@
 # osurs
 
-Optimization of space utilization in reservation systems.
+Optimization of space utilization in reservation systems, an algorithm for optimal distribution of reservations along a trip among available seats.
 
-The osurs contains the following packages:
+The osurs library contains the following modules with corresponding headers:
 
+- `io.h`: Importing and exporting networks (network, vehicles and reservations).
 - `network.h`: Structures to represent a network of a reservation system.
-- `routing.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
-- `reserve.h`: Optimizing space utilization in reservation systems.
+- `optimize.h`: Optimizing space utilization in reservation systems.
+- `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
+- `types.h`: Data types of osurs.
 
-Note: The core functionality of **osurs** is in the reserve package.
+Interdependencies:
+
+```mermaid
+types-->network
+types-->io
+io-->network
+network-->reserve
+optimize-->reserve
+```
+
+Note: The core functionality of **osurs** is in the **optimize** package.
 There are already powerful routing algorithms for public transport,
 so the algorithm included here is minimal and only serves to book
 reservations on already known/found connections to the right segments
 of the trips (without transfers).
 
-## To do
+## Network structure
 
-- Headers:
-  - `types.h`
-  - `error.h`
-  - `io.h`
-  - `optim.h`
+The network consists of nodes where vehicles stop and passengers can get on and off. A route stores the order in which the nodes are approached by a vehicle in a chain of stops. Each stop contains information about which stop is next and how long it takes to reach it. On routes, trips indicate the departure times at which a vehicle leaves from the route's root stop. Vehicle information such as capacity and reservations are stored at the trip level.
 
-## DevDeps
+## Development
+
+**Style guide:**
+
+Maybe use the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/process/coding-style.html) guide?
+
+**Dependencies:**
 
 - cmake
-- valgrind (`valgrind -s --leak-check=full ./main`)
 - doxygen, graphviz
 - googletest (installed via cmake)
+- valgrind
+- xml2
 
-- **Project Setup**
-  - Alternative: [Good structure](https://matgomes.com/integrate-google-test-into-cmake/)
-  - C code in CPP: [extern "C"](https://stackoverflow.com/questions/23646595/how-to-use-a-c-file-to-write-a-test-class-in-google-test-instead-of-cpp-file)
-  - [open-std](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html)
+**Tests:**
 
-```txt
-# Example structure: https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project
-# Note that headers are optional, and do not affect add_library, but they will not
-# show up in IDEs unless they are listed in add_library.
-# set(HEADER_LIST "${PROJECT_SOURCE_DIR}/include/osurs/types.h")
-# Optionally glob, but only for CMake 3.12 or later:
-file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/modern/*.h")
-# See: 
-# - CTest: https://coderefinery.github.io/cmake-workshop/testing/
-# - CTest: https://coderefinery.github.io/cmake-workshop/testing/#test-properties-labels-timeout-and-cost
-# - Googletest: https://google.github.io/googletest/quickstart-cmake.html
+Always write a unit test for new features using googletest and check for memory leaks before merging a feature into main:
+
+```sh
+valgrind -s --leak-check=full ./main
 ```
+
+## To Do
 
 - **Optimierung der Reservationen**:
 
@@ -69,3 +76,12 @@ file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/modern/*.
       - net.export(): Vorschlag --> Wir exportieren das netzwerk als MATSim XML public transport network, dann kann es auch für simulationen verwendet werden.
       - net.import(): Importiert MATSim XML public transport network, vorteil: Bereits bestehende Netzwerke können importiert werden.
       - Visualiserungen: Netzwerk plotten, auslastung pro route, Auslastung pro Fahrzeug/Trip plotten.
+
+## References
+
+- [Canonical Project Structure](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html)
+- [Creating and running tests with CTest](https://coderefinery.github.io/cmake-workshop/testing/)
+- [GoogleTest: Building with CMake](https://google.github.io/googletest/quickstart-cmake.html)
+- [Import C headers in CPP](https://stackoverflow.com/questions/23646595/)
+- [Integrating Google Test Into CMake Projects](https://matgomes.com/integrate-google-test-into-cmake/)
+- [modern-cmake/examples/extended-project](https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project)
