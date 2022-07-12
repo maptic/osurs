@@ -80,7 +80,7 @@ graph LR;
 
 ## Development
 
-**Trunk-based development workflow**
+### Trunk-based development workflow
 
 The [trunk-based development workflow](https://trunkbaseddevelopment.com) uses one `main` branch to record the history of the project. In addition to the mainline, short-lived feature or bugfix branches are used to develop new features or fix bugs.
 
@@ -106,11 +106,19 @@ gitGraph
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Once `main` has aquired enough features for a release, set the new version number in the [`CMakeLists.txt`](CMakeLists.txt) and [`CHANGELOG.md`](CHANGELOG.md). Commit and push to `main` and publish a release on [GitHub](https://github.com/maptic/osurs/releases) with the version number as tag.
 
-**Style guide**
+### Style guide
 
 Maybe use the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/process/coding-style.html) guide?
 
-**Dependencies**
+### Testsing
+
+Always write a unit test for new features using googletest and check for memory leaks before merging a feature into main:
+
+```sh
+valgrind -s --leak-check=full ./main
+```
+
+### Setup dependencies
 
 - cmake
 - doxygen, graphviz
@@ -118,12 +126,18 @@ Maybe use the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/
 - valgrind
 - xml2
 
-**Tests:**
-
-Always write a unit test for new features using googletest and check for memory leaks before merging a feature into main:
+- **Ubuntu**
 
 ```sh
-valgrind -s --leak-check=full ./main
+apt install cmake doxygen graphviz valgrind
+```
+
+- **macOS:**
+
+```sh
+brew install cmake doxygen graphviz
+brew tap LouisBrunner/valgrind
+brew install --HEAD LouisBrunner/valgrind/valgrind
 ```
 
 ## To Do
