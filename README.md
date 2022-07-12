@@ -1,6 +1,6 @@
-# Optimization of space utilization in reservation systems
+# osurs
 
-An algorithm for optimal distribution of reservations along a trip among available seats.
+Optimization of space utilization in reservation systems. An algorithm for optimal distribution of reservations along a trip among available seats.
 
 The **osurs** library contains the following modules with corresponding headers:
 
