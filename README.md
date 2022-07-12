@@ -1,8 +1,8 @@
-# osurs
+# Optimization of space utilization in reservation systems
 
-Optimization of space utilization in reservation systems, an algorithm for optimal distribution of reservations along a trip among available seats.
+An algorithm for optimal distribution of reservations along a trip among available seats.
 
-The osurs library contains the following modules with corresponding headers:
+The **osurs** library contains the following modules with corresponding headers:
 
 - `io.h`: Importing and exporting networks (network, vehicles and reservations).
 - `network.h`: Structures to represent a network of a reservation system.
