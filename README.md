@@ -39,6 +39,7 @@ graph TD;
   Network-->Vehicle;
   Route-->Stop;
   Route-->Trip;
+  Node-->Route;
   Stop-->Node;
   Trip-->Reservation;
   Trip-->Vehicle;
