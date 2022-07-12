@@ -33,7 +33,7 @@ The network consists of nodes where vehicles stop and passengers can get on and 
 
 ```mermaid
 graph TD;
-  subgraph network;
+  subgraph network.h;
     Network-->Node;
     Network-->Route;
     Network-->Vehicle;
@@ -43,7 +43,7 @@ graph TD;
     Stop-->Node;
     Trip-->Vehicle;
   end;
-  subgraph reserve;
+  subgraph reserve.h;
     Network-->Reservation;
     Trip-->Reservation;
     Connection-->Stop;
