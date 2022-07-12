@@ -42,6 +42,8 @@ graph TD;
   Stop-->Node;
   Trip-->Reservation;
   Trip-->Vehicle;
+  Connection-->Node;
+  Connection-->Trip;
 ```
 
 ## Development
