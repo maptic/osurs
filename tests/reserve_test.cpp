@@ -21,7 +21,7 @@ TEST(ReserveTest, Check) {
 }
 
 // Reserve a found connection in the network
-TEST(ReserveTest, Reserve) {
+TEST(ReserveTest, NewReservation) {
     // Expect two strings not to be equal.
     EXPECT_STRNE("hello", "world");
     // Expect equality.

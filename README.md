@@ -4,11 +4,11 @@ Optimization of space utilization in reservation systems. An algorithm for optim
 
 The **osurs** library contains the following modules with corresponding headers:
 
-- `io.h`: Importing and exporting networks (network, vehicles and reservations).
+- `io.h`: Input and output of networks and its strutures (importing and exporting networks, vehicles and reservations).
 - `network.h`: Structures to represent a network of a reservation system.
 - `optimize.h`: Optimizing space utilization in reservation systems.
 - `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
-- `types.h`: Data types of osurs.
+- `types.h`: Data types of osurs, not shure if we need this?
 
 **Interdependencies**
 
@@ -161,6 +161,6 @@ valgrind -s --leak-check=full ./main
 - [GoogleTest: Building with CMake](https://google.github.io/googletest/quickstart-cmake.html)
 - [Import C headers in CPP](https://stackoverflow.com/questions/23646595/)
 - [Integrating Google Test Into CMake Projects](https://matgomes.com/integrate-google-test-into-cmake/)
+- [Keep a changelog](https://keepachangelog.com/en/1.0.0/)
 - [Mermaid Cheat Sheet](https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/)
 - [modern-cmake/examples/extended-project](https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project)
-- [Keep a changelog](https://keepachangelog.com/en/1.0.0/)

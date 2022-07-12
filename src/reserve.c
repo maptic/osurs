@@ -4,10 +4,7 @@
  * Author:  Merlin Unterfinger
  */
 
-#include <limits.h>
 #include <osurs/reserve.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 // Private methods
 

@@ -12,9 +12,10 @@
 #ifndef OSURS_RESERVE_H_
 #define OSURS_RESERVE_H_
 
+#include <limits.h>
+#include <osurs/network.h>
 #include <stdio.h>
-
-#include "network.h"
+#include <stdlib.h>
 
 /*
  * Connection
