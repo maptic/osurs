@@ -13,11 +13,12 @@ The osurs library contains the following modules with corresponding headers:
 Interdependencies:
 
 ```mermaid
-types-->network
-types-->io
-io-->network
-network-->reserve
-optimize-->reserve
+graph TD;
+  types-->network;
+  types-->io;
+  io-->network;
+  network-->reserve;
+  optimize-->reserve;
 ```
 
 Note: The core functionality of **osurs** is in the **optimize** package.
