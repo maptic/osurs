@@ -10,7 +10,7 @@ The **osurs** library contains the following modules with corresponding headers:
 - `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
 - `types.h`: Data types of osurs.
 
-Interdependencies:
+**Interdependencies:**
 
 ```mermaid
 graph TD;
@@ -45,7 +45,7 @@ graph TD;
     Trip-->Vehicle;
 ```
 
-The found connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists in the heap until the entire network is released.
+Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists on the heap until the entire network is released.
 
 ```mermaid
 graph TD;
