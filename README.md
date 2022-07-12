@@ -10,15 +10,17 @@ The **osurs** library contains the following modules with corresponding headers:
 - `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
 - `types.h`: Data types of osurs.
 
-**Interdependencies:**
+**Interdependencies**
 
 ```mermaid
-graph TD;
-  types.h-->network.h;
-  types.h-->io.h;
-  io.h-->network.h;
-  network.h-->reserve.h;
-  optimize.h-->reserve.h;
+graph LR;
+  subgraph libosurs;
+    types.h-->network.h;
+    types.h-->io.h;
+    network.h-->io.h
+    network.h-->reserve.h;
+    optimize.h-->reserve.h;
+  end;
 ```
 
 Note: The core functionality of **osurs** is in the **optimize** package.
@@ -34,7 +36,8 @@ The network consists of nodes where vehicles stop and passengers can get on and 
 All objects of the network are located on the heap and are directly or indirectly linked to the network structure. If the memory of the network is released (`delete_network()`) all associated structures of the network are also cleared.
 
 ```mermaid
-graph TD;
+graph LR;
+  subgraph network.h;
     Network-->Node;
     Network-->Route;
     Network-->Vehicle;
@@ -43,30 +46,71 @@ graph TD;
     Node-->Route;
     Stop-->Node;
     Trip-->Vehicle;
+  end;
 ```
 
-Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists on the heap until the entire network is released.
+Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). If more than one connection is possible between to nodes on the network, a connection chain is created. In a connection chain, the `.last` property of the connection structure points to the last connection or `NULL` if it is the root of the chain. Identically, the `.next` property points to the next connection or to `NULL` if it is the end of the chain.
 
 ```mermaid
-graph TD;
+graph LR;
+  Connection_1-->|.next|Connection_2;
+  Connection_2-->|.next|Connection_3;
+  Connection_3-->|.next|NULL;
+  Connection_3-->|.last|Connection_2;
+  Connection_2-->|.last|Connection_1;
+  Connection_1-->|.last|NULL;
+```
+
+When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists on the heap until the entire network is released.
+
+```mermaid
+graph LR;
   subgraph network.h;
-    Network-->Reservation;
     Trip-->Reservation;
+    Reservation-->Trip;
+    Reservation-->Stop;
     Trip-->Stop;
   end;
   subgraph reserve.h;
+    direction LR;
     Connection-->Stop;
-    Connection-->Trip;
-  end;
+    Connection-->Trip
+  end
 ```
 
 ## Development
 
-**Style guide:**
+**Trunk-based development workflow**
+
+The [trunk-based development workflow](https://trunkbaseddevelopment.com) uses one `main` branch to record the history of the project. In addition to the mainline, short-lived feature or bugfix branches are used to develop new features or fix bugs.
+
+```mermaid
+gitGraph
+  commit
+  commit tag: "v0.1.0"
+  branch feature/name
+  commit
+  commit
+  checkout main
+  branch bugfix/name
+  commit
+  checkout main
+  merge bugfix/name
+  commit tag: "v0.1.1"
+  checkout feature/name
+  commit
+  checkout main
+  merge feature/name
+  commit tag: "v0.2.0"
+```
+
+This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Once `main` has aquired enough features for a release, set the new version number in the [`CMakeLists.txt`](CMakeLists.txt) and [`CHANGELOG.md`](CHANGELOG.md). Commit and push to `main` and publish a release on [GitHub](https://github.com/maptic/osurs/releases) with the version number as tag.
+
+**Style guide**
 
 Maybe use the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/process/coding-style.html) guide?
 
-**Dependencies:**
+**Dependencies**
 
 - cmake
 - doxygen, graphviz
@@ -114,4 +158,6 @@ valgrind -s --leak-check=full ./main
 - [GoogleTest: Building with CMake](https://google.github.io/googletest/quickstart-cmake.html)
 - [Import C headers in CPP](https://stackoverflow.com/questions/23646595/)
 - [Integrating Google Test Into CMake Projects](https://matgomes.com/integrate-google-test-into-cmake/)
+- [Mermaid Cheat Sheet](https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/)
 - [modern-cmake/examples/extended-project](https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project)
+- [Keep a changelog](https://keepachangelog.com/en/1.0.0/)

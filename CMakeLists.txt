@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14.0)
 # Project name and language
 project(
     osurs
-    VERSION 0.1.0
+    VERSION 0.0.1
     DESCRIPTION "Optimization of space utilization in reservation systems."
     LANGUAGES C CXX)
 
