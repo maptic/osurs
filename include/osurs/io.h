@@ -1,7 +1,12 @@
-/*
- * Input and output of networks and its strutures
+/**
+ * @brief Input and output of networks and its strutures
  *
- * Authors: Merlin Unterfinger
+ * Printing osurs structures, importing and exporting networks, vehicles and
+ * reservations.
+ *
+ * @file io.h
+ * @date: 2022-07-12
+ * @author: Merlin Unterfinger
  */
 
 #ifndef OSURS_IO_H_

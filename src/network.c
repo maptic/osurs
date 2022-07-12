@@ -1,7 +1,8 @@
-/*
- * Network for reservation optmization
- *
- * Author:  Merlin Unterfinger
+/**
+ * @brief Network for reservation optmization
+ * @file network.c
+ * @date: 2022-07-12
+ * @author: Merlin Unterfinger
  */
 
 #include <osurs/network.h>

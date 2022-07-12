@@ -1,5 +1,5 @@
-/*
- * Network for reservation optmization
+/**
+ * @brief Network for reservation optmization
  *
  * The network consists of nodes with a name and coordinates. A route is defined
  * by stops and trips. Each stop is associated to a node of the network and
@@ -7,7 +7,9 @@
  * trips, which are defined by departure times and their seat capacity. Each
  * trip knows the next departing trip, if there is one.
  *
- * Author:  Merlin Unterfinger
+ * @file network.h
+ * @date: 2022-07-12
+ * @author: Merlin Unterfinger
  */
 
 #ifndef OSURS_NETWORK_H_
@@ -16,7 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define INIT_ALLOC_SIZE 2
+#define INIT_ALLOC_SIZE 1000
 #define MINUTES 60
 #define HOURS 3600
 

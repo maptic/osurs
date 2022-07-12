@@ -4,11 +4,11 @@ Optimization of space utilization in reservation systems. An algorithm for optim
 
 The **osurs** library contains the following modules with corresponding headers:
 
-- `io.h`: Input and output of networks and its strutures (importing and exporting networks, vehicles and reservations).
-- `network.h`: Structures to represent a network of a reservation system.
-- `optimize.h`: Optimizing space utilization in reservation systems.
-- `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
-- `types.h`: Data types of osurs, not shure if we need this?
+- **io:** Input and output of networks and its strutures.
+- **network:** Network for reservation optmization.
+- **optimize:** Optimizing space utilization in reservation systems.
+- **reserve:** Connection routing, checking seat availability and reservation.
+- **types:** Data types of osurs.
 
 **Interdependencies**
 
@@ -22,10 +22,7 @@ graph RL;
   end;
 ```
 
-**Note:** The core functionality of **osurs** is in the `optimize.h` module. There are already powerful routing algorithms for public transport,
-so the algorithm included here is minimal and only serves to book
-reservations on already known/found connections to the right segments
-of the trips (without transfers).
+**Note:** The core functionality of **osurs** is in the `optimize.h` module. There are already powerful routing algorithms for public transport, so the algorithm included here is minimal and only serves to book reservations on already known/found connections to the right segments of the trips (without transfers).
 
 ## Network structure
 
@@ -156,6 +153,7 @@ valgrind -s --leak-check=full ./main
 
 ## References
 
+- [Calling Doxygen from cmake](https://p5r.uk/blog/2014/cmake-doxygen.html)
 - [Canonical Project Structure](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html)
 - [Creating and running tests with CTest](https://coderefinery.github.io/cmake-workshop/testing/)
 - [GoogleTest: Building with CMake](https://google.github.io/googletest/quickstart-cmake.html)

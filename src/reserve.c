@@ -1,7 +1,8 @@
-/*
- * Network routing algorithm and reservation
- *
- * Author:  Merlin Unterfinger
+/**
+ * @brief Connection routing, checking seat availability and reservation
+ * @file reserve.c
+ * @date: 2022-07-12
+ * @author: Merlin Unterfinger
  */
 
 #include <osurs/reserve.h>

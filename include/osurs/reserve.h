@@ -1,14 +1,19 @@
-/*
- * Network routing algorithm and reservation
+/**
+ * @brief Connection routing, checking seat availability and reservation
  *
- * Simple routing algorithm without transfers for checking seat availability in
- * connections. There are already powerful routing algorithms for public
- * transport, so the algorithm included here is minimal and only serves to book
- * reservations on already known/found connections to the right segments
- * of the trips (without transfers).
+ * Simple connection routing alogrithm without transfers. After checking seat
+ * availability in connections reservations can be booked on the network.
  *
- * Author:  Merlin Unterfinger
+ * @note There are already powerful routing algorithms for public transport, so
+ * the algorithm included here is minimal and only serves to book reservations
+ * on already known/found connections to the right segments of the trips
+ * (without transfers).
+ *
+ * @file reserve.h
+ * @date: 2022-07-12
+ * @author: Merlin Unterfinger
  */
+
 #ifndef OSURS_RESERVE_H_
 #define OSURS_RESERVE_H_
 

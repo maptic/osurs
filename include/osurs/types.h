@@ -1,9 +1,11 @@
-/*
- * Data types of osurs
+/**
+ * @brief Data types of osurs
  *
  * Not shure if we need this? Or keep it in network and reserve...
- *
- * Authors: Merlin Unterfinger
+ * 
+ * @file types.h
+ * @date: 2022-07-12
+ * @author: Merlin Unterfinger
  */
 
 #ifndef OSURS_TYPES_H_
