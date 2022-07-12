@@ -14,11 +14,11 @@ Interdependencies:
 
 ```mermaid
 graph TD;
-  types-->network;
-  types-->io;
-  io-->network;
-  network-->reserve;
-  optimize-->reserve;
+  types.h-->network.h;
+  types.h-->io.h;
+  io.h-->network.h;
+  network.h-->reserve.h;
+  optimize.h-->reserve.h;
 ```
 
 Note: The core functionality of **osurs** is in the **optimize** package.
