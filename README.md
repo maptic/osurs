@@ -31,6 +31,19 @@ of the trips (without transfers).
 
 The network consists of nodes where vehicles stop and passengers can get on and off. A route stores the order in which the nodes are approached by a vehicle in a chain of stops. Each stop contains information about which stop is next and how long it takes to reach it. On routes, trips indicate the departure times at which a vehicle leaves from the route's root stop. Vehicle information such as capacity and reservations are stored at the trip level.
 
+```mermaid
+graph TD;
+  Network-->Node;
+  Network-->Routes;
+  Network-->Reservations;
+  Network-->Vehicles;
+  Route-->Stop;
+  Route-->Trip;
+  Stop-->Node;
+  Trip-->Reservation;
+  Trip-->Vehicle;
+```
+
 ## Development
 
 **Style guide:**
