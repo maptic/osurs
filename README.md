@@ -52,6 +52,7 @@ graph TD;
   subgraph network.h;
     Network-->Reservation;
     Trip-->Reservation;
+    Trip-->Stop;
   end;
   subgraph reserve.h;
     Connection-->Stop;
