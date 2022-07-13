@@ -1,6 +1,8 @@
-include(FetchContent)
+# Add input data for io tests
+add_subdirectory(input)
 
 # Get GoogleTest from GitHub
+include(FetchContent)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git

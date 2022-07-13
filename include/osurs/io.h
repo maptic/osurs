@@ -12,8 +12,10 @@
 #ifndef OSURS_IO_H_
 #define OSURS_IO_H_
 
+#include <limits.h>
 #include <osurs/network.h>
 #include <stdio.h>
+#include <unistd.h>
 
 /**
  * @brief Print node.
@@ -63,5 +65,20 @@ void print_connection(Connection *connection);
  * @param reservation The reservation struct to print.
  */
 void print_reservation(Reservation *reservation);
+
+/**
+ * @brief Prints the current working dirctory.
+ *
+ * @return 0 if success, 1 if error.
+ */
+int print_cwd();
+
+/**
+ * @brief Function print file content to the console.
+ * 
+ * @param filename The path to the file.
+ * @return 0 if success, 1 if error.
+ */
+int print_file(const char *filename);
 
 #endif  // OSURS_IO_H_

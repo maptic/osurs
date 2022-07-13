@@ -70,3 +70,38 @@ void print_connection(Connection *connection) {
 void print_reservation(Reservation *reservation) {
     printf("Reservation<tbd.>\n");
 }
+
+// File I/O
+
+int print_cwd() {
+    char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("Current working dir: %s\n", cwd);
+    } else {
+        perror("getcwd() error");
+        return 1;
+    }
+    return 0;
+}
+
+int print_file(const char *filename) {
+    FILE *fp;
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("fopen() error");
+        return 1;
+    }
+    while ((read = getline(&line, &len, fp)) != -1) {
+        // Optionally print length: printf("Retrieved line of length %zu:\n",
+        // read);
+        printf("%s", line);
+    }
+
+    fclose(fp);
+    if (line) free(line);
+    return 0;
+}
