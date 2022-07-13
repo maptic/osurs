@@ -10,7 +10,7 @@ The **osurs** library contains the following modules with corresponding headers:
 - **reserve:** Connection routing, checking seat availability and reservation.
 - **types:** Data types of osurs.
 
-**Interdependencies**
+**Interdependencies:**
 
 ```mermaid
 graph RL;
@@ -46,6 +46,8 @@ graph LR;
     Trip-->|*vehicle|Vehicle;
   end;
 ```
+
+## Connections and reservations
 
 Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). If more than one connection is possible between to nodes on the network, a connection chain is created. In a connection chain, the `.last` property of the connection structure points to the last connection or `NULL` if it is the root of the chain. Identically, the `.next` property points to the next connection or to `NULL` if it is the end of the chain.
 
@@ -165,7 +167,25 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
       - net.import(): Importiert MATSim XML public transport network, vorteil: Bereits bestehende Netzwerke können importiert werden.
       - Visualiserungen: Netzwerk plotten, auslastung pro route, Auslastung pro Fahrzeug/Trip plotten.
 
+- **Eventuell besserer PT Router**:
+
+  - Graph aus Routen welche sich berühren. (Eventuell noch richtung und Zeit).
+  - Dann routing im Graphen aus verbundenen Routen welche nach anzahl Transfers aufsteigend sortiert sind.
+  - Falls es eine mögliche Verbindung aufgrund verbundener Routen gibt:
+    - Legs der Routen durchspielen, Anschluss verpasst? --> break
+    - Connection besteht dann neu aus Legs, auf den legs immer die Availabilities abspeichern.
+  - Reservation enthält dann ebenfalls dieselben legs. Customer_id und reservierte Sitze sind dann auf der Reservation abgelegt. Eventuell können noch legs geflgt werden welche keine Reeservation brauchen (müsste aber einen Flag bereits auf Trips voraussetzen)
+  - Stops brauchen nicht nur Reisezeit zum nächsten sondern auch aufenthaltszeit --> ermöglicht mehr Umsteige
+    - Stop->time_at_stop
+    - Stop->time_to_next
+  - **Achtung:** Frage ist noch, wo umsteigen bei parallelen!?
+    - Der Graph muss den Umsteige-Node speichern, die Richtung ist egal, denn Umsteigen ist immer in beide Richtungen möglich. Wie muss dies abgebildet werden.
+    - Immer die erste Möglichkeit für Umstiege nutzen.
+    - Dies beudeutet aber eine Einschränkung in den möglichen Reservationen, da nicht auf andere kombinationen geschaut wird. (Tasks für die Zukunft...)
+
 ## References
+
+### Project setup
 
 - [Calling Doxygen from cmake](https://p5r.uk/blog/2014/cmake-doxygen.html)
 - [Canonical Project Structure](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html)
@@ -176,3 +196,17 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
 - [Keep a changelog](https://keepachangelog.com/en/1.0.0/)
 - [Mermaid Cheat Sheet](https://jojozhuang.github.io/tutorial/mermaid-cheat-sheet/)
 - [modern-cmake/examples/extended-project](https://gitlab.com/CLIUtils/modern-cmake/-/tree/master/examples/extended-project)
+
+### Testing import and export module
+
+- [cmake generate test data [duplicate]](https://stackoverflow.com/questions/42806857/cmake-generate-test-data)
+- [MATSim pt test ressources](https://github.com/matsim-org/matsim-libs/tree/master/matsim/src/test/resources/test/input/org/matsim/pt/counts)
+- [Test reading from a file using GoogleTest](https://stackoverflow.com/questions/28616603/test-reading-from-a-file-using-googletest)
+
+### Routing
+
+- [Dijkstra’s Algorithm in C](https://www.thecrazyprogrammer.com/2014/03/dijkstra-algorithm-for-finding-shortest-path-of-a-graph.html)
+
+### Python bindigs
+
+- [Python Bindings: Calling C or C++ From Python](https://realpython.com/python-bindings-overview/)
