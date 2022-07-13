@@ -112,7 +112,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html). On
 
 Maybe use the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/process/coding-style.html) guide?
 
-### Testsing
+### Testing
 
 Always write a unit test for new features using googletest and check for memory leaks before merging a feature into main:
 
@@ -122,11 +122,16 @@ valgrind -s --leak-check=full ./main
 
 ### Setup dependencies
 
-- cmake
-- doxygen, graphviz
-- googletest (installed via cmake)
-- valgrind
-- xml2
+The following dependencies must be installed on the system to build and test the project:
+
+```txt
+cmake       # Build, test and package
+doxygen     # Render doc
+graphviz    # Graphs in Doc
+googletest  # Unit tests, installed via cmake
+valgrind    # Detect memory leaks
+xml2        # Read and write networks
+```
 
 - **Ubuntu**
 
@@ -134,7 +139,7 @@ valgrind -s --leak-check=full ./main
 apt install cmake doxygen graphviz valgrind
 ```
 
-- **macOS:**
+- **macOS**
 
 ```sh
 brew install cmake doxygen graphviz
@@ -145,6 +150,7 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
 ## To Do
 
 - **Anpassung Netzwerk**
+
   - Wechsel von time_at_stop, time_to_next zu arrival_offset und departure_offset auf dem node?
     - Würde Anpassung von new_trip, new_route und iterate_to_orig / test bedeuten.
     - Achtung beim Einlesen von MATSim, prüfen ob nur departure oder auch arrival, sonst einfach gleich setzen?
