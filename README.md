@@ -130,19 +130,19 @@ doxygen     # Render doc
 graphviz    # Graphs in Doc
 googletest  # Unit tests, installed via cmake
 valgrind    # Detect memory leaks
-xml2        # Read and write networks
+libxml2     # Read and write networks
 ```
 
 - **Ubuntu**
 
 ```sh
-apt install cmake doxygen graphviz valgrind
+apt install cmake doxygen graphviz valgrind libxml2-dev
 ```
 
 - **macOS**
 
 ```sh
-brew install cmake doxygen graphviz
+brew install cmake doxygen graphviz libxml2
 brew tap LouisBrunner/valgrind
 brew install --HEAD LouisBrunner/valgrind/valgrind
 ```

@@ -75,10 +75,24 @@ int print_cwd();
 
 /**
  * @brief Function print file content to the console.
- * 
+ *
  * @param filename The path to the file.
  * @return 0 if success, 1 if error.
  */
 int print_file(const char *filename);
+
+/**
+ * @brief Import a MATSim transit schedule.
+ *
+ * Import a MATSim transit schedule from a transitSchedule.xml and  vehicles.xml
+ * file.
+ *
+ * @param network Pointer to an empty network.
+ * @param schedule_file File path to the transit schedule file.
+ * @param vehicle_file File path to the vehicles file.
+ * @return int
+ */
+int import_matsim(Network *network, const char *schedule_file,
+                  const char *vehicle_file);
 
 #endif  // OSURS_IO_H_

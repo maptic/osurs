@@ -5,6 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
+#include <libxml/parser.h>
 #include <osurs/io.h>
 
 // Print methods
@@ -103,5 +104,10 @@ int print_file(const char *filename) {
 
     fclose(fp);
     if (line) free(line);
+    return 0;
+}
+
+int import_matsim(Network *network, const char *schedule_file,
+                  const char *vehicle_file) {
     return 0;
 }
