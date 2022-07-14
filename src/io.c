@@ -107,7 +107,49 @@ int print_file(const char *filename) {
     return 0;
 }
 
+// XML
+
+int is_leaf(xmlNode *node) {
+    xmlNode *child = node->children;
+    while (child) {
+        if (child->type == XML_ELEMENT_NODE) return 0;
+        child = child->next;
+    }
+
+    return 1;
+}
+
+void print_xml(xmlNode *node, int indent_len) {
+    while (node) {
+        if (node->type == XML_ELEMENT_NODE) {
+            printf("%*c%s:%s\n", indent_len * 2, '-', node->name,
+                   is_leaf(node) ? xmlNodeGetContent(node)
+                                 : xmlGetProp(node, "id"));
+        }
+        print_xml(node->children, indent_len + 1);
+        node = node->next;
+    }
+}
+
 int import_matsim(Network *network, const char *schedule_file,
                   const char *vehicle_file) {
+    xmlDoc *doc = NULL;
+    xmlNode *root_element = NULL;
+
+    doc = xmlReadFile(schedule_file, NULL, 0);
+
+    if (doc == NULL) {
+        printf("Could not parse the XML file");
+        return 1;
+    }
+
+    root_element = xmlDocGetRootElement(doc);
+
+    print_xml(root_element, 1);
+
+    xmlFreeDoc(doc);
+
+    xmlCleanupParser();
+
     return 0;
 }

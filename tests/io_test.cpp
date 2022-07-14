@@ -12,6 +12,7 @@ TEST(IOTest, Read) {
     EXPECT_EQ(print_cwd(), 0);
     EXPECT_EQ(print_file("input/matsim/transitSchedule.xml"), 0);
     EXPECT_EQ(print_file("input/matsim/vehicles.xml"), 0);
+    EXPECT_EQ(import_matsim(NULL, "input/matsim/transitSchedule.xml", "input/matsim/vehicles.xml"), 1);
 }
 
 // Wrtie a network

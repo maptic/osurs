@@ -220,6 +220,11 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
 
 - [Dijkstra’s Algorithm in C](https://www.thecrazyprogrammer.com/2014/03/dijkstra-algorithm-for-finding-shortest-path-of-a-graph.html)
 
+### IO
+
+- [Parse and Print XML File in Tree Form using libxml2 in C](https://qnaplus.com/print-xml-file-tree-form-libxml2-c-programming/)
+- [Libxml2: Everything You Need in an XML Library](https://www.developer.com/database/libxml2-everything-you-need-in-an-xml-library/)
+
 ### Python bindigs
 
 - [Python Bindings: Calling C or C++ From Python](https://realpython.com/python-bindings-overview/)
