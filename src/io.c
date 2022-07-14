@@ -7,18 +7,19 @@
 
 #include <libxml/parser.h>
 #include <osurs/io.h>
+#include <string.h>
 
 // Print methods
 
 void print_node(Node *node) {
-    printf("- Node <name=%s, x=%.3f, y=%.3f, routes=%ld>\n", node->name,
+    printf("- Node <id=%s, x=%.3f, y=%.3f, routes=%ld>\n", node->id,
            node->x, node->y, node->route_counter);
 }
 
 void print_stop(Stop *stop) {
-    printf("  - Stop <name=%s, last=%s, next=%s>]\n", stop->node->name,
-           stop->last != NULL ? stop->last->node->name : "NA",
-           stop->next != NULL ? stop->next->node->name : "NA");
+    printf("  - Stop <node_id=%s, last=%s, next=%s>]\n", stop->node->id,
+           stop->last != NULL ? stop->last->node->id : "NA",
+           stop->next != NULL ? stop->next->node->id : "NA");
 }
 
 void print_trip(Trip *trip) {
@@ -58,8 +59,8 @@ void print_connection(Connection *connection) {
         printf("No connection found.\n");
         return;
     }
-    printf("Connections for %s --> %s:\n", connection->orig->node->name,
-           connection->dest->node->name);
+    printf("Connections for %s --> %s:\n", connection->orig->node->id,
+           connection->dest->node->id);
     while (curr_connection != NULL) {
         printf("- Connection<departure=%d, arrival=%d, available=%d>\n",
                curr_connection->departure, curr_connection->arrival,
@@ -131,6 +132,59 @@ void print_xml(xmlNode *node, int indent_len) {
     }
 }
 
+int import_matsim2(Network *network, const char *schedule_file,
+                   const char *vehicle_file) {
+    xmlDoc *doc = NULL;
+    xmlNode *root_element = NULL;
+
+    doc = xmlReadFile(schedule_file, NULL, 0);
+
+    if (doc == NULL) {
+        printf("Could not parse the XML file");
+        return 1;
+    }
+
+    root_element = xmlDocGetRootElement(doc);
+
+    print_xml(root_element, 1);
+
+    xmlFreeDoc(doc);
+
+    xmlCleanupParser();
+
+    return 0;
+}
+
+void parse_xml(xmlNode *node, Network *network) {
+
+    
+    while (node) {
+        if (node->type == XML_ELEMENT_NODE) {
+            if (is_leaf(node)) {
+                printf("O - Leaf: %s - %s\n", node->name,
+                       xmlGetProp(node, "id"));
+                // xmlNodeGetContent(node));
+
+                // Parse network node
+                if (xmlStrcmp(node->name, "stopFacility") == 0) {
+                    double x, y;
+                    char *id = xmlGetProp(node, "id");
+                    sscanf(xmlGetProp(node, "x"), "%lf", &x);
+                    sscanf(xmlGetProp(node, "y"), "%lf", &y);
+                    new_node(network, id, x, y);
+                }
+
+            } else {
+                printf("X - No leaf: %s - %s\n", node->name,
+                       xmlGetProp(node, "id"));
+            }
+
+        }
+        parse_xml(node->children, network);
+        node = node->next;
+    }
+}
+
 int import_matsim(Network *network, const char *schedule_file,
                   const char *vehicle_file) {
     xmlDoc *doc = NULL;
@@ -145,7 +199,9 @@ int import_matsim(Network *network, const char *schedule_file,
 
     root_element = xmlDocGetRootElement(doc);
 
-    print_xml(root_element, 1);
+    /// HERE WE GO
+    parse_xml(root_element, network);
+    /// HERE WE END
 
     xmlFreeDoc(doc);
 

@@ -11,7 +11,7 @@
 
 Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
                size_t trip_size);
-Trip *new_trip(int departure, int capacity, Trip *next, Route *route);
+Trip *new_trip(const char *id, int departure, int capacity, Trip *next, Route *route);
 
 void delete_node(Node *node);
 void delete_stop(Stop *stop);
@@ -35,9 +35,9 @@ Network *new_network() {
     return network;
 }
 
-Node *new_node(Network *network, const char *name, double x, double y) {
+Node *new_node(Network *network, const char *id, double x, double y) {
     Node *node = (Node *)malloc(sizeof(Node));
-    node->name = name;
+    node->id = id;
     node->x = x;
     node->y = y;
     node->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
@@ -61,8 +61,9 @@ Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
     return stop;
 }
 
-Trip *new_trip(int departure, int capacity, Trip *next, Route *route) {
+Trip *new_trip(const char *id, int departure, int capacity, Trip *next, Route *route) {
     Trip *trip = (Trip *)malloc(sizeof(Trip));
+    trip->id = id;
     trip->departure = departure;
     trip->capacity = capacity;
     trip->next = next;
@@ -70,18 +71,19 @@ Trip *new_trip(int departure, int capacity, Trip *next, Route *route) {
     return trip;
 }
 
-Route *new_route(Network *network, Node *nodes[], int times[],
-                 size_t route_size, int departures[], int capacities[],
+Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
+                 size_t route_size, const char *trip_ids[], int departures[], int capacities[],
                  size_t trip_size) {
     // Initialize route
     Route *route = (Route *)malloc(sizeof(Route));
+    route->id = id;
 
     // Set root stop
     Stop *root_stop = new_stop(nodes[0], NULL, NULL, times[0], trip_size);
     route->root_stop = root_stop;
 
     // Set root trip
-    Trip *root_trip = new_trip(departures[0], capacities[0], NULL, route);
+    Trip *root_trip = new_trip(trip_ids[0], departures[0], capacities[0], NULL, route);
     route->root_trip = root_trip;
 
     // Create chain of all stops
@@ -97,7 +99,7 @@ Route *new_route(Network *network, Node *nodes[], int times[],
     Trip *last_trip = root_trip;
     Trip *curr_trip;
     for (size_t i = 1; i < trip_size; ++i) {
-        curr_trip = new_trip(departures[i], capacities[i], NULL, route);
+        curr_trip = new_trip(trip_ids[i], departures[i], capacities[i], NULL, route);
         last_trip->next = curr_trip;
         last_trip = curr_trip;
     }

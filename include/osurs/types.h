@@ -31,9 +31,9 @@ struct reservation_t;
  * A node is a stop location used by different routes.
  */
 typedef struct node_t {
+    const char *id;
     double x;
     double y;
-    const char *name;
     struct route_t **routes;
     size_t route_counter;
     size_t route_size;
@@ -63,6 +63,7 @@ typedef struct stop_t {
  * reservations are stored at the trip level.
  */
 typedef struct trip_t {
+    const char *id;
     int departure;
     int capacity;
     struct trip_t *next;
@@ -77,6 +78,7 @@ typedef struct trip_t {
  * approached by a vehicle in a chain of stops.
  */
 typedef struct route_t {
+    const char *id;
     struct stop_t *root_stop;
     struct trip_t *root_trip;
 } Route;

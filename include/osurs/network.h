@@ -57,20 +57,22 @@ Node *new_node(Network *network, const char *id, double x, double y);
  * @brief Create a new route and add it to the network.
  *
  * @param network The network to add the route.
+ * @param id The identifier of the route.
  * @param nodes A pointer to an array of nodes, which define the stops of the
  * route (n=route_size).
  * @param times A pointer to an array of travel times, which define the travel
  * time between the nodes (n=route_size-1).
  * @param route_size The number of nodes (=stops) in the route.
+ * @param trip_ids The identifier of the trips on the route (n=trip_size).
  * @param departures The departure times at the first node (=root_stop) of the
  * route in seconds after midnight (00:00:00). Every departure time will define
- * a new trip, which starts traveling along the route (n = trip_size)
+ * a new trip, which starts traveling along the route (n=trip_size)
  * @param capacities This will be replaced with vehicles!
  * @param trip_size The number of departures (=trips) on the route.
  * @return A pointer to the newly allocated node (Route*).
  */
-Route *new_route(Network *network, Node *nodes[], int times[],
-                 size_t route_size, int departures[], int capacities[],
+Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
+                 size_t route_size, const char *trip_ids[], int departures[], int capacities[],
                  size_t trip_size);
 
 // Destructor-like methods
