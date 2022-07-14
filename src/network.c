@@ -6,12 +6,15 @@
  */
 
 #include <osurs/network.h>
+#include <stdio.h>
+#include <string.h>
 
 // Private methods
 
 Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
                size_t trip_size);
-Trip *new_trip(const char *id, int departure, int capacity, Trip *next, Route *route);
+Trip *new_trip(const char *id, int departure, int capacity, Trip *next,
+               Route *route);
 
 void delete_node(Node *node);
 void delete_stop(Stop *stop);
@@ -61,7 +64,8 @@ Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
     return stop;
 }
 
-Trip *new_trip(const char *id, int departure, int capacity, Trip *next, Route *route) {
+Trip *new_trip(const char *id, int departure, int capacity, Trip *next,
+               Route *route) {
     Trip *trip = (Trip *)malloc(sizeof(Trip));
     trip->id = id;
     trip->departure = departure;
@@ -72,8 +76,8 @@ Trip *new_trip(const char *id, int departure, int capacity, Trip *next, Route *r
 }
 
 Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
-                 size_t route_size, const char *trip_ids[], int departures[], int capacities[],
-                 size_t trip_size) {
+                 size_t route_size, const char *trip_ids[], int departures[],
+                 int capacities[], size_t trip_size) {
     // Initialize route
     Route *route = (Route *)malloc(sizeof(Route));
     route->id = id;
@@ -83,7 +87,8 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     route->root_stop = root_stop;
 
     // Set root trip
-    Trip *root_trip = new_trip(trip_ids[0], departures[0], capacities[0], NULL, route);
+    Trip *root_trip =
+        new_trip(trip_ids[0], departures[0], capacities[0], NULL, route);
     route->root_trip = root_trip;
 
     // Create chain of all stops
@@ -99,7 +104,8 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     Trip *last_trip = root_trip;
     Trip *curr_trip;
     for (size_t i = 1; i < trip_size; ++i) {
-        curr_trip = new_trip(trip_ids[i], departures[i], capacities[i], NULL, route);
+        curr_trip =
+            new_trip(trip_ids[i], departures[i], capacities[i], NULL, route);
         last_trip->next = curr_trip;
         last_trip = curr_trip;
     }
@@ -111,6 +117,17 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     for (size_t i = 0; i < route_size; ++i) node_add_route(nodes[i], route);
 
     return route;
+}
+
+// Getters
+
+Node *get_node(Network *network, const char *id) {
+    for (int i = 0; i < network->node_counter; ++i) {
+        if (strcmp(network->nodes[i]->id, id) == 0) return network->nodes[i];
+        printf("Node found. %s\n", id);
+    }
+    printf("Node not found.\n");
+    return NULL;
 }
 
 // Destructor-like methods

@@ -75,6 +75,17 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
                  size_t route_size, const char *trip_ids[], int departures[], int capacities[],
                  size_t trip_size);
 
+// Getters
+
+/**
+ * @brief Get the node object
+ * 
+ * @param network An network to get the node from.
+ * @param id The identifier of the node.
+ * @return Returns the node.
+ */
+Node *get_node(Network *network, const char *id);
+
 // Destructor-like methods
 
 /**

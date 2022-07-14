@@ -12,8 +12,8 @@
 // Print methods
 
 void print_node(Node *node) {
-    printf("- Node <id=%s, x=%.3f, y=%.3f, routes=%ld>\n", node->id,
-           node->x, node->y, node->route_counter);
+    printf("- Node <id=%s, x=%.3f, y=%.3f, routes=%ld>\n", node->id, node->x,
+           node->y, node->route_counter);
 }
 
 void print_stop(Stop *stop) {
@@ -155,33 +155,70 @@ int import_matsim2(Network *network, const char *schedule_file,
     return 0;
 }
 
-void parse_xml(xmlNode *node, Network *network) {
+void parse_xml(xmlNode *xml_node, Network *network) {
+    // Declare route attributes
+    const char *route_id;
+    // const char *route_mode; // transportMode
+    Node *nodes[INIT_ALLOC_SIZE];
+    int times[INIT_ALLOC_SIZE];
+    size_t route_size = 0;
 
-    
-    while (node) {
-        if (node->type == XML_ELEMENT_NODE) {
-            if (is_leaf(node)) {
-                printf("O - Leaf: %s - %s\n", node->name,
-                       xmlGetProp(node, "id"));
+    // Declare trip attributes
+    const char *trip_ids[INIT_ALLOC_SIZE];
+    int departures[INIT_ALLOC_SIZE];
+    int capacities[INIT_ALLOC_SIZE];
+    size_t trip_size = 0;
+
+    while (xml_node) {
+        if (xml_node->type == XML_ELEMENT_NODE) {
+            // Leafs
+            if (is_leaf(xml_node)) {
+                printf("O - Leaf: %s - %s\n", xml_node->name,
+                       xmlGetProp(xml_node, "id"));
                 // xmlNodeGetContent(node));
 
                 // Parse network node
-                if (xmlStrcmp(node->name, "stopFacility") == 0) {
+                if (xmlStrcmp(xml_node->name, "stopFacility") == 0) {
                     double x, y;
-                    char *id = xmlGetProp(node, "id");
-                    sscanf(xmlGetProp(node, "x"), "%lf", &x);
-                    sscanf(xmlGetProp(node, "y"), "%lf", &y);
+                    char *id = xmlGetProp(xml_node, "id");
+                    sscanf(xmlGetProp(xml_node, "x"), "%lf", &x);
+                    sscanf(xmlGetProp(xml_node, "y"), "%lf", &y);
                     new_node(network, id, x, y);
+                } else if (xmlStrcmp(xml_node->name, "stop") == 0) {
+                    nodes[route_size] = get_node(network, xmlGetProp(xml_node, "refId"));
+                    times[route_size] = 0;
+                    ++route_size;
+                } else if (xmlStrcmp(xml_node->name, "departure ") == 0) {
+                    trip_ids[trip_size] = xmlGetProp(xml_node, "id");
+                    departures[trip_size] = 0;  // departureTime
+                    capacities[trip_size] = 0;  // vehicleRefId
+                    ++trip_size;
                 }
 
+                // No leafs
             } else {
-                printf("X - No leaf: %s - %s\n", node->name,
-                       xmlGetProp(node, "id"));
-            }
+                // Route
+                if (xmlStrcmp(xml_node->name, "transitRoute") == 0) {
+                    const char *curr_route_id = xmlGetProp(xml_node, "id");
+                    if (xmlStrcmp(curr_route_id, route_id) != 0) {
+                        if (route_id != NULL) {
+                            // Add route to network!!!
+                            printf("Adding route to network!!!\n");
+                            // Reset counters
+                            route_size = 0;
+                            trip_size = 0;
+                        }
+                        route_id = curr_route_id;
+                    }
+                    printf("--> Got route: %s\n", route_id);
+                }
 
+                // printf("X - No leaf: %s - %s\n", xml_node->name,
+                //       xmlGetProp(xml_node, "id"));
+            }
         }
-        parse_xml(node->children, network);
-        node = node->next;
+        parse_xml(xml_node->children, network);
+        xml_node = xml_node->next;
     }
 }
 
