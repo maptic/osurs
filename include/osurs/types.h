@@ -85,14 +85,22 @@ typedef struct route_t {
     struct trip_t *root_trip;
 } Route;
 
+/**
+ * @brief A vehicle.
+ *
+ */
 typedef struct vehicle_t {
     char *id;
     struct composition_t *composition;
 } Vehicle;
 
+/**
+ * @brief A composition.
+ *
+ */
 typedef struct composition_t {
     char *id;
-    int capacity;  // replace with groups in future
+    int seats;  // replace with groups in future
 } Composition;
 
 /**

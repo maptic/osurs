@@ -23,6 +23,8 @@ void delete_route(Route *route);
 
 void network_add_route(Network *network, Route *route);
 void network_add_node(Network *network, Node *node);
+void network_add_vehicle(Network *network, Vehicle *vehicle);
+void network_add_composition(Network *network, Composition *composition);
 void node_add_route(Node *node, Route *route);
 
 // Constructor-like methods
@@ -119,6 +121,29 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     return route;
 }
 
+Vehicle *new_vehicle(Network *network, const char *id,
+                     Composition *composition) {
+    Vehicle *vehicle = (Vehicle *)malloc(sizeof(Vehicle));
+    vehicle->id = strdup(id);
+    vehicle->composition = composition;
+
+    // Add vehicle to network
+    network_add_vehicle(network, vehicle);
+
+    return vehicle;
+}
+
+Composition *new_composition(Network *network, const char *id, int seats) {
+    Composition *composition = (Composition *)malloc(sizeof(Composition));
+    composition->id = strdup(id);
+    composition->seats = seats;
+
+    // Add composition to network
+    network_add_composition(network, composition);
+
+    return composition;
+}
+
 // Getters
 
 Node *get_node(Network *network, const char *id) {
@@ -126,6 +151,24 @@ Node *get_node(Network *network, const char *id) {
         if (strcmp(network->nodes[i]->id, id) == 0) return network->nodes[i];
     }
     printf("Node %s not found.\n", id);
+    return NULL;
+}
+
+Vehicle *get_vehicle(Network *network, const char *id) {
+    for (int i = 0; i < network->vehicle_counter; ++i) {
+        if (strcmp(network->vehicles[i]->id, id) == 0)
+            return network->vehicles[i];
+    }
+    printf("Vehicle %s not found.\n", id);
+    return NULL;
+}
+
+Composition *get_composition(Network *network, const char *id) {
+    for (int i = 0; i < network->composition_counter; ++i) {
+        if (strcmp(network->compositions[i]->id, id) == 0)
+            return network->compositions[i];
+    }
+    printf("Composition %s not found.\n", id);
     return NULL;
 }
 
@@ -209,6 +252,25 @@ void network_add_node(Network *network, Node *node) {
                                           sizeof(Node *) * network->node_size);
     }
     network->nodes[network->node_counter++] = node;
+}
+
+void network_add_composition(Network *network, Composition *composition) {
+    if (network->composition_counter == network->composition_size) {
+        network->composition_size += INIT_ALLOC_SIZE;
+        network->compositions = (Composition **)realloc(
+            network->compositions,
+            sizeof(Composition *) * network->composition_size);
+    }
+    network->compositions[network->composition_counter++] = composition;
+}
+
+void network_add_vehicle(Network *network, Vehicle *vehicle) {
+    if (network->vehicle_counter == network->vehicle_size) {
+        network->vehicle_size += INIT_ALLOC_SIZE;
+        network->vehicles = (Vehicle **)realloc(
+            network->vehicles, sizeof(Vehicle *) * network->vehicle_size);
+    }
+    network->vehicles[network->vehicle_counter++] = vehicle;
 }
 
 void node_add_route(Node *node, Route *route) {

@@ -9,8 +9,6 @@
 #include <osurs/io.h>
 #include <string.h>
 
-#define MAX_ID_LENGTH 128
-
 // Print methods
 
 void print_node(Node *node) {
@@ -232,8 +230,6 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
         ++(carrier->route_size);
         free(dep_off_tmp);
         realloc_carrier_route_size(carrier);
-    } else {
-        // printf("Stop for node %s not added.\n", node_id_tmp);
     }
     free(node_id_tmp);
 }
@@ -249,8 +245,7 @@ void handle_departure(xmlNode *xml_node, Carrier *carrier) {
 }
 
 void handle_route(xmlNode *xml_node, Carrier *carrier) {
-    // char *curr_route_id = xmlGetProp(xml_node, "id");
-    // Add new route, if not first route node
+    // Add new route, if not (!) first route node
     if (carrier->route_counter > 0) {
         new_route_from_carrier(carrier);
     }
@@ -258,30 +253,72 @@ void handle_route(xmlNode *xml_node, Carrier *carrier) {
     ++(carrier->route_counter);
 }
 
-void matsim_parser(xmlNode *xml_node, Carrier *carrier) {
+void matsim_schedule_parser(xmlNode *xml_node, Carrier *carrier) {
     while (xml_node) {
         if (xml_node->type == XML_ELEMENT_NODE) {
-            // Leafs
-            // if (is_leaf(xml_node)) {
-            // printf("%s\n", xml_node->name);
-
             if (xmlStrcmp(xml_node->name, "stopFacility") == 0) {
                 handle_stop_facility(xml_node, carrier);
             } else if (xmlStrcmp(xml_node->name, "stop") == 0) {
                 handle_stop(xml_node, carrier);
             } else if (xmlStrcmp(xml_node->name, "departure") == 0) {
                 handle_departure(xml_node, carrier);
-            }
-
-            // Not a leaf
-            // } else {
-            // Route
-            else if (xmlStrcmp(xml_node->name, "transitRoute") == 0) {
+            } else if (xmlStrcmp(xml_node->name, "transitRoute") == 0) {
                 handle_route(xml_node, carrier);
             }
-            // }
         }
-        matsim_parser(xml_node->children, carrier);
+        matsim_schedule_parser(xml_node->children, carrier);
+        xml_node = xml_node->next;
+    }
+}
+
+void handle_vehicle_type(xmlNode *xml_node, Network *network) {
+    char *id_tmp = xmlGetProp(xml_node, "id");
+    int seats = 0;
+
+    // Enter vehicleType
+    xml_node = xml_node->children;
+    // Iterate until capacity
+    while (xml_node) {
+        if (xml_node->type == XML_ELEMENT_NODE) {
+            if (xmlStrcmp(xml_node->name, "capacity") == 0) {
+                // Enter capacity
+                xml_node = xml_node->children;
+            } else if (xmlStrcmp(xml_node->name, "seats") == 0) {
+                // Get seats of capacity
+                char *seats_tmp = xmlGetProp(xml_node, "persons");
+                sscanf(seats_tmp, "%d", &seats);
+                free(seats_tmp);
+                break;
+            }
+        }
+        xml_node = xml_node->next;
+    }
+
+    new_composition(network, id_tmp, seats);
+    free(id_tmp);
+}
+
+void handle_vehicle(xmlNode *xml_node, Network *network) {
+    char *id_tmp = xmlGetProp(xml_node, "id");
+    char *id_comp_tmp = xmlGetProp(xml_node, "type");
+    Composition *comp = get_composition(network, id_comp_tmp);
+    if (comp != NULL) {
+        Vehicle *v = new_vehicle(network, id_tmp, comp);
+    }
+    free(id_tmp);
+    free(id_comp_tmp);
+}
+
+void matsim_vehicle_parser(xmlNode *xml_node, Network *network) {
+    while (xml_node) {
+        if (xml_node->type == XML_ELEMENT_NODE) {
+            if (xmlStrcmp(xml_node->name, "vehicleType") == 0) {
+                handle_vehicle_type(xml_node, network);
+            } else if (xmlStrcmp(xml_node->name, "vehicle") == 0) {
+                handle_vehicle(xml_node, network);
+            }
+        }
+        matsim_vehicle_parser(xml_node->children, network);
         xml_node = xml_node->next;
     }
 }
@@ -291,22 +328,28 @@ int import_matsim(Network *network, const char *schedule_file,
     xmlDoc *doc = NULL;
     xmlNode *root_element = NULL;
 
-    doc = xmlReadFile(schedule_file, NULL, 0);
+    // Parse transit vehicules file
+    doc = xmlReadFile(vehicle_file, NULL, 0);
     if (doc == NULL) {
-        printf("Could not parse the XML file");
+        printf("Could not parse file %s.", vehicle_file);
         return 1;
     }
     root_element = xmlDocGetRootElement(doc);
+    matsim_vehicle_parser(root_element, network);
+    xmlFreeDoc(doc);
+    xmlCleanupParser();
 
-    /// HERE WE GO
+    // Parse transit schedule file
+    doc = xmlReadFile(schedule_file, NULL, 0);
+    if (doc == NULL) {
+        printf("Could not parse file %s.", schedule_file);
+        return 1;
+    }
+    root_element = xmlDocGetRootElement(doc);
     Carrier *carrier = new_carrier(network);
-    matsim_parser(root_element, carrier);
-    // Add last route
-    new_route_from_carrier(carrier);
+    matsim_schedule_parser(root_element, carrier);
+    new_route_from_carrier(carrier);  // Add last route
     delete_carrier(carrier);
-    /// HERE WE END
-
-    // Cleanup xml
     xmlFreeDoc(doc);
     xmlCleanupParser();
 

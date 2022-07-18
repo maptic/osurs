@@ -21,8 +21,6 @@
 
 // Constructor-like methods
 
-// Create a Network struct
-
 /**
  * @brief Create a new nework
  *
@@ -54,6 +52,27 @@ Network *new_network();
 Node *new_node(Network *network, const char *id, double x, double y);
 
 /**
+ * @brief Create a new composition and add it to the network.
+ *
+ * @param network The network to add the composition.
+ * @param id The id of the composition.
+ * @param seats The seat capacity of the composition.
+ * @return A pointer to the newly allocated node (Composition*).
+ */
+Composition *new_composition(Network *network, const char *id, int seats);
+
+/**
+ * @brief Create a new vehicle and add it to the network.
+ *
+ * @param network The network to add the vehicle.
+ * @param id The id of the vehicle.
+ * @param composition The composition the vehicle has.
+ * @return A pointer to the newly allocated vehicle (Vehicle*).
+ */
+Vehicle *new_vehicle(Network *network, const char *id,
+                     Composition *composition);
+
+/**
  * @brief Create a new route and add it to the network.
  *
  * @param network The network to add the route.
@@ -72,24 +91,42 @@ Node *new_node(Network *network, const char *id, double x, double y);
  * @return A pointer to the newly allocated node (Route*).
  */
 Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
-                 size_t route_size, const char *trip_ids[], int departures[], int capacities[],
-                 size_t trip_size);
+                 size_t route_size, const char *trip_ids[], int departures[],
+                 int capacities[], size_t trip_size);
 
 // Getters
 
 /**
- * @brief Get the node object
- * 
+ * @brief Get the node struct.
+ *
  * @param network An network to get the node from.
  * @param id The identifier of the node.
  * @return Returns the node.
  */
 Node *get_node(Network *network, const char *id);
 
+/**
+ * @brief Get the vehicle struct.
+ *
+ * @param network An network to get the vehicle from.
+ * @param id The identifier of the vehicle.
+ * @return Returns the vehicle.
+ */
+Vehicle *get_vehicle(Network *network, const char *id);
+
+/**
+ * @brief Get the composition struct.
+ *
+ * @param network An network to get the composition from.
+ * @param id The identifier of the composition.
+ * @return Returns the composition.
+ */
+Composition *get_composition(Network *network, const char *id);
+
 // Destructor-like methods
 
 /**
- * @brief Delete a network
+ * @brief Delete a network.
  *
  * All objects of the network are located on the heap and are directly or
  * indirectly linked to the network structure. If the memory of the network is
