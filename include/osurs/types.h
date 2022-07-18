@@ -50,6 +50,8 @@ typedef struct node_t {
  */
 typedef struct stop_t {
     int time_to_next;
+    int arrival_offset;    // The offset from the root stop arrival.
+    int departure_offset;  // The offset from the root stop departure.
     int *reserved;
     struct node_t *node;
     struct stop_t *last;
@@ -67,7 +69,7 @@ typedef struct stop_t {
 typedef struct trip_t {
     char *id;
     int departure;
-    int capacity;
+    struct vehicle_t *vehicle;
     struct trip_t *next;
     struct route_t *route;
 } Trip;
@@ -88,6 +90,7 @@ typedef struct route_t {
 /**
  * @brief A vehicle.
  *
+ * A vehicle consists of an identifier and vehicle composition.
  */
 typedef struct vehicle_t {
     char *id;
@@ -97,6 +100,8 @@ typedef struct vehicle_t {
 /**
  * @brief A composition.
  *
+ * A composition refelects a combination of containers / groups with au defined
+ * seat capactity.
  */
 typedef struct composition_t {
     char *id;

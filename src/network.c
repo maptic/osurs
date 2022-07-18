@@ -13,7 +13,7 @@
 
 Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
                size_t trip_size);
-Trip *new_trip(const char *id, int departure, int capacity, Trip *next,
+Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
                Route *route);
 
 void delete_node(Node *node);
@@ -77,12 +77,12 @@ Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
     return stop;
 }
 
-Trip *new_trip(const char *id, int departure, int capacity, Trip *next,
+Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
                Route *route) {
     Trip *trip = (Trip *)malloc(sizeof(Trip));
     trip->id = strdup(id);
     trip->departure = departure;
-    trip->capacity = capacity;
+    trip->vehicle = vehicle;
     trip->next = next;
     trip->route = route;
     return trip;
@@ -90,7 +90,7 @@ Trip *new_trip(const char *id, int departure, int capacity, Trip *next,
 
 Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
                  size_t route_size, const char *trip_ids[], int departures[],
-                 int capacities[], size_t trip_size) {
+                 Vehicle *vehicles[], size_t trip_size) {
     // Initialize route
     Route *route = (Route *)malloc(sizeof(Route));
     route->id = strdup(id);
@@ -101,7 +101,7 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
 
     // Set root trip
     Trip *root_trip =
-        new_trip(trip_ids[0], departures[0], capacities[0], NULL, route);
+        new_trip(trip_ids[0], departures[0], vehicles[0], NULL, route);
     route->root_trip = root_trip;
 
     // Create chain of all stops
@@ -118,7 +118,7 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     Trip *curr_trip;
     for (size_t i = 1; i < trip_size; ++i) {
         curr_trip =
-            new_trip(trip_ids[i], departures[i], capacities[i], NULL, route);
+            new_trip(trip_ids[i], departures[i], vehicles[i], NULL, route);
         last_trip->next = curr_trip;
         last_trip = curr_trip;
     }

@@ -74,7 +74,7 @@ int check(Connection *connection, int seats, int *trip_count) {
 
     // Check available seats over on all stops
     Stop *curr_stop = connection->orig;
-    int capacity = connection->trip->capacity;
+    int capacity = connection->trip->vehicle->composition->seats;
     while (1) {
         if (seats > (capacity - curr_stop->reserved[*trip_count])) return 0;
         // Stop if destination is reached
@@ -178,7 +178,7 @@ Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
     // Set departure at origin as base for calculation of the arrival at origin.
     arrival = departure;
     dest_stop = iterate_to_dest(orig_stop, dest, &arrival, &available,
-                                trip->capacity, trip_count);
+                                trip->vehicle->composition->seats, trip_count);
 
     // Set in values of found connection
     *conn_count += 1;

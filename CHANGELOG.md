@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `io.h`: Importing and exporting networks (network, vehicles and reservations).
+    - Importer for MATSim transit schedules.
 - `network.h`: Structures to represent a network of a reservation system.
 - `optimize.h`: Optimizing space utilization in reservation systems.
 - `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
@@ -18,10 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Renamed `routing.h` module to `reserve.h` module.
+- Changed from capacities on trips to capacities on compositions, which are linked to the trips via vehicles.
 
 ### Fixed
 
 - Memory leaks in `network.h` module.
 - Memory leaks in `reserve.h` module.
+- Memory leaks in `io.h` module.
 
 ## [0.0.1] - 2022-XX-XX

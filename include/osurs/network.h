@@ -86,13 +86,13 @@ Vehicle *new_vehicle(Network *network, const char *id,
  * @param departures The departure times at the first node (=root_stop) of the
  * route in seconds after midnight (00:00:00). Every departure time will define
  * a new trip, which starts traveling along the route (n=trip_size)
- * @param capacities This will be replaced with vehicles!
+ * @param vehicles An array of vehicles for each trip (n=trip_size).
  * @param trip_size The number of departures (=trips) on the route.
  * @return A pointer to the newly allocated node (Route*).
  */
 Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
                  size_t route_size, const char *trip_ids[], int departures[],
-                 int capacities[], size_t trip_size);
+                 Vehicle *vehicles[], size_t trip_size);
 
 // Getters
 

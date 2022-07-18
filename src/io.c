@@ -23,8 +23,8 @@ void print_stop(Stop *stop) {
 }
 
 void print_trip(Trip *trip) {
-    printf("  - Trip <id=%s, departure=%d, capacity=%d>\n", trip->id,
-           trip->departure, trip->capacity);
+    printf("  - Trip <id=%s, departure=%d, vehicle=%s>\n", trip->id,
+           trip->departure, trip->vehicle->id);
 }
 
 void print_route(Route *route) {
@@ -138,7 +138,7 @@ typedef struct carrier_t {
     size_t route_alloc_size;
     const char **trip_ids;
     int *departures;
-    int *capacities;
+    struct vehicle_t **vehicles;
     size_t trip_size;
     size_t trip_alloc_size;
     int route_counter;  // Needed for ommiting first route element occurence
@@ -153,7 +153,7 @@ Carrier *new_carrier(Network *network) {
     carrier->route_alloc_size = INIT_ALLOC_SIZE;
     carrier->trip_ids = (const char **)malloc(sizeof(char *) * INIT_ALLOC_SIZE);
     carrier->departures = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
-    carrier->capacities = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
+    carrier->vehicles = (Vehicle **)malloc(sizeof(Vehicle) * INIT_ALLOC_SIZE);
     carrier->trip_size = 0;
     carrier->trip_alloc_size = INIT_ALLOC_SIZE;
 
@@ -182,15 +182,15 @@ void realloc_carrier_trip_size(Carrier *carrier) {
             carrier->trip_ids, sizeof(char *) * carrier->trip_alloc_size);
         carrier->departures = (int *)realloc(
             carrier->departures, sizeof(int) * carrier->trip_alloc_size);
-        carrier->capacities = (int *)realloc(
-            carrier->capacities, sizeof(int) * carrier->trip_alloc_size);
+        carrier->vehicles = (Vehicle **)realloc(
+            carrier->vehicles, sizeof(Vehicle *) * carrier->trip_alloc_size);
     }
 }
 
 void new_route_from_carrier(Carrier *carrier) {
     new_route(carrier->network, carrier->route_id, carrier->nodes,
               carrier->times, carrier->route_size, carrier->trip_ids,
-              carrier->departures, carrier->capacities, carrier->trip_size);
+              carrier->departures, carrier->vehicles, carrier->trip_size);
     // Free xmls chars
     free(carrier->route_id);
     for (int i = 0; i < carrier->trip_size; i++)
@@ -205,7 +205,7 @@ void delete_carrier(Carrier *carrier) {
     free(carrier->times);
     free(carrier->trip_ids);
     free(carrier->departures);
-    free(carrier->capacities);
+    free(carrier->vehicles);
     free(carrier);
 }
 
@@ -238,11 +238,17 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
 
 void handle_departure(xmlNode *xml_node, Carrier *carrier) {
     char *dep_tmp = xmlGetProp(xml_node, "departureTime");
+    char *vehicle_id_tmp = xmlGetProp(xml_node, "vehicleRefId");
+    Vehicle *vehicle = get_vehicle(carrier->network, vehicle_id_tmp);
+
+    // Add trip attributes
     carrier->trip_ids[carrier->trip_size] = xmlGetProp(xml_node, "id");
     carrier->departures[carrier->trip_size] = parse_time(dep_tmp);
-    carrier->capacities[carrier->trip_size] = 0;  // vehicleRefId
+    carrier->vehicles[carrier->trip_size] = vehicle;  // vehicleRefId
+
     ++(carrier->trip_size);
     free(dep_tmp);
+    free(vehicle_id_tmp);
     realloc_carrier_trip_size(carrier);
 }
 
