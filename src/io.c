@@ -163,13 +163,18 @@ void new_route_from_carrier(Carrier *carrier) {
     new_route(carrier->network, carrier->route_id, carrier->nodes,
               carrier->times, carrier->route_size, carrier->trip_ids,
               carrier->departures, carrier->capacities, carrier->trip_size);
+    // Free xmls chars
+    free(carrier->route_id);
+    for (int i = 0; i < carrier->trip_size; i++)
+        free((char *)carrier->trip_ids[i]);
+    // Reset size for next route
+    carrier->route_size = 0;
+    carrier->trip_size = 0;
 }
 
 void delete_carrier(Carrier *carrier) {
-    free(carrier->route_id);
     free(carrier->nodes);
     free(carrier->times);
-    for (int i = 0; i < carrier->trip_size; i++) free((char *)carrier->trip_ids[i]);
     free(carrier->trip_ids);
     free(carrier->departures);
     free(carrier->capacities);
@@ -178,37 +183,46 @@ void delete_carrier(Carrier *carrier) {
 
 void handle_stop_facility(xmlNode *xml_node, Carrier *carrier) {
     double x, y;
-    char *id = xmlGetProp(xml_node, "id");
-    sscanf(xmlGetProp(xml_node, "x"), "%lf", &x);
-    sscanf(xmlGetProp(xml_node, "y"), "%lf", &y);
-    new_node(carrier->network, id, x, y);
+    char *id_tmp = xmlGetProp(xml_node, "id");
+    char *x_tmp = xmlGetProp(xml_node, "x");
+    char *y_tmp = xmlGetProp(xml_node, "y");
+    sscanf(x_tmp, "%lf", &x);
+    sscanf(y_tmp, "%lf", &y);
+    new_node(carrier->network, id_tmp, x, y);
+    free(id_tmp);
+    free(x_tmp);
+    free(y_tmp);
 }
 
 void handle_stop(xmlNode *xml_node, Carrier *carrier) {
-    carrier->nodes[carrier->route_size] =
-        get_node(carrier->network, xmlGetProp(xml_node, "refId"));
-    carrier->times[carrier->route_size] =
-        parse_time(xmlGetProp(xml_node, "departureOffset"));
-    ++(carrier->route_size);
+    char *node_id_tmp = xmlGetProp(xml_node, "refId");
+    Node *node = get_node(carrier->network, node_id_tmp);
+    if (node != NULL) {
+        char *dep_off_tmp = xmlGetProp(xml_node, "departureOffset");
+        carrier->nodes[carrier->route_size] = node;
+        carrier->times[carrier->route_size] = parse_time(dep_off_tmp);
+        ++(carrier->route_size);
+        free(dep_off_tmp);
+    }
+    free(node_id_tmp);
 }
 
 void handle_departure(xmlNode *xml_node, Carrier *carrier) {
-    carrier->trip_ids[carrier->trip_size] = strdup(xmlGetProp(xml_node, "id"));
-    carrier->departures[carrier->trip_size] =
-        parse_time(xmlGetProp(xml_node, "departureTime"));
+    char *dep_tmp = xmlGetProp(xml_node, "departureTime");
+    carrier->trip_ids[carrier->trip_size] = xmlGetProp(xml_node, "id");
+    carrier->departures[carrier->trip_size] = parse_time(dep_tmp);
     carrier->capacities[carrier->trip_size] = 0;  // vehicleRefId
     ++(carrier->trip_size);
+    free(dep_tmp);
 }
 
 void handle_route(xmlNode *xml_node, Carrier *carrier) {
-    char *curr_route_id = xmlGetProp(xml_node, "id");
+    // char *curr_route_id = xmlGetProp(xml_node, "id");
     // Add new route, if not first route node
     if (carrier->route_counter > 0) {
         new_route_from_carrier(carrier);
-        carrier->route_size = 0;
-        carrier->trip_size = 0;
     }
-    carrier->route_id = strdup(curr_route_id);
+    carrier->route_id = xmlGetProp(xml_node, "id");
     ++(carrier->route_counter);
 }
 
@@ -256,7 +270,6 @@ int import_matsim(Network *network, const char *schedule_file,
     Carrier *carrier = new_carrier(network);
     matsim_parser(root_element, carrier);
     // Add last route
-    printf("I made it outside of parser!\n");
     new_route_from_carrier(carrier);
     delete_carrier(carrier);
     /// HERE WE END
