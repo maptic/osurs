@@ -135,7 +135,7 @@ typedef struct carrier_t {
     Node **nodes;
     int *times;
     size_t route_size;
-    char **trip_ids;
+    const char **trip_ids;
     int *departures;
     int *capacities;
     size_t trip_size;
@@ -145,16 +145,10 @@ typedef struct carrier_t {
 Carrier *new_carrier(Network *network) {
     Carrier *carrier = (Carrier *)malloc(sizeof(Carrier));
     carrier->network = network;
-    carrier->route_id = (char *)malloc(sizeof(char) * MAX_ID_LENGTH);
     carrier->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
     carrier->times = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
     carrier->route_size = 0;
-
-    carrier->trip_ids = (char **)malloc(INIT_ALLOC_SIZE * sizeof(char *));
-    for (int i = 0; i < INIT_ALLOC_SIZE; i++) {
-        carrier->trip_ids[i] =
-            (char *)malloc(sizeof(char) * (MAX_ID_LENGTH + 1));
-    }
+    carrier->trip_ids = (const char **)malloc(INIT_ALLOC_SIZE * sizeof(char *));
     carrier->departures = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
     carrier->capacities = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
     carrier->trip_size = 0;
@@ -169,13 +163,13 @@ void new_route_from_carrier(Carrier *carrier) {
     new_route(carrier->network, carrier->route_id, carrier->nodes,
               carrier->times, carrier->route_size, carrier->trip_ids,
               carrier->departures, carrier->capacities, carrier->trip_size);
-    carrier->route_size = 0;
-    carrier->trip_size = 0;
 }
 
 void delete_carrier(Carrier *carrier) {
+    free(carrier->route_id);
     free(carrier->nodes);
     free(carrier->times);
+    for (int i = 0; i < carrier->trip_size; i++) free((char *)carrier->trip_ids[i]);
     free(carrier->trip_ids);
     free(carrier->departures);
     free(carrier->capacities);
@@ -199,7 +193,7 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
 }
 
 void handle_departure(xmlNode *xml_node, Carrier *carrier) {
-    strcpy(carrier->trip_ids[carrier->trip_size], xmlGetProp(xml_node, "id"));
+    carrier->trip_ids[carrier->trip_size] = strdup(xmlGetProp(xml_node, "id"));
     carrier->departures[carrier->trip_size] =
         parse_time(xmlGetProp(xml_node, "departureTime"));
     carrier->capacities[carrier->trip_size] = 0;  // vehicleRefId
@@ -211,8 +205,10 @@ void handle_route(xmlNode *xml_node, Carrier *carrier) {
     // Add new route, if not first route node
     if (carrier->route_counter > 0) {
         new_route_from_carrier(carrier);
+        carrier->route_size = 0;
+        carrier->trip_size = 0;
     }
-    strcpy(carrier->route_id, curr_route_id);
+    carrier->route_id = strdup(curr_route_id);
     ++(carrier->route_counter);
 }
 
