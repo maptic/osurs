@@ -35,6 +35,7 @@ graph LR;
   subgraph network.h;
     Network-->|"nodes[]"|Node;
     Network-->|"routes[]"|Route;
+    Network-->|"compositions[]"|Composition;
     Network-->|"vehicles[]"|Vehicle;
     Route-->|*root_stop|Stop;
     Stop-->|*last|Stop;
@@ -44,6 +45,7 @@ graph LR;
     Node-->|"routes[]"|Route;
     Stop-->|*node|Node;
     Trip-->|*vehicle|Vehicle;
+    Vehicle-->|*composition|Composition;
   end;
 ```
 

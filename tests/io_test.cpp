@@ -19,7 +19,7 @@ TEST(IOTest, Read) {
     EXPECT_EQ(network->node_counter, 17);
     EXPECT_EQ(network->route_counter, 2);
 
-    print_network(network);
+    // print_network(network);
     delete_network(network);
 }
 
