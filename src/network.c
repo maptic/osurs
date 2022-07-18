@@ -40,7 +40,7 @@ Network *new_network() {
 
 Node *new_node(Network *network, const char *id, double x, double y) {
     Node *node = (Node *)malloc(sizeof(Node));
-    node->id = id;
+    node->id = strdup(id);
     node->x = x;
     node->y = y;
     node->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
@@ -67,7 +67,7 @@ Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
 Trip *new_trip(const char *id, int departure, int capacity, Trip *next,
                Route *route) {
     Trip *trip = (Trip *)malloc(sizeof(Trip));
-    trip->id = id;
+    trip->id = strdup(id);
     trip->departure = departure;
     trip->capacity = capacity;
     trip->next = next;
@@ -80,7 +80,7 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
                  int capacities[], size_t trip_size) {
     // Initialize route
     Route *route = (Route *)malloc(sizeof(Route));
-    route->id = id;
+    route->id = strdup(id);
 
     // Set root stop
     Stop *root_stop = new_stop(nodes[0], NULL, NULL, times[0], trip_size);
@@ -124,15 +124,15 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
 Node *get_node(Network *network, const char *id) {
     for (int i = 0; i < network->node_counter; ++i) {
         if (strcmp(network->nodes[i]->id, id) == 0) return network->nodes[i];
-        printf("Node found. %s\n", id);
     }
-    printf("Node not found.\n");
+    printf("Node %s not found.\n", id);
     return NULL;
 }
 
 // Destructor-like methods
 
 void delete_node(Node *node) {
+    free(node->id);
     free(node->routes);
     free(node);
 }
@@ -142,7 +142,10 @@ void delete_stop(Stop *stop) {
     free(stop);
 }
 
-void delete_trip(Trip *trip) { free(trip); }
+void delete_trip(Trip *trip) {
+    free(trip->id);
+    free(trip);
+}
 
 void delete_route(Route *route) {
     // Free stops
@@ -168,6 +171,7 @@ void delete_route(Route *route) {
         curr_trip = next_trip;
     }
     // Free struct
+    free(route->id);
     free(route);
 }
 

@@ -21,9 +21,11 @@ struct node_t;
 struct stop_t;
 struct trip_t;
 struct route_t;
-struct network_t;
+struct vehicle_t;
+struct composition_t;
 struct connection_t;
 struct reservation_t;
+struct network_t;
 
 /**
  * @brief A node.
@@ -82,6 +84,16 @@ typedef struct route_t {
     struct stop_t *root_stop;
     struct trip_t *root_trip;
 } Route;
+
+typedef struct vehicle_t {
+    const char *id;
+    struct composition_t *composition;
+} Vehicle;
+
+typedef struct composition_t {
+    const char *id;
+    int capacity;  // replace with groups in future
+} Composition;
 
 /**
  * @brief A network.
