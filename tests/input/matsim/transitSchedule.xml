@@ -44,9 +44,9 @@
 		<transitRoute id="Red Route 0_20">
 			<transportMode>pt</transportMode>
 			<routeProfile>
-				<stop refId="stop5" arrivalOffset="00:00:00" departureOffset="00:00:00"/>
-				<stop refId="stop6" arrivalOffset="00:00:20" departureOffset="00:00:25"/>
-				<stop refId="stop7" arrivalOffset="00:00:40" departureOffset="00:00:45"/>
+				<stop refId="stop2" arrivalOffset="00:00:00" departureOffset="00:00:00"/>
+				<stop refId="stop4" arrivalOffset="00:00:20" departureOffset="00:00:25"/>
+				<stop refId="stop6" arrivalOffset="00:00:40" departureOffset="00:00:45"/>
 				<stop refId="stop8" arrivalOffset="00:01:00" departureOffset="00:01:00"/>
 			</routeProfile>
 			<route>

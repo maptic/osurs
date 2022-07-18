@@ -2,4 +2,4 @@
 # to re-configure the file and generate the build system again.
 configure_file(README.md README.md COPYONLY)
 configure_file(transitSchedule.xml transitSchedule.xml COPYONLY)
-configure_file(vehicles.xml vehicles.xml COPYONLY)
+configure_file(transitVehicles.xml transitVehicles.xml COPYONLY)

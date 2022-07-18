@@ -135,11 +135,13 @@ typedef struct carrier_t {
     Node **nodes;
     int *times;
     size_t route_size;
+    size_t route_alloc_size;
     const char **trip_ids;
     int *departures;
     int *capacities;
     size_t trip_size;
-    int route_counter;
+    size_t trip_alloc_size;
+    int route_counter;  // Needed for ommiting first route element occurence
 } Carrier;
 
 Carrier *new_carrier(Network *network) {
@@ -148,15 +150,41 @@ Carrier *new_carrier(Network *network) {
     carrier->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
     carrier->times = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
     carrier->route_size = 0;
-    carrier->trip_ids = (const char **)malloc(INIT_ALLOC_SIZE * sizeof(char *));
+    carrier->route_alloc_size = INIT_ALLOC_SIZE;
+    carrier->trip_ids = (const char **)malloc(sizeof(char *) * INIT_ALLOC_SIZE);
     carrier->departures = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
     carrier->capacities = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
     carrier->trip_size = 0;
+    carrier->trip_alloc_size = INIT_ALLOC_SIZE;
 
     // Set counter to zero
     carrier->route_counter = 0;
 
     return carrier;
+}
+
+void realloc_carrier_route_size(Carrier *carrier) {
+    if (carrier->route_size == carrier->route_alloc_size) {
+        printf("Reallocating route size.\n");
+        carrier->route_alloc_size += INIT_ALLOC_SIZE;
+        carrier->nodes = (Node **)realloc(
+            carrier->nodes, sizeof(Node *) * carrier->route_alloc_size);
+        carrier->times = (int *)realloc(
+            carrier->times, sizeof(int) * carrier->route_alloc_size);
+    }
+}
+
+void realloc_carrier_trip_size(Carrier *carrier) {
+    if (carrier->trip_size == carrier->trip_alloc_size) {
+        printf("Reallocating trip size.\n");
+        carrier->trip_alloc_size += INIT_ALLOC_SIZE;
+        carrier->trip_ids = (const char **)realloc(
+            carrier->trip_ids, sizeof(char *) * carrier->trip_alloc_size);
+        carrier->departures = (int *)realloc(
+            carrier->departures, sizeof(int) * carrier->trip_alloc_size);
+        carrier->capacities = (int *)realloc(
+            carrier->capacities, sizeof(int) * carrier->trip_alloc_size);
+    }
 }
 
 void new_route_from_carrier(Carrier *carrier) {
@@ -203,6 +231,9 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
         carrier->times[carrier->route_size] = parse_time(dep_off_tmp);
         ++(carrier->route_size);
         free(dep_off_tmp);
+        realloc_carrier_route_size(carrier);
+    } else {
+        // printf("Stop for node %s not added.\n", node_id_tmp);
     }
     free(node_id_tmp);
 }
@@ -214,6 +245,7 @@ void handle_departure(xmlNode *xml_node, Carrier *carrier) {
     carrier->capacities[carrier->trip_size] = 0;  // vehicleRefId
     ++(carrier->trip_size);
     free(dep_tmp);
+    realloc_carrier_trip_size(carrier);
 }
 
 void handle_route(xmlNode *xml_node, Carrier *carrier) {
@@ -230,24 +262,24 @@ void matsim_parser(xmlNode *xml_node, Carrier *carrier) {
     while (xml_node) {
         if (xml_node->type == XML_ELEMENT_NODE) {
             // Leafs
-            if (is_leaf(xml_node)) {
-                // printf("%s\n", xml_node->name);
+            // if (is_leaf(xml_node)) {
+            // printf("%s\n", xml_node->name);
 
-                if (xmlStrcmp(xml_node->name, "stopFacility") == 0) {
-                    handle_stop_facility(xml_node, carrier);
-                } else if (xmlStrcmp(xml_node->name, "stop") == 0) {
-                    handle_stop(xml_node, carrier);
-                } else if (xmlStrcmp(xml_node->name, "departure") == 0) {
-                    handle_departure(xml_node, carrier);
-                }
-
-                // Not a leaf
-            } else {
-                // Route
-                if (xmlStrcmp(xml_node->name, "transitRoute") == 0) {
-                    handle_route(xml_node, carrier);
-                }
+            if (xmlStrcmp(xml_node->name, "stopFacility") == 0) {
+                handle_stop_facility(xml_node, carrier);
+            } else if (xmlStrcmp(xml_node->name, "stop") == 0) {
+                handle_stop(xml_node, carrier);
+            } else if (xmlStrcmp(xml_node->name, "departure") == 0) {
+                handle_departure(xml_node, carrier);
             }
+
+            // Not a leaf
+            // } else {
+            // Route
+            else if (xmlStrcmp(xml_node->name, "transitRoute") == 0) {
+                handle_route(xml_node, carrier);
+            }
+            // }
         }
         matsim_parser(xml_node->children, carrier);
         xml_node = xml_node->next;

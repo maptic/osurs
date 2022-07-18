@@ -13,9 +13,12 @@ TEST(IOTest, Read) {
     // EXPECT_EQ(print_file("input/matsim/transitSchedule.xml"), 0);
     // EXPECT_EQ(print_file("input/matsim/vehicles.xml"), 0);
     Network* network = new_network();
-    EXPECT_EQ(import_matsim(network, "input/matsim/transitSchedule.xml",
-                            "input/matsim/vehicles.xml"),
-              0);
+    int success = import_matsim(network, "input/matsim/transitSchedule.xml",
+                                "input/matsim/transitVehicles.xml");
+    EXPECT_EQ(success, 0);
+    EXPECT_EQ(network->node_counter, 17);
+    EXPECT_EQ(network->route_counter, 2);
+
     print_network(network);
     delete_network(network);
 }
