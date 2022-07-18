@@ -123,127 +123,10 @@ int is_leaf(xmlNode *node) {
     return 1;
 }
 
-void print_xml(xmlNode *node, int indent_len) {
-    while (node) {
-        if (node->type == XML_ELEMENT_NODE) {
-            printf("%*c%s:%s\n", indent_len * 2, '-', node->name,
-                   is_leaf(node) ? xmlNodeGetContent(node)
-                                 : xmlGetProp(node, "id"));
-        }
-        print_xml(node->children, indent_len + 1);
-        node = node->next;
-    }
-}
-
-int import_matsim2(Network *network, const char *schedule_file,
-                   const char *vehicle_file) {
-    xmlDoc *doc = NULL;
-    xmlNode *root_element = NULL;
-
-    doc = xmlReadFile(schedule_file, NULL, 0);
-
-    if (doc == NULL) {
-        printf("Could not parse the XML file");
-        return 1;
-    }
-
-    root_element = xmlDocGetRootElement(doc);
-
-    print_xml(root_element, 1);
-
-    xmlFreeDoc(doc);
-
-    xmlCleanupParser();
-
-    return 0;
-}
-
 int parse_time(char *time) {
     int h, m, s;
     sscanf(time, "%d:%d:%d", &h, &m, &s);
     return h * HOURS + m * MINUTES + s;
-}
-
-void parse_xml(xmlNode *xml_node, Network *network) {
-    // Declare route attributes
-    const char *route_id;
-    // const char *route_mode; // transportMode
-    Node **nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
-    int *times = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
-    size_t route_size = 0;
-
-    // Declare trip attributes
-    const char **trip_ids =
-        (const char **)malloc(sizeof(char *) * INIT_ALLOC_SIZE);
-    int *departures = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
-    int *capacities = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
-    size_t trip_size = 0;
-
-    while (xml_node) {
-        if (xml_node->type == XML_ELEMENT_NODE) {
-            // Leafs
-            if (is_leaf(xml_node)) {
-                printf("%s\n", xml_node->name);
-
-                if (xmlStrcmp(xml_node->name, "stopFacility") == 0) {
-                    double x, y;
-                    char *id = xmlGetProp(xml_node, "id");
-                    sscanf(xmlGetProp(xml_node, "x"), "%lf", &x);
-                    sscanf(xmlGetProp(xml_node, "y"), "%lf", &y);
-                    new_node(network, id, x, y);
-
-                } else if (xmlStrcmp(xml_node->name, "stop") == 0) {
-                    nodes[route_size] =
-                        get_node(network, xmlGetProp(xml_node, "refId"));
-                    times[route_size] =
-                        parse_time(xmlGetProp(xml_node, "departureOffset"));
-                    ++route_size;
-
-                } else if (xmlStrcmp(xml_node->name, "departure") == 0) {
-                    trip_ids[trip_size] = xmlGetProp(xml_node, "id");
-                    departures[trip_size] =
-                        parse_time(xmlGetProp(xml_node, "departureTime"));
-                    capacities[trip_size] = 0;  // vehicleRefId
-
-                    printf("Departure parsed from %s to %d\n",
-                           xmlGetProp(xml_node, "departureTime"),
-                           departures[trip_size]);
-
-                    ++trip_size;
-                }
-                // Not a leaf
-            } else {
-                // Route
-                if (xmlStrcmp(xml_node->name, "transitRoute") == 0) {
-                    const char *curr_route_id = xmlGetProp(xml_node, "id");
-                    if (xmlStrcmp(curr_route_id, route_id) != 0) {
-                        if (route_id != NULL) {
-                            // Add route to network!!!
-                            printf("Adding route to network!!!\n");
-                            new_route(network, route_id, nodes, times,
-                                      route_size, trip_ids, departures,
-                                      capacities, trip_size);
-                            // Reset counters
-                            route_size = 0;
-                            trip_size = 0;
-                        }
-                        route_id = curr_route_id;
-                    }
-                }
-            }
-        }
-        parse_xml(xml_node->children, network);
-        xml_node = xml_node->next;
-    }
-
-    // Add last route
-
-    // Free memory
-    free(nodes);
-    free(times);
-    free(trip_ids);
-    free(departures);
-    free(capacities);
 }
 
 typedef struct carrier_t {
@@ -283,7 +166,6 @@ Carrier *new_carrier(Network *network) {
 }
 
 void new_route_from_carrier(Carrier *carrier) {
-    printf("Adding route to network!!! %s\n", carrier->route_id);
     new_route(carrier->network, carrier->route_id, carrier->nodes,
               carrier->times, carrier->route_size, carrier->trip_ids,
               carrier->departures, carrier->capacities, carrier->trip_size);
@@ -368,12 +250,10 @@ int import_matsim(Network *network, const char *schedule_file,
     xmlNode *root_element = NULL;
 
     doc = xmlReadFile(schedule_file, NULL, 0);
-
     if (doc == NULL) {
         printf("Could not parse the XML file");
         return 1;
     }
-
     root_element = xmlDocGetRootElement(doc);
 
     /// HERE WE GO

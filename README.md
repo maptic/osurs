@@ -228,3 +228,8 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
 ### Python bindigs
 
 - [Python Bindings: Calling C or C++ From Python](https://realpython.com/python-bindings-overview/)
+
+### Strings
+
+- [C Strings](https://stackoverflow.com/questions/10162152/how-to-work-with-string-fields-in-a-c-struct)
+- [Linked List](https://www.geeksforgeeks.org/linked-list-set-1-introduction/)
