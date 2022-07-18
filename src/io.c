@@ -52,6 +52,8 @@ void print_network(Network *network) {
     for (size_t i = 0; i < network->route_counter; ++i) {
         print_route(network->routes[i]);
     }
+    printf("Compositions: %ld, vehicles: %ld\n", network->composition_counter,
+           network->vehicle_counter);
 }
 
 void print_connection(Connection *connection) {

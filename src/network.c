@@ -31,12 +31,23 @@ void node_add_route(Node *node, Route *route);
 
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
+    // Nodes
     network->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
     network->node_size = INIT_ALLOC_SIZE;
     network->node_counter = 0;
+    // Routes
     network->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
     network->route_size = INIT_ALLOC_SIZE;
     network->route_counter = 0;
+    // Compositions
+    network->compositions =
+        (Composition **)malloc(sizeof(Composition *) * INIT_ALLOC_SIZE);
+    network->composition_size = INIT_ALLOC_SIZE;
+    network->composition_counter = 0;
+    // Vehicles
+    network->vehicles = (Vehicle **)malloc(sizeof(Vehicle *) * INIT_ALLOC_SIZE);
+    network->vehicle_size = INIT_ALLOC_SIZE;
+    network->vehicle_counter = 0;
     return network;
 }
 
@@ -185,6 +196,16 @@ void delete_stop(Stop *stop) {
     free(stop);
 }
 
+void delete_composition(Composition *composition) {
+    free(composition->id);
+    free(composition);
+}
+
+void delete_vehicle(Vehicle *vehicle) {
+    free(vehicle->id);
+    free(vehicle);
+}
+
 void delete_trip(Trip *trip) {
     free(trip->id);
     free(trip);
@@ -223,12 +244,22 @@ void delete_network(Network *network) {
     for (size_t i = 0; i < network->route_counter; ++i) {
         delete_route(network->routes[i]);
     }
+    // Free vehicles
+    for (size_t i = 0; i < network->vehicle_counter; ++i) {
+        delete_vehicle(network->vehicles[i]);
+    }
+    // Free compositions
+    for (size_t i = 0; i < network->composition_counter; ++i) {
+        delete_composition(network->compositions[i]);
+    }
     // Free nodes
     for (size_t i = 0; i < network->node_counter; ++i) {
         delete_node(network->nodes[i]);
     }
     // Free arrays
     free(network->routes);
+    free(network->vehicles);
+    free(network->compositions);
     free(network->nodes);
     // Free struct
     free(network);
