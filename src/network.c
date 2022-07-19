@@ -72,9 +72,8 @@ Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
     stop->node = node;
     stop->prev = prev;
     stop->next = next;
-    stop->time_to_next = departure_offset;
     stop->arrival_offset = arrival_offset;
-    stop->arrival_offset = departure_offset;
+    stop->departure_offset = departure_offset;
     stop->reserved = (int *)calloc(trip_size, sizeof(int));  // Initialized to 0
     return stop;
 }
@@ -106,7 +105,7 @@ Route *new_route(Network *network, const char *id, Node *nodes[],
 
     // Set root trip
     Trip *root_trip = new_trip(trip_ids[0], departures[0],
-                               departures[0] + arrival_offsets[route_size],
+                               departures[0] + arrival_offsets[route_size - 1],
                                vehicles[0], NULL, route);
     route->root_trip = root_trip;
 
@@ -125,7 +124,7 @@ Route *new_route(Network *network, const char *id, Node *nodes[],
     Trip *curr_trip;
     for (size_t i = 1; i < trip_size; ++i) {
         curr_trip = new_trip(trip_ids[i], departures[i],
-                             departures[i] + arrival_offsets[route_size],
+                             departures[i] + arrival_offsets[route_size - 1],
                              vehicles[i], NULL, route);
         prev_trip->next = curr_trip;
         prev_trip = curr_trip;

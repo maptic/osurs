@@ -11,65 +11,148 @@
 
 // Print methods
 
+// Needs buffer size of char[9], due to string terminating sign.
+int compose_time(char *buffer, int time) {
+    int h, m, s;
+    h = (time / 3600);
+    m = (time - (3600 * h)) / 60;
+    s = (time - (3600 * h) - (m * 60));
+    sprintf(buffer, "%.2d:%.2d:%.2d", h, m, s);
+    return 0;
+}
+
 void print_node(Node *node) {
-    printf("- Node <id=%s, x=%.3f, y=%.3f, routes=%ld>\n", node->id, node->x,
-           node->y, node->route_counter);
+    printf("<node id=\"%s\" x=\"%.3f\" y=\"%.3f\" routes=\"%ld\" />\n",
+           node->id, node->x, node->y, node->route_counter);
+}
+
+void print_composition(Composition *composition) {
+    printf("<composition id=\"%s\" seats=\"%d\" />\n", composition->id,
+           composition->seats);
+}
+
+void print_vehicle(Vehicle *vehicle) {
+    printf("<vehicle id=\"%s\" cid=\"%s\" />\n", vehicle->id,
+           vehicle->composition->id);
 }
 
 void print_stop(Stop *stop) {
-    printf("  - Stop <node_id=%s, prev=%s, next=%s>]\n", stop->node->id,
-           stop->prev != NULL ? stop->prev->node->id : "NA",
-           stop->next != NULL ? stop->next->node->id : "NA");
+    char arrival_offset[9];
+    char departure_offset[9];
+    compose_time(arrival_offset, stop->arrival_offset);
+    compose_time(departure_offset, stop->departure_offset);
+    printf("<stop arr_off=\"%s\" dep_off=\"%s\" nid=\"%s\" />\n",
+           arrival_offset, departure_offset, stop->node->id);
 }
 
 void print_trip(Trip *trip) {
-    printf("  - Trip <id=%s, departure=%d, vehicle=%s>\n", trip->id,
-           trip->departure, trip->vehicle->id);
+    char departure[9];
+    char arrival[9];
+    compose_time(departure, trip->departure);
+    compose_time(arrival, trip->arrival);
+    printf("<trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" />\n", trip->id,
+           departure, arrival, trip->vehicle->id);
 }
 
 void print_route(Route *route) {
-    printf("- Route '%s'\n", route->id);
-    printf("- Route <Stops>:\n");
     Stop *curr_stop = route->root_stop;
+    Trip *curr_trip = route->root_trip;
+
+    printf("<route id=\"%s\">\n", route->id);
+    printf("\t<stops>\n");
     while (curr_stop != NULL) {
+        printf("\t\t");
         print_stop(curr_stop);
         curr_stop = curr_stop->next;
     }
-    printf("- Route <Trips>:\n");
-    Trip *curr_trip = route->root_trip;
+    printf("\t</stops>\n");
+    printf("\t<trips>\n");
     while (curr_trip != NULL) {
+        printf("\t\t");
         print_trip(curr_trip);
         curr_trip = curr_trip->next;
     }
+    printf("\t</trips>\n");
+    printf("</route>\n");
 }
 
 void print_network(Network *network) {
-    printf("Network <Nodes>:\n");
+    // Network
+    printf(
+        "<network nodes=\"%ld\" composition=\"%ld\" vehicles=\"%ld\" "
+        "routes=\"%ld\" >\n",
+        network->node_counter, network->composition_counter,
+        network->vehicle_counter, network->route_counter);
+    // Nodes
+    printf("  <nodes>\n");
     for (size_t i = 0; i < network->node_counter; ++i) {
+        printf("    ");
         print_node(network->nodes[i]);
     }
-    printf("Network <Routes>:\n");
-    for (size_t i = 0; i < network->route_counter; ++i) {
-        print_route(network->routes[i]);
+    printf("  </nodes>\n");
+    // Compostitions
+    printf("  <compositions>\n");
+    for (size_t i = 0; i < network->composition_counter; ++i) {
+        printf("    ");
+        print_composition(network->compositions[i]);
     }
-    printf("Compositions: %ld, vehicles: %ld\n", network->composition_counter,
-           network->vehicle_counter);
+    printf("  </compositions>\n");
+    // Vehicles
+    printf("  <vehicles>\n");
+    for (size_t i = 0; i < network->vehicle_counter; ++i) {
+        printf("    ");
+        print_vehicle(network->vehicles[i]);
+    }
+    printf("  </vehicles>\n");
+    // Routes
+    printf("  <routes>\n");
+    for (size_t i = 0; i < network->route_counter; ++i) {
+        Route *route = network->routes[i];
+        Stop *curr_stop = route->root_stop;
+        Trip *curr_trip = route->root_trip;
+
+        printf("    <route id=\"%s\" >\n", route->id);
+        printf("      <stops>\n");
+        while (curr_stop != NULL) {
+            printf("        ");
+            print_stop(curr_stop);
+            curr_stop = curr_stop->next;
+        }
+        printf("      </stops>\n");
+        printf("      <trips>\n");
+        while (curr_trip != NULL) {
+            printf("        ");
+            print_trip(curr_trip);
+            curr_trip = curr_trip->next;
+        }
+        printf("      </trips>\n");
+        printf("    </route>\n");
+    }
+    printf("  </routes>\n");
+    printf("</network>\n");
 }
 
 void print_connection(Connection *connection) {
     Connection *curr_connection = connection;
+    char arr[9];
+    char dep[9];
     if (connection == NULL) {
         printf("No connection found.\n");
         return;
     }
-    printf("Connections for %s --> %s:\n", connection->orig->node->id,
+    printf("<connection orig=\"%s\" dest=\"%s\">\n", connection->orig->node->id,
            connection->dest->node->id);
     while (curr_connection != NULL) {
-        printf("- Connection<departure=%d, arrival=%d, available=%d>\n",
-               curr_connection->departure, curr_connection->arrival,
-               curr_connection->available);
+        compose_time(dep, curr_connection->departure);
+        compose_time(arr, curr_connection->arrival);
+        printf(
+            "  <alternative rid=\"%s\" tid=\"%s\" dep=\"%s\" arr=\"%s\" "
+            "available=\"%d\" />\n",
+            curr_connection->trip->route->id, curr_connection->trip->id, dep,
+            arr, curr_connection->available);
         curr_connection = curr_connection->next;
     }
+    printf("</connection>\n");
 }
 
 void print_reservation(Reservation *reservation) {
@@ -237,7 +320,8 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
         char *dep_off_tmp = xmlGetProp(xml_node, "departureOffset");
         carrier->nodes[carrier->route_size] = node;
         carrier->arrival_offsets[carrier->route_size] = parse_time(arr_off_tmp);
-        carrier->departure_offsets[carrier->route_size] = parse_time(dep_off_tmp);
+        carrier->departure_offsets[carrier->route_size] =
+            parse_time(dep_off_tmp);
         ++(carrier->route_size);
         xmlFree(arr_off_tmp);
         xmlFree(dep_off_tmp);

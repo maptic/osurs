@@ -140,8 +140,10 @@ int min(int a, int b) { return (a > b) ? b : a; }
 // Iterate to stop of origin node on trip
 Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, int *departure) {
     while (1) {
-        if (curr_stop->node == orig) return curr_stop;
-        *departure += curr_stop->time_to_next;
+        if (curr_stop->node == orig) {
+            *departure += curr_stop->departure_offset;
+            return curr_stop;
+        }
         curr_stop = curr_stop->next;
     }
 }
@@ -152,8 +154,10 @@ Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
     while (1) {
         *available =
             min(*available, capacity - curr_stop->reserved[trip_count]);
-        if (curr_stop->node == dest) return curr_stop;
-        *arrival += curr_stop->time_to_next;
+        if (curr_stop->node == dest) {
+            *arrival += curr_stop->arrival_offset;
+            return curr_stop;
+        }
         curr_stop = curr_stop->next;
     }
 }
@@ -207,8 +211,11 @@ Connection *search_route(Connection *conn, const Node *orig, const Node *dest,
     int conn_count = 0;
 
     while (1) {
-        conn = search_trip(conn, orig, dest, time, curr_trip, route->root_stop,
-                           trip_count, &conn_count);
+        // Search trip if not already arrived at terminal
+        if (curr_trip->arrival > time) {
+            conn = search_trip(conn, orig, dest, time, curr_trip,
+                               route->root_stop, trip_count, &conn_count);
+        }
         if (conn_count >= cutoff || curr_trip->next == NULL) return conn;
         curr_trip = curr_trip->next;
         ++trip_count;

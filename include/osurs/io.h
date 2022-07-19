@@ -25,6 +25,20 @@
 void print_node(Node *node);
 
 /**
+ * @brief Print composition.
+ *
+ * @param composition The composition struct to print.
+ */
+void print_composition(Composition *composition);
+
+/**
+ * @brief Print vehicle.
+ *
+ * @param vehicle The vehicle struct to print.
+ */
+void print_vehicle(Vehicle *vehicle);
+
+/**
  * @brief Print stop.
  *
  * @param stop The stop struct to print.
