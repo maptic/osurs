@@ -32,21 +32,22 @@ void node_add_route(Node *node, Route *route);
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
     // Nodes
-    network->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
-    network->node_size = INIT_ALLOC_SIZE;
+    network->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE_L);
+    network->node_size = INIT_ALLOC_SIZE_L;
     network->node_counter = 0;
     // Routes
-    network->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
-    network->route_size = INIT_ALLOC_SIZE;
+    network->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE_L);
+    network->route_size = INIT_ALLOC_SIZE_L;
     network->route_counter = 0;
     // Compositions
     network->compositions =
-        (Composition **)malloc(sizeof(Composition *) * INIT_ALLOC_SIZE);
-    network->composition_size = INIT_ALLOC_SIZE;
+        (Composition **)malloc(sizeof(Composition *) * INIT_ALLOC_SIZE_S);
+    network->composition_size = INIT_ALLOC_SIZE_S;
     network->composition_counter = 0;
     // Vehicles
-    network->vehicles = (Vehicle **)malloc(sizeof(Vehicle *) * INIT_ALLOC_SIZE);
-    network->vehicle_size = INIT_ALLOC_SIZE;
+    network->vehicles =
+        (Vehicle **)malloc(sizeof(Vehicle *) * INIT_ALLOC_SIZE_L);
+    network->vehicle_size = INIT_ALLOC_SIZE_L;
     network->vehicle_counter = 0;
     return network;
 }
@@ -56,8 +57,8 @@ Node *new_node(Network *network, const char *id, double x, double y) {
     node->id = strdup(id);
     node->x = x;
     node->y = y;
-    node->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE);
-    node->route_size = INIT_ALLOC_SIZE;
+    node->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE_S);
+    node->route_size = INIT_ALLOC_SIZE_S;
     node->route_counter = 0;
 
     // Add node to network
@@ -276,7 +277,9 @@ void delete_network(Network *network) {
 
 void network_add_route(Network *network, Route *route) {
     if (network->route_counter == network->route_size) {
-        network->route_size += INIT_ALLOC_SIZE;
+        network->route_size += INIT_ALLOC_SIZE_L;
+        // printf("Reallocating route size of network (%ldx%ld bytes).\n",
+        //        network->route_size, sizeof(void *));
         network->routes = (Route **)realloc(
             network->routes, sizeof(Route *) * network->route_size);
     }
@@ -285,7 +288,9 @@ void network_add_route(Network *network, Route *route) {
 
 void network_add_node(Network *network, Node *node) {
     if (network->node_counter == network->node_size) {
-        network->node_size += INIT_ALLOC_SIZE;
+        network->node_size += INIT_ALLOC_SIZE_L;
+        // printf("Reallocating node size of network (%ldx%ld bytes).\n",
+        //        network->node_size, sizeof(void *));
         network->nodes = (Node **)realloc(network->nodes,
                                           sizeof(Node *) * network->node_size);
     }
@@ -294,7 +299,9 @@ void network_add_node(Network *network, Node *node) {
 
 void network_add_composition(Network *network, Composition *composition) {
     if (network->composition_counter == network->composition_size) {
-        network->composition_size += INIT_ALLOC_SIZE;
+        network->composition_size += INIT_ALLOC_SIZE_S;
+        // printf("Reallocating composition size of network (%ldx%ld bytes).\n",
+        //        network->composition_size, sizeof(void *));
         network->compositions = (Composition **)realloc(
             network->compositions,
             sizeof(Composition *) * network->composition_size);
@@ -304,7 +311,9 @@ void network_add_composition(Network *network, Composition *composition) {
 
 void network_add_vehicle(Network *network, Vehicle *vehicle) {
     if (network->vehicle_counter == network->vehicle_size) {
-        network->vehicle_size += INIT_ALLOC_SIZE;
+        network->vehicle_size += INIT_ALLOC_SIZE_L;
+        // printf("Reallocating vehicle size of network (%ldx%ld bytes).\n",
+        //        network->vehicle_size, sizeof(void *));
         network->vehicles = (Vehicle **)realloc(
             network->vehicles, sizeof(Vehicle *) * network->vehicle_size);
     }
@@ -317,7 +326,9 @@ void node_add_route(Node *node, Route *route) {
         node->routes[node->route_counter - 1] == route)
         return;
     if (node->route_counter == node->route_size) {
-        node->route_size += INIT_ALLOC_SIZE;
+        node->route_size += INIT_ALLOC_SIZE_S;
+        // printf("Reallocating route size of node \"%s\" (%ldx%ld bytes).\n",
+        //        node->id, node->route_size, sizeof(void *));
         node->routes =
             (Route **)realloc(node->routes, sizeof(Route *) * node->route_size);
     }

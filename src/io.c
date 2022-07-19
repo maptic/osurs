@@ -231,16 +231,17 @@ typedef struct carrier_t {
 Carrier *new_carrier(Network *network) {
     Carrier *carrier = (Carrier *)malloc(sizeof(Carrier));
     carrier->network = network;
-    carrier->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE);
-    carrier->arrival_offsets = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
-    carrier->departure_offsets = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
+    carrier->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE_S);
+    carrier->arrival_offsets = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE_S);
+    carrier->departure_offsets = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE_S);
     carrier->route_size = 0;
-    carrier->route_alloc_size = INIT_ALLOC_SIZE;
-    carrier->trip_ids = (const char **)malloc(sizeof(char *) * INIT_ALLOC_SIZE);
-    carrier->departures = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE);
-    carrier->vehicles = (Vehicle **)malloc(sizeof(Vehicle) * INIT_ALLOC_SIZE);
+    carrier->route_alloc_size = INIT_ALLOC_SIZE_S;
+    carrier->trip_ids =
+        (const char **)malloc(sizeof(char *) * INIT_ALLOC_SIZE_M);
+    carrier->departures = (int *)malloc(sizeof(int) * INIT_ALLOC_SIZE_M);
+    carrier->vehicles = (Vehicle **)malloc(sizeof(Vehicle) * INIT_ALLOC_SIZE_M);
     carrier->trip_size = 0;
-    carrier->trip_alloc_size = INIT_ALLOC_SIZE;
+    carrier->trip_alloc_size = INIT_ALLOC_SIZE_M;
 
     // Set counter to zero
     carrier->route_counter = 0;
@@ -250,8 +251,10 @@ Carrier *new_carrier(Network *network) {
 
 void realloc_carrier_route_size(Carrier *carrier) {
     if (carrier->route_size == carrier->route_alloc_size) {
-        printf("Reallocating route size.\n");
-        carrier->route_alloc_size += INIT_ALLOC_SIZE;
+        carrier->route_alloc_size += INIT_ALLOC_SIZE_S;
+        // printf("Reallocating route size of reading carrier (%ldx%ld
+        // bytes).\n",
+        //        carrier->route_alloc_size, sizeof(void *));
         carrier->nodes = (Node **)realloc(
             carrier->nodes, sizeof(Node *) * carrier->route_alloc_size);
         carrier->arrival_offsets = (int *)realloc(
@@ -264,8 +267,10 @@ void realloc_carrier_route_size(Carrier *carrier) {
 
 void realloc_carrier_trip_size(Carrier *carrier) {
     if (carrier->trip_size == carrier->trip_alloc_size) {
-        printf("Reallocating trip size.\n");
-        carrier->trip_alloc_size += INIT_ALLOC_SIZE;
+        carrier->trip_alloc_size += INIT_ALLOC_SIZE_M;
+        // printf("Reallocating trip size of reading carrier (%ldx%ld
+        // bytes).\n",
+        //        carrier->trip_alloc_size, sizeof(void *));
         carrier->trip_ids = (const char **)realloc(
             carrier->trip_ids, sizeof(char *) * carrier->trip_alloc_size);
         carrier->departures = (int *)realloc(
@@ -325,7 +330,7 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
         if (arr_off_tmp != NULL) {
             carrier->arrival_offsets[carrier->route_size] =
                 parse_time(arr_off_tmp);
-        } else { // Set to departure
+        } else {  // Set to departure
             carrier->arrival_offsets[carrier->route_size] =
                 carrier->departure_offsets[carrier->route_size];
         }

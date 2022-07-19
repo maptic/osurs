@@ -5,20 +5,23 @@
  * @author: Merlin Unterfinger
  */
 
+#include <osurs/io.h>
 #include <osurs/reserve.h>
+#include <stdio.h>
 
 // Private declarations
 
 int min(int a, int b);
 
-Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, int *departure);
+Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, const Node *dest,
+                      int *departure);
 
 Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
                       int *available, int capacity, int trip_count);
 
 Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
                         int time, Trip *trip, Stop *root_stop, int trip_count,
-                        int *conn_count);
+                        int *conn_count, int *direction);
 
 Connection *search_route(Connection *conn, const Node *orig, const Node *dest,
                          int time, Route *route, int cutoff);
@@ -138,11 +141,15 @@ void delete_connection(Connection *connection) {
 int min(int a, int b) { return (a > b) ? b : a; }
 
 // Iterate to stop of origin node on trip
-Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, int *departure) {
+Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, const Node *dest,
+                      int *departure) {
     while (1) {
         if (curr_stop->node == orig) {
             *departure += curr_stop->departure_offset;
             return curr_stop;
+        }
+        if (curr_stop->node == dest) {
+            return NULL;
         }
         curr_stop = curr_stop->next;
     }
@@ -165,18 +172,24 @@ Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
 // Search for a connection on a trip
 Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
                         int time, Trip *trip, Stop *root_stop, int trip_count,
-                        int *conn_count) {
+                        int *conn_count, int *direction) {
     Stop *orig_stop;
     Stop *dest_stop;
     int departure = trip->departure;
     int arrival;
     int available = INT_MAX;
 
-    // Iterate over the stops until origin is reached
-    orig_stop = iterate_to_orig(root_stop, orig, &departure);
+    // Iterate over the stops until origin is reached.
+    orig_stop = iterate_to_orig(root_stop, orig, dest, &departure);
 
-    // Break if vehicle  missed
+    // Break if vehicle missed or wrong direction.
     if (departure < time) return conn;
+
+    // Break if wrong direction and set flag to skip route.
+    if (orig_stop == NULL) {
+        *direction = 1;
+        return conn;
+    }
 
     // Iterate over the stops until destination is reached.
     // Set departure at origin as base for calculation of the arrival at origin.
@@ -209,12 +222,14 @@ Connection *search_route(Connection *conn, const Node *orig, const Node *dest,
     Trip *curr_trip = route->root_trip;
     int trip_count = 0;
     int conn_count = 0;
+    int direction = 0;
 
-    while (1) {
+    while (!direction) {
         // Search trip if not already arrived at terminal
         if (curr_trip->arrival > time) {
-            conn = search_trip(conn, orig, dest, time, curr_trip,
-                               route->root_stop, trip_count, &conn_count);
+            conn =
+                search_trip(conn, orig, dest, time, curr_trip, route->root_stop,
+                            trip_count, &conn_count, &direction);
         }
         if (conn_count >= cutoff || curr_trip->next == NULL) return conn;
         curr_trip = curr_trip->next;
