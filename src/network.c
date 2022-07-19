@@ -13,8 +13,8 @@
 
 Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
                int departure_offset, size_t trip_size);
-Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
-               Route *route);
+Trip *new_trip(const char *id, int departure, int arrival, Vehicle *vehicle,
+               Trip *next, Route *route);
 
 void delete_node(Node *node);
 void delete_stop(Stop *stop);
@@ -79,11 +79,12 @@ Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
     return stop;
 }
 
-Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
-               Route *route) {
+Trip *new_trip(const char *id, int departure, int arrival, Vehicle *vehicle,
+               Trip *next, Route *route) {
     Trip *trip = (Trip *)malloc(sizeof(Trip));
     trip->id = strdup(id);
     trip->departure = departure;
+    trip->arrival = arrival;
     trip->vehicle = vehicle;
     trip->next = next;
     trip->route = route;
@@ -104,8 +105,9 @@ Route *new_route(Network *network, const char *id, Node *nodes[],
     route->root_stop = root_stop;
 
     // Set root trip
-    Trip *root_trip =
-        new_trip(trip_ids[0], departures[0], vehicles[0], NULL, route);
+    Trip *root_trip = new_trip(trip_ids[0], departures[0],
+                               departures[0] + arrival_offsets[route_size],
+                               vehicles[0], NULL, route);
     route->root_trip = root_trip;
 
     // Create chain of all stops
@@ -122,8 +124,9 @@ Route *new_route(Network *network, const char *id, Node *nodes[],
     Trip *prev_trip = root_trip;
     Trip *curr_trip;
     for (size_t i = 1; i < trip_size; ++i) {
-        curr_trip =
-            new_trip(trip_ids[i], departures[i], vehicles[i], NULL, route);
+        curr_trip = new_trip(trip_ids[i], departures[i],
+                             departures[i] + arrival_offsets[route_size],
+                             vehicles[i], NULL, route);
         prev_trip->next = curr_trip;
         prev_trip = curr_trip;
     }

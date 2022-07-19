@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renamed `routing.h` module to `reserve.h` module.
 - Changed from capacities on trips to capacities on compositions, which are linked to the trips via vehicles.
 - Renamed member variable `last` to `prev` in order to comply with common linked list and chain definitions.
+- Change from `time_to_next` to `arrival_offset` and `departure_offset` on stops.
+- Added overall arrival times to trips.
 
 ### Fixed
 
