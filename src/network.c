@@ -11,7 +11,7 @@
 
 // Private methods
 
-Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
+Stop *new_stop(Node *node, Stop *prev, Stop *next, int time_to_next,
                size_t trip_size);
 Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
                Route *route);
@@ -66,11 +66,11 @@ Node *new_node(Network *network, const char *id, double x, double y) {
     return node;
 }
 
-Stop *new_stop(Node *node, Stop *last, Stop *next, int time_to_next,
+Stop *new_stop(Node *node, Stop *prev, Stop *next, int time_to_next,
                size_t trip_size) {
     Stop *stop = (Stop *)malloc(sizeof(Stop));
     stop->node = node;
-    stop->last = last;
+    stop->prev = prev;
     stop->next = next;
     stop->time_to_next = time_to_next;
     stop->reserved = (int *)calloc(trip_size, sizeof(int));  // Initialized to 0
@@ -105,22 +105,22 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     route->root_trip = root_trip;
 
     // Create chain of all stops
-    Stop *last_stop = root_stop;
+    Stop *prev_stop = root_stop;
     Stop *curr_stop;
     for (size_t i = 1; i < route_size; ++i) {
-        curr_stop = new_stop(nodes[i], last_stop, NULL, times[i], trip_size);
-        last_stop->next = curr_stop;
-        last_stop = curr_stop;
+        curr_stop = new_stop(nodes[i], prev_stop, NULL, times[i], trip_size);
+        prev_stop->next = curr_stop;
+        prev_stop = curr_stop;
     }
 
     // Create chain of all trips
-    Trip *last_trip = root_trip;
+    Trip *prev_trip = root_trip;
     Trip *curr_trip;
     for (size_t i = 1; i < trip_size; ++i) {
         curr_trip =
             new_trip(trip_ids[i], departures[i], vehicles[i], NULL, route);
-        last_trip->next = curr_trip;
-        last_trip = curr_trip;
+        prev_trip->next = curr_trip;
+        prev_trip = curr_trip;
     }
 
     // Add route to network

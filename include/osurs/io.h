@@ -20,42 +20,42 @@
 /**
  * @brief Print node.
  *
- * @param Node The node struct to print.
+ * @param node The node struct to print.
  */
 void print_node(Node *node);
 
 /**
  * @brief Print stop.
  *
- * @param Stop The stop struct to print.
+ * @param stop The stop struct to print.
  */
 void print_stop(Stop *stop);
 
 /**
  * @brief Print trip.
  *
- * @param Trip The trip struct to print.
+ * @param trip The trip struct to print.
  */
 void print_trip(Trip *trip);
 
 /**
  * @brief Print route.
  *
- * @param Route The route struct to print.
+ * @param route The route struct to print.
  */
 void print_route(Route *route);
 
 /**
  * @brief Print network.
  *
- * @param Network The network struct to print.
+ * @param network The network struct to print.
  */
 void print_network(Network *network);
 
 /**
  * @brief Print connection.
  *
- * @param Connection The connection struct to print.
+ * @param connection The connection struct to print.
  */
 void print_connection(Connection *connection);
 
@@ -69,7 +69,7 @@ void print_reservation(Reservation *reservation);
 /**
  * @brief Prints the current working dirctory.
  *
- * @return 0 if success, 1 if error.
+ * @return 1 if success, 0 if failure.
  */
 int print_cwd();
 
@@ -77,7 +77,7 @@ int print_cwd();
  * @brief Function print file content to the console.
  *
  * @param filename The path to the file.
- * @return 0 if success, 1 if error.
+ * @return 1 if success, 0 if failure.
  */
 int print_file(const char *filename);
 
@@ -90,7 +90,7 @@ int print_file(const char *filename);
  * @param network Pointer to an empty network.
  * @param schedule_file File path to the transit schedule file.
  * @param vehicle_file File path to the vehicles file.
- * @return Returns 1 if success and 0 if failure.
+ * @return 1 if success, 0 if failure.
  */
 int import_matsim(Network *network, const char *schedule_file,
                   const char *vehicle_file);

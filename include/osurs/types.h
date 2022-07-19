@@ -54,7 +54,7 @@ typedef struct stop_t {
     int departure_offset;  // The offset from the root stop departure.
     int *reserved;
     struct node_t *node;
-    struct stop_t *last;
+    struct stop_t *prev;
     struct stop_t *next;
 } Stop;
 
@@ -144,7 +144,7 @@ typedef struct connection_t {
     struct connection_t *next;  // If there are more than one result, chain of
                                 // connections, NULL if at the end of the chain.
     struct connection_t
-        *last;  // Last connection or NULL if at the start of the chain.
+        *prev;  // Previous connection or NULL if at the start of the chain.
 } Connection;
 
 /**

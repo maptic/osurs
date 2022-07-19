@@ -17,8 +17,8 @@ void print_node(Node *node) {
 }
 
 void print_stop(Stop *stop) {
-    printf("  - Stop <node_id=%s, last=%s, next=%s>]\n", stop->node->id,
-           stop->last != NULL ? stop->last->node->id : "NA",
+    printf("  - Stop <node_id=%s, prev=%s, next=%s>]\n", stop->node->id,
+           stop->prev != NULL ? stop->prev->node->id : "NA",
            stop->next != NULL ? stop->next->node->id : "NA");
 }
 

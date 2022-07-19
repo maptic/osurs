@@ -37,7 +37,7 @@ Connection *new_connection(const Node *orig, const Node *dest, int time) {
 
     // Mark start of the chain
     conn->next = NULL;
-    conn->last = NULL;
+    conn->prev = NULL;
 
     // Match and search on equal routes
     for (size_t i = 0; i < orig->route_counter; ++i) {
@@ -50,13 +50,13 @@ Connection *new_connection(const Node *orig, const Node *dest, int time) {
     }
 
     // Check for no results
-    if (conn->last == NULL && conn->next == NULL) {
+    if (conn->prev == NULL && conn->next == NULL) {
         free(conn);
         return NULL;
     }
 
     // Avoid memory leak and delete last allocated empty connection
-    conn->last->next = NULL;
+    conn->prev->next = NULL;
     free(conn);
 
     return root_conn;
@@ -107,7 +107,7 @@ int new_reservation(Connection *connection, int seats) {
 void delete_connection(Connection *connection) {
     if (connection == NULL) return;
 
-    Connection *last_conn;
+    Connection *prev_conn;
     Connection *next_conn;
     Connection *curr_conn;
     Connection *root_conn = connection;
@@ -120,13 +120,13 @@ void delete_connection(Connection *connection) {
         free(curr_conn);
         curr_conn = next_conn;
     }
-    // Check for last
-    curr_conn = root_conn->last;
+    // Check for prev
+    curr_conn = root_conn->prev;
     while (1) {
         if (curr_conn == NULL) break;
-        last_conn = curr_conn->last;
+        prev_conn = curr_conn->prev;
         free(curr_conn);
-        curr_conn = last_conn;
+        curr_conn = prev_conn;
     }
     // Finally free root
     free(root_conn);
@@ -190,11 +190,11 @@ Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
     conn->available = available;
 
     // Allocate next connection on heap; Set pointer to current connection as
-    // last connection of next connection.
+    // prev connection of next connection.
     conn->next = (Connection *)malloc(sizeof(Connection));
-    Connection *conn_last = conn;
+    Connection *conn_prev = conn;
     conn = conn->next;
-    conn->last = conn_last;
+    conn->prev = conn_prev;
 
     return conn;
 }
