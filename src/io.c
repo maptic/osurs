@@ -84,9 +84,9 @@ int print_cwd() {
         printf("Current working dir: %s\n", cwd);
     } else {
         perror("getcwd() error");
-        return 1;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 int print_file(const char *filename) {
@@ -98,7 +98,7 @@ int print_file(const char *filename) {
     fp = fopen(filename, "r");
     if (fp == NULL) {
         perror("fopen() error");
-        return 1;
+        return 0;
     }
     while ((read = getline(&line, &len, fp)) != -1) {
         // Optionally print length: printf("Retrieved line of length %zu:\n",
@@ -108,7 +108,7 @@ int print_file(const char *filename) {
 
     fclose(fp);
     if (line) free(line);
-    return 0;
+    return 1;
 }
 
 // XML
@@ -340,7 +340,7 @@ int import_matsim(Network *network, const char *schedule_file,
     doc = xmlReadFile(vehicle_file, NULL, 0);
     if (doc == NULL) {
         printf("Could not parse file %s.", vehicle_file);
-        return 1;
+        return 0;
     }
     root_element = xmlDocGetRootElement(doc);
     matsim_vehicle_parser(root_element, network);
@@ -351,7 +351,7 @@ int import_matsim(Network *network, const char *schedule_file,
     doc = xmlReadFile(schedule_file, NULL, 0);
     if (doc == NULL) {
         printf("Could not parse file %s.", schedule_file);
-        return 1;
+        return 0;
     }
     root_element = xmlDocGetRootElement(doc);
     Carrier *carrier = new_carrier(network);
@@ -361,5 +361,5 @@ int import_matsim(Network *network, const char *schedule_file,
     xmlFreeDoc(doc);
     xmlCleanupParser();
 
-    return 0;
+    return 1;
 }

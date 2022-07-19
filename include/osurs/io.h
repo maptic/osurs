@@ -90,7 +90,7 @@ int print_file(const char *filename);
  * @param network Pointer to an empty network.
  * @param schedule_file File path to the transit schedule file.
  * @param vehicle_file File path to the vehicles file.
- * @return int
+ * @return Returns 1 if success and 0 if failure.
  */
 int import_matsim(Network *network, const char *schedule_file,
                   const char *vehicle_file);

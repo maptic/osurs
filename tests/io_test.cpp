@@ -8,19 +8,31 @@ extern "C" {
 }
 
 // Read a network
-TEST(IOTest, Read) {
-    // EXPECT_EQ(print_cwd(), 0);
-    // EXPECT_EQ(print_file("input/matsim/transitSchedule.xml"), 0);
-    // EXPECT_EQ(print_file("input/matsim/vehicles.xml"), 0);
+TEST(IOTest, Matsim) {
+    // File paths
+    int success;
+    const char* schedule_file = "input/matsim/transitSchedule.xml";
+    const char* vehicle_file = "input/matsim/transitVehicles.xml";
+
+    // Init network
     Network* network = new_network();
-    int success = import_matsim(network, "input/matsim/transitSchedule.xml",
-                                "input/matsim/transitVehicles.xml");
-    EXPECT_EQ(success, 0);
+
+    // Read files
+    success = import_matsim(network, schedule_file, vehicle_file);
+
+    // Test
+    EXPECT_EQ(success, 1);
     EXPECT_EQ(network->node_counter, 17);
     EXPECT_EQ(network->route_counter, 2);
 
-    // print_network(network);
+    // Cleanup
     delete_network(network);
+}
+
+TEST(IOTest, Read) {
+    EXPECT_EQ(print_cwd(), 1);
+    EXPECT_EQ(print_file("input/matsim/transitSchedule.xml"), 1);
+    EXPECT_EQ(print_file("input/matsim/transitVehicles.xml"), 1);
 }
 
 // Wrtie a network
