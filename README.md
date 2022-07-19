@@ -151,13 +151,6 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
 
 ## To Do
 
-- **Anpassung Netzwerk**
-
-  - Wechsel von time_at_stop, time_to_next zu arrival_offset und departure_offset auf dem node?
-    - Würde Anpassung von new_trip, new_route und iterate_to_orig / test bedeuten.
-    - Achtung beim Einlesen von MATSim, prüfen ob nur departure oder auch arrival, sonst einfach gleich setzen?
-  - Hinzufügen einer ID (anstatt name) mit typ `char *` zu: Node, Route, Trip, Vehicle
-
 - **Optimierung der Reservationen**:
 
   - Die Reservationen speichern keine Sitzplatzzuweisungen? --> Wird immer neu berechnet?
