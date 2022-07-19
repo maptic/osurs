@@ -108,7 +108,7 @@ gitGraph
   commit tag: "v0.2.0"
 ```
 
-This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Once `main` has aquired enough features for a release, set the new version number in the [`CMakeLists.txt`](CMakeLists.txt) and [`CHANGELOG.md`](CHANGELOG.md). Commit and push to `main` and publish a release on [GitHub](https://github.com/maptic/osurs/releases) with the version number as tag.
+This library uses [semantic versioning](https://semver.org/spec/v2.0.0.html). Once `main` has aquired enough features for a release, set the new version number in the [`CMakeLists.txt`](CMakeLists.txt) and [`CHANGELOG.md`](CHANGELOG.md). Commit and push to `main` and publish a release on [GitHub](https://github.com/maptic/osurs/releases) with the version number as tag.
 
 ### Style guide
 
@@ -128,8 +128,8 @@ The following dependencies must be installed on the system to build and test the
 
 ```txt
 cmake       # Build, test and package
-doxygen     # Render doc
-graphviz    # Graphs in Doc
+doxygen     # Render docs
+graphviz    # Graphs in docs
 googletest  # Unit tests, installed via cmake
 valgrind    # Detect memory leaks
 libxml2     # Read and write networks
@@ -227,7 +227,7 @@ brew install --HEAD LouisBrunner/valgrind/valgrind
 - [Parse and Print XML File in Tree Form using libxml2 in C](https://qnaplus.com/print-xml-file-tree-form-libxml2-c-programming/)
 - [Libxml2: Everything You Need in an XML Library](https://www.developer.com/database/libxml2-everything-you-need-in-an-xml-library/)
 
-### Python bindigs
+### Python bindings
 
 - [Python Bindings: Calling C or C++ From Python](https://realpython.com/python-bindings-overview/)
 
