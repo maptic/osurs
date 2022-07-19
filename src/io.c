@@ -192,9 +192,9 @@ void new_route_from_carrier(Carrier *carrier) {
               carrier->times, carrier->route_size, carrier->trip_ids,
               carrier->departures, carrier->vehicles, carrier->trip_size);
     // Free xmls chars
-    free(carrier->route_id);
+    xmlFree(carrier->route_id);
     for (int i = 0; i < carrier->trip_size; i++)
-        free((char *)carrier->trip_ids[i]);
+        xmlFree((char *)carrier->trip_ids[i]);
     // Reset size for next route
     carrier->route_size = 0;
     carrier->trip_size = 0;
@@ -217,9 +217,9 @@ void handle_stop_facility(xmlNode *xml_node, Carrier *carrier) {
     sscanf(x_tmp, "%lf", &x);
     sscanf(y_tmp, "%lf", &y);
     new_node(carrier->network, id_tmp, x, y);
-    free(id_tmp);
-    free(x_tmp);
-    free(y_tmp);
+    xmlFree(id_tmp);
+    xmlFree(x_tmp);
+    xmlFree(y_tmp);
 }
 
 void handle_stop(xmlNode *xml_node, Carrier *carrier) {
@@ -230,10 +230,10 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
         carrier->nodes[carrier->route_size] = node;
         carrier->times[carrier->route_size] = parse_time(dep_off_tmp);
         ++(carrier->route_size);
-        free(dep_off_tmp);
+        xmlFree(dep_off_tmp);
         realloc_carrier_route_size(carrier);
     }
-    free(node_id_tmp);
+    xmlFree(node_id_tmp);
 }
 
 void handle_departure(xmlNode *xml_node, Carrier *carrier) {
@@ -247,8 +247,8 @@ void handle_departure(xmlNode *xml_node, Carrier *carrier) {
     carrier->vehicles[carrier->trip_size] = vehicle;  // vehicleRefId
 
     ++(carrier->trip_size);
-    free(dep_tmp);
-    free(vehicle_id_tmp);
+    xmlFree(dep_tmp);
+    xmlFree(vehicle_id_tmp);
     realloc_carrier_trip_size(carrier);
 }
 
@@ -295,7 +295,7 @@ void handle_vehicle_type(xmlNode *xml_node, Network *network) {
                 // Get seats of capacity
                 char *seats_tmp = xmlGetProp(xml_node, "persons");
                 sscanf(seats_tmp, "%d", &seats);
-                free(seats_tmp);
+                xmlFree(seats_tmp);
                 break;
             }
         }
@@ -303,7 +303,7 @@ void handle_vehicle_type(xmlNode *xml_node, Network *network) {
     }
 
     new_composition(network, id_tmp, seats);
-    free(id_tmp);
+    xmlFree(id_tmp);
 }
 
 void handle_vehicle(xmlNode *xml_node, Network *network) {
@@ -313,8 +313,8 @@ void handle_vehicle(xmlNode *xml_node, Network *network) {
     if (comp != NULL) {
         Vehicle *v = new_vehicle(network, id_tmp, comp);
     }
-    free(id_tmp);
-    free(id_comp_tmp);
+    xmlFree(id_tmp);
+    xmlFree(id_comp_tmp);
 }
 
 void matsim_vehicle_parser(xmlNode *xml_node, Network *network) {
