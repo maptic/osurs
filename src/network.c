@@ -11,8 +11,8 @@
 
 // Private methods
 
-Stop *new_stop(Node *node, Stop *prev, Stop *next, int time_to_next,
-               size_t trip_size);
+Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
+               int departure_offset, size_t trip_size);
 Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
                Route *route);
 
@@ -66,13 +66,15 @@ Node *new_node(Network *network, const char *id, double x, double y) {
     return node;
 }
 
-Stop *new_stop(Node *node, Stop *prev, Stop *next, int time_to_next,
-               size_t trip_size) {
+Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
+               int departure_offset, size_t trip_size) {
     Stop *stop = (Stop *)malloc(sizeof(Stop));
     stop->node = node;
     stop->prev = prev;
     stop->next = next;
-    stop->time_to_next = time_to_next;
+    stop->time_to_next = departure_offset;
+    stop->arrival_offset = arrival_offset;
+    stop->arrival_offset = departure_offset;
     stop->reserved = (int *)calloc(trip_size, sizeof(int));  // Initialized to 0
     return stop;
 }
@@ -88,7 +90,8 @@ Trip *new_trip(const char *id, int departure, Vehicle *vehicle, Trip *next,
     return trip;
 }
 
-Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
+Route *new_route(Network *network, const char *id, Node *nodes[],
+                 int arrival_offsets[], int departure_offsets[],
                  size_t route_size, const char *trip_ids[], int departures[],
                  Vehicle *vehicles[], size_t trip_size) {
     // Initialize route
@@ -96,7 +99,8 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     route->id = strdup(id);
 
     // Set root stop
-    Stop *root_stop = new_stop(nodes[0], NULL, NULL, times[0], trip_size);
+    Stop *root_stop = new_stop(nodes[0], NULL, NULL, arrival_offsets[0],
+                               departure_offsets[0], trip_size);
     route->root_stop = root_stop;
 
     // Set root trip
@@ -108,7 +112,8 @@ Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
     Stop *prev_stop = root_stop;
     Stop *curr_stop;
     for (size_t i = 1; i < route_size; ++i) {
-        curr_stop = new_stop(nodes[i], prev_stop, NULL, times[i], trip_size);
+        curr_stop = new_stop(nodes[i], prev_stop, NULL, arrival_offsets[i],
+                             departure_offsets[i], trip_size);
         prev_stop->next = curr_stop;
         prev_stop = curr_stop;
     }

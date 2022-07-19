@@ -41,7 +41,10 @@ int main(int argc, char *argv[]) {
     // Define route attributes (closed, circular route)
     const char *route_id = "blue";
     Node *nodes[] = {nodeA, nodeB, nodeC, nodeD, nodeA};
-    int times[] = {15 * MINUTES, 30 * MINUTES, 45 * MINUTES, 60 * MINUTES};
+    int arrival_offsets[] = {0, 15 * MINUTES, 25 * MINUTES, 40 * MINUTES,
+                             60 * MINUTES};
+    int departure_offsets[] = {0, 20 * MINUTES, 30 * MINUTES, 45 * MINUTES,
+                               60 * MINUTES};
     size_t route_size = 5;
 
     // Define trip attributes
@@ -52,15 +55,18 @@ int main(int argc, char *argv[]) {
     size_t trip_size = 5;
 
     // Create route
-    new_route(network, route_id, nodes, times, route_size,  // Route properties
-              trip_ids, departures, vehicles, trip_size     // Trip properties
+    new_route(network, route_id, nodes, arrival_offsets,
+              departure_offsets,  // Route properties
+              route_size, trip_ids, departures, vehicles,
+              trip_size  // Trip properties
     );
 
     // Route 2: Direct and fast
     // Define route attributes
     const char *route_id2 = "red";
     Node *nodes2[] = {nodeA, nodeD};
-    int times2[] = {30 * MINUTES};
+    int arrival_offsets2[] = {0, 30 * MINUTES};
+    int departure_offsets2[] = {0, 30 * MINUTES};
     size_t route_size2 = 2;
 
     // Define trip attributes
@@ -72,9 +78,10 @@ int main(int argc, char *argv[]) {
     size_t trip_size2 = 3;
 
     // Create route
-    new_route(
-        network, route_id2, nodes2, times2, route_size2,  // Route properties
-        trip_ids2, departures2, vehicles2, trip_size2   // Trip properties
+    new_route(network, route_id2, nodes2, arrival_offsets2,
+              departure_offsets2,  // Route properties
+              route_size2, trip_ids2, departures2, vehicles2,
+              trip_size2  // Trip properties
     );
 
     // Print network

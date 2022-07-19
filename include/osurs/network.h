@@ -79,8 +79,12 @@ Vehicle *new_vehicle(Network *network, const char *id,
  * @param id The identifier of the route.
  * @param nodes A pointer to an array of nodes, which define the stops of the
  * route (n=route_size).
- * @param times A pointer to an array of travel times, which define the travel
- * time between the nodes (n=route_size-1).
+ * @param arrival_offsets A pointer to an array of arrival offset times from the
+ * root stop. The offsets define the travel times between the departure of the
+ * root stop and the arrival at the current stop (n=route_size).
+ * @param departure_offsets A pointer to an array of departure offset times from
+ * the root stop. The offsets define the travel times between the departure of
+ * the root stop and the departure at the current stop (n=route_size).
  * @param route_size The number of nodes (=stops) in the route.
  * @param trip_ids The identifier of the trips on the route (n=trip_size).
  * @param departures The departure times at the first node (=root_stop) of the
@@ -90,7 +94,8 @@ Vehicle *new_vehicle(Network *network, const char *id,
  * @param trip_size The number of departures (=trips) on the route.
  * @return A pointer to the newly allocated node (Route*).
  */
-Route *new_route(Network *network, const char *id, Node *nodes[], int times[],
+Route *new_route(Network *network, const char *id, Node *nodes[],
+                 int arrival_offsets[], int departure_offsets[],
                  size_t route_size, const char *trip_ids[], int departures[],
                  Vehicle *vehicles[], size_t trip_size);
 
