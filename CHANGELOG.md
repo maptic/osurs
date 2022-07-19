@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Change from `time_to_next` to `arrival_offset` and `departure_offset` on stops.
 - Added overall arrival times to trips and optimized connection search (arrival at terminal > time of connection departure).
 - Changed prints to XML format.
+- Organize modules in separate folders.
 
 ### Fixed
 

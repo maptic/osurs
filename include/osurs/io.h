@@ -15,7 +15,40 @@
 #include <limits.h>
 #include <osurs/network.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
+
+// io/import
+
+/**
+ * @brief Prints the current working dirctory.
+ *
+ * @return 1 if success, 0 if failure.
+ */
+int print_cwd();
+
+/**
+ * @brief Function print file content to the console.
+ *
+ * @param filename The path to the file.
+ * @return 1 if success, 0 if failure.
+ */
+int print_file(const char *filename);
+
+// io/matsim
+
+/**
+ * @brief
+ *
+ * @param network
+ * @param schedule_file
+ * @param vehicle_file
+ * @return int
+ */
+int import_matsim(Network *network, const char *schedule_file,
+                  const char *vehicle_file);
+
+// io/print
 
 /**
  * @brief Print node.
@@ -79,34 +112,5 @@ void print_connection(Connection *connection);
  * @param reservation The reservation struct to print.
  */
 void print_reservation(Reservation *reservation);
-
-/**
- * @brief Prints the current working dirctory.
- *
- * @return 1 if success, 0 if failure.
- */
-int print_cwd();
-
-/**
- * @brief Function print file content to the console.
- *
- * @param filename The path to the file.
- * @return 1 if success, 0 if failure.
- */
-int print_file(const char *filename);
-
-/**
- * @brief Import a MATSim transit schedule.
- *
- * Import a MATSim transit schedule from a transitSchedule.xml and  vehicles.xml
- * file.
- *
- * @param network Pointer to an empty network.
- * @param schedule_file File path to the transit schedule file.
- * @param vehicle_file File path to the vehicles file.
- * @return 1 if success, 0 if failure.
- */
-int import_matsim(Network *network, const char *schedule_file,
-                  const char *vehicle_file);
 
 #endif  // OSURS_IO_H_
