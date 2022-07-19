@@ -1,5 +1,5 @@
 /**
- * @brief Functions for network construction.
+ * @brief Network construction.
  * @file constructor.c
  * @date: 2022-07-12
  * @author: Merlin Unterfinger

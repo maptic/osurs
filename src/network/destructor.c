@@ -1,11 +1,13 @@
 /**
- * @brief Functions for network destruction.
+ * @brief Network destruction.
  * @file destructor.c
  * @date: 2022-07-12
  * @author: Merlin Unterfinger
  */
 
 #include <osurs/network.h>
+
+// Private declarations
 
 static void delete_node(Node *node);
 static void delete_stop(Stop *stop);
