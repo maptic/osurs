@@ -319,9 +319,16 @@ void handle_stop(xmlNode *xml_node, Carrier *carrier) {
         char *arr_off_tmp = xmlGetProp(xml_node, "arrivalOffset");
         char *dep_off_tmp = xmlGetProp(xml_node, "departureOffset");
         carrier->nodes[carrier->route_size] = node;
-        carrier->arrival_offsets[carrier->route_size] = parse_time(arr_off_tmp);
         carrier->departure_offsets[carrier->route_size] =
             parse_time(dep_off_tmp);
+        // Arrival offset must not be set, therefore check if.
+        if (arr_off_tmp != NULL) {
+            carrier->arrival_offsets[carrier->route_size] =
+                parse_time(arr_off_tmp);
+        } else { // Set to departure
+            carrier->arrival_offsets[carrier->route_size] =
+                carrier->departure_offsets[carrier->route_size];
+        }
         ++(carrier->route_size);
         xmlFree(arr_off_tmp);
         xmlFree(dep_off_tmp);
