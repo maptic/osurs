@@ -21,6 +21,15 @@
 // io/import
 
 /**
+ * @brief Import a network to xml.
+ *
+ * @param network The empty network to import the content to.
+ * @param filename The file to import.
+ * @return 1 if success, 0 if failure.
+ */
+int import_network(Network *network, char *filename);
+
+/**
  * @brief Prints the current working dirctory.
  *
  * @return 1 if success, 0 if failure.
@@ -34,6 +43,17 @@ int print_cwd();
  * @return 1 if success, 0 if failure.
  */
 int print_file(const char *filename);
+
+// io/export
+
+/**
+ * @brief Export a network to xml.
+ *
+ * @param network The network to export.
+ * @param filename The file to create.
+ * @return 1 if success, 0 if failure.
+ */
+int export_network(Network *network, char *filename);
 
 // io/matsim
 
