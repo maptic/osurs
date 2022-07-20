@@ -43,7 +43,6 @@ graph LR;
     Stop-->|*next|Stop;
     Route-->|*root_trip|Trip;
     Trip-->|*next|Trip;
-    Trip-->|"reservations[]"|Reservation;
     Node-->|"routes[]"|Route;
     Stop-->|*node|Node;
     Trip-->|*vehicle|Vehicle;
