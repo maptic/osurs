@@ -1,13 +1,13 @@
-find_package(LibXml2 REQUIRED)
-
 # Add modules
-add_subdirectory(io)
+# Note: Note that it is crucial that sub-directories are added in reverse dependency order.
+# E.g. osurs-network depends on osurs-io
 add_subdirectory(network)
+add_subdirectory(io)
 
 # Create automatic library - will be static or dynamic based on user setting
-add_library(osurs network/constructor.c network/destructor.c network/getter.c optimize.c io/import.c io/matsim.c io/print.c io/utils.c reserve.c)
-target_include_directories(osurs PUBLIC ${PROJECT_SOURCE_DIR}/include ${LIBXML2_INCLUDE_DIR})
-target_link_libraries(osurs ${LIBXML2_LIBRARIES})
+add_library(osurs optimize.c reserve.c)
+target_include_directories(osurs PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(osurs osurs-network osurs-io)
 
 # Create executable
 add_executable(main main.c)
