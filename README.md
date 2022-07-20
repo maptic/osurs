@@ -37,15 +37,20 @@ graph LR;
     Network-->|"routes[]"|Route;
     Network-->|"compositions[]"|Composition;
     Network-->|"vehicles[]"|Vehicle;
+    Network-->|"reservations[]"|Reservation;
     Route-->|*root_stop|Stop;
     Stop-->|*prev|Stop;
     Stop-->|*next|Stop;
     Route-->|*root_trip|Trip;
     Trip-->|*next|Trip;
+    Trip-->|"reservations[]"|Reservation;
     Node-->|"routes[]"|Route;
     Stop-->|*node|Node;
     Trip-->|*vehicle|Vehicle;
     Vehicle-->|*composition|Composition;
+    Reservation-->|*trip|Trip;
+    Reservation-->|*orig|Stop;
+    Reservation-->|*dest|Stop;
   end;
 ```
 
@@ -144,9 +149,7 @@ apt install cmake doxygen graphviz valgrind libxml2-dev
 - **macOS**
 
 ```sh
-brew install cmake doxygen graphviz libxml2
-brew tap LouisBrunner/valgrind
-brew install --HEAD LouisBrunner/valgrind/valgrind
+brew install cmake doxygen graphviz valgrind libxml2
 ```
 
 ## To Do
