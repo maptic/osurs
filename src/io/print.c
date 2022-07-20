@@ -121,24 +121,39 @@ void print_network(Network *network) {
 }
 
 void print_connection(Connection *connection) {
-    Connection *curr_connection = connection;
+    Connection *curr_conn = connection;
+    Connection *set_conn = connection;
+    char *element_type;
     char arr[9];
     char dep[9];
+
+    // Check if any.
     if (connection == NULL) {
         printf("No connection found.\n");
         return;
     }
+
+    // Iterate to root / head of chain.
+    while (curr_conn->prev != NULL) {
+        curr_conn = curr_conn->prev;
+    }
+
+    // Print connection
     printf("<connection orig=\"%s\" dest=\"%s\">\n", connection->orig->node->id,
            connection->dest->node->id);
-    while (curr_connection != NULL) {
-        compose_time(dep, curr_connection->departure);
-        compose_time(arr, curr_connection->arrival);
+    while (curr_conn != NULL) {
+        element_type = "alternative";
+        compose_time(dep, curr_conn->departure);
+        compose_time(arr, curr_conn->arrival);
+        if (curr_conn == set_conn) {
+            element_type = "selected";
+        }
         printf(
-            "  <alternative rid=\"%s\" tid=\"%s\" dep=\"%s\" arr=\"%s\" "
+            "  <%s rid=\"%s\" tid=\"%s\" dep=\"%s\" arr=\"%s\" "
             "available=\"%d\" />\n",
-            curr_connection->trip->route->id, curr_connection->trip->id, dep,
-            arr, curr_connection->available);
-        curr_connection = curr_connection->next;
+            element_type, curr_conn->trip->route->id, curr_conn->trip->id, dep,
+            arr, curr_conn->available);
+        curr_conn = curr_conn->next;
     }
     printf("</connection>\n");
 }

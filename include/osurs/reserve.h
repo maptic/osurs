@@ -56,7 +56,19 @@ Connection *new_connection(const Node *orig, const Node *dest, int time);
  * reserved count.
  * @return Returns 0 if failure and 1 if success.
  */
-int check(Connection *connection, int seats, int *trip_count);
+int check_connection(Connection *connection, int seats, int *trip_count);
+
+/**
+ * @brief Selects the best connection.
+ *
+ * Chooses the best connection based on arrival time and seat availablity.
+ *
+ * @param connection Connection results from new_connection().
+ * @param seats The number of seats that should be available on the connection.
+ * @return The shifted pointer to the best connection (Connection*) or NULL if
+ * no suitable connection is found.
+ */
+Connection *select_connection(Connection *connection, int seats);
 
 /*
  * Reserve connection

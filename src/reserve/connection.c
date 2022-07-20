@@ -1,30 +1,34 @@
 /**
- * @brief Connection routing, checking seat availability and reservation
- * @file reserve.c
- * @date: 2022-07-12
+ * @brief Routing connections between nodes on the network without transfers.
+ *
+ * Public transit routing without transfers, checking seat availability and
+ * selecting best connections based on arrival time.
+ *
+ * @file connection.c
+ * @date: 2022-07-20
  * @author: Merlin Unterfinger
  */
 
-#include <osurs/io.h>
 #include <osurs/reserve.h>
-#include <stdio.h>
 
 // Private declarations
 
-int min(int a, int b);
+static int min(int a, int b);
 
-Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, const Node *dest,
-                      int *departure);
+static Stop *iterate_to_orig(Stop *curr_stop, const Node *orig,
+                             const Node *dest, int *departure);
 
-Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
-                      int *available, int capacity, int trip_count);
+static Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
+                             int *available, int capacity, int trip_count);
 
-Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
-                        int time, Trip *trip, Stop *root_stop, int trip_count,
-                        int *conn_count, int *direction);
+static Connection *search_trip(Connection *conn, const Node *orig,
+                               const Node *dest, int time, Trip *trip,
+                               Stop *root_stop, int trip_count, int *conn_count,
+                               int *direction);
 
-Connection *search_route(Connection *conn, const Node *orig, const Node *dest,
-                         int time, Route *route, int cutoff);
+static Connection *search_route(Connection *conn, const Node *orig,
+                                const Node *dest, int time, Route *route,
+                                int cutoff);
 
 // Public definitions
 
@@ -65,8 +69,8 @@ Connection *new_connection(const Node *orig, const Node *dest, int time) {
     return root_conn;
 }
 
-int check(Connection *connection, int seats, int *trip_count) {
-    // Get trip number of route
+int check_connection(Connection *connection, int seats, int *trip_count) {
+    // Get trip number of route.
     Trip *curr_trip = connection->trip->route->root_trip;
     *trip_count = 0;
     while (1) {
@@ -75,12 +79,13 @@ int check(Connection *connection, int seats, int *trip_count) {
         ++(*trip_count);
     }
 
-    // Check available seats over on all stops
+    // Check available seats over on all visited stops.
     Stop *curr_stop = connection->orig;
     int capacity = connection->trip->vehicle->composition->seats;
     while (1) {
+        // If less available seats than requested, return false.
         if (seats > (capacity - curr_stop->reserved[*trip_count])) return 0;
-        // Stop if destination is reached
+        // Stop if destination is reached.
         if (curr_stop == connection->dest) break;
         curr_stop = curr_stop->next;
     }
@@ -88,23 +93,36 @@ int check(Connection *connection, int seats, int *trip_count) {
     return 1;
 }
 
-int new_reservation(Connection *connection, int seats) {
-    int trip_count;
-    if (connection == NULL || seats > connection->available ||
-        !check(connection, seats, &trip_count))
-        return 0;
+Connection *select_connection(Connection *connection, int seats) {
+    Connection *prev_conn = connection;
+    Connection *next_conn = connection;
+    Connection *best_conn = NULL;
+    int *trip_count;
 
-    // Book connection on individual stops
-    Stop *curr_stop = connection->orig;
-    while (1) {
-        // Increase reservation counter
-        curr_stop->reserved[trip_count] += seats;
-        // Stop if destination is reached
-        if (curr_stop == connection->dest) break;
-        curr_stop = curr_stop->next;
+    // Set arrival time to maximum.
+    int arrival = INT_MAX;
+
+    // Check for next
+    while (next_conn != NULL) {
+        if ((next_conn->arrival < arrival) &&
+            check_connection(next_conn, seats, &trip_count)) {
+            arrival = next_conn->arrival;
+            best_conn = next_conn;
+        }
+        next_conn = next_conn->next;
     }
 
-    return 1;
+    // Check for previous
+    while (prev_conn != NULL) {
+        if ((prev_conn->arrival < arrival) &&
+            check_connection(prev_conn, seats, &trip_count)) {
+            arrival = prev_conn->arrival;
+            best_conn = prev_conn;
+        }
+        prev_conn = prev_conn->prev;
+    }
+
+    return best_conn;
 }
 
 void delete_connection(Connection *connection) {
@@ -117,16 +135,14 @@ void delete_connection(Connection *connection) {
 
     // Check for next
     curr_conn = root_conn->next;
-    while (1) {
-        if (curr_conn == NULL) break;
+    while (curr_conn != NULL) {
         next_conn = curr_conn->next;
         free(curr_conn);
         curr_conn = next_conn;
     }
-    // Check for prev
+    // Check for previous
     curr_conn = root_conn->prev;
-    while (1) {
-        if (curr_conn == NULL) break;
+    while (curr_conn != NULL) {
         prev_conn = curr_conn->prev;
         free(curr_conn);
         curr_conn = prev_conn;
@@ -137,12 +153,12 @@ void delete_connection(Connection *connection) {
 
 // Private definitions
 
-// Minimum of two integers
-int min(int a, int b) { return (a > b) ? b : a; }
+// Minimum of two integers.
+static int min(int a, int b) { return (a > b) ? b : a; }
 
-// Iterate to stop of origin node on trip
-Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, const Node *dest,
-                      int *departure) {
+// Iterate to stop of origin node on trip.
+static Stop *iterate_to_orig(Stop *curr_stop, const Node *orig,
+                             const Node *dest, int *departure) {
     while (1) {
         if (curr_stop->node == orig) {
             *departure += curr_stop->departure_offset;
@@ -155,9 +171,9 @@ Stop *iterate_to_orig(Stop *curr_stop, const Node *orig, const Node *dest,
     }
 }
 
-// Iterate to stop of destination node on trip
-Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
-                      int *available, int capacity, int trip_count) {
+// Iterate to stop of destination node on trip.
+static Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
+                             int *available, int capacity, int trip_count) {
     while (1) {
         *available =
             min(*available, capacity - curr_stop->reserved[trip_count]);
@@ -169,10 +185,11 @@ Stop *iterate_to_dest(Stop *curr_stop, const Node *dest, int *arrival,
     }
 }
 
-// Search for a connection on a trip
-Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
-                        int time, Trip *trip, Stop *root_stop, int trip_count,
-                        int *conn_count, int *direction) {
+// Search for a connection on a trip.
+static Connection *search_trip(Connection *conn, const Node *orig,
+                               const Node *dest, int time, Trip *trip,
+                               Stop *root_stop, int trip_count, int *conn_count,
+                               int *direction) {
     Stop *orig_stop;
     Stop *dest_stop;
     int departure = trip->departure;
@@ -182,7 +199,7 @@ Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
     // Iterate over the stops until origin is reached.
     orig_stop = iterate_to_orig(root_stop, orig, dest, &departure);
 
-    // Break if vehicle missed or wrong direction.
+    // Break if vehicle missed.
     if (departure < time) return conn;
 
     // Break if wrong direction and set flag to skip route.
@@ -191,13 +208,14 @@ Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
         return conn;
     }
 
-    // Iterate over the stops until destination is reached.
     // Set departure at origin as base for calculation of the arrival at origin.
     arrival = departure;
+
+    // Iterate over the stops until destination is reached.
     dest_stop = iterate_to_dest(orig_stop, dest, &arrival, &available,
                                 trip->vehicle->composition->seats, trip_count);
 
-    // Set in values of found connection
+    // Set values of found connection
     *conn_count += 1;
     conn->trip = trip;
     conn->orig = orig_stop;
@@ -207,7 +225,7 @@ Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
     conn->available = available;
 
     // Allocate next connection on heap; Set pointer to current connection as
-    // prev connection of next connection.
+    // previous connection of next connection.
     conn->next = (Connection *)malloc(sizeof(Connection));
     Connection *conn_prev = conn;
     conn = conn->next;
@@ -216,16 +234,17 @@ Connection *search_trip(Connection *conn, const Node *orig, const Node *dest,
     return conn;
 }
 
-// Search for a connection on all trips of a route
-Connection *search_route(Connection *conn, const Node *orig, const Node *dest,
-                         int time, Route *route, int cutoff) {
+// Search for a connection on all trips of a route.
+static Connection *search_route(Connection *conn, const Node *orig,
+                                const Node *dest, int time, Route *route,
+                                int cutoff) {
     Trip *curr_trip = route->root_trip;
     int trip_count = 0;
     int conn_count = 0;
     int direction = 0;
 
     while (!direction) {
-        // Search trip if not already arrived at terminal
+        // Search on trip if not already arrived at terminal.
         if (curr_trip->arrival > time) {
             conn =
                 search_trip(conn, orig, dest, time, curr_trip, route->root_stop,

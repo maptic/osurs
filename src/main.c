@@ -111,7 +111,10 @@ int main(int argc, char *argv[]) {
 
     // Reservation
     printf("\nTEST: RESERVATION\n");
+    conn_1 = conn_1->next->next;
     print_connection(conn_1);
+    Connection *conn_1_best = select_connection(conn_1, 501);
+    print_connection(conn_1_best);
     printf("Reserve 500: %s\n",
            new_reservation(conn_1, 500) ? "success" : "failure");
     printf("Reserve 1: %s\n",
