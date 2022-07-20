@@ -48,7 +48,6 @@ graph LR;
     Stop-->|*node|Node;
     Trip-->|*vehicle|Vehicle;
     Vehicle-->|*composition|Composition;
-    Reservation-->|*trip|Trip;
   end;
 ```
 
