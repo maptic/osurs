@@ -1,33 +1,27 @@
 /**
- * @brief Network for reservation optmization
- * @file network.c
+ * @brief Network construction.
+ * @file constructor.c
  * @date: 2022-07-12
  * @author: Merlin Unterfinger
  */
 
 #include <osurs/network.h>
-#include <stdio.h>
 #include <string.h>
 
-// Private methods
+// Private declarations
 
-Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
-               int departure_offset, size_t trip_size);
-Trip *new_trip(const char *id, int departure, int arrival, Vehicle *vehicle,
-               Trip *next, Route *route);
+static Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
+                      int departure_offset, size_t trip_size);
+static Trip *new_trip(const char *id, int departure, int arrival,
+                      Vehicle *vehicle, Trip *next, Route *route);
 
-void delete_node(Node *node);
-void delete_stop(Stop *stop);
-void delete_trip(Trip *trip);
-void delete_route(Route *route);
+static void network_add_route(Network *network, Route *route);
+static void network_add_node(Network *network, Node *node);
+static void network_add_vehicle(Network *network, Vehicle *vehicle);
+static void network_add_composition(Network *network, Composition *composition);
+static void node_add_route(Node *node, Route *route);
 
-void network_add_route(Network *network, Route *route);
-void network_add_node(Network *network, Node *node);
-void network_add_vehicle(Network *network, Vehicle *vehicle);
-void network_add_composition(Network *network, Composition *composition);
-void node_add_route(Node *node, Route *route);
-
-// Constructor-like methods
+// Public implementations
 
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
@@ -49,6 +43,7 @@ Network *new_network() {
         (Vehicle **)malloc(sizeof(Vehicle *) * INIT_ALLOC_SIZE_L);
     network->vehicle_size = INIT_ALLOC_SIZE_L;
     network->vehicle_counter = 0;
+
     return network;
 }
 
@@ -65,30 +60,6 @@ Node *new_node(Network *network, const char *id, double x, double y) {
     network_add_node(network, node);
 
     return node;
-}
-
-Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
-               int departure_offset, size_t trip_size) {
-    Stop *stop = (Stop *)malloc(sizeof(Stop));
-    stop->node = node;
-    stop->prev = prev;
-    stop->next = next;
-    stop->arrival_offset = arrival_offset;
-    stop->departure_offset = departure_offset;
-    stop->reserved = (int *)calloc(trip_size, sizeof(int));  // Initialized to 0
-    return stop;
-}
-
-Trip *new_trip(const char *id, int departure, int arrival, Vehicle *vehicle,
-               Trip *next, Route *route) {
-    Trip *trip = (Trip *)malloc(sizeof(Trip));
-    trip->id = strdup(id);
-    trip->departure = departure;
-    trip->arrival = arrival;
-    trip->vehicle = vehicle;
-    trip->next = next;
-    trip->route = route;
-    return trip;
 }
 
 Route *new_route(Network *network, const char *id, Node *nodes[],
@@ -163,119 +134,38 @@ Composition *new_composition(Network *network, const char *id, int seats) {
     return composition;
 }
 
-// Getters
+// Private implementations
 
-Node *get_node(Network *network, const char *id) {
-    for (int i = 0; i < network->node_counter; ++i) {
-        if (strcmp(network->nodes[i]->id, id) == 0) return network->nodes[i];
-    }
-    printf("Node %s not found.\n", id);
-    return NULL;
+static Stop *new_stop(Node *node, Stop *prev, Stop *next, int arrival_offset,
+                      int departure_offset, size_t trip_size) {
+    Stop *stop = (Stop *)malloc(sizeof(Stop));
+    stop->node = node;
+    stop->prev = prev;
+    stop->next = next;
+    stop->arrival_offset = arrival_offset;
+    stop->departure_offset = departure_offset;
+    stop->reserved = (int *)calloc(trip_size, sizeof(int));  // Initialized to 0
+    return stop;
 }
 
-Vehicle *get_vehicle(Network *network, const char *id) {
-    for (int i = 0; i < network->vehicle_counter; ++i) {
-        if (strcmp(network->vehicles[i]->id, id) == 0)
-            return network->vehicles[i];
-    }
-    printf("Vehicle %s not found.\n", id);
-    return NULL;
+static Trip *new_trip(const char *id, int departure, int arrival,
+                      Vehicle *vehicle, Trip *next, Route *route) {
+    Trip *trip = (Trip *)malloc(sizeof(Trip));
+    trip->id = strdup(id);
+    trip->departure = departure;
+    trip->arrival = arrival;
+    trip->vehicle = vehicle;
+    trip->next = next;
+    trip->route = route;
+    // Reservations
+    trip->reservations =
+        (Reservation **)malloc(sizeof(Reservation *) * INIT_ALLOC_SIZE_S);
+    trip->reservation_size = INIT_ALLOC_SIZE_S;
+    trip->reservation_counter = 0;
+    return trip;
 }
 
-Composition *get_composition(Network *network, const char *id) {
-    for (int i = 0; i < network->composition_counter; ++i) {
-        if (strcmp(network->compositions[i]->id, id) == 0)
-            return network->compositions[i];
-    }
-    printf("Composition %s not found.\n", id);
-    return NULL;
-}
-
-// Destructor-like methods
-
-void delete_node(Node *node) {
-    free(node->id);
-    free(node->routes);
-    free(node);
-}
-
-void delete_stop(Stop *stop) {
-    free(stop->reserved);
-    free(stop);
-}
-
-void delete_composition(Composition *composition) {
-    free(composition->id);
-    free(composition);
-}
-
-void delete_vehicle(Vehicle *vehicle) {
-    free(vehicle->id);
-    free(vehicle);
-}
-
-void delete_trip(Trip *trip) {
-    free(trip->id);
-    free(trip);
-}
-
-void delete_route(Route *route) {
-    // Free stops
-    Stop *next_stop;
-    Stop *curr_stop = route->root_stop;
-    while (1) {
-        next_stop = curr_stop->next;
-        delete_stop(curr_stop);
-        if (next_stop == NULL) {
-            break;
-        }
-        curr_stop = next_stop;
-    }
-    // Free trips
-    Trip *next_trip;
-    Trip *curr_trip = route->root_trip;
-    while (1) {
-        next_trip = curr_trip->next;
-        delete_trip(curr_trip);
-        if (next_trip == NULL) {
-            break;
-        }
-        curr_trip = next_trip;
-    }
-    // Free struct
-    free(route->id);
-    free(route);
-}
-
-void delete_network(Network *network) {
-    // Free routes
-    for (size_t i = 0; i < network->route_counter; ++i) {
-        delete_route(network->routes[i]);
-    }
-    // Free vehicles
-    for (size_t i = 0; i < network->vehicle_counter; ++i) {
-        delete_vehicle(network->vehicles[i]);
-    }
-    // Free compositions
-    for (size_t i = 0; i < network->composition_counter; ++i) {
-        delete_composition(network->compositions[i]);
-    }
-    // Free nodes
-    for (size_t i = 0; i < network->node_counter; ++i) {
-        delete_node(network->nodes[i]);
-    }
-    // Free arrays
-    free(network->routes);
-    free(network->vehicles);
-    free(network->compositions);
-    free(network->nodes);
-    // Free struct
-    free(network);
-}
-
-// Helpers to create relations in the network
-
-void network_add_route(Network *network, Route *route) {
+static void network_add_route(Network *network, Route *route) {
     if (network->route_counter == network->route_size) {
         network->route_size += INIT_ALLOC_SIZE_L;
         // printf("Reallocating route size of network (%ldx%ld bytes).\n",
@@ -286,7 +176,7 @@ void network_add_route(Network *network, Route *route) {
     network->routes[network->route_counter++] = route;
 }
 
-void network_add_node(Network *network, Node *node) {
+static void network_add_node(Network *network, Node *node) {
     if (network->node_counter == network->node_size) {
         network->node_size += INIT_ALLOC_SIZE_L;
         // printf("Reallocating node size of network (%ldx%ld bytes).\n",
@@ -297,7 +187,8 @@ void network_add_node(Network *network, Node *node) {
     network->nodes[network->node_counter++] = node;
 }
 
-void network_add_composition(Network *network, Composition *composition) {
+static void network_add_composition(Network *network,
+                                    Composition *composition) {
     if (network->composition_counter == network->composition_size) {
         network->composition_size += INIT_ALLOC_SIZE_S;
         // printf("Reallocating composition size of network (%ldx%ld bytes).\n",
@@ -309,7 +200,7 @@ void network_add_composition(Network *network, Composition *composition) {
     network->compositions[network->composition_counter++] = composition;
 }
 
-void network_add_vehicle(Network *network, Vehicle *vehicle) {
+static void network_add_vehicle(Network *network, Vehicle *vehicle) {
     if (network->vehicle_counter == network->vehicle_size) {
         network->vehicle_size += INIT_ALLOC_SIZE_L;
         // printf("Reallocating vehicle size of network (%ldx%ld bytes).\n",
@@ -320,7 +211,7 @@ void network_add_vehicle(Network *network, Vehicle *vehicle) {
     network->vehicles[network->vehicle_counter++] = vehicle;
 }
 
-void node_add_route(Node *node, Route *route) {
+static void node_add_route(Node *node, Route *route) {
     // Check if route already exists (only check last)
     if (node->route_counter > 0 &&
         node->routes[node->route_counter - 1] == route)

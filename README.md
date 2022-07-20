@@ -38,7 +38,7 @@ graph LR;
     Network-->|"compositions[]"|Composition;
     Network-->|"vehicles[]"|Vehicle;
     Route-->|*root_stop|Stop;
-    Stop-->|*last|Stop;
+    Stop-->|*prev|Stop;
     Stop-->|*next|Stop;
     Route-->|*root_trip|Trip;
     Trip-->|*next|Trip;
@@ -51,16 +51,16 @@ graph LR;
 
 ## Connections and reservations
 
-Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). If more than one connection is possible between to nodes on the network, a connection chain is created. In a connection chain, the `.last` property of the connection structure points to the last connection or `NULL` if it is the root of the chain. Identically, the `.next` property points to the next connection or to `NULL` if it is the end of the chain.
+Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). If more than one connection is possible between to nodes on the network, a connection chain is created. In a connection chain, the `.prev` property of the connection structure points to the previous connection or `NULL` if it is the root of the chain. Identically, the `.next` property points to the next connection or to `NULL` if it is the end of the chain.
 
 ```mermaid
 graph LR;
   Connection_1-->|*next|Connection_2;
   Connection_2-->|*next|Connection_3;
   Connection_3-->|*next|NULL;
-  Connection_3-->|*last|Connection_2;
-  Connection_2-->|*last|Connection_1;
-  Connection_1-->|*last|NULL;
+  Connection_3-->|*prev|Connection_2;
+  Connection_2-->|*prev|Connection_1;
+  Connection_1-->|*prev|NULL;
 ```
 
 When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists on the heap until the entire network is released.
@@ -144,9 +144,7 @@ apt install cmake doxygen graphviz valgrind libxml2-dev
 - **macOS**
 
 ```sh
-brew install cmake doxygen graphviz libxml2
-brew tap LouisBrunner/valgrind
-brew install --HEAD LouisBrunner/valgrind/valgrind
+brew install cmake doxygen graphviz valgrind libxml2
 ```
 
 ## To Do
