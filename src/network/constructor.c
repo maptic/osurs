@@ -43,6 +43,7 @@ Network *new_network() {
         (Vehicle **)malloc(sizeof(Vehicle *) * INIT_ALLOC_SIZE_L);
     network->vehicle_size = INIT_ALLOC_SIZE_L;
     network->vehicle_counter = 0;
+
     return network;
 }
 
@@ -156,6 +157,11 @@ static Trip *new_trip(const char *id, int departure, int arrival,
     trip->vehicle = vehicle;
     trip->next = next;
     trip->route = route;
+    // Reservations
+    trip->reservations =
+        (Reservation **)malloc(sizeof(Reservation *) * INIT_ALLOC_SIZE_S);
+    trip->reservation_size = INIT_ALLOC_SIZE_S;
+    trip->reservation_counter = 0;
     return trip;
 }
 

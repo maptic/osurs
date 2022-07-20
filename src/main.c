@@ -121,6 +121,8 @@ int main(int argc, char *argv[]) {
            new_reservation(conn_1, 1) ? "success" : "failure");
     printf("Reserve 2: %s\n",
            new_reservation(conn_2, 2) ? "success" : "failure");
+    printf("Reserve 4: %s\n",
+           new_reservation(conn_2, 4) ? "success" : "failure");
 
     // Print control of seats
     Connection *conn_6 = new_connection(nodeA, nodeD, 12 * HOURS);
@@ -128,6 +130,7 @@ int main(int argc, char *argv[]) {
 
     // Free memory
     printf("\nTEST: FREE MEMORY\n");
+    print_network(network);
     delete_connection(conn_1->next->next);
     delete_connection(conn_2);
     delete_connection(conn_3);

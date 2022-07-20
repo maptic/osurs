@@ -15,6 +15,7 @@ static void delete_composition(Composition *composition);
 static void delete_vehicle(Vehicle *vehicle);
 static void delete_trip(Trip *trip);
 static void delete_route(Route *route);
+static void delete_reservation(Reservation *reservation);
 
 // Public implementations
 
@@ -68,9 +69,15 @@ static void delete_vehicle(Vehicle *vehicle) {
 }
 
 static void delete_trip(Trip *trip) {
+    for (size_t i = 0; i < trip->reservation_counter; ++i) {
+        delete_reservation(trip->reservations[i]);
+    }
+    free(trip->reservations);
     free(trip->id);
     free(trip);
 }
+
+static void delete_reservation(Reservation *reservation) { free(reservation); }
 
 static void delete_route(Route *route) {
     // Free stops

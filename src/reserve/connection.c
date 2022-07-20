@@ -97,7 +97,7 @@ Connection *select_connection(Connection *connection, int seats) {
     Connection *prev_conn = connection;
     Connection *next_conn = connection;
     Connection *best_conn = NULL;
-    int *trip_count;
+    int trip_count;
 
     // Set arrival time to maximum.
     int arrival = INT_MAX;

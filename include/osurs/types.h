@@ -77,6 +77,9 @@ typedef struct trip_t {
                                   with this trip / departure. */
     struct trip_t *next;   /**< The next trip starting after the current one. */
     struct route_t *route; /**< The route the trip corresponds to. */
+    struct reservation_t **reservations; /**< Reservation in the network. */
+    size_t reservation_counter; /**< Number of reservations in the network. */
+    size_t reservation_size;    /**< Allocated size for reservations. */
 } Trip;
 
 /**
@@ -164,8 +167,11 @@ typedef struct connection_t {
  * equal to the avalable seats.
  */
 typedef struct reservation_t {
-    int seats;                      /**< Reserved seats. */
-    struct connection_t connection; /**< The booked connection. */
+    int seats;           /**< Reserved seats. */
+    struct stop_t *orig; /**< The orig stop of the reservation. */
+    struct stop_t *dest; /**< The orig stop of the reservation. */
+    struct trip_t *trip; /**< The trip on which the reservation is placed. */
+
 } Reservation;
 
 #endif  // OSURS_TYPES_H_

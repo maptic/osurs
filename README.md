@@ -37,7 +37,6 @@ graph LR;
     Network-->|"routes[]"|Route;
     Network-->|"compositions[]"|Composition;
     Network-->|"vehicles[]"|Vehicle;
-    Network-->|"reservations[]"|Reservation;
     Route-->|*root_stop|Stop;
     Stop-->|*prev|Stop;
     Stop-->|*next|Stop;

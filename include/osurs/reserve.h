@@ -90,9 +90,9 @@ Connection *select_connection(Connection *connection, int seats);
  *
  * @param connection The connection to reserve.
  * @param seats The number of seats to reserve.
- * @return int Will be replaced with reservation struct.
+ * @return Returns a reservation or null if no seats are available.
  */
-int new_reservation(Connection *connection, int seats);
+Reservation *new_reservation(Connection *connection, int seats);
 
 // Destructor-like methods
 

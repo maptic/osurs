@@ -38,8 +38,19 @@ void print_trip(Trip *trip) {
     char arrival[9];
     compose_time(departure, trip->departure);
     compose_time(arrival, trip->arrival);
-    printf("<trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" />\n", trip->id,
-           departure, arrival, trip->vehicle->id);
+    printf("<trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" res=\"%d\"",
+           trip->id, departure, arrival, trip->vehicle->id,
+           trip->reservation_counter);
+    if (trip->reservation_counter > 0) {
+        printf("\n");
+        for (int i = 0; i < trip->reservation_counter; ++i) {
+            printf("  ");
+            print_reservation(trip->reservations[i]);
+        }
+        printf("\n</trip>\n");
+    } else {
+        printf(" />\n");
+    }
 }
 
 void print_route(Route *route) {
@@ -98,8 +109,9 @@ void print_network(Network *network) {
         Route *route = network->routes[i];
         Stop *curr_stop = route->root_stop;
         Trip *curr_trip = route->root_trip;
-
+        // Route
         printf("    <route id=\"%s\" >\n", route->id);
+        // Stops
         printf("      <stops>\n");
         while (curr_stop != NULL) {
             printf("        ");
@@ -107,10 +119,30 @@ void print_network(Network *network) {
             curr_stop = curr_stop->next;
         }
         printf("      </stops>\n");
+        // Trips
         printf("      <trips>\n");
         while (curr_trip != NULL) {
-            printf("        ");
-            print_trip(curr_trip);
+            // Trip
+            char departure[9];
+            char arrival[9];
+            compose_time(departure, curr_trip->departure);
+            compose_time(arrival, curr_trip->arrival);
+            printf(
+                "        <trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" "
+                "res=\"%d\"",
+                curr_trip->id, departure, arrival, curr_trip->vehicle->id,
+                curr_trip->reservation_counter);
+            if (curr_trip->reservation_counter > 0) {
+                printf(">\n");
+                for (int i = 0; i < curr_trip->reservation_counter; ++i) {
+                    printf("          ");
+                    print_reservation(curr_trip->reservations[i]);
+                }
+                printf("        </trip>\n");
+            } else {
+                printf(" />\n");
+            }
+
             curr_trip = curr_trip->next;
         }
         printf("      </trips>\n");
@@ -159,5 +191,7 @@ void print_connection(Connection *connection) {
 }
 
 void print_reservation(Reservation *reservation) {
-    printf("Reservation<tbd.>\n");
+    printf("<reservation orig_nid=\"%s\" dest_nid=\"%s\" seats=\"%d\" />\n",
+           reservation->orig->node->id, reservation->dest->node->id,
+           reservation->seats);
 }
