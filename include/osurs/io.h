@@ -27,7 +27,7 @@
  * @param filename The file to import.
  * @return 1 if success, 0 if failure.
  */
-int import_network(Network *network, char *filename);
+int import_network(Network *network, const char *filename);
 
 /**
  * @brief Prints the current working dirctory.
@@ -53,7 +53,7 @@ int print_file(const char *filename);
  * @param filename The file to create.
  * @return 1 if success, 0 if failure.
  */
-int export_network(Network *network, char *filename);
+int export_network(Network *network, const char *filename);
 
 // io/matsim
 

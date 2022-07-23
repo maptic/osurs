@@ -8,7 +8,7 @@
 #include <libxml/parser.h>
 #include <osurs/io.h>
 
-int import_network(Network *network, char *filename) {}
+int import_network(Network *network, const char *filename) {}
 
 int print_cwd() {
     char cwd[PATH_MAX];
