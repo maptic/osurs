@@ -1,7 +1,7 @@
 /**
  * @brief Export network to a file.
  * @file export.c
- * @date: 2022-07-22
+ * @date: 2022-07-25
  * @author: Merlin Unterfinger
  */
 
