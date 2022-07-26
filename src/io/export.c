@@ -118,7 +118,6 @@ int export_network(Network *network, const char *filename) {
         // Stops
         xmlTextWriterStartElement(writer, "stops");
         while (curr_stop != NULL) {
-            // <stop arr_off="00:00:00" dep_off="00:00:00" nid="stop1" />
             xmlTextWriterStartElement(writer, "stop");
             compose_time(buf, curr_stop->arrival_offset);
             xmlTextWriterWriteAttribute(writer, "arr_off", buf);
@@ -164,6 +163,9 @@ int export_network(Network *network, const char *filename) {
             xmlTextWriterEndElement(writer);
             curr_trip = curr_trip->next;
         }
+        xmlTextWriterEndElement(writer);
+
+        // Close route
         xmlTextWriterEndElement(writer);
     }
     xmlTextWriterEndElement(writer);
