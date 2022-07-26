@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<network nodes="18" composition="4" vehicles="8" routes="8">
+<network nodes="18" compositions="4" vehicles="8" routes="8">
     <nodes>
         <node id="Basel SBB" x="2611209.00000" y="1266368.00000" routes="4" />
         <node id="Bern" x="2600082.90000" y="1199823.00000" routes="4" />

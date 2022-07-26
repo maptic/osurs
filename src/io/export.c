@@ -54,7 +54,7 @@ int export_network(Network *network, const char *filename) {
     sprintf(buf, "%d", network->node_counter);
     xmlTextWriterWriteAttribute(writer, "nodes", buf);
     sprintf(buf, "%d", network->composition_counter);
-    xmlTextWriterWriteAttribute(writer, "composition", buf);
+    xmlTextWriterWriteAttribute(writer, "compositions", buf);
     sprintf(buf, "%d", network->vehicle_counter);
     xmlTextWriterWriteAttribute(writer, "vehicles", buf);
     sprintf(buf, "%d", network->route_counter);
