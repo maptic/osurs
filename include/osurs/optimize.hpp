@@ -12,10 +12,21 @@
 #ifndef OSURS_OPTIMIZE_H_
 #define OSURS_OPTIMIZE_H_
 
-/**
- * @brief Optimizing space utilization.
- *
- */
-void optimize_trip();
+#include "osurs/types2.hpp"
+
+int spaceAvailable(
+	unsigned int resArr[],
+	int resCount,
+	int tripCount,
+	unsigned int seatCount,
+	unsigned int newRes);
+
+SeatReservationCollection& optimizeReservation(
+	unsigned int resArr[],
+	int resArrCount,
+	int resIds[],
+	int maxTripLengeth,
+	int seatIds[],
+	int seatCount);
 
 #endif  // OSURS_OPTIMIZE_H_
