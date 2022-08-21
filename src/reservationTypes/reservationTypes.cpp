@@ -1,4 +1,4 @@
-#include <osurs/types2.hpp>
+#include <osurs/reservationTypes.hpp>
 #include <stdexcept>
 
 SeatReservationCollection::SeatReservationCollection(int count) :seatCount(count) {

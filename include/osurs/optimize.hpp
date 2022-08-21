@@ -9,10 +9,9 @@
  * @author: Tobias Meier, Merlin Unterfinger
  */
 
-#ifndef OSURS_OPTIMIZE_H_
-#define OSURS_OPTIMIZE_H_
+#pragma once
 
-#include "osurs/types2.hpp"
+#include "osurs/reservationTypes.hpp"
 
 int spaceAvailable(
 	unsigned int resArr[],
@@ -28,5 +27,3 @@ SeatReservationCollection& optimizeReservation(
 	int maxTripLengeth,
 	int seatIds[],
 	int seatCount);
-
-#endif  // OSURS_OPTIMIZE_H_

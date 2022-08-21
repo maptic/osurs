@@ -1,21 +1,9 @@
-/**
- * @brief Data types of osurs.
- *
- * All data types used by osurs are declared and defined here.
- *
- * @file types.h
- * @date: 2022-07-12
- * @author: Merlin Unterfinger
- */
-
-#ifndef OSURS_TYPES2_H_
-#define OSURS_TYPES2_H_
+#pragma once
 
 #include <stdlib.h>
 
 class SeatReservation
 {
-
 public:
 	SeatReservation();
 	SeatReservation(int sId);
@@ -42,5 +30,3 @@ private:
 	int getSeatCount() { return seatCount; };
 	int seatCount = 0;
 };
-
-#endif  // OSURS_TYPES2_H_

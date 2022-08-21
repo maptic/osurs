@@ -6,7 +6,7 @@
  */
 
 #include <osurs/optimize.hpp>
-#include <osurs/types2.hpp>
+#include <osurs/reservationTypes.hpp>
 #include <stdexcept>
 
  // Private declarations
