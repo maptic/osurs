@@ -174,4 +174,23 @@ typedef struct reservation_t {
 
 } Reservation;
 
+/**
+* @brief
+*/
+typedef struct seat_t {
+	int seat_id;
+	int res_count;
+	int* res_id_arr;
+} Seat;
+
+/**
+* @brief
+*/
+typedef struct seat_collection_t {
+	Seat** seat_arr;
+    int seat_count;
+} Seat_collection;
+
+
+
 #endif  // OSURS_TYPES_H_
