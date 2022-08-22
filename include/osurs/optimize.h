@@ -65,7 +65,7 @@ void delete_seat_collection(Seat_collection* collection);
 /**
 * @brief Check if there is enough space available
 *
-* Checks if there is still room for a new reservation.
+* Checks if the given reservation fits into the current configuration.
 *
 * @param res_arr[] The logical representation of each reservation.
 * @param res_count The number of reservations in the res_array.
@@ -82,22 +82,22 @@ int space_available(
 	unsigned int new_res);
 
 /**
-* @brief 
-* 
-* 
-* 
-* @param res_arr[]
-* @param res_arr_count
-* @param res_ids[]
-* @param max_trip_length
-* @param seat_ids[]
-* @param seat_count
+* @brief Optimize the reservations
+*
+* Places the reservations on the seats in a way that optimizes the capacity.
+*
+* @param res_arr[] The logical representation of each reservation.
+* @param res_arr_count The number of reservations in the res_array.
+* @param res_ids[] Array that contains the reservation ids
+* @param trip_count The number of trips on the route. (stops - 1)
+* @param seat_ids[] Array that contains the seat ids
+* @param seat_count The number of seats in the composition.
 * @return Returns a pointer of the optimized Seat_collection.
 */
 Seat_collection* optimize_reservation(
 	unsigned int res_arr[],
 	int res_arr_count,
 	int res_ids[],
-	int max_trip_length,
+	int trip_count,
 	int seat_ids[],
 	int seat_count);
