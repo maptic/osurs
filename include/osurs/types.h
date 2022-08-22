@@ -4,7 +4,7 @@
  * All data types used by osurs are declared and defined here.
  *
  * @file types.h
- * @date: 2022-07-12
+ * @date: 2022-08-22
  * @author: Merlin Unterfinger
  */
 
@@ -175,22 +175,25 @@ typedef struct reservation_t {
 } Reservation;
 
 /**
-* @brief
+* @brief A seat
+*
+* A seat contains an array of reservations.
 */
 typedef struct seat_t {
-	int seat_id;
-	int res_count;
-	int* res_id_arr;
+	int seat_id;        /**< Seat id */
+	int res_count;      /**< Number of reservations */
+	int* res_id_arr;    /**< Array that contains each reservation id */
 } Seat;
 
 /**
-* @brief
+* @brief A seat collection
+*
+* The seat collection represents multiple seats over which the reservations were distributed/optimized.
 */
 typedef struct seat_collection_t {
-	Seat** seat_arr;
-    int seat_count;
+	Seat** seat_arr;    /**< Array that contains all the available seats. */
+	int seat_count;     /**< Number of seats in the collection. */
 } Seat_collection;
-
 
 
 #endif  // OSURS_TYPES_H_
