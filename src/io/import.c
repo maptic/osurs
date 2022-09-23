@@ -58,37 +58,6 @@ int import_network(Network *network, const char *filename) {
 
 // Private definitions
 
-int print_cwd() {
-    char cwd[PATH_MAX];
-    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-        printf("Current working dir: %s\n", cwd);
-    } else {
-        perror("getcwd() error");
-        return 0;
-    }
-    return 1;
-}
-
-int print_file(const char *filename) {
-    FILE *fp;
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
-
-    fp = fopen(filename, "r");
-    if (fp == NULL) {
-        perror("fopen() error");
-        return 0;
-    }
-    while ((read = getline(&line, &len, fp)) != -1) {
-        printf("%s", line);
-    }
-
-    fclose(fp);
-    if (line) free(line);
-    return 1;
-}
-
 typedef struct carrier_t {
     Network *network;
     char *route_id;
@@ -265,16 +234,31 @@ static void handle_trip(xmlNode *xml_node, Carrier *carrier) {
 }
 
 static void handle_reservation(xmlNode *xml_node, Carrier *carrier) {
-    // printf("tbd\n");
-    char *id_tmp = xmlGetProp(xml_node, "id");
-}
+    // Skip...
+    return;
 
-int is_leaf(xmlNode *node) {
-    xmlNode *child = node->children;
-    while (child) {
-        if (child->type == XML_ELEMENT_NODE) return 0;
-        child = child->next;
-    }
+    // Parse reservation element
+    int seats;
+    char *orig_nid_tmp = xmlGetProp(xml_node, "orig_nid");
+    char *dest_nid_tmp = xmlGetProp(xml_node, "dest_nid");
+    char *seats_tmp = xmlGetProp(xml_node, "seats");
+    Node *orig = get_node(carrier->network, orig_nid_tmp);
+    Node *dest = get_node(carrier->network, dest_nid_tmp);
+    sscanf(seats_tmp, "%ld", &seats);
+    xmlFree(orig_nid_tmp);
+    xmlFree(dest_nid_tmp);
+    xmlFree(seats_tmp);
 
-    return 1;
+    // Allocate reservation struct.
+    Reservation *res = (Reservation *)malloc(sizeof(Reservation));
+    res->orig = orig;
+    res->dest = dest;
+    res->seats = seats;
+
+    // Issues:
+    // - Need to create trip first.
+    // - Connect reservation to *trip.
+    // - Increase count on stops.
+    // - Maybe split reservations from network into a seperate file?
+    // - Would also be better with respect to different days / dates.
 }
