@@ -95,6 +95,8 @@ typedef struct route_t {
         *root_stop; /**< The first stop (head) of the chain of stops. */
     struct trip_t
         *root_trip; /**< The first trip (head) of the linked list of trips. */
+    size_t route_size; /**< Number of stops in the route. */
+    size_t trip_size;  /**< Number of trips on the route. */
 } Route;
 
 /**

@@ -147,47 +147,6 @@ apt install cmake doxygen graphviz valgrind libxml2-dev
 brew install cmake doxygen graphviz valgrind libxml2
 ```
 
-## To Do
-
-- **Optimierung der Reservationen**:
-
-  - Die Reservationen speichern keine Sitzplatzzuweisungen? --> Wird immer neu berechnet?
-  - Reservationen von trips hohlen (Trip ist ein Fahrzeug welches eine Route abfährt, also Annahme Kapazität konstant?)
-  - Abbilden von structs in Tobis Magic BitMuster
-  - Rotieren und Kaste-Optimere
-  - Struct `Vechicle` oder `Container` returnen mit optmiererer Sitzplatz verteilung
-  - Container: Kapazität, Sitzplätze und Reservationen, eventuell müssen wir hier IDs einführen. Also Sitz poatz und Reservaitons IDs, ... ist aber Zukunftsmusik.
-
-- **Einfache API bereitstellen**:
-
-  - Ich würde einen Python Wrapper vorschlagen, alle Berechnungen passieren in C, python kennt nur den Pointer zu dem network struct und ruft die C funktionen auf den struct pointer auf.
-  - Funktionalität:
-    - Network Class mit methoden:
-      - net.add_node(name, coords)
-      - net.add_route(node_list, trip_list, vehicle_list)
-      - connection oder None = net.find_route(nodeA, nodeB, departure, seats) --> gleich mehrere Plätze prüfen, e.g. Familien usw.
-      - net.reserve_connection(connection)
-      - container/vehicle = net.optimize_utilization(trip): Optimiert platz reservationen (THE MAGIC IS HERE)
-      - net.export(): Vorschlag --> Wir exportieren das netzwerk als MATSim XML public transport network, dann kann es auch für simulationen verwendet werden.
-      - net.import(): Importiert MATSim XML public transport network, vorteil: Bereits bestehende Netzwerke können importiert werden.
-      - Visualiserungen: Netzwerk plotten, auslastung pro route, Auslastung pro Fahrzeug/Trip plotten.
-
-- **Eventuell besserer PT Router**:
-
-  - Graph aus Routen welche sich berühren. (Eventuell noch richtung und Zeit).
-  - Dann routing im Graphen aus verbundenen Routen welche nach anzahl Transfers aufsteigend sortiert sind.
-  - Falls es eine mögliche Verbindung aufgrund verbundener Routen gibt:
-    - Legs der Routen durchspielen, Anschluss verpasst? --> break
-    - Connection besteht dann neu aus Legs, auf den legs immer die Availabilities abspeichern.
-  - Reservation enthält dann ebenfalls dieselben legs. Customer_id und reservierte Sitze sind dann auf der Reservation abgelegt. Eventuell können noch legs geflgt werden welche keine Reeservation brauchen (müsste aber einen Flag bereits auf Trips voraussetzen)
-  - Stops brauchen nicht nur Reisezeit zum nächsten sondern auch aufenthaltszeit --> ermöglicht mehr Umsteige
-    - Stop->time_at_stop
-    - Stop->time_to_next
-  - **Achtung:** Frage ist noch, wo umsteigen bei parallelen!?
-    - Der Graph muss den Umsteige-Node speichern, die Richtung ist egal, denn Umsteigen ist immer in beide Richtungen möglich. Wie muss dies abgebildet werden.
-    - Immer die erste Möglichkeit für Umstiege nutzen.
-    - Dies beudeutet aber eine Einschränkung in den möglichen Reservationen, da nicht auf andere kombinationen geschaut wird. (Tasks für die Zukunft...)
-
 ## References
 
 ### Project setup
