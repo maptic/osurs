@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed prints to XML format.
 - Organize modules in separate folders.
 - Added connection selection and reservation array to trip.
+- Added import and export functionality for custom network format in XML.
+- Added new test data set; a simplified representation of the intercity network in Switzerland.
 
 ### Fixed
 

@@ -38,7 +38,7 @@ void print_trip(Trip *trip) {
     char arrival[9];
     compose_time(departure, trip->departure);
     compose_time(arrival, trip->arrival);
-    printf("<trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" res=\"%d\"",
+    printf("<trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" res=\"%ld\"",
            trip->id, departure, arrival, trip->vehicle->id,
            trip->reservation_counter);
     if (trip->reservation_counter > 0) {
@@ -129,7 +129,7 @@ void print_network(Network *network) {
             compose_time(arrival, curr_trip->arrival);
             printf(
                 "        <trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" "
-                "res=\"%d\"",
+                "res=\"%ld\"",
                 curr_trip->id, departure, arrival, curr_trip->vehicle->id,
                 curr_trip->reservation_counter);
             if (curr_trip->reservation_counter > 0) {
