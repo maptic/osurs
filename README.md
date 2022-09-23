@@ -1,5 +1,7 @@
 # osurs
 
+[![CMake](https://github.com/maptic/osurs/actions/workflows/cmake.yml/badge.svg)](https://github.com/maptic/osurs/actions/workflows/cmake.yml)
+
 Optimization of space utilization in reservation systems. An algorithm for optimal distribution of reservations along a trip among available seats.
 
 The **osurs** library contains the following modules with corresponding headers:
