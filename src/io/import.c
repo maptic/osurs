@@ -244,15 +244,15 @@ static void handle_reservation(xmlNode *xml_node, Carrier *carrier) {
     char *seats_tmp = xmlGetProp(xml_node, "seats");
     Node *orig = get_node(carrier->network, orig_nid_tmp);
     Node *dest = get_node(carrier->network, dest_nid_tmp);
-    sscanf(seats_tmp, "%ld", &seats);
+    sscanf(seats_tmp, "%d", &seats);
     xmlFree(orig_nid_tmp);
     xmlFree(dest_nid_tmp);
     xmlFree(seats_tmp);
 
     // Allocate reservation struct.
     Reservation *res = (Reservation *)malloc(sizeof(Reservation));
-    res->orig = orig;
-    res->dest = dest;
+    // res->orig = orig; stop and not node!
+    // res->dest = dest; stop and not node!
     res->seats = seats;
 
     // Issues:
