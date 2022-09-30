@@ -4,12 +4,13 @@
 add_subdirectory(network)
 add_subdirectory(io)
 add_subdirectory(reserve)
+add_subdirectory(olal)
 add_subdirectory(optimize)
 
 # Create automatic library - will be static or dynamic based on user setting
 add_library(osurs dummy.c)
 target_include_directories(osurs PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(osurs osurs-optimize osurs-network osurs-io osurs-reserve)
+target_link_libraries(osurs osurs-optimize osurs-olal osurs-network osurs-io osurs-reserve)
 
 # Create executable
 add_executable(main "main.c")
