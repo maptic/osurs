@@ -51,13 +51,13 @@ int export_network(Network *network, const char *filename) {
     /* Start an element named "network". Since this is the first
      * element, this will be the root element of the document. */
     xmlTextWriterStartElement(writer, "network");
-    sprintf(buf, "%d", network->node_counter);
+    sprintf(buf, "%ld", network->node_counter);
     xmlTextWriterWriteAttribute(writer, "nodes", buf);
-    sprintf(buf, "%d", network->composition_counter);
+    sprintf(buf, "%ld", network->composition_counter);
     xmlTextWriterWriteAttribute(writer, "compositions", buf);
-    sprintf(buf, "%d", network->vehicle_counter);
+    sprintf(buf, "%ld", network->vehicle_counter);
     xmlTextWriterWriteAttribute(writer, "vehicles", buf);
-    sprintf(buf, "%d", network->route_counter);
+    sprintf(buf, "%ld", network->route_counter);
     xmlTextWriterWriteAttribute(writer, "routes", buf);
 
     // Nodes
@@ -71,7 +71,7 @@ int export_network(Network *network, const char *filename) {
         xmlTextWriterWriteAttribute(writer, "x", buf);
         sprintf(buf, "%.5f", node->y);
         xmlTextWriterWriteAttribute(writer, "y", buf);
-        sprintf(buf, "%d", node->route_counter);
+        sprintf(buf, "%ld", node->route_counter);
         xmlTextWriterWriteAttribute(writer, "routes", buf);
         xmlTextWriterEndElement(writer);
     }
@@ -114,6 +114,10 @@ int export_network(Network *network, const char *filename) {
         xmlTextWriterStartElement(writer, "route");
         sprintf(buf, "%s", route->id);
         xmlTextWriterWriteAttribute(writer, "id", buf);
+        sprintf(buf, "%ld", route->route_size);
+        xmlTextWriterWriteAttribute(writer, "stops", buf);
+        sprintf(buf, "%ld", route->trip_size);
+        xmlTextWriterWriteAttribute(writer, "trips", buf);
 
         // Stops
         xmlTextWriterStartElement(writer, "stops");
@@ -142,7 +146,7 @@ int export_network(Network *network, const char *filename) {
             xmlTextWriterWriteAttribute(writer, "arr", buf);
             sprintf(buf, "%s", curr_trip->vehicle->id);
             xmlTextWriterWriteAttribute(writer, "vid", buf);
-            sprintf(buf, "%d", curr_trip->reservation_counter);
+            sprintf(buf, "%ld", curr_trip->reservation_counter);
             xmlTextWriterWriteAttribute(writer, "res", buf);
             // Reservations
             if (curr_trip->reservation_counter > 0) {
@@ -154,7 +158,7 @@ int export_network(Network *network, const char *filename) {
                     xmlTextWriterWriteAttribute(writer, "orig_nid", buf);
                     sprintf(buf, "%s", res->dest->node->id);
                     xmlTextWriterWriteAttribute(writer, "dest_nid", buf);
-                    sprintf(buf, "%d", res->dest->node->id);
+                    sprintf(buf, "%d", res->seats);
                     xmlTextWriterWriteAttribute(writer, "seats", buf);
                     xmlTextWriterEndElement(writer);
                 }
@@ -176,7 +180,7 @@ int export_network(Network *network, const char *filename) {
         printf(
             "testXmlwriterFilename: Error at "
             "xmlTextWriterEndElement\n");
-        return 1;
+        return 0;
     }
 
     // End the document.

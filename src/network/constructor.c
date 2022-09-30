@@ -69,6 +69,8 @@ Route *new_route(Network *network, const char *id, Node *nodes[],
     // Initialize route
     Route *route = (Route *)malloc(sizeof(Route));
     route->id = strdup(id);
+    route->route_size = route_size;
+    route->trip_size = trip_size;
 
     // Set root stop
     Stop *root_stop = new_stop(nodes[0], NULL, NULL, arrival_offsets[0],

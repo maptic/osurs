@@ -46,30 +46,34 @@ TEST(IOTest, ReadMatsim) {
 }
 
 TEST(IOTest, Import) {
-    EXPECT_EQ(print_cwd(), 1);
-    // EXPECT_EQ(print_file("input/matsim/transitSchedule.xml"), 1);
-    // EXPECT_EQ(print_file("input/matsim/transitVehicles.xml"), 1);
+    int success;
+    const char* network_file = "input/intercity.xml";
+    Network* network = new_network();
+    success = import_network(network, network_file);
+    EXPECT_EQ(success, 1);
+    delete_network(network);
 }
 
 // Export a network
 TEST(IOTest, Export) {
-    // File paths
     int success;
+
+    // Osurs format import and export
+    const char* network_file = "input/intercity.xml";
+    Network* network = new_network();
+    success = import_network(network, network_file);
+    EXPECT_EQ(success, 1);
+    success = export_network(network, "tmp_network_export.xml");
+    EXPECT_EQ(success, 1);
+    delete_network(network);
+
+    // MATSim format import and export
     const char* schedule_file = "input/matsim/transitSchedule.xml";
     const char* vehicle_file = "input/matsim/transitVehicles.xml";
-
-    // Init network
-    Network* network = new_network();
-
-    // Read files
+    network = new_network();
     success = import_matsim(network, schedule_file, vehicle_file);
-    print_network(network);
-
-    // Write
-    if (success) {
-        success = export_network(network, "tmp_export.xml");
-    }
-
-    // Check
     EXPECT_EQ(success, 1);
+    success = export_network(network, "tmp_matsim_export.xml");
+    EXPECT_EQ(success, 1);
+    delete_network(network);
 }
