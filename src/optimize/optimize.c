@@ -45,12 +45,12 @@ void delete_seat_collection(Seat_collection* collection) {
 }
 
 
-int space_available(unsigned int res_arr[], int res_count, int trip_count, unsigned int seat_count, unsigned int new_res)
+int space_available(unsigned int res_arr[], int res_count, int segment_count, unsigned int seat_count, unsigned int new_res)
 {
-	// iterate over each trip
-	for (int i = 0; i < trip_count; ++i)
+	// iterate over each segment
+	for (int i = 0; i < segment_count; ++i)
 	{
-		// sum all reservations for the specific trip
+		// sum all reservations for the specific segment
 		unsigned int sum = 0;
 		for (int j = 0; j < res_count; ++j)
 		{
@@ -67,7 +67,7 @@ int space_available(unsigned int res_arr[], int res_count, int trip_count, unsig
 }
 
 
-Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int trip_count, int seat_ids[], int seat_count)
+Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count)
 {
 	// parameter check
 	if (res_arr_count <= 0)
@@ -76,7 +76,7 @@ Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
 	}
 
 	// datatype size check
-	if (trip_count > sizeof(unsigned int) * 8)
+	if (segment_count > sizeof(unsigned int) * 8)
 	{
 		return NULL;
 	}
@@ -94,10 +94,10 @@ Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
 			// 
 			if (res_arr[j] != 0)
 			{
-				// break if a seat is fully booked (over all trips)
+				// break if a seat is fully booked (over all segments)
 				// fully booked = logical representation of all ones
-				// all ones = 2^trip_count - 1
-				if (currentResConfig == ((1 << trip_count) - 1))
+				// all ones = 2^segment_count - 1
+				if (currentResConfig == ((1 << segment_count) - 1))
 				{
 					break;
 				}

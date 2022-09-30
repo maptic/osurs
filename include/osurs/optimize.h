@@ -1,8 +1,8 @@
 /**
- * @brief Optimization of space utilization on trips
+ * @brief Optimization of space utilization on routs
  *
  * This module contains an algorithm to optimally distribute reservations along
- * a trip to the available seats.
+ * a route to the available seats.
  *
  * @file optimize.h
  * @date: 2022-08-22
@@ -69,7 +69,7 @@ void delete_seat_collection(Seat_collection* collection);
 *
 * @param res_arr[] The logical representation of each reservation.
 * @param res_count The number of reservations in the res_array.
-* @param trip_count The number of trips on the route. (stops - 1)
+* @param segment_count The number of segments on the route. (stops - 1)
 * @param seat_count The number of seats.
 * @param new_res The logical representation of the new reservation.
 * @return Returns 1 if there is enough space available otherwise 0.
@@ -77,7 +77,7 @@ void delete_seat_collection(Seat_collection* collection);
 int space_available(
 	unsigned int res_arr[],
 	int res_count,
-	int trip_count,
+	int segment_count,
 	unsigned int seat_count,
 	unsigned int new_res);
 
@@ -89,7 +89,7 @@ int space_available(
 * @param res_arr[] The logical representation of each reservation.
 * @param res_arr_count The number of reservations in the res_array.
 * @param res_ids[] Array that contains the reservation ids
-* @param trip_count The number of trips on the route. (stops - 1)
+* @param segment_count The number of segments on the route. (stops - 1)
 * @param seat_ids[] Array that contains the seat ids
 * @param seat_count The number of seats in the composition.
 * @return Returns a pointer of the optimized Seat_collection.
@@ -98,6 +98,6 @@ Seat_collection* optimize_reservation(
 	unsigned int res_arr[],
 	int res_arr_count,
 	int res_ids[],
-	int trip_count,
+	int segment_count,
 	int seat_ids[],
 	int seat_count);
