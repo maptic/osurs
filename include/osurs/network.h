@@ -61,7 +61,7 @@ Node *new_node(Network *network, const char *id, double x, double y);
  * @param seats The seat capacity of the composition.
  * @return A pointer to the newly allocated node (Composition*).
  */
-Composition *new_composition(Network *network, const char *id, int seats);
+Composition *new_composition(Network *network, const char *id, int seat_count);
 
 /**
  * @brief Create a new vehicle and add it to the network.

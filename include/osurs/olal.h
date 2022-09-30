@@ -13,22 +13,9 @@
 #include <osurs/types.h>
 #include <osurs/optimize.h>
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// TEMP - REMOVE
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// input:	segments from Vehicle
-//			seatid from Vehicle
-//			reservation id from Reservation
-//			segments in reservation from Reservation
-//
-// output:	seat_collection (other form?)
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// TEMP - REMOVE
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 /**
 *
 *
 **/
-Seat_collection* optimize(Vehicle* v, Reservation** res);
+Seat_collection* optimize_trip(Trip t);
 

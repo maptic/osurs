@@ -117,8 +117,9 @@ typedef struct vehicle_t {
  */
 typedef struct composition_t {
     char *id;  /**< Identifier. */
-    int seats; /**< The seat capacity of the composition (TODO: Replace with
+    int seat_count; /**< The seat capacity of the composition (TODO: Replace with
                   groups in future). */
+    int* seat_ids;  /**< The seat id array */
 } Composition;
 
 /**

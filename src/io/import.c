@@ -160,13 +160,13 @@ static void handle_node(xmlNode *xml_node, Network *network) {
 }
 
 static void handle_composition(xmlNode *xml_node, Network *network) {
-    int seats;
+    int seat_count;
     char *id_tmp = xmlGetProp(xml_node, "id");
-    char *seats_tmp = xmlGetProp(xml_node, "seats");
-    sscanf(seats_tmp, "%d", &seats);
-    new_composition(network, id_tmp, seats);
+    char *seat_count_tmp = xmlGetProp(xml_node, "seat_count");
+    sscanf(seat_count_tmp, "%d", &seat_count);
+    new_composition(network, id_tmp, seat_count);
     xmlFree(id_tmp);
-    xmlFree(seats_tmp);
+    xmlFree(seat_count_tmp);
 }
 
 static void handle_vehicle(xmlNode *xml_node, Network *network) {
