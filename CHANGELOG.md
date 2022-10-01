@@ -13,8 +13,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Importer for MATSim transit schedules.
 - `network.h`: Structures to represent a network of a reservation system.
 - `optimize.h`: Optimizing space utilization in reservation systems.
-- `reserve.h`: Simple routing alogrithm without transfers for checking seat availability in connections.
+- `reserve.h`: Simple routing algorithm without transfers for checking seat availability in connections.
 - `types.h`: Data types of osurs.
+- Connection selection and reservation array to trip.
+- Import and export functionality for network format in XML.
+- Import and export functionality for reservation format in XML.
+- New test data sets; a simplified representation of the intercity network in Switzerland.
+- Spell check extension.
 
 ### Changed
 
@@ -25,9 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added overall arrival times to trips and optimized connection search (arrival at terminal > time of connection departure).
 - Changed prints to XML format.
 - Organize modules in separate folders.
-- Added connection selection and reservation array to trip.
-- Added import and export functionality for custom network format in XML.
-- Added new test data set; a simplified representation of the intercity network in Switzerland.
 
 ### Fixed
 

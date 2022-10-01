@@ -302,14 +302,8 @@ TEST(NetworkTest, Create) {
     );
     EXPECT_EQ(network->route_counter, 8);
 
-    // Reservation
-    // Node *orig = get_node(network, "Zürich HB");
-    // Node *dest = get_node(network, "Lugano");
-    // Connection *con = new_connection(orig, dest, 60 * 60 * 12);
-    // new_reservation(con, 2);
-    // new_reservation(con, 1);
-    // new_reservation(con->next->next, 5);
-    // export_network(network, "intercity2.xml");
+    // Export test data
+    // export_network(network, "intercity_network.xml");
 
     // Free memory
     delete_network(network);
