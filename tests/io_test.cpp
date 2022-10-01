@@ -11,7 +11,7 @@ extern "C" {
 TEST(IOTest, Import) {
     int success;
     const char* network_file = "input/intercity_network.xml";
-    const char* reservation_file = "input/intercity_reservation.xml";
+    const char* reservation_file = "input/intercity_reservations.xml";
     Network* network = new_network();
     success = import_network(network, network_file);
     EXPECT_EQ(success, 1);
@@ -26,7 +26,7 @@ TEST(IOTest, Export) {
 
     // Osurs format import
     const char* network_file = "input/intercity_network.xml";
-    const char* reservation_file = "input/intercity_network.xml";
+    const char* reservation_file = "input/intercity_reservations.xml";
     Network* network = new_network();
     success = import_network(network, network_file);
     EXPECT_EQ(success, 1);
