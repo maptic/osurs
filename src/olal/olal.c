@@ -26,7 +26,7 @@ Seat_collection* optimize_trip(Trip* t)
 				// if (the current stop equals to the res-origin) or (the last stop was reserved and 
 				// the current stop does not equal to the res-dest) then set the bit to 1
 				if ((t->reservations[j]->orig == current_stop) ||
-					((temp_logical_res_arr[j] && (1u << (i - 1))) && (current_stop != t->reservations[j]->dest))) {
+					((temp_logical_res_arr[j] & (1u << (i - 1))) && (current_stop != t->reservations[j]->dest))) {
 					temp_logical_res_arr[j] |= (1u << i);
 				}
 			}
