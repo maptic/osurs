@@ -130,6 +130,15 @@ Vehicle *get_vehicle(Network *network, const char *id);
  */
 Composition *get_composition(Network *network, const char *id);
 
+/**
+ * @brief Get the route struct.
+ *
+ * @param network An network to get the route from.
+ * @param id The identifier of the route.
+ * @return Returns the route.
+ */
+Route *get_route(Network *network, const char *id);
+
 // Destructor-like methods
 
 /**

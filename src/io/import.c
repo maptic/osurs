@@ -1,12 +1,14 @@
 /**
  * @brief Import a network file.
  * @file import.c
- * @date: 2022-07-19
+ * @date: 2022-10-01
  * @author: Merlin Unterfinger
  */
 
 #include <libxml/parser.h>
+#include <limits.h>
 #include <osurs/io.h>
+#include <osurs/reserve.h>
 
 #include "utils.h"
 
@@ -21,13 +23,14 @@ static void new_route_from_carrier(Carrier *carrier);
 static void delete_carrier(Carrier *carrier);
 
 static void network_parser(xmlNode *xml_node, Carrier *carrier);
+static void reservation_parser(xmlNode *xml_node, Network *network,
+                               Route *route, Trip *trip);
 static void handle_node(xmlNode *xml_node, Network *network);
 static void handle_composition(xmlNode *xml_node, Network *network);
 static void handle_vehicle(xmlNode *xml_node, Network *network);
 static void handle_route(xmlNode *xml_node, Carrier *carrier);
 static void handle_stop(xmlNode *xml_node, Carrier *carrier);
 static void handle_trip(xmlNode *xml_node, Carrier *carrier);
-static void handle_reservation(xmlNode *xml_node, Carrier *carrier);
 
 // Public definitions
 
@@ -36,7 +39,7 @@ int import_network(Network *network, const char *filename) {
     xmlNode *root_element = NULL;
     Carrier *carrier = new_carrier(network);
 
-    // Parse transit vehicules file
+    // Parse transit vehicles file
     doc = xmlReadFile(filename, NULL, 0);
     if (doc == NULL) {
         printf("Could not parse file %s.", filename);
@@ -48,6 +51,26 @@ int import_network(Network *network, const char *filename) {
     // Add last route
     new_route_from_carrier(carrier);
     delete_carrier(carrier);
+
+    // Clean up
+    xmlFreeDoc(doc);
+    xmlCleanupParser();
+
+    return 1;
+}
+
+int import_reservations(Network *network, const char *filename) {
+    xmlDoc *doc = NULL;
+    xmlNode *root_element = NULL;
+
+    // Parse transit vehicles file
+    doc = xmlReadFile(filename, NULL, 0);
+    if (doc == NULL) {
+        printf("Could not parse file %s.", filename);
+        return 0;
+    }
+    root_element = xmlDocGetRootElement(doc);
+    reservation_parser(root_element, network, NULL, NULL);
 
     // Clean up
     xmlFreeDoc(doc);
@@ -137,11 +160,83 @@ static void network_parser(xmlNode *xml_node, Carrier *carrier) {
                 handle_stop(xml_node, carrier);
             } else if (xmlStrcmp(xml_node->name, "trip") == 0) {
                 handle_trip(xml_node, carrier);
-            } else if (xmlStrcmp(xml_node->name, "reservation") == 0) {
-                handle_reservation(xml_node, carrier);
             }
         }
         network_parser(xml_node->children, carrier);
+        xml_node = xml_node->next;
+    }
+}
+
+static void reservation_parser(xmlNode *xml_node, Network *network,
+                               Route *route, Trip *trip) {
+    while (xml_node) {
+        if (xml_node->type == XML_ELEMENT_NODE) {
+            if (xmlStrcmp(xml_node->name, "reservation") == 0) {
+                char *rid_tmp = xmlGetProp(xml_node, "rid");
+                char *tid_tmp = xmlGetProp(xml_node, "tid");
+                char *nid_orig_tmp = xmlGetProp(xml_node, "nid_orig");
+                char *nid_dest_tmp = xmlGetProp(xml_node, "nid_dest");
+                char *seats_tmp = xmlGetProp(xml_node, "seats");
+
+                // Get route
+                if (route == NULL || xmlStrcmp(rid_tmp, route->id) != 0) {
+                    route = get_route(network, rid_tmp);
+                }
+
+                // Get trip
+                if (trip == NULL || xmlStrcmp(tid_tmp, trip->id) != 0) {
+                    trip = route->root_trip;
+                    while (trip) {
+                        if (xmlStrcmp(tid_tmp, trip->id) == 0) break;
+                        trip = trip->next;
+                    }
+                }
+
+                // Get orig
+                Stop *orig = route->root_stop;
+                while (orig) {
+                    if (xmlStrcmp(nid_orig_tmp, orig->node->id) == 0) break;
+                    orig = orig->next;
+                }
+
+                // Get dest
+                Stop *dest = orig;
+                while (dest) {
+                    if (xmlStrcmp(nid_dest_tmp, dest->node->id) == 0) break;
+                    dest = dest->next;
+                }
+
+                // Recreate connection
+                Connection *conn = (Connection *)malloc(sizeof(Connection));
+                conn->prev = NULL;
+                conn->next = NULL;
+                conn->orig = orig;
+                conn->dest = dest;
+                conn->trip = trip;
+                conn->departure = 0;
+                conn->arrival = 1;
+                conn->available = INT_MAX;
+
+                // Create new reservation
+                int seats;
+                sscanf(seats_tmp, "%d", &seats);
+                if (new_reservation(conn, seats) == NULL) {
+                    printf(
+                        "ERROR: Failed to create reservation (%s -> %s, "
+                        "trip=%s, seats=%d).\n",
+                        orig->node->id, dest->node->id, trip->id, seats);
+                }
+
+                // Free heap
+                delete_connection(conn);
+                xmlFree(rid_tmp);
+                xmlFree(tid_tmp);
+                xmlFree(nid_orig_tmp);
+                xmlFree(nid_dest_tmp);
+                xmlFree(seats_tmp);
+            }
+        }
+        reservation_parser(xml_node->children, network, route, trip);
         xml_node = xml_node->next;
     }
 }
@@ -231,34 +326,4 @@ static void handle_trip(xmlNode *xml_node, Carrier *carrier) {
     carrier->departures[carrier->trip_count] = dep;
     carrier->vehicles[carrier->trip_count] = vehicle;
     ++(carrier->trip_count);
-}
-
-static void handle_reservation(xmlNode *xml_node, Carrier *carrier) {
-    // Skip...
-    return;
-
-    // Parse reservation element
-    int seats;
-    char *orig_nid_tmp = xmlGetProp(xml_node, "orig_nid");
-    char *dest_nid_tmp = xmlGetProp(xml_node, "dest_nid");
-    char *seats_tmp = xmlGetProp(xml_node, "seats");
-    Node *orig = get_node(carrier->network, orig_nid_tmp);
-    Node *dest = get_node(carrier->network, dest_nid_tmp);
-    sscanf(seats_tmp, "%d", &seats);
-    xmlFree(orig_nid_tmp);
-    xmlFree(dest_nid_tmp);
-    xmlFree(seats_tmp);
-
-    // Allocate reservation struct.
-    Reservation *res = (Reservation *)malloc(sizeof(Reservation));
-    // res->orig = orig; stop and not node!
-    // res->dest = dest; stop and not node!
-    res->seats = seats;
-
-    // Issues:
-    // - Need to create trip first.
-    // - Connect reservation to *trip.
-    // - Increase count on stops.
-    // - Maybe split reservations from network into a seperate file?
-    // - Would also be better with respect to different days / dates.
 }

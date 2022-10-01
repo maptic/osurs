@@ -1,7 +1,7 @@
 /**
  * @brief Access network structures.
  * @file getter.c
- * @date: 2022-07-12
+ * @date: 2022-09-30
  * @author: Merlin Unterfinger
  */
 
@@ -36,6 +36,14 @@ Composition *get_composition(Network *network, const char *id) {
             return network->compositions[i];
     }
     printf("Composition %s not found.\n", id);
+    return NULL;
+}
+
+Route *get_route(Network *network, const char *id) {
+    for (int i = 0; i < network->route_counter; ++i) {
+        if (strcmp(network->routes[i]->id, id) == 0) return network->routes[i];
+    }
+    printf("Route %s not found.\n", id);
     return NULL;
 }
 

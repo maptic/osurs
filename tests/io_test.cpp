@@ -47,9 +47,12 @@ TEST(IOTest, ReadMatsim) {
 
 TEST(IOTest, Import) {
     int success;
-    const char* network_file = "input/intercity.xml";
+    const char* network_file = "input/intercity_network.xml";
+    const char* reservation_file = "input/intercity_network.xml";
     Network* network = new_network();
     success = import_network(network, network_file);
+    EXPECT_EQ(success, 1);
+    success = import_reservations(network, reservation_file);
     EXPECT_EQ(success, 1);
     delete_network(network);
 }
@@ -58,12 +61,19 @@ TEST(IOTest, Import) {
 TEST(IOTest, Export) {
     int success;
 
-    // Osurs format import and export
-    const char* network_file = "input/intercity.xml";
+    // Osurs format import
+    const char* network_file = "input/intercity_network.xml";
+    const char* reservation_file = "input/intercity_network.xml";
     Network* network = new_network();
     success = import_network(network, network_file);
     EXPECT_EQ(success, 1);
+    success = import_reservations(network, reservation_file);
+    EXPECT_EQ(success, 1);
+
+    // Osurs format export
     success = export_network(network, "tmp_network_export.xml");
+    EXPECT_EQ(success, 1);
+    success = export_reservations(network, "tmp_reservation_export.xml");
     EXPECT_EQ(success, 1);
     delete_network(network);
 

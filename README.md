@@ -6,8 +6,8 @@ Optimization of space utilization in reservation systems. An algorithm for optim
 
 The **osurs** library contains the following modules with corresponding headers:
 
-- **io:** Input and output of networks and its strutures.
-- **network:** Network for reservation optmization.
+- **io:** Input and output of networks and its structures.
+- **network:** Network for reservation optimization.
 - **optimize:** Optimizing space utilization in reservation systems.
 - **reserve:** Connection routing, checking seat availability and reservation.
 - **types:** Data types of osurs.
@@ -20,6 +20,7 @@ graph RL;
     osurs/network.h-->|#include|osurs/types.h;
     osurs/io.h-->|#include|osurs/network.h
     osurs/reserve.h-->|#include|osurs/network.h;
+    osurs/reserve.h-->|#include|osurs/io.h;
     osurs/reserve.h-->|#include|osurs/optimize.h;
   end;
 ```
@@ -110,7 +111,7 @@ gitGraph
   commit tag: "v0.2.0"
 ```
 
-This library uses [semantic versioning](https://semver.org/spec/v2.0.0.html). Once `main` has aquired enough features for a release, set the new version number in the [`CMakeLists.txt`](CMakeLists.txt) and [`CHANGELOG.md`](CHANGELOG.md). Commit and push to `main` and publish a release on [GitHub](https://github.com/maptic/osurs/releases) with the version number as tag.
+This library uses [semantic versioning](https://semver.org/spec/v2.0.0.html). Once `main` has acquired enough features for a release, set the new version number in the [`CMakeLists.txt`](CMakeLists.txt) and [`CHANGELOG.md`](CHANGELOG.md). Commit and push to `main` and publish a release on [GitHub](https://github.com/maptic/osurs/releases) with the version number as tag.
 
 ### Style guide
 
@@ -166,7 +167,7 @@ brew install cmake doxygen graphviz valgrind libxml2
 ### Testing import and export module
 
 - [cmake generate test data [duplicate]](https://stackoverflow.com/questions/42806857/cmake-generate-test-data)
-- [MATSim pt test ressources](https://github.com/matsim-org/matsim-libs/tree/master/matsim/src/test/resources/test/input/org/matsim/pt/counts)
+- [MATSim pt test resources](https://github.com/matsim-org/matsim-libs/tree/master/matsim/src/test/resources/test/input/org/matsim/pt/counts)
 - [Test reading from a file using GoogleTest](https://stackoverflow.com/questions/28616603/test-reading-from-a-file-using-googletest)
 - [Copy file from source directory to binary directory using CMake](https://stackoverflow.com/questions/34799916/copy-file-from-source-directory-to-binary-directory-using-cmake)
 

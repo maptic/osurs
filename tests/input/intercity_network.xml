@@ -46,11 +46,11 @@
                 <stop arr_off="03:42:00" dep_off="03:43:00" nid="St. Gallen"/>
             </stops>
             <trips>
-                <trip id="ic-1-we-1" dep="06:00:00" arr="09:42:00" vid="fvd-1" res="0"/>
-                <trip id="ic-1-we-2" dep="09:00:00" arr="12:42:00" vid="fvd-2" res="0"/>
-                <trip id="ic-1-we-3" dep="12:00:00" arr="15:42:00" vid="fvd-1" res="0"/>
-                <trip id="ic-1-we-4" dep="15:00:00" arr="18:42:00" vid="fvd-2" res="0"/>
-                <trip id="ic-1-we-5" dep="18:00:00" arr="21:42:00" vid="fvd-1" res="0"/>
+                <trip id="ic-1-we-1" dep="06:00:00" arr="09:42:00" vid="fvd-1"/>
+                <trip id="ic-1-we-2" dep="09:00:00" arr="12:42:00" vid="fvd-2"/>
+                <trip id="ic-1-we-3" dep="12:00:00" arr="15:42:00" vid="fvd-1"/>
+                <trip id="ic-1-we-4" dep="15:00:00" arr="18:42:00" vid="fvd-2"/>
+                <trip id="ic-1-we-5" dep="18:00:00" arr="21:42:00" vid="fvd-1"/>
             </trips>
         </route>
         <route id="ic-1-ew" stops="5" trips="5">
@@ -62,11 +62,11 @@
                 <stop arr_off="03:42:00" dep_off="03:42:00" nid="Genève-Aéroport"/>
             </stops>
             <trips>
-                <trip id="ic-1-ew-1" dep="06:00:00" arr="09:42:00" vid="fvd-2" res="0"/>
-                <trip id="ic-1-ew-2" dep="09:00:00" arr="12:42:00" vid="fvd-1" res="0"/>
-                <trip id="ic-1-ew-3" dep="12:00:00" arr="15:42:00" vid="fvd-2" res="0"/>
-                <trip id="ic-1-ew-4" dep="15:00:00" arr="18:42:00" vid="fvd-1" res="0"/>
-                <trip id="ic-1-ew-5" dep="18:00:00" arr="21:42:00" vid="fvd-2" res="0"/>
+                <trip id="ic-1-ew-1" dep="06:00:00" arr="09:42:00" vid="fvd-2"/>
+                <trip id="ic-1-ew-2" dep="09:00:00" arr="12:42:00" vid="fvd-1"/>
+                <trip id="ic-1-ew-3" dep="12:00:00" arr="15:42:00" vid="fvd-2"/>
+                <trip id="ic-1-ew-4" dep="15:00:00" arr="18:42:00" vid="fvd-1"/>
+                <trip id="ic-1-ew-5" dep="18:00:00" arr="21:42:00" vid="fvd-2"/>
             </trips>
         </route>
         <route id="ic-2-ns" stops="4" trips="5">
@@ -77,20 +77,11 @@
                 <stop arr_off="01:57:00" dep_off="01:57:00" nid="Lugano"/>
             </stops>
             <trips>
-                <trip id="ic-2-ns-1" dep="06:30:00" arr="08:27:00" vid="gir-1" res="0"/>
-                <trip id="ic-2-ns-2" dep="09:30:00" arr="11:27:00" vid="gir-2" res="0"/>
-                <trip id="ic-2-ns-3" dep="12:30:00" arr="14:27:00" vid="gir-1" res="2">
-                    <reservations>
-                        <reservation orig_nid="Zürich HB" dest_nid="Lugano" seats="2"/>
-                        <reservation orig_nid="Zürich HB" dest_nid="Lugano" seats="1"/>
-                    </reservations>
-                </trip>
-                <trip id="ic-2-ns-4" dep="15:30:00" arr="17:27:00" vid="gir-2" res="0"/>
-                <trip id="ic-2-ns-5" dep="18:30:00" arr="20:27:00" vid="gir-1" res="1">
-                    <reservations>
-                        <reservation orig_nid="Zürich HB" dest_nid="Lugano" seats="5"/>
-                    </reservations>
-                </trip>
+                <trip id="ic-2-ns-1" dep="06:30:00" arr="08:27:00" vid="gir-1"/>
+                <trip id="ic-2-ns-2" dep="09:30:00" arr="11:27:00" vid="gir-2"/>
+                <trip id="ic-2-ns-3" dep="12:30:00" arr="14:27:00" vid="gir-1"/>
+                <trip id="ic-2-ns-4" dep="15:30:00" arr="17:27:00" vid="gir-2"/>
+                <trip id="ic-2-ns-5" dep="18:30:00" arr="20:27:00" vid="gir-1"/>
             </trips>
         </route>
         <route id="ic-2-sn" stops="4" trips="5">
@@ -101,11 +92,11 @@
                 <stop arr_off="01:57:00" dep_off="01:57:00" nid="Zürich HB"/>
             </stops>
             <trips>
-                <trip id="ic-2-sn-1" dep="06:30:00" arr="08:27:00" vid="gir-2" res="0"/>
-                <trip id="ic-2-sn-2" dep="09:30:00" arr="11:27:00" vid="gir-1" res="0"/>
-                <trip id="ic-2-sn-3" dep="12:30:00" arr="14:27:00" vid="gir-2" res="0"/>
-                <trip id="ic-2-sn-4" dep="15:30:00" arr="17:27:00" vid="gir-1" res="0"/>
-                <trip id="ic-2-sn-5" dep="18:30:00" arr="20:27:00" vid="gir-2" res="0"/>
+                <trip id="ic-2-sn-1" dep="06:30:00" arr="08:27:00" vid="gir-2"/>
+                <trip id="ic-2-sn-2" dep="09:30:00" arr="11:27:00" vid="gir-1"/>
+                <trip id="ic-2-sn-3" dep="12:30:00" arr="14:27:00" vid="gir-2"/>
+                <trip id="ic-2-sn-4" dep="15:30:00" arr="17:27:00" vid="gir-1"/>
+                <trip id="ic-2-sn-5" dep="18:30:00" arr="20:27:00" vid="gir-2"/>
             </trips>
         </route>
         <route id="ic-6-ns" stops="4" trips="5">
@@ -116,11 +107,11 @@
                 <stop arr_off="02:12:00" dep_off="02:12:00" nid="Brig"/>
             </stops>
             <trips>
-                <trip id="ic-6-ns-1" dep="06:15:00" arr="08:27:00" vid="ic2-1" res="0"/>
-                <trip id="ic-6-ns-2" dep="09:15:00" arr="11:27:00" vid="ic2-2" res="0"/>
-                <trip id="ic-6-ns-3" dep="12:15:00" arr="14:27:00" vid="ic2-1" res="0"/>
-                <trip id="ic-6-ns-4" dep="15:15:00" arr="17:27:00" vid="ic2-2" res="0"/>
-                <trip id="ic-6-ns-5" dep="18:15:00" arr="20:27:00" vid="ic2-1" res="0"/>
+                <trip id="ic-6-ns-1" dep="06:15:00" arr="08:27:00" vid="ic2-1"/>
+                <trip id="ic-6-ns-2" dep="09:15:00" arr="11:27:00" vid="ic2-2"/>
+                <trip id="ic-6-ns-3" dep="12:15:00" arr="14:27:00" vid="ic2-1"/>
+                <trip id="ic-6-ns-4" dep="15:15:00" arr="17:27:00" vid="ic2-2"/>
+                <trip id="ic-6-ns-5" dep="18:15:00" arr="20:27:00" vid="ic2-1"/>
             </trips>
         </route>
         <route id="ic-6-sn" stops="4" trips="5">
@@ -131,11 +122,11 @@
                 <stop arr_off="02:12:00" dep_off="02:12:00" nid="Basel SBB"/>
             </stops>
             <trips>
-                <trip id="ic-6-sn-1" dep="06:15:00" arr="08:27:00" vid="ic2-2" res="0"/>
-                <trip id="ic-6-sn-2" dep="09:15:00" arr="11:27:00" vid="ic2-1" res="0"/>
-                <trip id="ic-6-sn-3" dep="12:15:00" arr="14:27:00" vid="ic2-2" res="0"/>
-                <trip id="ic-6-sn-4" dep="15:15:00" arr="17:27:00" vid="ic2-1" res="0"/>
-                <trip id="ic-6-sn-5" dep="18:15:00" arr="20:27:00" vid="ic2-2" res="0"/>
+                <trip id="ic-6-sn-1" dep="06:15:00" arr="08:27:00" vid="ic2-2"/>
+                <trip id="ic-6-sn-2" dep="09:15:00" arr="11:27:00" vid="ic2-1"/>
+                <trip id="ic-6-sn-3" dep="12:15:00" arr="14:27:00" vid="ic2-2"/>
+                <trip id="ic-6-sn-4" dep="15:15:00" arr="17:27:00" vid="ic2-1"/>
+                <trip id="ic-6-sn-5" dep="18:15:00" arr="20:27:00" vid="ic2-2"/>
             </trips>
         </route>
         <route id="ic-21-ns" stops="5" trips="5">
@@ -147,11 +138,11 @@
                 <stop arr_off="02:55:00" dep_off="02:55:00" nid="Lugano"/>
             </stops>
             <trips>
-                <trip id="ic-21-ns-1" dep="06:45:00" arr="09:40:00" vid="icn-1" res="0"/>
-                <trip id="ic-21-ns-2" dep="09:45:00" arr="12:40:00" vid="icn-2" res="0"/>
-                <trip id="ic-21-ns-3" dep="12:45:00" arr="15:40:00" vid="icn-1" res="0"/>
-                <trip id="ic-21-ns-4" dep="15:45:00" arr="18:40:00" vid="icn-2" res="0"/>
-                <trip id="ic-21-ns-5" dep="18:45:00" arr="21:40:00" vid="icn-1" res="0"/>
+                <trip id="ic-21-ns-1" dep="06:45:00" arr="09:40:00" vid="icn-1"/>
+                <trip id="ic-21-ns-2" dep="09:45:00" arr="12:40:00" vid="icn-2"/>
+                <trip id="ic-21-ns-3" dep="12:45:00" arr="15:40:00" vid="icn-1"/>
+                <trip id="ic-21-ns-4" dep="15:45:00" arr="18:40:00" vid="icn-2"/>
+                <trip id="ic-21-ns-5" dep="18:45:00" arr="21:40:00" vid="icn-1"/>
             </trips>
         </route>
         <route id="ic-21-sn" stops="5" trips="5">
@@ -163,11 +154,11 @@
                 <stop arr_off="02:55:00" dep_off="02:55:00" nid="Basel SBB"/>
             </stops>
             <trips>
-                <trip id="ic-21-sn-1" dep="06:45:00" arr="09:40:00" vid="icn-2" res="0"/>
-                <trip id="ic-21-sn-2" dep="09:45:00" arr="12:40:00" vid="icn-1" res="0"/>
-                <trip id="ic-21-sn-3" dep="12:45:00" arr="15:40:00" vid="icn-2" res="0"/>
-                <trip id="ic-21-sn-4" dep="15:45:00" arr="18:40:00" vid="icn-1" res="0"/>
-                <trip id="ic-21-sn-5" dep="18:45:00" arr="21:40:00" vid="icn-2" res="0"/>
+                <trip id="ic-21-sn-1" dep="06:45:00" arr="09:40:00" vid="icn-2"/>
+                <trip id="ic-21-sn-2" dep="09:45:00" arr="12:40:00" vid="icn-1"/>
+                <trip id="ic-21-sn-3" dep="12:45:00" arr="15:40:00" vid="icn-2"/>
+                <trip id="ic-21-sn-4" dep="15:45:00" arr="18:40:00" vid="icn-1"/>
+                <trip id="ic-21-sn-5" dep="18:45:00" arr="21:40:00" vid="icn-2"/>
             </trips>
         </route>
     </routes>
