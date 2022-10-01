@@ -7,7 +7,7 @@
 
 #include <osurs/olal.h>
 
-// optimizes the seat reservations on the given trip
+ // optimizes the seat reservations on the given trip
 Seat_collection* optimize_trip(Trip* t)
 {
 	// get first stop of the route
@@ -62,7 +62,7 @@ Seat_collection* optimize_trip(Trip* t)
 		logical_res_arr,
 		t->reservation_counter,
 		res_ids,
-		(int)t->route->route_size,
+		(int)t->route->route_size - 1,
 		t->vehicle->composition->seat_ids,
 		t->vehicle->composition->seat_count);
 
