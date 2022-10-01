@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reservations>
+    <reservation rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation rid="ic-1-ew" tid="ic-1-ew-3" nid_orig="Zürich HB" nid_dest="Lausanne" seats="10"/>
+    <reservation rid="ic-1-ew" tid="ic-1-ew-4" nid_orig="Zürich HB" nid_dest="Lausanne" seats="7"/>
+    <reservation rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="2"/>
+    <reservation rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="1"/>
+    <reservation rid="ic-2-ns" tid="ic-2-ns-5" nid_orig="Zürich HB" nid_dest="Lugano" seats="5"/>
+</reservations>

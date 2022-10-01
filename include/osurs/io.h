@@ -29,6 +29,15 @@
  */
 int import_network(Network *network, const char *filename);
 
+/**
+ * @brief Import reservations from xml.
+ *
+ * @param network The network to import the reservations content to.
+ * @param filename The file to import.
+ * @return 1 if success, 0 if failure.
+ */
+int import_reservations(Network *network, const char *filename);
+
 // io/export
 
 /**
@@ -39,6 +48,15 @@ int import_network(Network *network, const char *filename);
  * @return 1 if success, 0 if failure.
  */
 int export_network(Network *network, const char *filename);
+
+/**
+ * @brief Export reservations of a network to xml.
+ *
+ * @param network The network to export the reservations.
+ * @param filename The file to create.
+ * @return 1 if success, 0 if failure.
+ */
+int export_reservations(Network *network, const char *filename);
 
 // io/matsim
 
