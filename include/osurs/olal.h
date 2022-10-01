@@ -5,7 +5,7 @@
  *
  * @file olal.h
  * @date: 2022-09-30
- * @author: Tobias Meier, Merlin Unterfinger
+ * @author: Tobias Meier
  */
 
 #pragma once
@@ -13,9 +13,12 @@
 #include <osurs/types.h>
 #include <osurs/optimize.h>
 
-/**
-*
-*
-**/
-Seat_collection* optimize_trip(Trip t);
+ /**
+ * @brief Optimize seat reservations on given trip
+ * 
+ * @param t The trip that needs to be optimized.
+ * 
+ * @return A pointer to the optimized seat collection.
+ **/
+Seat_collection* optimize_trip(Trip* t);
 

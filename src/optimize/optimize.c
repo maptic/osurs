@@ -1,3 +1,10 @@
+/**
+ * @brief seat reservation optimization
+ * @file optimization.c
+ * @date: 2022-08-22
+ * @author: Tobias Meier
+ */
+
 #include <osurs/optimize.h>
 
 // Public definitions

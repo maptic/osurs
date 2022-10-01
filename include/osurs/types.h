@@ -170,6 +170,7 @@ typedef struct connection_t {
  * equal to the avalable seats.
  */
 typedef struct reservation_t {
+    int res_id;          /**< Reservation id */
     int seats;           /**< Reserved seats. */
     struct stop_t *orig; /**< The orig stop of the reservation. */
     struct stop_t *dest; /**< The orig stop of the reservation. */
