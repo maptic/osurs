@@ -20,7 +20,6 @@ graph RL;
     osurs/network.h-->|#include|osurs/types.h;
     osurs/io.h-->|#include|osurs/network.h
     osurs/reserve.h-->|#include|osurs/network.h;
-    osurs/reserve.h-->|#include|osurs/io.h;
     osurs/reserve.h-->|#include|osurs/optimize.h;
   end;
 ```
