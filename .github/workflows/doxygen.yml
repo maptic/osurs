@@ -13,6 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Setup
+      run: apt install -y doxygen graphviz
+
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
@@ -26,7 +29,6 @@ jobs:
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
-        run: ls
         github_token: ${{secrets.GITHUB_TOKEN}}
         branch: gh-pages
         folder: ${{github.workspace}}/build/doc/html
