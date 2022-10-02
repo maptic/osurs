@@ -1,0 +1,6 @@
+<map id="include/osurs/reserve.h" name="include/osurs/reserve.h">
+<area shape="rect" id="node1" title="Connection routing, checking seat availability and reservation." alt="" coords="148,5,321,32"/>
+<area shape="rect" id="node2" href="$import_8c.html" title="Import a network file." alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node3" href="$connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="145,80,325,107"/>
+<area shape="rect" id="node4" href="$reservation_8c.html" title="Placing reservations for found connections." alt="" coords="349,80,531,107"/>
+</map>

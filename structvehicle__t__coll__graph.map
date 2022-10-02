@@ -1,0 +1,4 @@
+<map id="vehicle_t" name="vehicle_t">
+<area shape="rect" id="node1" title="A vehicle." alt="" coords="22,95,103,121"/>
+<area shape="rect" id="node2" href="$structcomposition__t.html" title="A composition." alt="" coords="5,5,120,32"/>
+</map>

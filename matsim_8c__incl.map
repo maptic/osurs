@@ -1,0 +1,13 @@
+<map id="src/io/matsim.c" name="src/io/matsim.c">
+<area shape="rect" id="node1" title="Import a MATSim transit schedule from XML." alt="" coords="247,5,370,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="123,80,241,107"/>
+<area shape="rect" id="node3" href="$io_8h.html" title="Input and output of networks and its strutures." alt="" coords="266,80,351,107"/>
+<area shape="rect" id="node11" href="$utils_8h.html" title="IO helper and utils methods." alt="" coords="423,80,485,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,155,76,181"/>
+<area shape="rect" id="node5" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="100,155,227,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="445,155,511,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="251,155,321,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="346,155,421,181"/>
+<area shape="rect" id="node6" href="$types_8h.html" title="Data types of osurs." alt="" coords="109,229,218,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="128,304,199,331"/>
+</map>
