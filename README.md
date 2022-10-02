@@ -1,6 +1,7 @@
 # osurs
 
 [![CMake](https://github.com/maptic/osurs/actions/workflows/cmake.yml/badge.svg)](https://github.com/maptic/osurs/actions/workflows/cmake.yml)
+[![Doxygen](https://github.com/maptic/osurs/actions/workflows/doxygen.yml/badge.svg)](https://github.com/maptic/osurs/actions/workflows/doxygen.yml)
 
 Optimization of space utilization in reservation systems. An algorithm for optimal distribution of reservations along a trip among available seats.
 
@@ -24,7 +25,7 @@ graph RL;
   end;
 ```
 
-**Note:** The core functionality of **osurs** is in the `optimize.h` module. There are already powerful routing algorithms for public transport, so the algorithm included here is minimal and only serves to book reservations on already known/found connections to the right segments of the trips (without transfers).
+**Note:** The core functionality of **osurs** is optimizing reservations. There are already powerful routing algorithms for public transport, so the algorithm included here is minimal and only serves to book reservations on already known/found connections to the right segments of the trips (without transfers).
 
 ## Network structure
 
@@ -83,6 +84,30 @@ graph LR;
     Connection-->|*trip|Trip
   end
 ```
+
+## Import and export
+
+Networks and reservations can be persisted as separate XML files. This separation brings the advantage that the reservations (e.g. of a certain day) can be added to an already loaded network. However, it is important to delete already existing reservations from the network beforehand.
+
+```c
+#include <osurs/io.h>
+
+int main(int argc, char* argv[]) {
+    Network* network = new_network();
+    if (!import_network(network, "network.xml")) {
+        perror("Could not load network.");
+        return 1;
+    }
+    if (!import_reservations(network, "reservations.xml")) {
+        perror("Could not load reservations.");
+        return 1;
+    }
+    delete_network(network);
+    return 0;
+}
+```
+
+In addition, transit schedules and vehicle definition files from MATSim can be imported using `import_matsim()`.
 
 ## Development
 
