@@ -1,5 +1,5 @@
 /**
- * @brief Input and output of networks and its strutures
+ * @brief Input and output of networks and its structures
  * @file print.c
  * @date: 2022-07-12
  * @author: Merlin Unterfinger
@@ -89,7 +89,7 @@ void print_network(Network *network) {
         print_node(network->nodes[i]);
     }
     printf("  </nodes>\n");
-    // Compostitions
+    // Compositions
     printf("  <compositions>\n");
     for (size_t i = 0; i < network->composition_counter; ++i) {
         printf("    ");

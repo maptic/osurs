@@ -92,26 +92,21 @@ Networks and reservations can be persisted as separate XML files. This separatio
 #include <osurs/io.h>
 
 int main(int argc, char* argv[]) {
-
     Network* network = new_network();
-
-    if (!import_network(network, "intercity_network.xml")) {
+    if (!import_network(network, "network.xml")) {
         perror("Could not load network.");
         return 1;
     }
-
-    if (!import_reservations(network, "intercity_reservations.xml")) {
+    if (!import_reservations(network, "reservations.xml")) {
         perror("Could not load reservations.");
         return 1;
     }
-
     delete_network(network);
-
     return 0;
 }
 ```
 
-In addition, transit schedules and vehicle definition files from MATSim can be imported.
+In addition, transit schedules and vehicle definition files from MATSim can be imported using `import_matsim()`.
 
 ## Development
 
