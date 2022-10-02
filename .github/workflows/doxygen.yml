@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: |
         cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-        touch ${{github.workspace}}/doc/html/.nojekyll
+        touch ${{github.workspace}}/build/doc/html/.nojekyll
 
     - name: Test
       working-directory: ${{github.workspace}}/build
