@@ -36,7 +36,7 @@ int import_matsim(Network *network, const char *schedule_file,
     xmlDoc *doc = NULL;
     xmlNode *root_element = NULL;
 
-    // Parse transit vehicules file
+    // Parse transit vehicles file
     doc = xmlReadFile(vehicle_file, NULL, 0);
     if (doc == NULL) {
         printf("Could not parse file %s.", vehicle_file);
@@ -79,7 +79,7 @@ typedef struct carrier_t {
     struct vehicle_t **vehicles;
     size_t trip_size;
     size_t trip_alloc_size;
-    int route_counter;  // Needed for ommiting first route element occurence
+    int route_counter;  // Needed for omitting first route element occurrence
 } Carrier;
 
 static Carrier *new_carrier(Network *network) {
