@@ -1,4 +1,4 @@
-# osurs
+# osurs <img src="docs/img/logo.png" align="right" alt="" width="120" />
 
 [![CMake](https://github.com/maptic/osurs/actions/workflows/cmake.yml/badge.svg)](https://github.com/maptic/osurs/actions/workflows/cmake.yml)
 [![Doxygen](https://github.com/maptic/osurs/actions/workflows/doxygen.yml/badge.svg)](https://github.com/maptic/osurs/actions/workflows/doxygen.yml)
