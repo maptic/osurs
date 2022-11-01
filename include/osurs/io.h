@@ -1,5 +1,5 @@
 /**
- * @brief Input and output of networks and its strutures
+ * @brief Input and output of networks and its structures
  *
  * Printing osurs structures, importing and exporting networks, vehicles and
  * reservations.
