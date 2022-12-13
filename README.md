@@ -30,7 +30,9 @@ graph RL;
 
 **Note:** The core functionality of **osurs** is optimizing reservations. There are already powerful routing algorithms for public transport, so the algorithm included here is minimal and only serves to book reservations on already known/found connections to the right segments of the trips (without transfers).
 
-## Network structure
+## Components and functionalities
+
+### Transit network
 
 The network consists of nodes where vehicles stop and passengers can get on and off. A route stores the order in which the nodes are approached by a vehicle in a chain of stops. Each stop contains information about which stop is next and how long it takes to reach it. On routes, trips indicate the departure times at which a vehicle leaves from the route's root stop. Vehicle information such as capacity and reservations are stored at the trip level.
 
@@ -55,7 +57,7 @@ graph LR;
   end;
 ```
 
-## Connections and reservations
+### Connections and reservations
 
 Queried connections are not stored on the network and must be released individually to prevent a memory leak (`delete_connection()`). If more than one connection is possible between to nodes on the network, a connection chain is created. In a connection chain, the `.prev` property of the connection structure points to the previous connection or `NULL` if it is the root of the chain. Identically, the `.next` property points to the next connection or to `NULL` if it is the end of the chain.
 
@@ -88,7 +90,7 @@ graph LR;
   end
 ```
 
-## Import and export
+### Import and export
 
 Networks and reservations can be persisted as separate XML files. This separation brings the advantage that the reservations (e.g. of a certain day) can be added to an already loaded network. However, it is important to delete already existing reservations from the network beforehand.
 
