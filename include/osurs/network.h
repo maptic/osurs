@@ -1,5 +1,5 @@
 /**
- * @brief Network for reservation optmization
+ * @brief Network for reservation optimization
  *
  * The network consists of nodes with a name and coordinates. A route is defined
  * by stops and trips. Each stop is associated to a node of the network and

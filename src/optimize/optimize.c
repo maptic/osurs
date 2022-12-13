@@ -1,5 +1,5 @@
 /**
- * @brief seat reservation optimization
+ * @brief Seat reservation optimization.
  * @file optimization.c
  * @date: 2022-08-22
  * @author: Tobias Meier

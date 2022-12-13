@@ -9,8 +9,9 @@ The **osurs** library contains the following modules with corresponding headers:
 
 - **io:** Input and output of networks and its structures.
 - **network:** Network for reservation optimization.
-- **optimize:** Optimizing space utilization in reservation systems.
 - **reserve:** Connection routing, checking seat availability and reservation.
+- **optimize:** Optimizing space utilization in reservation systems.
+- **olal:** Optimization logic abstraction layer.
 - **types:** Data types of osurs.
 
 **Interdependencies:**
@@ -21,7 +22,8 @@ graph RL;
     osurs/network.h-->|#include|osurs/types.h;
     osurs/io.h-->|#include|osurs/network.h
     osurs/reserve.h-->|#include|osurs/network.h;
-    osurs/reserve.h-->|#include|osurs/optimize.h;
+    osurs/olal.h-->|#include|osurs/reserve.h;
+    osurs/olal.h-->|#include|osurs/optimize.h;
   end;
 ```
 
@@ -139,7 +141,22 @@ This library uses [semantic versioning](https://semver.org/spec/v2.0.0.html). On
 
 ### Style guide
 
-Maybe use the [Linux kernel coding style](https://www.kernel.org/doc/html/v4.10/process/coding-style.html) guide?
+Use the following naming conventions:
+
+- `snake_case` for variables and variables.
+- `UpperCamelCase` for type definitions.
+- `UPPER_SNAKE_CASE` for constants.
+
+Place the opening brace on the same line in function definitions and flow control statements:
+
+```c
+int function(int x) {
+    if (x > 0) {
+        // ...
+    }
+    return x;
+}
+```
 
 ### Testing
 

@@ -1,5 +1,8 @@
 /**
- * @brief Osurs CLI (tbd).
+ * @brief The osurs command line interface
+ *
+ * (tbd.)
+ *
  * @file main.c
  * @date: 2022-07-19
  * @author: Merlin Unterfinger

@@ -1,5 +1,5 @@
 /**
- * @brief Routing connections between nodes on the network without transfers.
+ * @brief Routing connections between nodes on the network without transfers
  *
  * Public transit routing without transfers, checking seat availability and
  * selecting best connections based on arrival time.

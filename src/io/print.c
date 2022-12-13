@@ -1,5 +1,5 @@
 /**
- * @brief Input and output of networks and its structures
+ * @brief Input and output of networks and its structures.
  * @file print.c
  * @date: 2022-07-12
  * @author: Merlin Unterfinger

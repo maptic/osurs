@@ -1,5 +1,5 @@
 /**
- * @brief optimization logic abstraction layer
+ * @brief Optimization logic abstraction layer.
  * @file olal.c
  * @date: 2022-09-30
  * @author: Tobias Meier
