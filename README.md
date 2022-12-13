@@ -61,12 +61,12 @@ Queried connections are not stored on the network and must be released individua
 
 ```mermaid
 graph LR;
-  Connection_1-->|*next|Connection_2;
-  Connection_2-->|*next|Connection_3;
-  Connection_3-->|*next|NULL;
-  Connection_3-->|*prev|Connection_2;
-  Connection_2-->|*prev|Connection_1;
-  Connection_1-->|*prev|NULL;
+  connection_1-->|*next|connection_2;
+  connection_2-->|*next|connection_3;
+  connection_3-->|*next|NULL;
+  connection_3-->|*prev|connection_2;
+  connection_2-->|*prev|connection_1;
+  connection_1-->|*prev|NULL;
 ```
 
 When a reservation is made, it is stored as a reservation struct on the network with a relation to the corresponding trip. The reservation exists on the heap until the entire network is released.
