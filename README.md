@@ -22,6 +22,7 @@ graph RL;
     osurs/network.h-->|#include|osurs/types.h;
     osurs/io.h-->|#include|osurs/network.h
     osurs/reserve.h-->|#include|osurs/network.h;
+    osurs/optimize.h-->|#include|osurs/types.h;
     osurs/olal.h-->|#include|osurs/reserve.h;
     osurs/olal.h-->|#include|osurs/optimize.h;
   end;
