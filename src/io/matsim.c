@@ -241,7 +241,7 @@ static void matsim_schedule_parser(xmlNode *xml_node, Carrier *carrier) {
 
 static void handle_vehicle_type(xmlNode *xml_node, Network *network) {
     char *id_tmp = xmlGetProp(xml_node, "id");
-    int seats = 0;
+    int seat_count = 0;
 
     // Enter vehicleType
     xml_node = xml_node->children;
@@ -251,18 +251,18 @@ static void handle_vehicle_type(xmlNode *xml_node, Network *network) {
             if (xmlStrcmp(xml_node->name, "capacity") == 0) {
                 // Enter capacity
                 xml_node = xml_node->children;
-            } else if (xmlStrcmp(xml_node->name, "seats") == 0) {
-                // Get seats of capacity
-                char *seats_tmp = xmlGetProp(xml_node, "persons");
-                sscanf(seats_tmp, "%d", &seats);
-                xmlFree(seats_tmp);
+            } else if (xmlStrcmp(xml_node->name, "seat_count") == 0) {
+                // Get seat_count of capacity
+                char *seat_count_tmp = xmlGetProp(xml_node, "persons");
+                sscanf(seat_count_tmp, "%d", &seat_count);
+                xmlFree(seat_count_tmp);
                 break;
             }
         }
         xml_node = xml_node->next;
     }
 
-    new_composition(network, id_tmp, seats);
+    new_composition(network, id_tmp, seat_count);
     xmlFree(id_tmp);
 }
 

@@ -6,7 +6,7 @@
 	<vehicleType id="1">
 		<description>Bus</description>
 		<capacity>
-			<seats persons="41"/>
+			<seat_count persons="41"/>
 			<standingRoom persons="40"/>
 		</capacity>
 		<length meter="15.0"/>
@@ -14,7 +14,7 @@
 	<vehicleType id="2">
 		<description>Train</description>
 		<capacity>
-			<seats persons="500"/>
+			<seat_count persons="500"/>
 		</capacity>
 		<length meter="150.0"/>
 	</vehicleType>

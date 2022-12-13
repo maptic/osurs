@@ -15,8 +15,8 @@ void print_node(Node *node) {
 }
 
 void print_composition(Composition *composition) {
-    printf("<composition id=\"%s\" seats=\"%d\" />\n", composition->id,
-           composition->seats);
+    printf("<composition id=\"%s\" seat_count=\"%d\" />\n", composition->id,
+           composition->seat_count);
 }
 
 void print_vehicle(Vehicle *vehicle) {

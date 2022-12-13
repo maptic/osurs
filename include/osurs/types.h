@@ -4,7 +4,7 @@
  * All data types used by osurs are declared and defined here.
  *
  * @file types.h
- * @date: 2022-07-12
+ * @date: 2022-08-22
  * @author: Merlin Unterfinger
  */
 
@@ -117,8 +117,9 @@ typedef struct vehicle_t {
  */
 typedef struct composition_t {
     char *id;  /**< Identifier. */
-    int seats; /**< The seat capacity of the composition (TODO: Replace with
+    int seat_count; /**< The seat capacity of the composition (TODO: Replace with
                   groups in future). */
+    int* seat_ids;  /**< The seat id array */
 } Composition;
 
 /**
@@ -169,11 +170,34 @@ typedef struct connection_t {
  * equal to the avalable seats.
  */
 typedef struct reservation_t {
+    int res_id;          /**< Reservation id */
     int seats;           /**< Reserved seats. */
     struct stop_t *orig; /**< The orig stop of the reservation. */
     struct stop_t *dest; /**< The orig stop of the reservation. */
     struct trip_t *trip; /**< The trip on which the reservation is placed. */
 
 } Reservation;
+
+/**
+* @brief A seat
+*
+* A seat contains an array of reservations.
+*/
+typedef struct seat_t {
+	int seat_id;        /**< Seat id */
+	int res_count;      /**< Number of reservations */
+	int* res_id_arr;    /**< Array that contains each reservation id */
+} Seat;
+
+/**
+* @brief A seat collection
+*
+* The seat collection represents multiple seats over which the reservations were distributed/optimized.
+*/
+typedef struct seat_collection_t {
+	Seat** seat_arr;    /**< Array that contains all the available seats. */
+	int seat_count;     /**< Number of seats in the collection. */
+} SeatCollection;
+
 
 #endif  // OSURS_TYPES_H_

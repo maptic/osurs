@@ -84,8 +84,8 @@ int export_network(Network *network, const char *filename) {
         xmlTextWriterStartElement(writer, "composition");
         sprintf(buf, "%s", comp->id);
         xmlTextWriterWriteAttribute(writer, "id", buf);
-        sprintf(buf, "%d", comp->seats);
-        xmlTextWriterWriteAttribute(writer, "seats", buf);
+        sprintf(buf, "%d", comp->seat_count);
+        xmlTextWriterWriteAttribute(writer, "seat_count", buf);
         xmlTextWriterEndElement(writer);
     }
     xmlTextWriterEndElement(writer);

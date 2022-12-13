@@ -21,10 +21,10 @@
         <node id="Zürich HB" x="2683036.50000" y="1248101.00000" routes="4"/>
     </nodes>
     <compositions>
-        <composition id="IC2000" seats="500"/>
-        <composition id="ICN" seats="476"/>
-        <composition id="FV-Dosto" seats="606"/>
-        <composition id="Giruno" seats="405"/>
+        <composition id="IC2000" seat_count="500"/>
+        <composition id="ICN" seat_count="476"/>
+        <composition id="FV-Dosto" seat_count="606"/>
+        <composition id="Giruno" seat_count="405"/>
     </compositions>
     <vehicles>
         <vehicle id="ic2-1" cid="IC2000"/>

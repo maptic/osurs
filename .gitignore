@@ -36,3 +36,5 @@ build/
 
 # macOS
 *.DS_Store
+.vs/
+CMakeSettings.json

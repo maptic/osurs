@@ -125,10 +125,17 @@ Vehicle *new_vehicle(Network *network, const char *id,
     return vehicle;
 }
 
-Composition *new_composition(Network *network, const char *id, int seats) {
+Composition *new_composition(Network *network, const char *id, int seat_count) {
     Composition *composition = (Composition *)malloc(sizeof(Composition));
     composition->id = strdup(id);
-    composition->seats = seats;
+    composition->seat_count = seat_count;
+    // Generate a dummy seat_id array 
+    // Will be replaced with real seat id with final composition implementation
+    composition->seat_ids = (int*)malloc(sizeof(int) * seat_count);
+    for (int i = 0; i < seat_count; ++i)
+    {
+        composition->seat_ids[i] = i + 100;
+    }
 
     // Add composition to network
     network_add_composition(network, composition);

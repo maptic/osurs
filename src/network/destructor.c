@@ -60,6 +60,7 @@ static void delete_stop(Stop *stop) {
 
 static void delete_composition(Composition *composition) {
     free(composition->id);
+    free(composition->seat_ids);
     free(composition);
 }
 
