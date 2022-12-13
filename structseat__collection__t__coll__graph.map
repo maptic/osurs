@@ -1,0 +1,4 @@
+<map id="seat_collection_t" name="seat_collection_t">
+<area shape="rect" id="node1" title="A seat collection." alt="" coords="5,95,137,121"/>
+<area shape="rect" id="node2" href="$structseat__t.html" title="A seat." alt="" coords="40,5,103,32"/>
+</map>

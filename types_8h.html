@@ -92,19 +92,23 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="types_8h__dep__incl.png" border="0" usemap="#ainclude_2osurs_2types_8hdep" alt=""/></div>
 <map name="ainclude_2osurs_2types_8hdep" id="ainclude_2osurs_2types_8hdep">
-<area shape="rect" title="Data types of osurs." alt="" coords="708,5,868,32"/>
-<area shape="rect" href="network_8h.html" title="Network for reservation optmization." alt="" coords="699,80,877,107"/>
-<area shape="rect" href="io_8h.html" title="Input and output of networks and its structures." alt="" coords="275,155,411,181"/>
-<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="497,155,671,181"/>
-<area shape="rect" href="constructor_8c.html" title="Network construction." alt="" coords="695,155,881,181"/>
-<area shape="rect" href="destructor_8c.html" title="Network destruction." alt="" coords="905,155,1084,181"/>
-<area shape="rect" href="getter_8c.html" title="Access network structures." alt="" coords="1109,155,1259,181"/>
-<area shape="rect" href="export_8c.html" title="Export network to a file." alt="" coords="5,229,120,256"/>
-<area shape="rect" href="import_8c.html" title="Import a network file." alt="" coords="419,229,533,256"/>
-<area shape="rect" href="matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="144,229,267,256"/>
-<area shape="rect" href="print_8c.html" title="Input and output of networks and its structures." alt="" coords="291,229,394,256"/>
-<area shape="rect" href="connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="558,229,738,256"/>
-<area shape="rect" href="reservation_8c.html" title="Placing reservations for found connections." alt="" coords="762,229,945,256"/>
+<area shape="rect" title="Data types of osurs." alt="" coords="893,5,1053,32"/>
+<area shape="rect" href="network_8h.html" title="Network for reservation optmization." alt="" coords="453,80,630,107"/>
+<area shape="rect" href="olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="1027,155,1175,181"/>
+<area shape="rect" href="optimize_8h.html" title="Optimization of space utilization on routs." alt="" coords="883,80,1064,107"/>
+<area shape="rect" href="io_8h.html" title="Input and output of networks and its structures." alt="" coords="384,155,520,181"/>
+<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="544,155,717,181"/>
+<area shape="rect" href="constructor_8c.html" title="Network construction." alt="" coords="742,155,927,181"/>
+<area shape="rect" href="destructor_8c.html" title="Network destruction." alt="" coords="5,155,184,181"/>
+<area shape="rect" href="getter_8c.html" title="Access network structures." alt="" coords="209,155,359,181"/>
+<area shape="rect" href="export_8c.html" title="Export network to a file." alt="" coords="148,229,263,256"/>
+<area shape="rect" href="import_8c.html" title="Import a network file." alt="" coords="548,229,663,256"/>
+<area shape="rect" href="matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="287,229,409,256"/>
+<area shape="rect" href="print_8c.html" title="Input and output of networks and its structures." alt="" coords="21,229,123,256"/>
+<area shape="rect" href="main_8c.html" title="Osurs CLI (tbd)." alt="" coords="434,229,523,256"/>
+<area shape="rect" href="connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="894,229,1074,256"/>
+<area shape="rect" href="reservation_8c.html" title="Placing reservations for found connections." alt="" coords="687,229,870,256"/>
+<area shape="rect" href="olal_8c.html" title="optimization logic abstraction layer" alt="" coords="1098,229,1206,256"/>
 </map>
 </div>
 </div>
@@ -138,6 +142,12 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structreservation__t.html">reservation_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A reservation.  <a href="structreservation__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structseat__t.html">seat_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A seat.  <a href="structseat__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structseat__collection__t.html">seat_collection_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A seat collection.  <a href="structseat__collection__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -178,11 +188,17 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a8be82d57518f84df3ceb7a5dce2fce0c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structreservation__t.html">reservation_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a8be82d57518f84df3ceb7a5dce2fce0c">Reservation</a></td></tr>
 <tr class="memdesc:a8be82d57518f84df3ceb7a5dce2fce0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A reservation.  <a href="types_8h.html#a8be82d57518f84df3ceb7a5dce2fce0c">More...</a><br /></td></tr>
 <tr class="separator:a8be82d57518f84df3ceb7a5dce2fce0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a322f7e4331dd5bf6b4d7dbb00b3d8d17"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structseat__t.html">seat_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a></td></tr>
+<tr class="memdesc:a322f7e4331dd5bf6b4d7dbb00b3d8d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">A seat.  <a href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">More...</a><br /></td></tr>
+<tr class="separator:a322f7e4331dd5bf6b4d7dbb00b3d8d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c838dc59fb66e29867d88b04b85b21"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structseat__collection__t.html">seat_collection_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a></td></tr>
+<tr class="memdesc:ac4c838dc59fb66e29867d88b04b85b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">A seat collection.  <a href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">More...</a><br /></td></tr>
+<tr class="separator:ac4c838dc59fb66e29867d88b04b85b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Data types of osurs. </p>
 <p>All data types used by osurs are declared and defined here.</p>
-<dl class="section date"><dt>Date</dt><dd>: 2022-07-12 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>: 2022-08-22 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>: Merlin Unterfinger </dd></dl>
 </div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a183edc8a424894f49a4df6eb97c59930"></a>
@@ -284,6 +300,40 @@ Typedefs</h2></td></tr>
 
 <p>A route. </p>
 <p>A route is a group of trips, which defines the route through the node network using stops. A route stores the order in which the nodes are approached by a vehicle in a chain of stops. </p>
+
+</div>
+</div>
+<a id="a322f7e4331dd5bf6b4d7dbb00b3d8d17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a322f7e4331dd5bf6b4d7dbb00b3d8d17">&#9670;&nbsp;</a></span>Seat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structseat__t.html">seat_t</a> <a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A seat. </p>
+<p>A seat contains an array of reservations. </p>
+
+</div>
+</div>
+<a id="ac4c838dc59fb66e29867d88b04b85b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4c838dc59fb66e29867d88b04b85b21">&#9670;&nbsp;</a></span>SeatCollection</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structseat__collection__t.html">seat_collection_t</a> <a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A seat collection. </p>
+<p>The seat collection represents multiple seats over which the reservations were distributed/optimized. </p>
 
 </div>
 </div>

@@ -73,15 +73,27 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Optimization of space utilization on trips.  
+<p>Optimization of space utilization on routs.  
 <a href="#details">More...</a></p>
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;<a class="el" href="types_8h_source.html">osurs/types.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for optimize.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="optimize_8h__incl.png" border="0" usemap="#ainclude_2osurs_2optimize_8h" alt=""/></div>
+<map name="ainclude_2osurs_2optimize_8h" id="ainclude_2osurs_2optimize_8h">
+<area shape="rect" title="Optimization of space utilization on routs." alt="" coords="5,5,187,32"/>
+<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="41,80,151,107"/>
+<area shape="rect" title=" " alt="" coords="61,155,131,181"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="optimize_8h__dep__incl.png" border="0" usemap="#ainclude_2osurs_2optimize_8hdep" alt=""/></div>
 <map name="ainclude_2osurs_2optimize_8hdep" id="ainclude_2osurs_2optimize_8hdep">
-<area shape="rect" title="Optimization of space utilization on trips." alt="" coords="5,5,187,32"/>
-<area shape="rect" href="optimize_8c.html" title="Optimization of space utilization on trips." alt="" coords="39,80,153,107"/>
+<area shape="rect" title="Optimization of space utilization on routs." alt="" coords="5,5,187,32"/>
+<area shape="rect" href="olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="22,80,170,107"/>
+<area shape="rect" href="olal_8c.html" title="optimization logic abstraction layer" alt="" coords="42,155,150,181"/>
 </map>
 </div>
 </div>
@@ -89,17 +101,321 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae63065910353515d62be74761403d0dc"><td class="memItemLeft" align="right" valign="top"><a id="ae63065910353515d62be74761403d0dc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#ae63065910353515d62be74761403d0dc">optimize_trip</a> ()</td></tr>
-<tr class="memdesc:ae63065910353515d62be74761403d0dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimizing space utilization. <br /></td></tr>
-<tr class="separator:ae63065910353515d62be74761403d0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2d21394ceb194b6903b26b368da9b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#aca2d21394ceb194b6903b26b368da9b7">new_seat</a> (int seat_id)</td></tr>
+<tr class="memdesc:aca2d21394ceb194b6903b26b368da9b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new seat.  <a href="optimize_8h.html#aca2d21394ceb194b6903b26b368da9b7">More...</a><br /></td></tr>
+<tr class="separator:aca2d21394ceb194b6903b26b368da9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db0b83d059edfb55dadecb4b092a70f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#a0db0b83d059edfb55dadecb4b092a70f">seat_add_reservation</a> (<a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a> *seat, int res_id)</td></tr>
+<tr class="memdesc:a0db0b83d059edfb55dadecb4b092a70f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new reservation to the seat.  <a href="optimize_8h.html#a0db0b83d059edfb55dadecb4b092a70f">More...</a><br /></td></tr>
+<tr class="separator:a0db0b83d059edfb55dadecb4b092a70f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa229f6057e7be0f7cf2ef13e4775fc01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#aa229f6057e7be0f7cf2ef13e4775fc01">delete_seat</a> (<a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a> *seat)</td></tr>
+<tr class="memdesc:aa229f6057e7be0f7cf2ef13e4775fc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a seat.  <a href="optimize_8h.html#aa229f6057e7be0f7cf2ef13e4775fc01">More...</a><br /></td></tr>
+<tr class="separator:aa229f6057e7be0f7cf2ef13e4775fc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7488760077beb68ad399d5063daa1d56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#a7488760077beb68ad399d5063daa1d56">new_seat_collection</a> (int seat_count, int seat_ids[])</td></tr>
+<tr class="memdesc:a7488760077beb68ad399d5063daa1d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new seat collection.  <a href="optimize_8h.html#a7488760077beb68ad399d5063daa1d56">More...</a><br /></td></tr>
+<tr class="separator:a7488760077beb68ad399d5063daa1d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6d18c426728d32215fa05b699a7b2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#a6d6d18c426728d32215fa05b699a7b2f">delete_seat_collection</a> (<a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a> *collection)</td></tr>
+<tr class="memdesc:a6d6d18c426728d32215fa05b699a7b2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a seat collection.  <a href="optimize_8h.html#a6d6d18c426728d32215fa05b699a7b2f">More...</a><br /></td></tr>
+<tr class="separator:a6d6d18c426728d32215fa05b699a7b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5bbfde7126d2efa61add038200e999"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#a6d5bbfde7126d2efa61add038200e999">space_available</a> (unsigned int res_arr[], int res_count, int segment_count, unsigned int seat_count, unsigned int new_res)</td></tr>
+<tr class="memdesc:a6d5bbfde7126d2efa61add038200e999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is enough space available.  <a href="optimize_8h.html#a6d5bbfde7126d2efa61add038200e999">More...</a><br /></td></tr>
+<tr class="separator:a6d5bbfde7126d2efa61add038200e999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63722cc5b79bbc5a73a83685d286888b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b">optimize_reservation</a> (unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count)</td></tr>
+<tr class="memdesc:a63722cc5b79bbc5a73a83685d286888b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimize the reservations.  <a href="optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b">More...</a><br /></td></tr>
+<tr class="separator:a63722cc5b79bbc5a73a83685d286888b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Optimization of space utilization on trips. </p>
-<p>This module contains an algorithm to optimally distribute reservations along a trip to the available seats.</p>
-<dl class="section date"><dt>Date</dt><dd>: 2022-07-12 </dd></dl>
+<div class="textblock"><p>Optimization of space utilization on routs. </p>
+<p>This module contains an algorithm to optimally distribute reservations along a route to the available seats.</p>
+<dl class="section date"><dt>Date</dt><dd>: 2022-08-22 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>: Tobias Meier, Merlin Unterfinger </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="aa229f6057e7be0f7cf2ef13e4775fc01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa229f6057e7be0f7cf2ef13e4775fc01">&#9670;&nbsp;</a></span>delete_seat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void delete_seat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a> *&#160;</td>
+          <td class="paramname"><em>seat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete a seat. </p>
+<p>Frees the memory of the given seat on the heap.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seat</td><td>The seat to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6d6d18c426728d32215fa05b699a7b2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d6d18c426728d32215fa05b699a7b2f">&#9670;&nbsp;</a></span>delete_seat_collection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void delete_seat_collection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a> *&#160;</td>
+          <td class="paramname"><em>collection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete a seat collection. </p>
+<p>Frees the memory of the given seat collection on the heap.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collection</td><td>The seat collection to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aca2d21394ceb194b6903b26b368da9b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca2d21394ceb194b6903b26b368da9b7">&#9670;&nbsp;</a></span>new_seat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a>* new_seat </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seat_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new seat. </p>
+<p>Initializes the seat properties and allocates the memory for the reservation array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seat_id</td><td>The id of the seat. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the new Seat struct. </dd></dl>
+
+</div>
+</div>
+<a id="a7488760077beb68ad399d5063daa1d56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7488760077beb68ad399d5063daa1d56">&#9670;&nbsp;</a></span>new_seat_collection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a>* new_seat_collection </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seat_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seat_ids</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a new seat collection. </p>
+<p>Initializes the seat collection properties and allocates the memory for the seat array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seat_count</td><td>The Number of seats. </td></tr>
+    <tr><td class="paramname">seat_ids[]</td><td>Array that contains all the seat ids. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer to the new Seat_collection struct. </dd></dl>
+
+</div>
+</div>
+<a id="a63722cc5b79bbc5a73a83685d286888b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63722cc5b79bbc5a73a83685d286888b">&#9670;&nbsp;</a></span>optimize_reservation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#ac4c838dc59fb66e29867d88b04b85b21">SeatCollection</a>* optimize_reservation </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>res_arr</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>res_arr_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>res_ids</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>segment_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seat_ids</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seat_count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optimize the reservations. </p>
+<p>Places the reservations on the seats in a way that optimizes the capacity.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res_arr[]</td><td>The logical representation of each reservation. </td></tr>
+    <tr><td class="paramname">res_arr_count</td><td>The number of reservations in the res_array. </td></tr>
+    <tr><td class="paramname">res_ids[]</td><td>Array that contains the reservation ids </td></tr>
+    <tr><td class="paramname">segment_count</td><td>The number of segments on the route. (stops - 1) </td></tr>
+    <tr><td class="paramname">seat_ids[]</td><td>Array that contains the seat ids </td></tr>
+    <tr><td class="paramname">seat_count</td><td>The number of seats in the composition. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a pointer of the optimized Seat_collection. </dd></dl>
+
+</div>
+</div>
+<a id="a0db0b83d059edfb55dadecb4b092a70f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db0b83d059edfb55dadecb4b092a70f">&#9670;&nbsp;</a></span>seat_add_reservation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void seat_add_reservation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a322f7e4331dd5bf6b4d7dbb00b3d8d17">Seat</a> *&#160;</td>
+          <td class="paramname"><em>seat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>res_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a new reservation to the seat. </p>
+<p>Initializes the seat properties and allocates the memory for the reservation array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seat</td><td>The seat to which the reservation sould be added. </td></tr>
+    <tr><td class="paramname">res_id</td><td>The reservation id. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6d5bbfde7126d2efa61add038200e999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5bbfde7126d2efa61add038200e999">&#9670;&nbsp;</a></span>space_available()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int space_available </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>res_arr</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>res_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>segment_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>seat_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>new_res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if there is enough space available. </p>
+<p>Checks if the given reservation fits into the current configuration.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">res_arr[]</td><td>The logical representation of each reservation. </td></tr>
+    <tr><td class="paramname">res_count</td><td>The number of reservations in the res_array. </td></tr>
+    <tr><td class="paramname">segment_count</td><td>The number of segments on the route. (stops - 1) </td></tr>
+    <tr><td class="paramname">seat_count</td><td>The number of seats. </td></tr>
+    <tr><td class="paramname">new_res</td><td>The logical representation of the new reservation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns 1 if there is enough space available otherwise 0. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

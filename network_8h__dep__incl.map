@@ -1,14 +1,15 @@
 <map id="include/osurs/network.h" name="include/osurs/network.h">
-<area shape="rect" id="node1" title="Network for reservation optmization." alt="" coords="699,5,877,32"/>
-<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="275,80,411,107"/>
-<area shape="rect" id="node7" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="497,80,671,107"/>
-<area shape="rect" id="node10" href="$constructor_8c.html" title="Network construction." alt="" coords="695,80,881,107"/>
-<area shape="rect" id="node11" href="$destructor_8c.html" title="Network destruction." alt="" coords="905,80,1084,107"/>
-<area shape="rect" id="node12" href="$getter_8c.html" title="Access network structures." alt="" coords="1109,80,1259,107"/>
+<area shape="rect" id="node1" title="Network for reservation optmization." alt="" coords="705,5,882,32"/>
+<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="309,80,445,107"/>
+<area shape="rect" id="node8" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="503,80,676,107"/>
+<area shape="rect" id="node11" href="$constructor_8c.html" title="Network construction." alt="" coords="701,80,886,107"/>
+<area shape="rect" id="node12" href="$destructor_8c.html" title="Network destruction." alt="" coords="911,80,1089,107"/>
+<area shape="rect" id="node13" href="$getter_8c.html" title="Access network structures." alt="" coords="1114,80,1265,107"/>
 <area shape="rect" id="node3" href="$export_8c.html" title="Export network to a file." alt="" coords="5,155,120,181"/>
-<area shape="rect" id="node4" href="$import_8c.html" title="Import a network file." alt="" coords="419,155,533,181"/>
+<area shape="rect" id="node4" href="$import_8c.html" title="Import a network file." alt="" coords="532,155,647,181"/>
 <area shape="rect" id="node5" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="144,155,267,181"/>
 <area shape="rect" id="node6" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="291,155,394,181"/>
-<area shape="rect" id="node8" href="$connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="558,155,738,181"/>
-<area shape="rect" id="node9" href="$reservation_8c.html" title="Placing reservations for found connections." alt="" coords="762,155,945,181"/>
+<area shape="rect" id="node7" href="$main_8c.html" title="Osurs CLI (tbd)." alt="" coords="418,155,507,181"/>
+<area shape="rect" id="node9" href="$connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="878,155,1058,181"/>
+<area shape="rect" id="node10" href="$reservation_8c.html" title="Placing reservations for found connections." alt="" coords="671,155,854,181"/>
 </map>

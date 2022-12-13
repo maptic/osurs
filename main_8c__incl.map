@@ -1,0 +1,12 @@
+<map id="src/main.c" name="src/main.c">
+<area shape="rect" id="node1" title="Osurs CLI (tbd)." alt="" coords="176,5,265,32"/>
+<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="242,80,327,107"/>
+<area shape="rect" id="node10" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="95,80,218,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="156,155,227,181"/>
+<area shape="rect" id="node4" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="5,155,132,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="251,155,318,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="343,155,413,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="438,155,513,181"/>
+<area shape="rect" id="node5" href="$types_8h.html" title="Data types of osurs." alt="" coords="14,229,123,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="33,304,104,331"/>
+</map>

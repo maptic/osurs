@@ -92,18 +92,19 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="network_8h__dep__incl.png" border="0" usemap="#ainclude_2osurs_2network_8hdep" alt=""/></div>
 <map name="ainclude_2osurs_2network_8hdep" id="ainclude_2osurs_2network_8hdep">
-<area shape="rect" title="Network for reservation optmization." alt="" coords="699,5,877,32"/>
-<area shape="rect" href="io_8h.html" title="Input and output of networks and its structures." alt="" coords="275,80,411,107"/>
-<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="497,80,671,107"/>
-<area shape="rect" href="constructor_8c.html" title="Network construction." alt="" coords="695,80,881,107"/>
-<area shape="rect" href="destructor_8c.html" title="Network destruction." alt="" coords="905,80,1084,107"/>
-<area shape="rect" href="getter_8c.html" title="Access network structures." alt="" coords="1109,80,1259,107"/>
+<area shape="rect" title="Network for reservation optmization." alt="" coords="705,5,882,32"/>
+<area shape="rect" href="io_8h.html" title="Input and output of networks and its structures." alt="" coords="309,80,445,107"/>
+<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="503,80,676,107"/>
+<area shape="rect" href="constructor_8c.html" title="Network construction." alt="" coords="701,80,886,107"/>
+<area shape="rect" href="destructor_8c.html" title="Network destruction." alt="" coords="911,80,1089,107"/>
+<area shape="rect" href="getter_8c.html" title="Access network structures." alt="" coords="1114,80,1265,107"/>
 <area shape="rect" href="export_8c.html" title="Export network to a file." alt="" coords="5,155,120,181"/>
-<area shape="rect" href="import_8c.html" title="Import a network file." alt="" coords="419,155,533,181"/>
+<area shape="rect" href="import_8c.html" title="Import a network file." alt="" coords="532,155,647,181"/>
 <area shape="rect" href="matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="144,155,267,181"/>
 <area shape="rect" href="print_8c.html" title="Input and output of networks and its structures." alt="" coords="291,155,394,181"/>
-<area shape="rect" href="connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="558,155,738,181"/>
-<area shape="rect" href="reservation_8c.html" title="Placing reservations for found connections." alt="" coords="762,155,945,181"/>
+<area shape="rect" href="main_8c.html" title="Osurs CLI (tbd)." alt="" coords="418,155,507,181"/>
+<area shape="rect" href="connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="878,155,1058,181"/>
+<area shape="rect" href="reservation_8c.html" title="Placing reservations for found connections." alt="" coords="671,155,854,181"/>
 </map>
 </div>
 </div>
@@ -129,9 +130,9 @@ Functions</h2></td></tr>
 <tr class="memitem:adf406e6e2c5d7fa84ac1c2d18b24c823"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9fa1463f3b93a55de4cf83e519c4473c">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#adf406e6e2c5d7fa84ac1c2d18b24c823">new_node</a> (<a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *network, const char *id, double x, double y)</td></tr>
 <tr class="memdesc:adf406e6e2c5d7fa84ac1c2d18b24c823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new node and add it to the network.  <a href="network_8h.html#adf406e6e2c5d7fa84ac1c2d18b24c823">More...</a><br /></td></tr>
 <tr class="separator:adf406e6e2c5d7fa84ac1c2d18b24c823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7a90a2b75e87d42dc2883a2cf4fce64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a183edc8a424894f49a4df6eb97c59930">Composition</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#aa7a90a2b75e87d42dc2883a2cf4fce64">new_composition</a> (<a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *network, const char *id, int seats)</td></tr>
-<tr class="memdesc:aa7a90a2b75e87d42dc2883a2cf4fce64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new composition and add it to the network.  <a href="network_8h.html#aa7a90a2b75e87d42dc2883a2cf4fce64">More...</a><br /></td></tr>
-<tr class="separator:aa7a90a2b75e87d42dc2883a2cf4fce64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7472b856cc59338ec9f1e120c42958e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a183edc8a424894f49a4df6eb97c59930">Composition</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#ae7472b856cc59338ec9f1e120c42958e">new_composition</a> (<a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *network, const char *id, int seat_count)</td></tr>
+<tr class="memdesc:ae7472b856cc59338ec9f1e120c42958e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new composition and add it to the network.  <a href="network_8h.html#ae7472b856cc59338ec9f1e120c42958e">More...</a><br /></td></tr>
+<tr class="separator:ae7472b856cc59338ec9f1e120c42958e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822c9a6d888e0cfae05229c7fb580c10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#ad3272e94a452800049063befbc8f67a2">Vehicle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network_8h.html#a822c9a6d888e0cfae05229c7fb580c10">new_vehicle</a> (<a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *network, const char *id, <a class="el" href="types_8h.html#a183edc8a424894f49a4df6eb97c59930">Composition</a> *composition)</td></tr>
 <tr class="memdesc:a822c9a6d888e0cfae05229c7fb580c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new vehicle and add it to the network.  <a href="network_8h.html#a822c9a6d888e0cfae05229c7fb580c10">More...</a><br /></td></tr>
 <tr class="separator:a822c9a6d888e0cfae05229c7fb580c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -339,8 +340,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa7a90a2b75e87d42dc2883a2cf4fce64"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7a90a2b75e87d42dc2883a2cf4fce64">&#9670;&nbsp;</a></span>new_composition()</h2>
+<a id="ae7472b856cc59338ec9f1e120c42958e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7472b856cc59338ec9f1e120c42958e">&#9670;&nbsp;</a></span>new_composition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -361,7 +362,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>seats</em>&#160;</td>
+          <td class="paramname"><em>seat_count</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

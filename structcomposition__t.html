@@ -78,8 +78,10 @@ $(function() {
 Data Fields</h2></td></tr>
 <tr class="memitem:a1e1b7ac7f02b85e888df09056d6d2a37"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcomposition__t.html#a1e1b7ac7f02b85e888df09056d6d2a37">id</a></td></tr>
 <tr class="separator:a1e1b7ac7f02b85e888df09056d6d2a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa871a6af64e7b3d877a9af1773f2e68d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcomposition__t.html#aa871a6af64e7b3d877a9af1773f2e68d">seats</a></td></tr>
-<tr class="separator:aa871a6af64e7b3d877a9af1773f2e68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580b7fa83fc16d876f4a24cabc06ba4c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcomposition__t.html#a580b7fa83fc16d876f4a24cabc06ba4c">seat_count</a></td></tr>
+<tr class="separator:a580b7fa83fc16d876f4a24cabc06ba4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1ae3d8fea74c8df6173bca4b81472e"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcomposition__t.html#ade1ae3d8fea74c8df6173bca4b81472e">seat_ids</a></td></tr>
+<tr class="separator:ade1ae3d8fea74c8df6173bca4b81472e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A composition. </p>
@@ -100,18 +102,33 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="aa871a6af64e7b3d877a9af1773f2e68d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa871a6af64e7b3d877a9af1773f2e68d">&#9670;&nbsp;</a></span>seats</h2>
+<a id="a580b7fa83fc16d876f4a24cabc06ba4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a580b7fa83fc16d876f4a24cabc06ba4c">&#9670;&nbsp;</a></span>seat_count</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int composition_t::seats</td>
+          <td class="memname">int composition_t::seat_count</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>The seat capacity of the composition (TODO: Replace with groups in future). </p>
+
+</div>
+</div>
+<a id="ade1ae3d8fea74c8df6173bca4b81472e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1ae3d8fea74c8df6173bca4b81472e">&#9670;&nbsp;</a></span>seat_ids</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* composition_t::seat_ids</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The seat id array </p>
 
 </div>
 </div>
