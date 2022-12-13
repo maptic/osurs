@@ -16,7 +16,7 @@
 
 typedef struct carrier_t Carrier;
 static Carrier *new_carrier(Network *network);
-static Carrier *empty_carrier(Carrier *carrier);
+static void empty_carrier(Carrier *carrier);
 static Carrier *init_carrier(Carrier *carrier, char *route_id,
                              size_t route_size, size_t trip_size);
 static void new_route_from_carrier(Carrier *carrier);
@@ -104,7 +104,7 @@ static Carrier *new_carrier(Network *network) {
     return carrier;
 }
 
-static Carrier *empty_carrier(Carrier *carrier) {
+static void empty_carrier(Carrier *carrier) {
     xmlFree(carrier->route_id);
     free(carrier->nodes);
     free(carrier->arrival_offsets);
