@@ -1,5 +1,5 @@
 /**
- * @brief Routing connections between nodes on the network without transfers.
+ * @brief Routing connections between nodes on the network without transfers
  *
  * Public transit routing without transfers, checking seat availability and
  * selecting best connections based on arrival time.
@@ -212,8 +212,9 @@ static Connection *search_trip(Connection *conn, const Node *orig,
     arrival = departure;
 
     // Iterate over the stops until destination is reached.
-    dest_stop = iterate_to_dest(orig_stop, dest, &arrival, &available,
-                                trip->vehicle->composition->seat_count, trip_count);
+    dest_stop =
+        iterate_to_dest(orig_stop, dest, &arrival, &available,
+                        trip->vehicle->composition->seat_count, trip_count);
 
     // Set values of found connection
     *conn_count += 1;

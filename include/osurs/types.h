@@ -1,5 +1,5 @@
 /**
- * @brief Data types of osurs.
+ * @brief Data types of osurs
  *
  * All data types used by osurs are declared and defined here.
  *
