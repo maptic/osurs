@@ -1,7 +1,8 @@
-/*
- * Osurs main CLI
- *
- * Author:  Merlin Unterfinger
+/**
+ * @brief Osurs CLI (tbd).
+ * @file main.c
+ * @date: 2022-07-19
+ * @author: Merlin Unterfinger
  */
 
 #include <osurs/io.h>

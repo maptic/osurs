@@ -20,5 +20,5 @@
  * 
  * @return A pointer to the optimized seat collection.
  **/
-Seat_collection* optimize_trip(Trip* t);
+SeatCollection* optimize_trip(Trip* t);
 

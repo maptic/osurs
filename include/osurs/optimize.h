@@ -51,7 +51,7 @@ void delete_seat(Seat* seat);
 * @param seat_ids[] Array that contains all the seat ids.
 * @return Returns a pointer to the new Seat_collection struct.
 */
-Seat_collection* new_seat_collection(int seat_count, int seat_ids[]);
+SeatCollection* new_seat_collection(int seat_count, int seat_ids[]);
 
 /**
 * @brief Delete a seat collection
@@ -60,7 +60,7 @@ Seat_collection* new_seat_collection(int seat_count, int seat_ids[]);
 *
 * @param collection The seat collection to delete.
 */
-void delete_seat_collection(Seat_collection* collection);
+void delete_seat_collection(SeatCollection* collection);
 
 /**
 * @brief Check if there is enough space available
@@ -94,7 +94,7 @@ int space_available(
 * @param seat_count The number of seats in the composition.
 * @return Returns a pointer of the optimized Seat_collection.
 */
-Seat_collection* optimize_reservation(
+SeatCollection* optimize_reservation(
 	unsigned int res_arr[],
 	int res_arr_count,
 	int res_ids[],

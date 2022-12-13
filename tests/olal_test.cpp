@@ -6,28 +6,27 @@ extern "C" {
 #include <osurs/reserve.h>
 }
 
-// First the io tests need to pass
-
 TEST(OlalTest, BasicTest) {
 
-	// initialize network
+	// Initialize network
 	Network* network = new_network();
-	// nodes
-	Node* nodeA = new_node(network, "Albisrieden", 0.0, 0.0);
-	Node* nodeB = new_node(network, "Buelach", 1.0, 0.0);
-	Node* nodeC = new_node(network, "Chur", 1.0, 1.0);
-	Node* nodeD = new_node(network, "Dietikon", 0.0, 1.0);
-	// compositions
+	// Nodes
+	Node* n1 = new_node(network, "Albisrieden", 0.0, 0.0);
+	Node* n2 = new_node(network, "Buelach", 1.0, 0.0);
+	Node* n3 = new_node(network, "Chur", 1.0, 1.0);
+	Node* n4 = new_node(network, "Dietikon", 0.0, 1.0);
+	// Compositions
 	Composition* train = new_composition(network, "train", 10);
-	// vehicles
+	// Vehicles
 	Vehicle* v1 = new_vehicle(network, "rt-1", train);
 	Vehicle* v2 = new_vehicle(network, "rt-2", train);
 	Vehicle* v3 = new_vehicle(network, "rt-3", train);
 	Vehicle* v4 = new_vehicle(network, "rt-4", train);
 	Vehicle* v5 = new_vehicle(network, "rt-5", train);
+
 	// Define route attributes (closed, circular route)
 	const char* route_id = "blue";
-	Node* nodes[] = { nodeA, nodeB, nodeC, nodeD, nodeA };
+	Node* nodes[] = { n1, n2, n3, n4, n1 };
 	int arrival_offsets[] = { 0, 15 * MINUTES, 25 * MINUTES, 40 * MINUTES,
 							 60 * MINUTES };
 	int departure_offsets[] = { 0, 20 * MINUTES, 30 * MINUTES, 45 * MINUTES,
@@ -47,18 +46,18 @@ TEST(OlalTest, BasicTest) {
 	);
 
 	// Route
-	Connection* conn_1 = new_connection(nodeA, nodeC, 12 * HOURS);
-	Connection* conn_2 = new_connection(nodeA, nodeB, 12 * HOURS);
-	Connection* conn_3 = new_connection(nodeB, nodeD, 12 * HOURS);
-	Connection* conn_4 = new_connection(nodeC, nodeD, 12 * HOURS);
+	Connection* c1 = new_connection(n1, n3, 12 * HOURS);
+	Connection* c2 = new_connection(n1, n2, 12 * HOURS);
+	Connection* c3 = new_connection(n2, n4, 12 * HOURS);
+	Connection* c4 = new_connection(n3, n4, 12 * HOURS);
 
 	// Add reservations
-	Reservation* r1 = new_reservation(conn_1, 1);
-	Reservation* r2 = new_reservation(conn_2, 1);
-	Reservation* r3 = new_reservation(conn_3, 1);
-	Reservation* r4 = new_reservation(conn_4, 1);
+	Reservation* r1 = new_reservation(c1, 1);
+	Reservation* r2 = new_reservation(c2, 1);
+	Reservation* r3 = new_reservation(c3, 1);
+	Reservation* r4 = new_reservation(c4, 1);
 
-	Seat_collection* result_collection = optimize_trip(conn_1->trip);
+	SeatCollection* result_collection = optimize_trip(c1->trip);
 
 	EXPECT_EQ(result_collection->seat_arr[0]->res_count, 2);
 	EXPECT_EQ(result_collection->seat_arr[1]->res_count, 2);
@@ -68,9 +67,9 @@ TEST(OlalTest, BasicTest) {
 	EXPECT_EQ(result_collection->seat_arr[1]->res_id_arr[1], r3->res_id);
 
 	delete_seat_collection(result_collection);
-	delete_connection(conn_1);
-	delete_connection(conn_2);
-	delete_connection(conn_3);
-	delete_connection(conn_4);
+	delete_connection(c1);
+	delete_connection(c2);
+	delete_connection(c3);
+	delete_connection(c4);
 	delete_network(network);
 }

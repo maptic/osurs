@@ -32,8 +32,8 @@ void delete_seat(Seat* seat) {
 }
 
 // Seat_collection constructor
-Seat_collection* new_seat_collection(int seat_count, int seat_ids[]) {
-	Seat_collection* collection = (Seat_collection*)malloc(sizeof(Seat_collection));
+SeatCollection* new_seat_collection(int seat_count, int seat_ids[]) {
+	SeatCollection* collection = (SeatCollection*)malloc(sizeof(SeatCollection));
 	collection->seat_count = seat_count;
 	collection->seat_arr = (Seat**)malloc(seat_count * sizeof(Seat*));
 	for (int i = 0; i < seat_count; ++i) {
@@ -43,7 +43,7 @@ Seat_collection* new_seat_collection(int seat_count, int seat_ids[]) {
 }
 
 // Seat_collection destructor
-void delete_seat_collection(Seat_collection* collection) {
+void delete_seat_collection(SeatCollection* collection) {
 	for (int i = 0; i < collection->seat_count; ++i) {
 		delete_seat(collection->seat_arr[i]);
 	}
@@ -74,7 +74,7 @@ int space_available(unsigned int res_arr[], int res_count, int segment_count, un
 }
 
 
-Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count)
+SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count)
 {
 	// parameter check
 	if (res_arr_count <= 0)
@@ -88,12 +88,12 @@ Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
 		return NULL;
 	}
 
-	Seat_collection* seatCollection = new_seat_collection(seat_count, seat_ids);
+	SeatCollection* collection = new_seat_collection(seat_count, seat_ids);
 
 	// iterate over each seat
 	for (int i = 0; i < seat_count; ++i)
 	{
-		unsigned int currentResConfig = 0;
+		unsigned int current_res_config = 0;
 
 		// iterate over each reservation
 		for (int j = 0; j < res_arr_count; ++j)
@@ -104,24 +104,24 @@ Seat_collection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
 				// break if a seat is fully booked (over all segments)
 				// fully booked = logical representation of all ones
 				// all ones = 2^segment_count - 1
-				if (currentResConfig == ((1 << segment_count) - 1))
+				if (current_res_config == ((1 << segment_count) - 1))
 				{
 					break;
 				}
 				// add the reservation to the current seat if there is space
 				// bitwise AND equals to 0 if there is no overlap
-				if ((currentResConfig & res_arr[j]) == 0)
+				if ((current_res_config & res_arr[j]) == 0)
 				{
 					// add the logical representation of the current reservation 
 					// to the current seat representation (bitwise OR)
-					currentResConfig |= res_arr[j];
+					current_res_config |= res_arr[j];
 					// add the reservation id to the seat
-					seat_add_reservation(seatCollection->seat_arr[i], res_ids[j]);
+					seat_add_reservation(collection->seat_arr[i], res_ids[j]);
 					// remove the reservation from the array
 					res_arr[j] = 0;
 				}
 			}
 		}
 	}
-	return seatCollection;
+	return collection;
 }

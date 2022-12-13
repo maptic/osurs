@@ -197,7 +197,7 @@ typedef struct seat_t {
 typedef struct seat_collection_t {
 	Seat** seat_arr;    /**< Array that contains all the available seats. */
 	int seat_count;     /**< Number of seats in the collection. */
-} Seat_collection;
+} SeatCollection;
 
 
 #endif  // OSURS_TYPES_H_
