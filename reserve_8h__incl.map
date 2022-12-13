@@ -1,7 +1,7 @@
 <map id="include/osurs/reserve.h" name="include/osurs/reserve.h">
 <area shape="rect" id="node1" title="Connection routing, checking seat availability and reservation." alt="" coords="15,5,189,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,76,107"/>
-<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="100,80,227,107"/>
+<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="100,80,227,107"/>
 <area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="109,155,218,181"/>
 <area shape="rect" id="node5" title=" " alt="" coords="128,229,199,256"/>
 </map>

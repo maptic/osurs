@@ -4,5 +4,5 @@
 <area shape="rect" id="node3" href="$import_8c.html" title="Import a network file." alt="" coords="144,80,259,107"/>
 <area shape="rect" id="node4" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="283,80,405,107"/>
 <area shape="rect" id="node5" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="430,80,533,107"/>
-<area shape="rect" id="node6" href="$main_8c.html" title="Osurs CLI (tbd)." alt="" coords="557,80,646,107"/>
+<area shape="rect" id="node6" href="$main_8c.html" title="The osurs command line interface." alt="" coords="557,80,646,107"/>
 </map>

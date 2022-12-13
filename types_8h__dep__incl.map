@@ -1,6 +1,6 @@
 <map id="include/osurs/types.h" name="include/osurs/types.h">
 <area shape="rect" id="node1" title="Data types of osurs." alt="" coords="893,5,1053,32"/>
-<area shape="rect" id="node2" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="453,80,630,107"/>
+<area shape="rect" id="node2" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="453,80,630,107"/>
 <area shape="rect" id="node15" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="1027,155,1175,181"/>
 <area shape="rect" id="node17" href="$optimize_8h.html" title="Optimization of space utilization on routs." alt="" coords="883,80,1064,107"/>
 <area shape="rect" id="node3" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="384,155,520,181"/>
@@ -12,8 +12,8 @@
 <area shape="rect" id="node5" href="$import_8c.html" title="Import a network file." alt="" coords="548,229,663,256"/>
 <area shape="rect" id="node6" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="287,229,409,256"/>
 <area shape="rect" id="node7" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="21,229,123,256"/>
-<area shape="rect" id="node8" href="$main_8c.html" title="Osurs CLI (tbd)." alt="" coords="434,229,523,256"/>
+<area shape="rect" id="node8" href="$main_8c.html" title="The osurs command line interface." alt="" coords="434,229,523,256"/>
 <area shape="rect" id="node10" href="$connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="894,229,1074,256"/>
 <area shape="rect" id="node11" href="$reservation_8c.html" title="Placing reservations for found connections." alt="" coords="687,229,870,256"/>
-<area shape="rect" id="node16" href="$olal_8c.html" title="optimization logic abstraction layer" alt="" coords="1098,229,1206,256"/>
+<area shape="rect" id="node16" href="$olal_8c.html" title="Optimization logic abstraction layer." alt="" coords="1098,229,1206,256"/>
 </map>
