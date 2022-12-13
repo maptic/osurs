@@ -28,7 +28,7 @@ Reservation *new_reservation(Connection *connection, int seats) {
     res->dest = connection->dest;
     res->trip = connection->trip;
     res->seats = seats;
-    // Generate a dummy res_id 
+    // Generate a dummy res_id
     // Needs to be replaced with real id creation method
     res->res_id = rand();
 
