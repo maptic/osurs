@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="Import a network file." alt="" coords="203,5,318,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,124,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="105,155,176,181"/>
-<area shape="rect" id="node4" href="$io_8h.html" title="Input and output of networks and its strutures." alt="" coords="346,80,431,107"/>
+<area shape="rect" id="node4" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="346,80,431,107"/>
 <area shape="rect" id="node11" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="199,80,322,107"/>
 <area shape="rect" id="node12" href="$utils_8h.html" title="IO helper and utils methods." alt="" coords="503,80,565,107"/>
 <area shape="rect" id="node5" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="200,155,327,181"/>

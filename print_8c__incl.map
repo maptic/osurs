@@ -1,6 +1,6 @@
 <map id="src/io/print.c" name="src/io/print.c">
 <area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="331,5,433,32"/>
-<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its strutures." alt="" coords="290,80,375,107"/>
+<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="290,80,375,107"/>
 <area shape="rect" id="node10" href="$utils_8h.html" title="IO helper and utils methods." alt="" coords="423,80,485,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,155,76,181"/>
 <area shape="rect" id="node4" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="100,155,227,181"/>

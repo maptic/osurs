@@ -1,5 +1,5 @@
 <map id="include/osurs/io.h" name="include/osurs/io.h">
-<area shape="rect" id="node1" title="Input and output of networks and its strutures." alt="" coords="204,5,340,32"/>
+<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="204,5,340,32"/>
 <area shape="rect" id="node2" href="$export_8c.html" title="Export network to a file." alt="" coords="5,80,120,107"/>
 <area shape="rect" id="node3" href="$import_8c.html" title="Import a network file." alt="" coords="144,80,259,107"/>
 <area shape="rect" id="node4" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="283,80,405,107"/>

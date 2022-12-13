@@ -1,6 +1,6 @@
 <map id="include/osurs/network.h" name="include/osurs/network.h">
 <area shape="rect" id="node1" title="Network for reservation optmization." alt="" coords="699,5,877,32"/>
-<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its strutures." alt="" coords="275,80,411,107"/>
+<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="275,80,411,107"/>
 <area shape="rect" id="node7" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="497,80,671,107"/>
 <area shape="rect" id="node10" href="$constructor_8c.html" title="Network construction." alt="" coords="695,80,881,107"/>
 <area shape="rect" id="node11" href="$destructor_8c.html" title="Network destruction." alt="" coords="905,80,1084,107"/>

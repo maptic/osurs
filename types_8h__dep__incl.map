@@ -1,7 +1,7 @@
 <map id="include/osurs/types.h" name="include/osurs/types.h">
 <area shape="rect" id="node1" title="Data types of osurs." alt="" coords="708,5,868,32"/>
 <area shape="rect" id="node2" href="$network_8h.html" title="Network for reservation optmization." alt="" coords="699,80,877,107"/>
-<area shape="rect" id="node3" href="$io_8h.html" title="Input and output of networks and its strutures." alt="" coords="275,155,411,181"/>
+<area shape="rect" id="node3" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="275,155,411,181"/>
 <area shape="rect" id="node8" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="497,155,671,181"/>
 <area shape="rect" id="node11" href="$constructor_8c.html" title="Network construction." alt="" coords="695,155,881,181"/>
 <area shape="rect" id="node12" href="$destructor_8c.html" title="Network destruction." alt="" coords="905,155,1084,181"/>

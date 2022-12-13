@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="A reservation." alt="" coords="5,95,113,121"/>
 <area shape="rect" id="node5" href="$structtrip__t.html" title="A trip." alt="" coords="89,184,145,211"/>
 <area shape="rect" id="node2" href="$structstop__t.html" title="A stop." alt="" coords="55,456,117,483"/>
-<area shape="rect" id="node4" href="$structroute__t.html" title="A route." alt="" coords="92,275,160,301"/>
+<area shape="rect" id="node4" href="$structroute__t.html" title="A route." alt="" coords="96,275,164,301"/>
 <area shape="rect" id="node3" href="$structnode__t.html" title="A node." alt="" coords="53,365,119,392"/>
 <area shape="rect" id="node6" href="$structvehicle__t.html" title="A vehicle." alt="" coords="192,95,273,121"/>
 <area shape="rect" id="node7" href="$structcomposition__t.html" title="A composition." alt="" coords="175,5,290,32"/>
