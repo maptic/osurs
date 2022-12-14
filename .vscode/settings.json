@@ -29,5 +29,10 @@
         "struct",
         "Unterfinger",
         "valgrind"
-    ]
+    ],
+    "files.associations": {
+        "*.rmd": "markdown",
+        "reserve.h": "c",
+        "stdio.h": "c"
+    }
 }

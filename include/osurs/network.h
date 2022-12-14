@@ -24,7 +24,7 @@
 // Constructor-like methods
 
 /**
- * @brief Create a new nework
+ * @brief Create a new network
  *
  * The network consists of nodes where vehicles stop and passengers can get on
  * and off. A route stores the order in which the nodes are approached by a
@@ -138,6 +138,15 @@ Composition *get_composition(Network *network, const char *id);
  * @return Returns the route.
  */
 Route *get_route(Network *network, const char *id);
+
+/**
+ * @brief Get the trip struct.
+ *
+ * @param route A route to get the trip from.
+ * @param id The identifier of the trip.
+ * @return Trip* Returns the trip.
+ */
+Trip *get_trip(Route *route, const char *id);
 
 // Destructor-like methods
 

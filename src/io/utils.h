@@ -8,8 +8,6 @@
 #ifndef OSURS_IO_UTILS_H_
 #define OSURS_IO_UTILS_H_
 
-#include <stdio.h>
-
 /**
  * @brief
  *

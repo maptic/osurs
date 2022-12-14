@@ -7,6 +7,8 @@
 
 #include "utils.h"
 
+#include <stdio.h>
+
 int compose_time(char *buffer, int time) {
     int h, m, s;
     h = (time / 3600);

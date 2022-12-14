@@ -47,4 +47,14 @@ Route *get_route(Network *network, const char *id) {
     return NULL;
 }
 
+Trip *get_trip(Route *route, const char *id) {
+    Trip *curr_trip = route->root_trip;
+    while (curr_trip) {
+        if (strcmp(curr_trip->id, id) == 0) return curr_trip;
+        curr_trip = curr_trip->next;
+    }
+    printf("Trip %s not found.\n", id);
+    return NULL;
+}
+
 // Private implementations
