@@ -95,6 +95,7 @@ graph LR;
 Networks and reservations can be persisted as separate XML files. This separation brings the advantage that the reservations (e.g. of a certain day) can be added to an already loaded network. However, it is important to delete already existing reservations from the network beforehand.
 
 ```c
+#include <stdio.h>
 #include <osurs/io.h>
 
 int main(int argc, char* argv[]) {
@@ -146,7 +147,7 @@ This library uses [semantic versioning](https://semver.org/spec/v2.0.0.html). On
 
 Use the following naming conventions:
 
-- `snake_case` for variables and variables.
+- `snake_case` for variables and functions.
 - `UpperCamelCase` for type definitions.
 - `UPPER_SNAKE_CASE` for constants.
 
