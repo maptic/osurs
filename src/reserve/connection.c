@@ -9,7 +9,9 @@
  * @author: Merlin Unterfinger
  */
 
-#include <osurs/reserve.h>
+#include <limits.h>
+
+#include "osurs/reserve.h"
 
 // Private declarations
 

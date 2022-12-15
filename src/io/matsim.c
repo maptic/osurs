@@ -6,8 +6,8 @@
  */
 
 #include <libxml/parser.h>
-#include <osurs/io.h>
 
+#include "osurs/io.h"
 #include "utils.h"
 
 // Private declarations

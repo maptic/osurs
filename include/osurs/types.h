@@ -26,6 +26,8 @@ struct composition_t;
 struct connection_t;
 struct reservation_t;
 struct network_t;
+struct seat_t;
+struct seat_collection_t;
 
 /**
  * @brief A node.
@@ -73,7 +75,7 @@ typedef struct trip_t {
                       the first stop of the route. */
     int arrival; /**< Arrival time in seconds after midnight of the trip at the
                     last stop of the route. */
-    struct vehicle_t *vehicle; /**< The vhicle used to travel along the route
+    struct vehicle_t *vehicle; /**< The vehicle used to travel along the route
                                   with this trip / departure. */
     struct trip_t *next;   /**< The next trip starting after the current one. */
     struct route_t *route; /**< The route the trip corresponds to. */
@@ -112,14 +114,14 @@ typedef struct vehicle_t {
 /**
  * @brief A composition.
  *
- * A composition refelects a combination of containers / groups with au defined
- * seat capactity.
+ * A composition reflects a combination of containers / groups with au defined
+ * seat capacity.
  */
 typedef struct composition_t {
-    char *id;  /**< Identifier. */
-    int seat_count; /**< The seat capacity of the composition (TODO: Replace with
-                  groups in future). */
-    int* seat_ids;  /**< The seat id array */
+    char *id;       /**< Identifier. */
+    int seat_count; /**< The seat capacity of the composition (TODO: Replace
+                  with groups in future). */
+    int *seat_ids;  /**< The seat id array */
 } Composition;
 
 /**
@@ -167,7 +169,7 @@ typedef struct connection_t {
  * @brief A reservation.
  *
  * A reservation is a booked connection. The booked seats have to be smaller or
- * equal to the avalable seats.
+ * equal to the available seats.
  */
 typedef struct reservation_t {
     int res_id;          /**< Reservation id */
@@ -179,25 +181,25 @@ typedef struct reservation_t {
 } Reservation;
 
 /**
-* @brief A seat
-*
-* A seat contains an array of reservations.
-*/
+ * @brief A seat
+ *
+ * A seat contains an array of reservations.
+ */
 typedef struct seat_t {
-	int seat_id;        /**< Seat id */
-	int res_count;      /**< Number of reservations */
-	int* res_id_arr;    /**< Array that contains each reservation id */
+    int seat_id;     /**< Seat id */
+    int res_count;   /**< Number of reservations */
+    int *res_id_arr; /**< Array that contains each reservation id */
 } Seat;
 
 /**
-* @brief A seat collection
-*
-* The seat collection represents multiple seats over which the reservations were distributed/optimized.
-*/
+ * @brief A seat collection
+ *
+ * The seat collection represents multiple seats over which the reservations
+ * were distributed/optimized.
+ */
 typedef struct seat_collection_t {
-	Seat** seat_arr;    /**< Array that contains all the available seats. */
-	int seat_count;     /**< Number of seats in the collection. */
+    Seat **seat_arr; /**< Array that contains all the available seats. */
+    int seat_count;  /**< Number of seats in the collection. */
 } SeatCollection;
-
 
 #endif  // OSURS_TYPES_H_

@@ -12,11 +12,7 @@
 #ifndef OSURS_IO_H_
 #define OSURS_IO_H_
 
-#include <limits.h>
-#include <osurs/network.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
+#include "osurs/reserve.h"
 
 // io/import
 
@@ -77,43 +73,49 @@ int import_matsim(Network *network, const char *schedule_file,
  * @brief Print node.
  *
  * @param node The node struct to print.
+ * @param indent The indent for printing.
  */
-void print_node(Node *node);
+void print_node(Node *node, int indent);
 
 /**
  * @brief Print composition.
  *
  * @param composition The composition struct to print.
+ * @param indent The indent for printing.
  */
-void print_composition(Composition *composition);
+void print_composition(Composition *composition, int indent);
 
 /**
  * @brief Print vehicle.
  *
  * @param vehicle The vehicle struct to print.
+ * @param indent The indent for printing.
  */
-void print_vehicle(Vehicle *vehicle);
+void print_vehicle(Vehicle *vehicle, int indent);
 
 /**
  * @brief Print stop.
  *
  * @param stop The stop struct to print.
+ * @param indent The indent for printing.
  */
-void print_stop(Stop *stop);
+void print_stop(Stop *stop, int indent);
 
 /**
  * @brief Print trip.
  *
  * @param trip The trip struct to print.
+ * @param indent The indent for printing.
  */
-void print_trip(Trip *trip);
+void print_trip(Trip *trip, int indent);
 
 /**
  * @brief Print route.
  *
  * @param route The route struct to print.
+ * @param indent The indent for printing.
  */
-void print_route(Route *route);
+void print_route(Route *route, int indent);
 
 /**
  * @brief Print network.
@@ -133,7 +135,24 @@ void print_connection(Connection *connection);
  * @brief Print reservation.
  *
  * @param reservation The reservation struct to print.
+ * @param indent The indent for printing.
  */
-void print_reservation(Reservation *reservation);
+void print_reservation(Reservation *reservation, int indent);
+
+/**
+ * @brief Print seat.
+ *
+ * @param seat The seat struct to print.
+ * @param indent The indent for printing.
+ */
+void print_seat(Seat *seat, int indent);
+
+/**
+ * @brief Print seat collection.
+ *
+ * @param collection The seat collection struct to print.
+ * @param indent The indent for printing.
+ */
+void print_seat_collection(SeatCollection *collection, int indent);
 
 #endif  // OSURS_IO_H_

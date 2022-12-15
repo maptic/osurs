@@ -15,7 +15,7 @@
 #ifndef OSURS_NETWORK_H_
 #define OSURS_NETWORK_H_
 
-#include <osurs/types.h>
+#include "osurs/types.h"
 
 #define INIT_ALLOC_SIZE_S 10
 #define INIT_ALLOC_SIZE_M 100
@@ -24,7 +24,7 @@
 // Constructor-like methods
 
 /**
- * @brief Create a new nework
+ * @brief Create a new network
  *
  * The network consists of nodes where vehicles stop and passengers can get on
  * and off. A route stores the order in which the nodes are approached by a
@@ -58,7 +58,7 @@ Node *new_node(Network *network, const char *id, double x, double y);
  *
  * @param network The network to add the composition.
  * @param id The id of the composition.
- * @param seats The seat capacity of the composition.
+ * @param seat_count The seat capacity of the composition.
  * @return A pointer to the newly allocated node (Composition*).
  */
 Composition *new_composition(Network *network, const char *id, int seat_count);
@@ -138,6 +138,15 @@ Composition *get_composition(Network *network, const char *id);
  * @return Returns the route.
  */
 Route *get_route(Network *network, const char *id);
+
+/**
+ * @brief Get the trip struct.
+ *
+ * @param route A route to get the trip from.
+ * @param id The identifier of the trip.
+ * @return Trip* Returns the trip.
+ */
+Trip *get_trip(Route *route, const char *id);
 
 // Destructor-like methods
 

@@ -5,9 +5,10 @@
  * @author: Merlin Unterfinger
  */
 
-#include <osurs/network.h>
 #include <stdio.h>
 #include <string.h>
+
+#include "osurs/network.h"
 
 // Private declarations
 
@@ -44,6 +45,16 @@ Route *get_route(Network *network, const char *id) {
         if (strcmp(network->routes[i]->id, id) == 0) return network->routes[i];
     }
     printf("Route %s not found.\n", id);
+    return NULL;
+}
+
+Trip *get_trip(Route *route, const char *id) {
+    Trip *curr_trip = route->root_trip;
+    while (curr_trip) {
+        if (strcmp(curr_trip->id, id) == 0) return curr_trip;
+        curr_trip = curr_trip->next;
+    }
+    printf("Trip %s not found.\n", id);
     return NULL;
 }
 

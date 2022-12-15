@@ -7,8 +7,8 @@
 
 #include <libxml/encoding.h>
 #include <libxml/xmlwriter.h>
-#include <osurs/io.h>
 
+#include "osurs/io.h"
 #include "utils.h"
 
 #define ENCODING "UTF-8"

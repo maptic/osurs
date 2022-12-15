@@ -7,9 +7,9 @@
 
 #include <libxml/parser.h>
 #include <limits.h>
-#include <osurs/io.h>
-#include <osurs/reserve.h>
+#include <stdio.h>
 
+#include "osurs/io.h"
 #include "utils.h"
 
 // Private declarations

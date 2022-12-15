@@ -5,6 +5,8 @@
  * @author: Merlin Unterfinger
  */
 
+#include <stdio.h>
+
 #include "utils.h"
 
 int compose_time(char *buffer, int time) {

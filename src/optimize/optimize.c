@@ -1,11 +1,11 @@
 /**
  * @brief Seat reservation optimization.
- * @file optimization.c
+ * @file optimize.c
  * @date: 2022-08-22
  * @author: Tobias Meier
  */
 
-#include <osurs/optimize.h>
+#include "osurs/optimize.h"
 
 // Public definitions
 
@@ -24,14 +24,14 @@ void seat_add_reservation(Seat* seat, int res_id) {
     seat->res_count++;
 }
 
-// Seat Destructor
+// Seat destructor
 void delete_seat(Seat* seat) {
     if (seat == NULL) return;
     free(seat->res_id_arr);
     free(seat);
 }
 
-// Seat_collection constructor
+// Seat collection constructor
 SeatCollection* new_seat_collection(int seat_count, int seat_ids[]) {
     SeatCollection* collection =
         (SeatCollection*)malloc(sizeof(SeatCollection));
@@ -43,7 +43,7 @@ SeatCollection* new_seat_collection(int seat_count, int seat_ids[]) {
     return collection;
 }
 
-// Seat_collection destructor
+// Seat collection destructor
 void delete_seat_collection(SeatCollection* collection) {
     for (int i = 0; i < collection->seat_count; ++i) {
         delete_seat(collection->seat_arr[i]);
