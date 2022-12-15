@@ -22,11 +22,6 @@ int main(int argc, char *argv[]) {
         perror("Could not load network.");
         return 1;
     }
-    if (!import_reservations(network,
-                             "../tests/input/intercity_reservations.xml")) {
-        perror("Could not load reservations.");
-        return 1;
-    }
 
     // Create random reservations
     int res_count = 0;
