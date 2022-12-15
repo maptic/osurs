@@ -20,7 +20,6 @@ The **osurs** library contains the following modules with corresponding headers:
 graph RL;
   subgraph libosurs;
     osurs/network.h-->|#include|osurs/types.h;
-    osurs/io.h-->|#include|osurs/network.h
     osurs/reserve.h-->|#include|osurs/network.h;
     osurs/io.h-->|#include|osurs/reserve.h
     osurs/optimize.h-->|#include|osurs/types.h;
@@ -115,6 +114,70 @@ int main(int argc, char* argv[]) {
 ```
 
 In addition, transit schedules and vehicle definition files from MATSim can be imported using `import_matsim()`.
+
+### Optimization logic abstraction layer
+
+The optimization logic abstraction layer provides the interface between the seat optimization algorithm and the transit schedule. The seat optimization algorithm could also be used independently from public transport for the optimization of bookings.
+
+```mermaid
+graph LR;
+  subgraph network.h;
+    Trip-->|"reservations[]"|Reservation;
+    Reservation-->|*trip|Trip;
+    Reservation-->|*orig|Stop;
+    Reservation-->|*dest|Stop;
+    Trip-->|*root_stop|Stop;
+  end;
+  subgraph optimize.h;
+    direction LR;
+    SeatCollection-->|"seats[]"|Seat;
+    Seat-->|"reservations[]"|Reservation;
+  end
+```
+
+The optimized seat collection is calculated at the time when the seat allocation is needed. Usually a few minutes before the departure of a trip. Therefore, this information is kept outside the network and thus the memory of the seat collection must be released separately.
+
+```c
+#include <osurs/io.h>
+#include <osurs/olal.h>
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+
+    // read network
+    Network *network = new_network();
+    if (!import_network(network, "intercity_network.xml")) {
+        perror("Could not load network.");
+        return 1;
+    }
+
+    // create random reservations
+    for (int i = 0; i < 1000000; ++i) {
+        // search direct connection between random nodes
+        Node *orig = network->nodes[rand() % (network->node_counter)];
+        Node *dest = network->nodes[rand() % (network->node_counter)];
+        int dep = rand() % (24 * 60 * 60) + 1;
+        Connection *conn = new_connection(orig, dest, dep);
+        // book reservation if enough seats are available for connection
+        int seats = rand() % 3 + 1;
+        Reservation *res = new_reservation(conn, seats);
+        delete_connection(conn);
+    }
+
+    // optimize a random trip
+    Route *route = network->routes[rand() % (network->route_counter)];
+    SeatCollection *collection = optimize_trip(route->root_trip);
+    print_seat_collection(collection, 0);
+
+    // cleanup
+    delete_seat_collection(collection);
+    delete_network(network);
+
+    return 0;
+}
+```
+
+**Note:** Currently, only the strategy of sparsest distribution of reservations among seats is implemented. In a public transportation system, the sparsest distribution considering group reservations would be more likely.
 
 ## Development
 
