@@ -28,13 +28,40 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    Route *route = get_route(network, "ic-1-ew");
-    print_route(route, 0);
-    Trip *trip = get_trip(route, "ic-1-ew-2");
-    print_trip(trip, 0);
-    SeatCollection *sc = optimize_trip(trip);
-    print_network(network);
+    // Create random reservations
+    int res_count = 0;
+    int seat_count = 0;
+    for (int i = 0; i < 1000000; ++i) {
+        int idx_1 = rand() % (network->node_counter);
+        int idx_2 = rand() % (network->node_counter);
+        Node *orig = network->nodes[idx_1];
+        Node *dest = network->nodes[idx_2];
+        int dep = rand() % ((24 * 60 * 60 + 1) - 0) + 0;
+        Connection *conn = new_connection(orig, dest, dep);
+        int seats = rand() % 3 + 1;
+        Reservation *res = new_reservation(conn, seats);
+        if (res != NULL) {
+            ++res_count;
+            seat_count += seats;
+        }
+        delete_connection(conn);
+    }
+    printf("Generated %d reservations with %d occupied seats.\n", res_count,
+           seat_count);
 
+    // Optimize a random trip
+    Route *route = network->routes[rand() % (network->route_counter)];
+    SeatCollection *collection = optimize_trip(route->root_trip);
+    print_seat_collection(collection, 0);
+
+    // Get trip with maximum reservations
+    // Route *route = get_route(network, "ic-1-ew");
+    // print_route(route, 0);
+    // Trip *trip = get_trip(route, "ic-1-ew-2");
+    // print_trip(trip, 0);
+    // SeatCollection *collection = optimize_trip(trip);
+    // print_seat_collection(collection, 0);
+    // print_network(network);
     delete_network(network);
 
     return 0;
