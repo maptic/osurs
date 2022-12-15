@@ -122,11 +122,7 @@ The optimization logic abstraction layer provides the interface between the seat
 ```mermaid
 graph LR;
   subgraph network.h;
-    Trip-->|"reservations[]"|Reservation;
-    Reservation-->|*trip|Trip;
-    Reservation-->|*orig|Stop;
-    Reservation-->|*dest|Stop;
-    Trip-->|*root_stop|Stop;
+    Reservation;
   end;
   subgraph optimize.h;
     direction LR;
@@ -135,7 +131,7 @@ graph LR;
   end
 ```
 
-The optimized seat collection is calculated at the time when the seat allocation is needed. Usually a few minutes before the departure of a trip. Therefore, this information is kept outside the network and thus the memory of the seat collection must be released separately.
+The optimized seat collection is calculated at the time when the seat allocation is needed. Usually a few minutes before the departure of a trip. Therefore, this information is kept outside the network and the memory of the seat collection must be released separately.
 
 ```c
 #include <osurs/io.h>
