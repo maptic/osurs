@@ -5,7 +5,6 @@
  * @author: Tobias Meier
  */
 
-
 #include "osurs/olal.h"
 
 // optimizes the seat reservations on the given trip

@@ -1,7 +1,7 @@
 /**
  * @brief Connection routing, checking seat availability and reservation
  *
- * Simple connection routing alogrithm without transfers. After checking seat
+ * Simple connection routing algorithm without transfers. After checking seat
  * availability in connections reservations can be booked on the network.
  *
  * @note There are already powerful routing algorithms for public transport, so
@@ -45,7 +45,7 @@ Connection *new_connection(const Node *orig, const Node *dest, int time);
  *
  * Check a connection if the desired number of seats is available.
  * This is important since reservations can change or avoid double booking of a
- * serached connection.
+ * searched connection.
  *
  * @note This function is called internally by new_reservation(Connection).
  *
@@ -60,7 +60,7 @@ int check_connection(Connection *connection, int seats, int *trip_count);
 /**
  * @brief Selects the best connection.
  *
- * Chooses the best connection based on arrival time and seat availablity.
+ * Chooses the best connection based on arrival time and seat availability.
  *
  * @param connection Connection results from new_connection().
  * @param seats The number of seats that should be available on the connection.

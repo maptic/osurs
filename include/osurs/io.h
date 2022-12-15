@@ -156,4 +156,4 @@ void print_seat(Seat *seat, int indent);
  */
 void print_seat_collection(SeatCollection *collection, int indent);
 
-#endif // OSURS_IO_H_
+#endif  // OSURS_IO_H_

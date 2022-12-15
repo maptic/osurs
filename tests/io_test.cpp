@@ -2,9 +2,9 @@
 
 extern "C" {
 #include <limits.h>
+#include <osurs/io.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <osurs/io.h>
 }
 
 TEST(IOTest, Import) {

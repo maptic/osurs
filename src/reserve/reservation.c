@@ -10,6 +10,7 @@
 // Private declarations
 
 static void trip_add_reservation(Trip *trip, Reservation *reservation);
+static int get_next_id();
 
 // Public definitions
 
@@ -28,9 +29,9 @@ Reservation *new_reservation(Connection *connection, int seats) {
     res->dest = connection->dest;
     res->trip = connection->trip;
     res->seats = seats;
-    // Generate a dummy res_id
-    // Needs to be replaced with real id creation method
-    res->res_id = rand();
+
+    // Generate res_id
+    res->res_id = get_next_id();
 
     // Connect trip to reservation.
     trip_add_reservation(connection->trip, res);
@@ -60,3 +61,8 @@ static void trip_add_reservation(Trip *trip, Reservation *reservation) {
     }
     trip->reservations[trip->reservation_counter++] = reservation;
 }
+
+static int get_next_id() {
+    static int count = 0;
+    return count++;
+};

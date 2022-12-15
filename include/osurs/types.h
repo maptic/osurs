@@ -75,7 +75,7 @@ typedef struct trip_t {
                       the first stop of the route. */
     int arrival; /**< Arrival time in seconds after midnight of the trip at the
                     last stop of the route. */
-    struct vehicle_t *vehicle; /**< The vhicle used to travel along the route
+    struct vehicle_t *vehicle; /**< The vehicle used to travel along the route
                                   with this trip / departure. */
     struct trip_t *next;   /**< The next trip starting after the current one. */
     struct route_t *route; /**< The route the trip corresponds to. */
@@ -114,8 +114,8 @@ typedef struct vehicle_t {
 /**
  * @brief A composition.
  *
- * A composition refelects a combination of containers / groups with au defined
- * seat capactity.
+ * A composition reflects a combination of containers / groups with au defined
+ * seat capacity.
  */
 typedef struct composition_t {
     char *id;       /**< Identifier. */
@@ -169,7 +169,7 @@ typedef struct connection_t {
  * @brief A reservation.
  *
  * A reservation is a booked connection. The booked seats have to be smaller or
- * equal to the avalable seats.
+ * equal to the available seats.
  */
 typedef struct reservation_t {
     int res_id;          /**< Reservation id */

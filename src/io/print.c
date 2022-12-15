@@ -36,8 +36,8 @@ void print_reservation(Reservation *reservation, int indent) {
 }
 
 void print_seat(Seat *seat, int indent) {
-    printf("%*s<seat sid=\"%d\" reservations=\"%d\" />\n", indent,
-           INDENT_CHARS, seat->seat_id, seat->res_count);
+    printf("%*s<seat sid=\"%d\" reservations=\"%d\" />\n", indent, INDENT_CHARS,
+           seat->seat_id, seat->res_count);
 }
 
 void print_stop(Stop *stop, int indent) {

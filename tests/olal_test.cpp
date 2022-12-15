@@ -1,9 +1,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include <osurs/io.h>
 #include <osurs/olal.h>
-#include <osurs/reserve.h>
 }
 
 TEST(OlalTest, BasicTest) {

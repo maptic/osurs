@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include <climits>
 
 extern "C" {
+#include <limits.h>
 #include <osurs/io.h>
 #include <osurs/reserve.h>
 }
