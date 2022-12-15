@@ -15,7 +15,7 @@
 #ifndef OSURS_NETWORK_H_
 #define OSURS_NETWORK_H_
 
-#include <osurs/types.h>
+#include "osurs/types.h"
 
 #define INIT_ALLOC_SIZE_S 10
 #define INIT_ALLOC_SIZE_M 100

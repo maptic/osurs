@@ -17,8 +17,7 @@
 #ifndef OSURS_RESERVE_H_
 #define OSURS_RESERVE_H_
 
-#include <limits.h>
-#include <osurs/network.h>
+#include "osurs/network.h"
 
 /**
  * @brief Create connection between nodes.

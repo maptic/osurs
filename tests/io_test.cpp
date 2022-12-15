@@ -1,11 +1,10 @@
 #include <gtest/gtest.h>
+
+extern "C" {
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
-
-extern "C" {
 #include <osurs/io.h>
-#include <osurs/reserve.h>
 }
 
 TEST(IOTest, Import) {

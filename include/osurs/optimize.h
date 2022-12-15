@@ -9,9 +9,10 @@
  * @author: Tobias Meier, Merlin Unterfinger
  */
 
-#pragma once
+#ifndef OSURS_OPTIMIZE_H_
+#define OSURS_OPTIMIZE_H_
 
-#include <osurs/types.h>
+#include "osurs/types.h"
 
  /**
  * @brief Create a new seat.
@@ -101,3 +102,5 @@ SeatCollection* optimize_reservation(
 	int segment_count,
 	int seat_ids[],
 	int seat_count);
+
+#endif  // OSURS_OPTIMIZE_H_

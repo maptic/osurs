@@ -12,11 +12,8 @@
 #ifndef OSURS_IO_H_
 #define OSURS_IO_H_
 
-#include <limits.h>
-#include <osurs/network.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
+#include "osurs/network.h"
+#include "osurs/reserve.h"
 
 // io/import
 
@@ -159,4 +156,4 @@ void print_seat(Seat *seat, int indent);
  */
 void print_seat_collection(SeatCollection *collection, int indent);
 
-#endif  // OSURS_IO_H_
+#endif // OSURS_IO_H_

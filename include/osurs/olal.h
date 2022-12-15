@@ -8,10 +8,11 @@
  * @author: Tobias Meier
  */
 
-#pragma once
+#ifndef OSURS_OLAL_H_
+#define OSURS_OLAL_H_
 
-#include <osurs/types.h>
-#include <osurs/optimize.h>
+#include "osurs/reserve.h"
+#include "osurs/optimize.h"
 
  /**
  * @brief Optimize seat reservations on given trip
@@ -22,3 +23,4 @@
  **/
 SeatCollection* optimize_trip(Trip* t);
 
+#endif  // OSURS_OLAL_H_

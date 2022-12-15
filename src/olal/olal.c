@@ -5,7 +5,8 @@
  * @author: Tobias Meier
  */
 
-#include <osurs/olal.h>
+
+#include "osurs/olal.h"
 
 // optimizes the seat reservations on the given trip
 SeatCollection* optimize_trip(Trip* t) {

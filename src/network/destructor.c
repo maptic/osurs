@@ -5,7 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
-#include <osurs/network.h>
+#include "osurs/network.h"
 
 // Private declarations
 

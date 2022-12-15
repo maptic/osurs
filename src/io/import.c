@@ -7,9 +7,9 @@
 
 #include <libxml/parser.h>
 #include <limits.h>
-#include <osurs/io.h>
-#include <osurs/reserve.h>
+#include <stdio.h>
 
+#include "osurs/io.h"
 #include "utils.h"
 
 // Private declarations
@@ -34,14 +34,16 @@ static void handle_trip(xmlNode *xml_node, Carrier *carrier);
 
 // Public definitions
 
-int import_network(Network *network, const char *filename) {
+int import_network(Network *network, const char *filename)
+{
     xmlDoc *doc = NULL;
     xmlNode *root_element = NULL;
     Carrier *carrier = new_carrier(network);
 
     // Parse transit vehicles file
     doc = xmlReadFile(filename, NULL, 0);
-    if (doc == NULL) {
+    if (doc == NULL)
+    {
         printf("Could not parse file %s.", filename);
         return 0;
     }
@@ -59,13 +61,15 @@ int import_network(Network *network, const char *filename) {
     return 1;
 }
 
-int import_reservations(Network *network, const char *filename) {
+int import_reservations(Network *network, const char *filename)
+{
     xmlDoc *doc = NULL;
     xmlNode *root_element = NULL;
 
     // Parse transit vehicles file
     doc = xmlReadFile(filename, NULL, 0);
-    if (doc == NULL) {
+    if (doc == NULL)
+    {
         printf("Could not parse file %s.", filename);
         return 0;
     }
@@ -81,7 +85,8 @@ int import_reservations(Network *network, const char *filename) {
 
 // Private definitions
 
-typedef struct carrier_t {
+typedef struct carrier_t
+{
     Network *network;
     char *route_id;
     Node **nodes;
@@ -97,14 +102,16 @@ typedef struct carrier_t {
     int init_state;
 } Carrier;
 
-static Carrier *new_carrier(Network *network) {
+static Carrier *new_carrier(Network *network)
+{
     Carrier *carrier = (Carrier *)malloc(sizeof(Carrier));
     carrier->network = network;
     carrier->init_state = 0;
     return carrier;
 }
 
-static void empty_carrier(Carrier *carrier) {
+static void empty_carrier(Carrier *carrier)
+{
     xmlFree(carrier->route_id);
     free(carrier->nodes);
     free(carrier->arrival_offsets);
@@ -117,7 +124,8 @@ static void empty_carrier(Carrier *carrier) {
 }
 
 static Carrier *init_carrier(Carrier *carrier, char *route_id,
-                             size_t route_size, size_t trip_size) {
+                             size_t route_size, size_t trip_size)
+{
     carrier->route_id = route_id;
     carrier->nodes = (Node **)malloc(sizeof(Node *) * route_size);
     carrier->arrival_offsets = (int *)malloc(sizeof(int) * route_size);
@@ -133,32 +141,48 @@ static Carrier *init_carrier(Carrier *carrier, char *route_id,
     return carrier;
 }
 
-static void new_route_from_carrier(Carrier *carrier) {
+static void new_route_from_carrier(Carrier *carrier)
+{
     new_route(carrier->network, carrier->route_id, carrier->nodes,
               carrier->arrival_offsets, carrier->departure_offsets,
               carrier->route_size, carrier->trip_ids, carrier->departures,
               carrier->vehicles, carrier->trip_size);
 }
 
-static void delete_carrier(Carrier *carrier) {
+static void delete_carrier(Carrier *carrier)
+{
     empty_carrier(carrier);
     free(carrier);
 }
 
-static void network_parser(xmlNode *xml_node, Carrier *carrier) {
-    while (xml_node) {
-        if (xml_node->type == XML_ELEMENT_NODE) {
-            if (xmlStrcmp(xml_node->name, "node") == 0) {
+static void network_parser(xmlNode *xml_node, Carrier *carrier)
+{
+    while (xml_node)
+    {
+        if (xml_node->type == XML_ELEMENT_NODE)
+        {
+            if (xmlStrcmp(xml_node->name, "node") == 0)
+            {
                 handle_node(xml_node, carrier->network);
-            } else if (xmlStrcmp(xml_node->name, "composition") == 0) {
+            }
+            else if (xmlStrcmp(xml_node->name, "composition") == 0)
+            {
                 handle_composition(xml_node, carrier->network);
-            } else if (xmlStrcmp(xml_node->name, "vehicle") == 0) {
+            }
+            else if (xmlStrcmp(xml_node->name, "vehicle") == 0)
+            {
                 handle_vehicle(xml_node, carrier->network);
-            } else if (xmlStrcmp(xml_node->name, "route") == 0) {
+            }
+            else if (xmlStrcmp(xml_node->name, "route") == 0)
+            {
                 handle_route(xml_node, carrier);
-            } else if (xmlStrcmp(xml_node->name, "stop") == 0) {
+            }
+            else if (xmlStrcmp(xml_node->name, "stop") == 0)
+            {
                 handle_stop(xml_node, carrier);
-            } else if (xmlStrcmp(xml_node->name, "trip") == 0) {
+            }
+            else if (xmlStrcmp(xml_node->name, "trip") == 0)
+            {
                 handle_trip(xml_node, carrier);
             }
         }
@@ -168,10 +192,14 @@ static void network_parser(xmlNode *xml_node, Carrier *carrier) {
 }
 
 static void reservation_parser(xmlNode *xml_node, Network *network,
-                               Route *route, Trip *trip) {
-    while (xml_node) {
-        if (xml_node->type == XML_ELEMENT_NODE) {
-            if (xmlStrcmp(xml_node->name, "reservation") == 0) {
+                               Route *route, Trip *trip)
+{
+    while (xml_node)
+    {
+        if (xml_node->type == XML_ELEMENT_NODE)
+        {
+            if (xmlStrcmp(xml_node->name, "reservation") == 0)
+            {
                 char *rid_tmp = xmlGetProp(xml_node, "rid");
                 char *tid_tmp = xmlGetProp(xml_node, "tid");
                 char *nid_orig_tmp = xmlGetProp(xml_node, "nid_orig");
@@ -179,30 +207,38 @@ static void reservation_parser(xmlNode *xml_node, Network *network,
                 char *seats_tmp = xmlGetProp(xml_node, "seats");
 
                 // Get route
-                if (route == NULL || xmlStrcmp(rid_tmp, route->id) != 0) {
+                if (route == NULL || xmlStrcmp(rid_tmp, route->id) != 0)
+                {
                     route = get_route(network, rid_tmp);
                 }
 
                 // Get trip
-                if (trip == NULL || xmlStrcmp(tid_tmp, trip->id) != 0) {
+                if (trip == NULL || xmlStrcmp(tid_tmp, trip->id) != 0)
+                {
                     trip = route->root_trip;
-                    while (trip) {
-                        if (xmlStrcmp(tid_tmp, trip->id) == 0) break;
+                    while (trip)
+                    {
+                        if (xmlStrcmp(tid_tmp, trip->id) == 0)
+                            break;
                         trip = trip->next;
                     }
                 }
 
                 // Get orig
                 Stop *orig = route->root_stop;
-                while (orig) {
-                    if (xmlStrcmp(nid_orig_tmp, orig->node->id) == 0) break;
+                while (orig)
+                {
+                    if (xmlStrcmp(nid_orig_tmp, orig->node->id) == 0)
+                        break;
                     orig = orig->next;
                 }
 
                 // Get dest
                 Stop *dest = orig;
-                while (dest) {
-                    if (xmlStrcmp(nid_dest_tmp, dest->node->id) == 0) break;
+                while (dest)
+                {
+                    if (xmlStrcmp(nid_dest_tmp, dest->node->id) == 0)
+                        break;
                     dest = dest->next;
                 }
 
@@ -220,7 +256,8 @@ static void reservation_parser(xmlNode *xml_node, Network *network,
                 // Create new reservation
                 int seats;
                 sscanf(seats_tmp, "%d", &seats);
-                if (new_reservation(conn, seats) == NULL) {
+                if (new_reservation(conn, seats) == NULL)
+                {
                     printf(
                         "ERROR: Failed to create reservation (%s -> %s, "
                         "trip=%s, seats=%d).\n",
@@ -241,7 +278,8 @@ static void reservation_parser(xmlNode *xml_node, Network *network,
     }
 }
 
-static void handle_node(xmlNode *xml_node, Network *network) {
+static void handle_node(xmlNode *xml_node, Network *network)
+{
     double x, y;
     char *id_tmp = xmlGetProp(xml_node, "id");
     char *x_tmp = xmlGetProp(xml_node, "x");
@@ -254,7 +292,8 @@ static void handle_node(xmlNode *xml_node, Network *network) {
     xmlFree(y_tmp);
 }
 
-static void handle_composition(xmlNode *xml_node, Network *network) {
+static void handle_composition(xmlNode *xml_node, Network *network)
+{
     int seat_count;
     char *id_tmp = xmlGetProp(xml_node, "id");
     char *seat_count_tmp = xmlGetProp(xml_node, "seat_count");
@@ -264,7 +303,8 @@ static void handle_composition(xmlNode *xml_node, Network *network) {
     xmlFree(seat_count_tmp);
 }
 
-static void handle_vehicle(xmlNode *xml_node, Network *network) {
+static void handle_vehicle(xmlNode *xml_node, Network *network)
+{
     char *id_tmp = xmlGetProp(xml_node, "id");
     char *cid_tmp = xmlGetProp(xml_node, "cid");
     Composition *composition = get_composition(network, cid_tmp);
@@ -273,9 +313,11 @@ static void handle_vehicle(xmlNode *xml_node, Network *network) {
     xmlFree(cid_tmp);
 }
 
-static void handle_route(xmlNode *xml_node, Carrier *carrier) {
+static void handle_route(xmlNode *xml_node, Carrier *carrier)
+{
     // Add Route if carrier already filled
-    if (carrier->init_state == 1) {
+    if (carrier->init_state == 1)
+    {
         new_route_from_carrier(carrier);
         empty_carrier(carrier);
         carrier->init_state = 0;
@@ -294,7 +336,8 @@ static void handle_route(xmlNode *xml_node, Carrier *carrier) {
     init_carrier(carrier, route_id_tmp, route_size, trip_size);
 }
 
-static void handle_stop(xmlNode *xml_node, Carrier *carrier) {
+static void handle_stop(xmlNode *xml_node, Carrier *carrier)
+{
     // Parse stop element
     char *nid_tmp = xmlGetProp(xml_node, "nid");
     char *arr_off_tmp = xmlGetProp(xml_node, "arr_off");
@@ -312,9 +355,10 @@ static void handle_stop(xmlNode *xml_node, Carrier *carrier) {
     ++(carrier->stop_count);
 }
 
-static void handle_trip(xmlNode *xml_node, Carrier *carrier) {
+static void handle_trip(xmlNode *xml_node, Carrier *carrier)
+{
     // Parse trip element
-    char *tid_tmp = xmlGetProp(xml_node, "id");  // Delete afterwards in carrier
+    char *tid_tmp = xmlGetProp(xml_node, "id"); // Delete afterwards in carrier
     char *dep_tmp = xmlGetProp(xml_node, "dep");
     char *vid_tmp = xmlGetProp(xml_node, "vid");
     int dep = parse_time(dep_tmp);

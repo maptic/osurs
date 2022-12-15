@@ -5,9 +5,11 @@
  * @author: Merlin Unterfinger
  */
 
-#include <osurs/io.h>
+#include <stdio.h>
 
+#include "osurs/io.h"
 #include "utils.h"
+
 #define INDENT_CHARS ""
 #define INDENT_DEPTH 4
 
@@ -25,6 +27,17 @@ void print_composition(Composition *composition, int indent) {
 void print_vehicle(Vehicle *vehicle, int indent) {
     printf("%*s<vehicle <id=\"%s\" cid=\"%s\" />\n", indent, INDENT_CHARS,
            vehicle->id, vehicle->composition->id);
+}
+
+void print_reservation(Reservation *reservation, int indent) {
+    printf("%*s<reservation orig_nid=\"%s\" dest_nid=\"%s\" seats=\"%d\" />\n",
+           indent, INDENT_CHARS, reservation->orig->node->id,
+           reservation->dest->node->id, reservation->seats);
+}
+
+void print_seat(Seat *seat, int indent) {
+    printf("%*s<seat sid=\"%d\" reservations=\"%d\" />\n", indent,
+           INDENT_CHARS, seat->seat_id, seat->res_count);
 }
 
 void print_stop(Stop *stop, int indent) {
@@ -148,17 +161,6 @@ void print_connection(Connection *connection) {
         curr_conn = curr_conn->next;
     }
     printf("</connection>\n");
-}
-
-void print_reservation(Reservation *reservation, int indent) {
-    printf("%*s<reservation orig_nid=\"%s\" dest_nid=\"%s\" seats=\"%d\" />\n",
-           indent, INDENT_CHARS, reservation->orig->node->id,
-           reservation->dest->node->id, reservation->seats);
-}
-
-void print_seat(Seat *seat, int indent) {
-    printf("%*s<seat sid=\"%d\" reservations=\"%d\" />\n", indent,
-           INDENT_CHARS, seat->seat_id, seat->res_count);
 }
 
 void print_seat_collection(SeatCollection *collection, int indent) {

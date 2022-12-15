@@ -5,7 +5,7 @@
  * @author: Tobias Meier
  */
 
-#include <osurs/optimize.h>
+#include "osurs/optimize.h"
 
 // Public definitions
 

@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <climits>
 
 extern "C" {
 #include <osurs/io.h>

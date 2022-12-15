@@ -8,9 +8,9 @@
  * @author: Merlin Unterfinger
  */
 
+#include <stdio.h>
 #include <osurs/io.h>
 #include <osurs/olal.h>
-#include <osurs/reserve.h>
 
 int main(int argc, char *argv[]) {
     if (argc > 0) {
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
     // SeatCollection *collection = optimize_trip(trip);
     // print_seat_collection(collection, 0);
     // print_network(network);
-    delete_network(network);
+    // delete_network(network);
 
     return 0;
 }
