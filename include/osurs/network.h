@@ -58,7 +58,7 @@ Node *new_node(Network *network, const char *id, double x, double y);
  *
  * @param network The network to add the composition.
  * @param id The id of the composition.
- * @param seats The seat capacity of the composition.
+ * @param seat_count The seat capacity of the composition.
  * @return A pointer to the newly allocated node (Composition*).
  */
 Composition *new_composition(Network *network, const char *id, int seat_count);
