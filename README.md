@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
 
     // read network
     Network *network = new_network();
-    if (!import_network(network, "intercity_network.xml")) {
+    if (!import_network(network, "network.xml")) {
         perror("Could not load network.");
         return 1;
     }
