@@ -1,10 +1,7 @@
 <map id="include/osurs/io.h" name="include/osurs/io.h">
-<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="217,5,353,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,76,107"/>
-<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="100,80,227,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="251,80,318,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="343,80,413,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="438,80,513,107"/>
-<area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="109,155,218,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="128,229,199,256"/>
+<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="node2" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="12,80,135,107"/>
+<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="10,155,137,181"/>
+<area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="19,229,128,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="38,304,109,331"/>
 </map>

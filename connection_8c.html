@@ -75,18 +75,19 @@ $(function() {
 
 <p>Routing connections between nodes on the network without transfers.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="reserve_8h_source.html">osurs/reserve.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;limits.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="reserve_8h_source.html">osurs/reserve.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for connection.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="connection_8c__incl.png" border="0" usemap="#asrc_2reserve_2connection_8c" alt=""/></div>
 <map name="asrc_2reserve_2connection_8c" id="asrc_2reserve_2connection_8c">
-<area shape="rect" title="Routing connections between nodes on the network without transfers." alt="" coords="12,5,192,32"/>
-<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="41,80,163,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,76,181"/>
-<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="100,155,227,181"/>
-<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="109,229,218,256"/>
-<area shape="rect" title=" " alt="" coords="128,304,199,331"/>
+<area shape="rect" title="Routing connections between nodes on the network without transfers." alt="" coords="11,5,191,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,76,107"/>
+<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="101,80,223,107"/>
+<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="99,155,225,181"/>
+<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="107,229,217,256"/>
+<area shape="rect" title=" " alt="" coords="127,304,197,331"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -144,7 +145,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check if seats are available in connection. </p>
-<p>Check a connection if the desired number of seats is available. This is important since reservations can change or avoid double booking of a serached connection.</p>
+<p>Check a connection if the desired number of seats is available. This is important since reservations can change or avoid double booking of a searched connection.</p>
 <dl class="section note"><dt>Note</dt><dd>This function is called internally by new_reservation(Connection).</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -260,7 +261,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Selects the best connection. </p>
-<p>Chooses the best connection based on arrival time and seat availablity.</p>
+<p>Chooses the best connection based on arrival time and seat availability.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">connection</td><td>Connection results from <a class="el" href="reserve_8h.html#abd0ae8c40d931cf153e111b813c203b8" title="Create connection between nodes.">new_connection()</a>. </td></tr>

@@ -1,8 +1,7 @@
 <map id="src/reserve/reservation.c" name="src/reserve/reservation.c">
-<area shape="rect" id="node1" title="Placing reservations for found connections." alt="" coords="11,5,193,32"/>
-<area shape="rect" id="node2" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="41,80,163,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,76,181"/>
-<area shape="rect" id="node4" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="100,155,227,181"/>
-<area shape="rect" id="node5" href="$types_8h.html" title="Data types of osurs." alt="" coords="109,229,218,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="128,304,199,331"/>
+<area shape="rect" id="node1" title="Placing reservations for found connections." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="35,80,158,107"/>
+<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="33,155,160,181"/>
+<area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="42,229,151,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="61,304,132,331"/>
 </map>

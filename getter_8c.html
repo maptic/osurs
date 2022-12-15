@@ -75,20 +75,20 @@ $(function() {
 
 <p>Access network structures.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="network_8h_source.html">osurs/network.h</a>&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="network_8h_source.html">osurs/network.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for getter.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="getter_8c__incl.png" border="0" usemap="#asrc_2network_2getter_8c" alt=""/></div>
 <map name="asrc_2network_2getter_8c" id="asrc_2network_2getter_8c">
-<area shape="rect" title="Access network structures." alt="" coords="115,5,265,32"/>
-<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="5,80,132,107"/>
-<area shape="rect" title=" " alt="" coords="157,80,223,107"/>
-<area shape="rect" title=" " alt="" coords="248,80,319,107"/>
-<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="14,155,123,181"/>
-<area shape="rect" title=" " alt="" coords="33,229,104,256"/>
+<area shape="rect" title="Access network structures." alt="" coords="57,5,207,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="191,80,318,107"/>
+<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="200,155,309,181"/>
+<area shape="rect" title=" " alt="" coords="219,229,290,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -106,6 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a88d6475fccde4ecc474c5433cfb47880"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a92908330e634aa399a69376274b7d361">Route</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getter_8c.html#a88d6475fccde4ecc474c5433cfb47880">get_route</a> (<a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *network, const char *id)</td></tr>
 <tr class="memdesc:a88d6475fccde4ecc474c5433cfb47880"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the route struct.  <a href="getter_8c.html#a88d6475fccde4ecc474c5433cfb47880">More...</a><br /></td></tr>
 <tr class="separator:a88d6475fccde4ecc474c5433cfb47880"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8c908e80da9ff015802d3823071130"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a7decf3192ed74e2646c1ae130c2e944f">Trip</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getter_8c.html#a2c8c908e80da9ff015802d3823071130">get_trip</a> (<a class="el" href="types_8h.html#a92908330e634aa399a69376274b7d361">Route</a> *route, const char *id)</td></tr>
+<tr class="memdesc:a2c8c908e80da9ff015802d3823071130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the trip struct.  <a href="getter_8c.html#a2c8c908e80da9ff015802d3823071130">More...</a><br /></td></tr>
+<tr class="separator:a2c8c908e80da9ff015802d3823071130"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Access network structures. </p>
@@ -223,6 +226,44 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the route. </dd></dl>
+
+</div>
+</div>
+<a id="a2c8c908e80da9ff015802d3823071130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c8c908e80da9ff015802d3823071130">&#9670;&nbsp;</a></span>get_trip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a7decf3192ed74e2646c1ae130c2e944f">Trip</a>* get_trip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a92908330e634aa399a69376274b7d361">Route</a> *&#160;</td>
+          <td class="paramname"><em>route</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the trip struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">route</td><td>A route to get the trip from. </td></tr>
+    <tr><td class="paramname">id</td><td>The identifier of the trip. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Trip* Returns the trip. </dd></dl>
 
 </div>
 </div>

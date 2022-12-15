@@ -75,18 +75,16 @@ $(function() {
 
 <p>Connection routing, checking seat availability and reservation.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;limits.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="network_8h_source.html">osurs/network.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="network_8h_source.html">osurs/network.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for reserve.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="reserve_8h__incl.png" border="0" usemap="#ainclude_2osurs_2reserve_8h" alt=""/></div>
 <map name="ainclude_2osurs_2reserve_8h" id="ainclude_2osurs_2reserve_8h">
-<area shape="rect" title="Connection routing, checking seat availability and reservation." alt="" coords="15,5,189,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,76,107"/>
-<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="100,80,227,107"/>
-<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="109,155,218,181"/>
-<area shape="rect" title=" " alt="" coords="128,229,199,256"/>
+<area shape="rect" title="Connection routing, checking seat availability and reservation." alt="" coords="5,5,179,32"/>
+<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="29,80,155,107"/>
+<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="37,155,147,181"/>
+<area shape="rect" title=" " alt="" coords="57,229,127,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -94,11 +92,17 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="reserve_8h__dep__incl.png" border="0" usemap="#ainclude_2osurs_2reserve_8hdep" alt=""/></div>
 <map name="ainclude_2osurs_2reserve_8hdep" id="ainclude_2osurs_2reserve_8hdep">
-<area shape="rect" title="Connection routing, checking seat availability and reservation." alt="" coords="181,5,355,32"/>
-<area shape="rect" href="import_8c.html" title="Import a network file." alt="" coords="5,80,120,107"/>
-<area shape="rect" href="main_8c.html" title="The osurs command line interface." alt="" coords="145,80,234,107"/>
-<area shape="rect" href="connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="258,80,438,107"/>
-<area shape="rect" href="reservation_8c.html" title="Placing reservations for found connections." alt="" coords="462,80,645,107"/>
+<area shape="rect" title="Connection routing, checking seat availability and reservation." alt="" coords="608,5,781,32"/>
+<area shape="rect" href="io_8h.html" title="Input and output of networks and its structures." alt="" coords="321,80,457,107"/>
+<area shape="rect" href="olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="527,80,675,107"/>
+<area shape="rect" href="connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="699,80,879,107"/>
+<area shape="rect" href="reservation_8c.html" title="Placing reservations for found connections." alt="" coords="903,80,1086,107"/>
+<area shape="rect" href="export_8c.html" title="Export network to a file." alt="" coords="5,155,120,181"/>
+<area shape="rect" href="import_8c.html" title="Import a network file." alt="" coords="144,155,259,181"/>
+<area shape="rect" href="matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="283,155,405,181"/>
+<area shape="rect" href="print_8c.html" title="Input and output of networks and its structures." alt="" coords="430,155,533,181"/>
+<area shape="rect" href="main_8c.html" title="The osurs command line interface." alt="" coords="557,155,646,181"/>
+<area shape="rect" href="olal_8c.html" title="Optimization logic abstraction layer." alt="" coords="670,155,778,181"/>
 </map>
 </div>
 </div>
@@ -124,7 +128,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Connection routing, checking seat availability and reservation. </p>
-<p>Simple connection routing alogrithm without transfers. After checking seat availability in connections reservations can be booked on the network.</p>
+<p>Simple connection routing algorithm without transfers. After checking seat availability in connections reservations can be booked on the network.</p>
 <dl class="section note"><dt>Note</dt><dd>There are already powerful routing algorithms for public transport, so the algorithm included here is minimal and only serves to book reservations on already known/found connections to the right segments of the trips (without transfers).</dd></dl>
 <dl class="section date"><dt>Date</dt><dd>: 2022-07-12 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>: Merlin Unterfinger </dd></dl>
@@ -162,7 +166,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check if seats are available in connection. </p>
-<p>Check a connection if the desired number of seats is available. This is important since reservations can change or avoid double booking of a serached connection.</p>
+<p>Check a connection if the desired number of seats is available. This is important since reservations can change or avoid double booking of a searched connection.</p>
 <dl class="section note"><dt>Note</dt><dd>This function is called internally by new_reservation(Connection).</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -317,7 +321,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Selects the best connection. </p>
-<p>Chooses the best connection based on arrival time and seat availablity.</p>
+<p>Chooses the best connection based on arrival time and seat availability.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">connection</td><td>Connection results from <a class="el" href="reserve_8h.html#abd0ae8c40d931cf153e111b813c203b8" title="Create connection between nodes.">new_connection()</a>. </td></tr>

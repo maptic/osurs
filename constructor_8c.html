@@ -75,25 +75,25 @@ $(function() {
 
 <p>Network construction.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="network_8h_source.html">osurs/network.h</a>&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="network_8h_source.html">osurs/network.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for constructor.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="constructor_8c__incl.png" border="0" usemap="#asrc_2network_2constructor_8c" alt=""/></div>
 <map name="asrc_2network_2constructor_8c" id="asrc_2network_2constructor_8c">
-<area shape="rect" title="Network construction." alt="" coords="37,5,223,32"/>
-<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="5,80,132,107"/>
-<area shape="rect" title=" " alt="" coords="156,80,227,107"/>
-<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="14,155,123,181"/>
-<area shape="rect" title=" " alt="" coords="33,229,104,256"/>
+<area shape="rect" title="Network construction." alt="" coords="9,5,195,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,76,107"/>
+<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="100,80,227,107"/>
+<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="109,155,218,181"/>
+<area shape="rect" title=" " alt="" coords="128,229,199,256"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a50db1b8e90786e202af8d335f6eaafd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="constructor_8c.html#a50db1b8e90786e202af8d335f6eaafd0">new_network</a> ()</td></tr>
-<tr class="memdesc:a50db1b8e90786e202af8d335f6eaafd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new nework.  <a href="constructor_8c.html#a50db1b8e90786e202af8d335f6eaafd0">More...</a><br /></td></tr>
+<tr class="memdesc:a50db1b8e90786e202af8d335f6eaafd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new network.  <a href="constructor_8c.html#a50db1b8e90786e202af8d335f6eaafd0">More...</a><br /></td></tr>
 <tr class="separator:a50db1b8e90786e202af8d335f6eaafd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf406e6e2c5d7fa84ac1c2d18b24c823"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9fa1463f3b93a55de4cf83e519c4473c">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="constructor_8c.html#adf406e6e2c5d7fa84ac1c2d18b24c823">new_node</a> (<a class="el" href="types_8h.html#af4740ddcea725d2249b9f0f7c9d70ce6">Network</a> *network, const char *id, double x, double y)</td></tr>
 <tr class="memdesc:adf406e6e2c5d7fa84ac1c2d18b24c823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new node and add it to the network.  <a href="constructor_8c.html#adf406e6e2c5d7fa84ac1c2d18b24c823">More...</a><br /></td></tr>
@@ -150,7 +150,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">network</td><td>The network to add the composition. </td></tr>
     <tr><td class="paramname">id</td><td>The id of the composition. </td></tr>
-    <tr><td class="paramname">seats</td><td>The seat capacity of the composition. </td></tr>
+    <tr><td class="paramname">seat_count</td><td>The seat capacity of the composition. </td></tr>
   </table>
   </dd>
 </dl>
@@ -173,7 +173,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Create a new nework. </p>
+<p>Create a new network. </p>
 <p>The network consists of nodes where vehicles stop and passengers can get on and off. A route stores the order in which the nodes are approached by a vehicle in a chain of stops. Each stop contains information about which stop is next and how long it takes to reach it. On routes, trips indicate the departure times at which a vehicle leaves from the route's root stop. Vehicle information such as capacity and reservations are stored at the trip level.</p>
 <dl class="section note"><dt>Note</dt><dd>All objects of the network are located on the heap and are directly or indirectly linked to the network structure. If the memory of the network is released (<a class="el" href="network_8h.html#aaabf3176359b6a42ced69ff6ebf17e7a" title="Delete a network.">delete_network(Network *)</a>) all associated structures of the network are also cleared.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Network* </dd></dl>

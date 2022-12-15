@@ -71,34 +71,29 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="optimize_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="types_8h.html">osurs/types.h</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<a class="code" href="structseat__t.html">Seat</a>* <a class="code" href="optimize_8h.html#aca2d21394ceb194b6903b26b368da9b7">new_seat</a>(<span class="keywordtype">int</span> seat_id);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="optimize_8h.html#a0db0b83d059edfb55dadecb4b092a70f">seat_add_reservation</a>(<a class="code" href="structseat__t.html">Seat</a>* seat, <span class="keywordtype">int</span> res_id);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="optimize_8h.html#aa229f6057e7be0f7cf2ef13e4775fc01">delete_seat</a>(<a class="code" href="structseat__t.html">Seat</a>* seat);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="structseat__collection__t.html">SeatCollection</a>* <a class="code" href="optimize_8h.html#a7488760077beb68ad399d5063daa1d56">new_seat_collection</a>(<span class="keywordtype">int</span> seat_count, <span class="keywordtype">int</span> seat_ids[]);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> <a class="code" href="optimize_8h.html#a6d6d18c426728d32215fa05b699a7b2f">delete_seat_collection</a>(<a class="code" href="structseat__collection__t.html">SeatCollection</a>* collection);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">int</span> <a class="code" href="optimize_8h.html#a6d5bbfde7126d2efa61add038200e999">space_available</a>(</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> res_arr[],</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> res_count,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span> segment_count,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> seat_count,</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> new_res);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef OSURS_OPTIMIZE_H_</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define OSURS_OPTIMIZE_H_</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">osurs/types.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="structseat__t.html">Seat</a>* <a class="code" href="optimize_8h.html#aca2d21394ceb194b6903b26b368da9b7">new_seat</a>(<span class="keywordtype">int</span> seat_id);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> <a class="code" href="optimize_8h.html#a0db0b83d059edfb55dadecb4b092a70f">seat_add_reservation</a>(<a class="code" href="structseat__t.html">Seat</a>* seat, <span class="keywordtype">int</span> res_id);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="optimize_8h.html#aa229f6057e7be0f7cf2ef13e4775fc01">delete_seat</a>(<a class="code" href="structseat__t.html">Seat</a>* seat);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="structseat__collection__t.html">SeatCollection</a>* <a class="code" href="optimize_8h.html#a7488760077beb68ad399d5063daa1d56">new_seat_collection</a>(<span class="keywordtype">int</span> seat_count, <span class="keywordtype">int</span> seat_ids[]);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> <a class="code" href="optimize_8h.html#a6d6d18c426728d32215fa05b699a7b2f">delete_seat_collection</a>(<a class="code" href="structseat__collection__t.html">SeatCollection</a>* collection);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">int</span> <a class="code" href="optimize_8h.html#a6d5bbfde7126d2efa61add038200e999">space_available</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> res_arr[], <span class="keywordtype">int</span> res_count, <span class="keywordtype">int</span> segment_count,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> seat_count, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> new_res);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="structseat__collection__t.html">SeatCollection</a>* <a class="code" href="optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b">optimize_reservation</a>(</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> res_arr[],</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">int</span> res_arr_count,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">int</span> res_ids[],</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">int</span> segment_count,</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">int</span> seat_ids[],</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">int</span> seat_count);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="structseat__collection__t.html">SeatCollection</a>* <a class="code" href="optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b">optimize_reservation</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> res_arr[], <span class="keywordtype">int</span> res_arr_count,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                                     <span class="keywordtype">int</span> res_ids[], <span class="keywordtype">int</span> segment_count,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                                     <span class="keywordtype">int</span> seat_ids[], <span class="keywordtype">int</span> seat_count);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// OSURS_OPTIMIZE_H_</span></div>
 <div class="ttc" id="aoptimize_8h_html_a0db0b83d059edfb55dadecb4b092a70f"><div class="ttname"><a href="optimize_8h.html#a0db0b83d059edfb55dadecb4b092a70f">seat_add_reservation</a></div><div class="ttdeci">void seat_add_reservation(Seat *seat, int res_id)</div><div class="ttdoc">Adds a new reservation to the seat.</div><div class="ttdef"><b>Definition:</b> optimize.c:22</div></div>
 <div class="ttc" id="aoptimize_8h_html_a63722cc5b79bbc5a73a83685d286888b"><div class="ttname"><a href="optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b">optimize_reservation</a></div><div class="ttdeci">SeatCollection * optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count)</div><div class="ttdoc">Optimize the reservations.</div><div class="ttdef"><b>Definition:</b> optimize.c:73</div></div>
 <div class="ttc" id="aoptimize_8h_html_a6d5bbfde7126d2efa61add038200e999"><div class="ttname"><a href="optimize_8h.html#a6d5bbfde7126d2efa61add038200e999">space_available</a></div><div class="ttdeci">int space_available(unsigned int res_arr[], int res_count, int segment_count, unsigned int seat_count, unsigned int new_res)</div><div class="ttdoc">Check if there is enough space available.</div><div class="ttdef"><b>Definition:</b> optimize.c:55</div></div>
@@ -106,8 +101,8 @@ $(function() {
 <div class="ttc" id="aoptimize_8h_html_a7488760077beb68ad399d5063daa1d56"><div class="ttname"><a href="optimize_8h.html#a7488760077beb68ad399d5063daa1d56">new_seat_collection</a></div><div class="ttdeci">SeatCollection * new_seat_collection(int seat_count, int seat_ids[])</div><div class="ttdoc">Create a new seat collection.</div><div class="ttdef"><b>Definition:</b> optimize.c:35</div></div>
 <div class="ttc" id="aoptimize_8h_html_aa229f6057e7be0f7cf2ef13e4775fc01"><div class="ttname"><a href="optimize_8h.html#aa229f6057e7be0f7cf2ef13e4775fc01">delete_seat</a></div><div class="ttdeci">void delete_seat(Seat *seat)</div><div class="ttdoc">Delete a seat.</div><div class="ttdef"><b>Definition:</b> optimize.c:28</div></div>
 <div class="ttc" id="aoptimize_8h_html_aca2d21394ceb194b6903b26b368da9b7"><div class="ttname"><a href="optimize_8h.html#aca2d21394ceb194b6903b26b368da9b7">new_seat</a></div><div class="ttdeci">Seat * new_seat(int seat_id)</div><div class="ttdoc">Create a new seat.</div><div class="ttdef"><b>Definition:</b> optimize.c:13</div></div>
-<div class="ttc" id="astructseat__collection__t_html"><div class="ttname"><a href="structseat__collection__t.html">seat_collection_t</a></div><div class="ttdoc">A seat collection.</div><div class="ttdef"><b>Definition:</b> types.h:197</div></div>
-<div class="ttc" id="astructseat__t_html"><div class="ttname"><a href="structseat__t.html">seat_t</a></div><div class="ttdoc">A seat.</div><div class="ttdef"><b>Definition:</b> types.h:186</div></div>
+<div class="ttc" id="astructseat__collection__t_html"><div class="ttname"><a href="structseat__collection__t.html">seat_collection_t</a></div><div class="ttdoc">A seat collection.</div><div class="ttdef"><b>Definition:</b> types.h:200</div></div>
+<div class="ttc" id="astructseat__t_html"><div class="ttname"><a href="structseat__t.html">seat_t</a></div><div class="ttdoc">A seat.</div><div class="ttdef"><b>Definition:</b> types.h:188</div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div><div class="ttdoc">Data types of osurs.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

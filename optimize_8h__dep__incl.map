@@ -1,5 +1,7 @@
 <map id="include/osurs/optimize.h" name="include/osurs/optimize.h">
-<area shape="rect" id="node1" title="Optimization of space utilization on routs." alt="" coords="5,5,187,32"/>
-<area shape="rect" id="node2" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="22,80,170,107"/>
-<area shape="rect" id="node3" href="$olal_8c.html" title="Optimization logic abstraction layer." alt="" coords="42,155,150,181"/>
+<area shape="rect" id="node1" title="Optimization of space utilization on routs." alt="" coords="113,5,294,32"/>
+<area shape="rect" id="node2" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="37,80,185,107"/>
+<area shape="rect" id="node5" href="$optimize_8c.html" title="Seat reservation optimization." alt="" coords="209,80,384,107"/>
+<area shape="rect" id="node3" href="$main_8c.html" title="The osurs command line interface." alt="" coords="5,155,95,181"/>
+<area shape="rect" id="node4" href="$olal_8c.html" title="Optimization logic abstraction layer." alt="" coords="119,155,227,181"/>
 </map>

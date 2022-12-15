@@ -1,7 +1,9 @@
 <map id="src/olal/olal.c" name="src/olal/olal.c">
-<area shape="rect" id="node1" title="Optimization logic abstraction layer." alt="" coords="6,5,114,32"/>
-<area shape="rect" id="node2" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="11,80,109,107"/>
-<area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="5,229,115,256"/>
-<area shape="rect" id="node5" href="$optimize_8h.html" title="Optimization of space utilization on routs." alt="" coords="47,155,177,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="25,304,95,331"/>
+<area shape="rect" id="node1" title="Optimization logic abstraction layer." alt="" coords="93,5,201,32"/>
+<area shape="rect" id="node2" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="98,80,195,107"/>
+<area shape="rect" id="node3" href="$optimize_8h.html" title="Optimization of space utilization on routs." alt="" coords="5,229,136,256"/>
+<area shape="rect" id="node6" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="148,155,271,181"/>
+<area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="92,304,201,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="111,379,182,405"/>
+<area shape="rect" id="node7" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="161,229,287,256"/>
 </map>
