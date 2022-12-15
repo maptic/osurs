@@ -12,7 +12,6 @@
 #ifndef OSURS_IO_H_
 #define OSURS_IO_H_
 
-#include "osurs/network.h"
 #include "osurs/reserve.h"
 
 // io/import

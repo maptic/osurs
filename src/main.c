@@ -57,7 +57,6 @@ int main(int argc, char *argv[]) {
     // plot reservations
     for (int i = 0; i < collection->seat_count; ++i) {
         Seat *seat = collection->seat_arr[i];
-        printf("Seat %d: ", seat->seat_id);
         for (int r = 0; r < seat->res_count; ++r) {
             printf("-%d-", seat->res_id_arr[r]);
         }
