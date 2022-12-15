@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     SeatCollection *collection = optimize_trip(route->root_trip);
     print_seat_collection(collection, 0);
 
-    // Get trip with maximum reservations
+    // // Get trip with maximum reservations
     // Route *route = get_route(network, "ic-1-ew");
     // print_route(route, 0);
     // Trip *trip = get_trip(route, "ic-1-ew-2");
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
     // SeatCollection *collection = optimize_trip(trip);
     // print_seat_collection(collection, 0);
     // print_network(network);
-    // delete_network(network);
+    delete_network(network);
 
     return 0;
 }
