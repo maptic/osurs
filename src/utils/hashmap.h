@@ -1,8 +1,14 @@
 /**
- * @brief Seat reservation optimization.
+ * @brief Simple hashmap implementation
+ * 
+ * Implements the abstract data type (ADT) map as a hashmap.
+ * It uses linear probing for handling duplicate index entries.
+ * 
+ * Note: This is not a MultiMap, entry on existing keys are replaced.
+ * 
  * @file hashmap.c
  * @date: 2022-08-22
- * @author: Tobias Meier
+ * @author: Merlin Unterfinger
  */
 
 #ifndef OSURS_UTILS_HASHMAP_H_

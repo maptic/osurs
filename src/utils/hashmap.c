@@ -112,7 +112,7 @@ static unsigned int hash(char* key, int capacity) {
   return hash % capacity;
 }
 
-void hash_map_resize(HashMap* map, int new_capacity) {
+static void hash_map_resize(HashMap* map, int new_capacity) {
   HashMapEntry** old_entries = map->entries;
   int old_capacity = map->capacity;
 
