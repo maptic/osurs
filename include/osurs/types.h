@@ -172,7 +172,7 @@ typedef struct connection_t {
  * equal to the available seats.
  */
 typedef struct reservation_t {
-    int res_id;          /**< Reservation id */
+    int res_id;          /**< Reservation id. */
     int seats;           /**< Reserved seats. */
     struct stop_t *orig; /**< The orig stop of the reservation. */
     struct stop_t *dest; /**< The orig stop of the reservation. */
@@ -186,9 +186,9 @@ typedef struct reservation_t {
  * A seat contains an array of reservations.
  */
 typedef struct seat_t {
-    int seat_id;     /**< Seat id */
-    int res_count;   /**< Number of reservations */
-    int *res_id_arr; /**< Array that contains each reservation id */
+    int seat_id;     /**< Seat id. */
+    int res_count;   /**< Number of reservations. */
+    int *res_id_arr; /**< Array that contains each reservation id. */
 } Seat;
 
 /**
