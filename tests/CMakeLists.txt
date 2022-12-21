@@ -13,8 +13,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Build test binaries and link googletest and libosurs
-add_executable(utils_test utils_test.cpp)
-target_link_libraries(utils_test PRIVATE gtest_main osurs)
+add_executable(ds_test ds_test.cpp)
+target_link_libraries(ds_test PRIVATE gtest_main osurs)
 add_executable(network_test network_test.cpp)
 target_link_libraries(network_test PRIVATE gtest_main osurs)
 add_executable(olal_test olal_test.cpp)
@@ -28,7 +28,7 @@ target_link_libraries(reserve_test PRIVATE gtest_main osurs)
 
 # Discover tests
 include(GoogleTest)
-gtest_discover_tests(utils_test)
+gtest_discover_tests(ds_test)
 gtest_discover_tests(network_test)
 gtest_discover_tests(olal_test)
 gtest_discover_tests(optimize_test)
