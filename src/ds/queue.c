@@ -7,8 +7,8 @@
 
 #include "queue.h"
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void queue_init(Queue* queue) {
     queue->head = NULL;
@@ -56,9 +56,7 @@ void* queue_dequeue(Queue* queue) {
     return data;
 }
 
-bool queue_is_empty(Queue* queue) {
-    return queue->head == NULL;
-}
+bool queue_is_empty(Queue* queue) { return queue->head == NULL; }
 
 void queue_clear(Queue* queue) {
     QueueNode* node = queue->head;
