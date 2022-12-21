@@ -1,9 +1,10 @@
 /**
- * @brief Hashmap data structure 
- * 
- * Map abstract data type (ADT) implementation as a hashmap. The implementation uses closed-addressing (separate chaining) to handle
- * duplicate index values. A bucket of the hashmap contains an entry,
- * which can hold a reference to the next entry in the same bucket.
+ * @brief Hashmap data structure
+ *
+ * Map abstract data type (ADT) implementation as a hashmap. The implementation
+ * uses closed-addressing (separate chaining) to handle duplicate index values.
+ * A bucket of the hashmap contains an entry, which can hold a reference to the
+ * next entry in the same bucket.
  *
  * Note: This is not a multimap, entries on existing keys are replaced. This
  * implementation is not thread-safe.
