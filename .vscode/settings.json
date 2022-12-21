@@ -29,5 +29,9 @@
         "struct",
         "Unterfinger",
         "valgrind"
-    ]
+    ],
+    "files.associations": {
+        "stdlib.h": "c",
+        "list": "c"
+    }
 }

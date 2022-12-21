@@ -1,5 +1,5 @@
 /**
- * @brief Linked list data structure
+ * @brief Linkedlist data structure
  * 
  * Linked list abstract data type (ADT) implementation. Each node of the doubly linked list contains a value and two pointers: one pointing to the previous node in the list and one pointing to the next node in the list. This allows for efficient insertion and deletion of elements from the list, as well as the ability to easily traverse the list in both directions. 
  * The head of the list points to the first node, and the tail of the list points to the last node. If the list is empty, both the head and the tail will be null.

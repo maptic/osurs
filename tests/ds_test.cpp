@@ -1,10 +1,57 @@
 #include <gtest/gtest.h>
 
 extern "C" {
+#include "../src/ds/arraylist.h"
 #include "../src/ds/hashmap.h"
 #include "../src/ds/linkedlist.h"
 #include "../src/ds/queue.h"
 #include "../src/ds/stack.h"
+}
+
+// ArrayList
+
+TEST(ArrayListTest, CreateAndDestroy) {
+    ArrayList* list = array_list_create();
+    array_list_free(list);
+}
+
+TEST(ArrayListTest, AddAndGet) {
+    ArrayList* list = array_list_create();
+
+    int i1 = 1;
+    int i2 = 2;
+    int i3 = 3;
+
+    array_list_add(list, &i1);
+    array_list_add(list, &i2);
+    array_list_add(list, &i3);
+
+    EXPECT_EQ(i1, *(int*)array_list_get(list, 0));
+    EXPECT_EQ(i2, *(int*)array_list_get(list, 1));
+    EXPECT_EQ(i3, *(int*)array_list_get(list, 2));
+
+    array_list_free(list);
+}
+
+TEST(ArrayListTest, AddAt) {
+    ArrayList* list = array_list_create();
+
+    int i1 = 1;
+    int i2 = 2;
+    int i3 = 3;
+    int i4 = 4;
+
+    array_list_add(list, &i1);
+    array_list_add(list, &i2);
+    array_list_add(list, &i3);
+    array_list_add_at(list, 1, &i4);
+
+    EXPECT_EQ(i1, *(int*)array_list_get(list, 0));
+    EXPECT_EQ(i4, *(int*)array_list_get(list, 1));
+    EXPECT_EQ(i2, *(int*)array_list_get(list, 2));
+    EXPECT_EQ(i3, *(int*)array_list_get(list, 3));
+
+    array_list_free(list);
 }
 
 // HashMap
@@ -199,6 +246,8 @@ TEST(QueueTest, TestIsEmpty) {
     EXPECT_TRUE(queue_is_empty(queue));
     queue_free(queue);
 }
+
+// Stack
 
 TEST(StackTest, Empty) {
     Stack stack;

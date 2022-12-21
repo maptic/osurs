@@ -1,5 +1,5 @@
 /**
- * @brief Linked list data structure
+ * @brief Linkedlist data structure
  * @file linkedlist.c
  * @date: 2022-12-20
  * @author: Merlin Unterfinger

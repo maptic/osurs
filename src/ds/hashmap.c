@@ -1,5 +1,5 @@
 /**
- * @brief Hash map data structure
+ * @brief Hashmap data structure
  * @file hashmap.c
  * @date: 2022-12-19
  * @author: Merlin Unterfinger
@@ -142,7 +142,7 @@ static unsigned int hash(const char* key, int capacity) {
 static void hash_map_resize(HashMap* map, int new_capacity) {
     HashMapEntry** old_entries = map->entries;
     int old_capacity = map->capacity;
-    
+
     map->capacity = new_capacity;
     map->entries = malloc(sizeof(HashMapEntry*) * map->capacity);
     if (map->entries == NULL) {
