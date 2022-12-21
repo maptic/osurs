@@ -1,7 +1,7 @@
 /**
- * @brief Abstract data type (ADT) map implementation as a hashmap.
+ * @brief Hash map data structure
  * @file hashmap.c
- * @date: 2022-08-22
+ * @date: 2022-12-19
  * @author: Merlin Unterfinger
  */
 
@@ -28,6 +28,10 @@ void hash_map_init(HashMap* map) {
     map->size = 0;
     map->capacity = INIT_CAPACITY;
     map->entries = malloc(sizeof(HashMapEntry*) * map->capacity);
+    if (map->entries == NULL) {
+        perror("Error allocating memory for hashmap entry array");
+        exit(1);
+    }
     memset(map->entries, 0, sizeof(HashMapEntry*) * map->capacity);
 }
 
@@ -45,6 +49,10 @@ void hash_map_put(HashMap* map, const char* key, void* value) {
         entry = entry->next;
     }
     entry = malloc(sizeof(HashMapEntry));
+    if (entry == NULL) {
+        perror("Error allocating memory for hashmap entry");
+        exit(1);
+    }
     entry->key = strdup(key);
     entry->value = value;
     entry->next = map->entries[index];
@@ -134,9 +142,13 @@ static unsigned int hash(const char* key, int capacity) {
 static void hash_map_resize(HashMap* map, int new_capacity) {
     HashMapEntry** old_entries = map->entries;
     int old_capacity = map->capacity;
-
+    
     map->capacity = new_capacity;
     map->entries = malloc(sizeof(HashMapEntry*) * map->capacity);
+    if (map->entries == NULL) {
+        perror("Error allocating memory for resizing hashmap entry array");
+        exit(1);
+    }
     memset(map->entries, 0, sizeof(HashMapEntry*) * map->capacity);
 
     for (int i = 0; i < old_capacity; i++) {

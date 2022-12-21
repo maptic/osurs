@@ -1,20 +1,20 @@
 /**
- * @brief Abstract data type (ADT) map implementation as a hashmap
- *
- * The implementation uses closed-addressing (separate chaining) to handle
+ * @brief Hash map data structure 
+ * 
+ * Map abstract data type (ADT) implementation as a hashmap. The implementation uses closed-addressing (separate chaining) to handle
  * duplicate index values. A bucket of the hashmap contains an entry,
  * which can hold a reference to the next entry in the same bucket.
  *
  * Note: This is not a multimap, entries on existing keys are replaced. This
  * implementation is not thread-safe.
  *
- * @file hashmap.c
- * @date: 2022-08-22
+ * @file hashmap.h
+ * @date: 2022-12-19
  * @author: Merlin Unterfinger
  */
 
-#ifndef OSURS_UTILS_HASHMAP_H_
-#define OSURS_UTILS_HASHMAP_H_
+#ifndef OSURS_DS_HASHMAP_H_
+#define OSURS_DS_HASHMAP_H_
 
 /**
  * @brief Entry of the hashmap.
@@ -111,4 +111,4 @@ void hash_map_clear(HashMap* map);
  */
 void hash_map_free(HashMap* map);
 
-#endif  // OSURS_UTILS_HASHMAP_H_
+#endif  // OSURS_DS_HASHMAP_H_
