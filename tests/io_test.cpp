@@ -16,7 +16,7 @@ TEST(IOTest, Import) {
     EXPECT_EQ(success, 1);
     success = import_reservations(network, reservation_file);
     EXPECT_EQ(success, 1);
-    // delete_network(network);
+    delete_network(network);
 }
 
 // Export a network
