@@ -30,13 +30,3 @@ jobs:
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
-      
-    - name: Install valgrind
-      run: |
-        sudo apt-get update
-        sudo apt-get install valgrind
-
-    - name: Test with valgrind
-      # Run the tests defined by the CMake configuration and use valgrind to check for memory leaks.
-      working-directory: ${{github.workspace}}/build
-      run: ctest -C ${{env.BUILD_TYPE}} -T memcheck --valgrind --valgrind-options="--leak-check=full,--error-exitcode=1"
