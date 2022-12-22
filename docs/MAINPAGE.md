@@ -4,7 +4,7 @@ An algorithm for optimal distribution of reservations along a trip among availab
 
 The **osurs** library contains the following modules with corresponding headers:
 
-- **`ds/[...].h`:** Data structures for efficient data handling.
+- **`ds/*.h`:** Data structures for efficient data handling.
 - **`io.h`:** Input and output of networks and its structures.
 - **`network.h`:** Network for reservation optimization.
 - **`reserve.h`:** Connection routing, checking seat availability and reservation.
