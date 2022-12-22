@@ -7,6 +7,7 @@ Optimization of space utilization in reservation systems. An algorithm for optim
 
 The **osurs** library contains the following modules with corresponding headers:
 
+- **ds:** Data structures for efficient data handling.
 - **io:** Input and output of networks and its structures.
 - **network:** Network for reservation optimization.
 - **reserve:** Connection routing, checking seat availability and reservation.
@@ -19,6 +20,7 @@ The **osurs** library contains the following modules with corresponding headers:
 ```mermaid
 graph RL;
   subgraph libosurs;
+    osurs/network.h-->|#include|osurs/ds/[...].h;
     osurs/network.h-->|#include|osurs/types.h;
     osurs/reserve.h-->|#include|osurs/network.h;
     osurs/io.h-->|#include|osurs/reserve.h
