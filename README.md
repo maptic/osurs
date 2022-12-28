@@ -141,7 +141,6 @@ The optimized seat collection is calculated at the time when the seat allocation
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-
     // read network
     Network *network = new_network();
     if (!import_network(network, "network.xml")) {
@@ -152,8 +151,8 @@ int main(int argc, char *argv[]) {
     // create random reservations
     for (int i = 0; i < 1000000; ++i) {
         // search direct connection between random nodes
-        Node *orig = network->nodes[rand() % (network->node_counter)];
-        Node *dest = network->nodes[rand() % (network->node_counter)];
+        Node *orig = hash_map_get_random(network->nodes);
+        Node *dest = hash_map_get_random(network->nodes);
         int dep = rand() % (24 * 60 * 60) + 1;
         Connection *conn = new_connection(orig, dest, dep);
         // book reservation if enough seats are available for connection
@@ -163,7 +162,7 @@ int main(int argc, char *argv[]) {
     }
 
     // optimize a random trip
-    Route *route = network->routes[rand() % (network->route_counter)];
+    Route *route = hash_map_get_random(network->routes);
     SeatCollection *collection = optimize_trip(route->root_trip);
     print_seat_collection(collection, 0);
 
