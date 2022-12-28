@@ -247,10 +247,10 @@ int export_reservations(Network *network, const char *filename) {
             // Trips
             while (curr_trip != NULL) {
                 // Reservations
-                if (curr_trip->reservation_counter > 0) {
-                    for (size_t i = 0; i < curr_trip->reservation_counter;
-                         ++i) {
-                        Reservation *res = curr_trip->reservations[i];
+                if (curr_trip->reservations->size > 0) {
+                    for (size_t i = 0; i < curr_trip->reservations->size; ++i) {
+                        Reservation *res = (Reservation *)array_list_get(
+                            curr_trip->reservations, i);
                         xmlTextWriterStartElement(writer, "reservation");
                         sprintf(buf, "%s", route->id);
                         xmlTextWriterWriteAttribute(writer, "rid", buf);

@@ -86,10 +86,10 @@ static void delete_vehicle(Vehicle *vehicle) {
 }
 
 static void delete_trip(Trip *trip) {
-    for (size_t i = 0; i < trip->reservation_counter; ++i) {
-        delete_reservation(trip->reservations[i]);
+    for (size_t i = 0; i < trip->reservations->size; ++i) {
+        delete_reservation((Reservation*)array_list_get(trip->reservations, i));
     }
-    free(trip->reservations);
+    array_list_free(trip->reservations);
     free(trip->id);
     free(trip);
 }

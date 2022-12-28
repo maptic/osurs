@@ -14,3 +14,7 @@ target_link_libraries(osurs osurs-ds osurs-network osurs-reserve osurs-io osurs-
 # Create CLI executable
 add_executable(osurscli cli.c)
 target_link_libraries(osurscli osurs)
+
+# Create CLI executable
+add_executable(main main.c)
+target_link_libraries(main osurs)

@@ -56,11 +56,13 @@ void print_trip(Trip *trip, int indent) {
     compose_time(arrival, trip->arrival);
     printf("%*s<trip id=\"%s\" dep=\"%s\" arr=\"%s\" vid=\"%s\" res=\"%ld\"",
            indent, INDENT_CHARS, trip->id, departure, arrival,
-           trip->vehicle->id, trip->reservation_counter);
-    if (trip->reservation_counter > 0) {
+           trip->vehicle->id, trip->reservations->size);
+    if (trip->reservations->size > 0) {
         printf("\n");
-        for (int i = 0; i < trip->reservation_counter; ++i) {
-            print_reservation(trip->reservations[i], indent + INDENT_DEPTH);
+        for (int i = 0; i < trip->reservations->size; ++i) {
+            print_reservation(
+                (Reservation *)array_list_get(trip->reservations, i),
+                indent + INDENT_DEPTH);
         }
         printf("%*s</trip>\n", indent, INDENT_CHARS);
     } else {

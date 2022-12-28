@@ -31,11 +31,11 @@ Vehicle *get_vehicle(Network *network, const char *id) {
 }
 
 Composition *get_composition(Network *network, const char *id) {
-    Composition *compo = (Composition *)hash_map_get(network->compositions, id);
-    if (compo == NULL) {
+    Composition *comp = (Composition *)hash_map_get(network->compositions, id);
+    if (comp == NULL) {
         printf("Composition %s not found.\n", id);
     }
-    return compo;
+    return comp;
 }
 
 Route *get_route(Network *network, const char *id) {

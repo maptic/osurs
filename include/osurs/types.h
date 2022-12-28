@@ -80,9 +80,7 @@ typedef struct trip_t {
                                   with this trip / departure. */
     struct trip_t *next;   /**< The next trip starting after the current one. */
     struct route_t *route; /**< The route the trip corresponds to. */
-    struct reservation_t **reservations; /**< Reservation in the network. */
-    size_t reservation_counter; /**< Number of reservations in the network. */
-    size_t reservation_size;    /**< Allocated size for reservations. */
+    ArrayList *reservations; /**< Reservation in the network. */
 } Trip;
 
 /**

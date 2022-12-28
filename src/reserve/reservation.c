@@ -52,14 +52,7 @@ Reservation *new_reservation(Connection *connection, int seats) {
 // Private definitions
 
 static void trip_add_reservation(Trip *trip, Reservation *reservation) {
-    if (trip->reservation_counter == trip->reservation_size) {
-        trip->reservation_size += INIT_ALLOC_SIZE_S;
-        // printf("Reallocating reservation size of network (%ldx%ld bytes).\n",
-        //        network->reservation_size, sizeof(void *));
-        trip->reservations = (Reservation **)realloc(
-            trip->reservations, sizeof(Reservation *) * trip->reservation_size);
-    }
-    trip->reservations[trip->reservation_counter++] = reservation;
+    array_list_add(trip->reservations, (void *)reservation);
 }
 
 static int get_next_id() {
