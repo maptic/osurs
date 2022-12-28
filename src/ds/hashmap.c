@@ -109,7 +109,7 @@ void hash_map_remove(HashMap* map, const char* key) {
 }
 
 void hash_map_print(HashMap* map) {
-    for (int i = 0; i < map->capacity; i++) {
+    for (size_t i = 0; i < map->capacity; i++) {
         HashMapEntry* entry = map->entries[i];
         while (entry != NULL) {
             printf("{%s (i=%d): %p}\n", entry->key,
@@ -120,7 +120,7 @@ void hash_map_print(HashMap* map) {
 }
 
 void hash_map_clear(HashMap* map) {
-    for (int i = 0; i < map->capacity; i++) {
+    for (size_t i = 0; i < map->capacity; i++) {
         HashMapEntry* entry = map->entries[i];
         while (entry != NULL) {
             HashMapEntry* next = entry->next;
@@ -164,7 +164,7 @@ static void hash_map_resize(HashMap* map, int new_capacity) {
     }
     memset(map->entries, 0, sizeof(HashMapEntry*) * map->capacity);
 
-    for (int i = 0; i < old_capacity; i++) {
+    for (size_t i = 0; i < old_capacity; i++) {
         HashMapEntry* entry = old_entries[i];
         while (entry != NULL) {
             HashMapEntry* next = entry->next;

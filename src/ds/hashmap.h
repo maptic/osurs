@@ -17,6 +17,8 @@
 #ifndef OSURS_DS_HASHMAP_H_
 #define OSURS_DS_HASHMAP_H_
 
+#include <stddef.h>
+
 /**
  * @brief Entry of the hashmap.
  *
@@ -36,8 +38,8 @@ typedef struct HashMapEntry {
  */
 typedef struct HashMap {
     HashMapEntry** entries; /**< Buckets for the entries. */
-    int size;               /**< Number of entries in the hashmap. */
-    int capacity;           /**< Bucket capacity of the hashmap. */
+    size_t size;            /**< Number of entries in the hashmap. */
+    size_t capacity;        /**< Bucket capacity of the hashmap. */
     int dynamic_alloc;      /**< Where is the map stored: 0=stack, 1=heap. */
 } HashMap;
 
