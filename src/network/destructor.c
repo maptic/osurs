@@ -21,7 +21,7 @@ static void delete_reservation(Reservation *reservation);
 
 void delete_node(Node *node) {
     free(node->id);
-    free(node->routes);
+    hash_map_free(node->routes);
     free(node);
 }
 

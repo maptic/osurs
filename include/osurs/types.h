@@ -39,9 +39,7 @@ typedef struct node_t {
     char *id;                /**< Identifier. */
     double x;                /**< X coordinate. */
     double y;                /**< Y coordinate. */
-    struct route_t **routes; /**< Array with routes passing the node. */
-    size_t route_counter;    /**< The number of routes passing the node. */
-    size_t route_size;       /**< The allocated size of the routes array. */
+    HashMap *routes;         /**< HashMap with routes passing the node. */
 } Node;
 
 /**

@@ -16,7 +16,7 @@
 void print_node(Node *node, int indent) {
     printf("%*s<node id=\"%s\" x=\"%.3f\" y=\"%.3f\" routes=\"%ld\" />\n",
            indent, INDENT_CHARS, node->id, node->x, node->y,
-           node->route_counter);
+           node->routes->size);
 }
 
 void print_composition(Composition *composition, int indent) {

@@ -49,12 +49,14 @@ Connection *new_connection(const Node *orig, const Node *dest, int time) {
     conn->prev = NULL;
 
     // Match and search on equal routes
-    for (size_t i = 0; i < orig->route_counter; ++i) {
-        for (size_t j = 0; j < dest->route_counter; ++j) {
-            if (orig->routes[i] == dest->routes[j]) {
-                conn = search_route(conn, orig, dest, time, orig->routes[i],
-                                    INT_MAX);
+    for (size_t i = 0; i < orig->routes->capacity; i++) {
+        HashMapEntry *entry = orig->routes->entries[i];
+        while (entry != NULL) {
+            Route *route = (Route *)entry->value;
+            if (hash_map_get(dest->routes, route->id) != NULL) {
+                conn = search_route(conn, orig, dest, time, route, INT_MAX);
             }
+            entry = entry->next;
         }
     }
 

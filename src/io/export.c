@@ -73,7 +73,7 @@ int export_network(Network *network, const char *filename) {
             xmlTextWriterWriteAttribute(writer, "x", buf);
             sprintf(buf, "%.5f", node->y);
             xmlTextWriterWriteAttribute(writer, "y", buf);
-            sprintf(buf, "%ld", node->route_counter);
+            sprintf(buf, "%ld", node->routes->size);
             xmlTextWriterWriteAttribute(writer, "routes", buf);
             xmlTextWriterEndElement(writer);
             entry = entry->next;

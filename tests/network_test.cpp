@@ -119,7 +119,7 @@ TEST(NetworkTest, Create) {
     );
     EXPECT_EQ(network->routes->size, 1);
     for (size_t i = 0; i < route_size; ++i) {
-        EXPECT_EQ(nodes[i]->route_counter, 1);
+        EXPECT_EQ(nodes[i]->routes->size, 1);
     }
 
     // Reverse direction
@@ -145,7 +145,7 @@ TEST(NetworkTest, Create) {
     );
     EXPECT_EQ(network->routes->size, 2);
     for (size_t i = 0; i < route_size; ++i) {
-        EXPECT_EQ(nodes[i]->route_counter, 2);
+        EXPECT_EQ(nodes[i]->routes->size, 2);
     }
 
     // Add routes for line IC 2

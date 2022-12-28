@@ -26,15 +26,10 @@ static void node_add_route(Node *node, Route *route);
 
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
-    // Nodes
     network->nodes = hash_map_create();
-    // Routes
     network->routes = hash_map_create();
-    // Compositions
     network->compositions = hash_map_create();
-    // Vehicles
     network->vehicles = hash_map_create();
-
     return network;
 }
 
@@ -43,9 +38,7 @@ Node *new_node(Network *network, const char *id, double x, double y) {
     node->id = strdup(id);
     node->x = x;
     node->y = y;
-    node->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE_S);
-    node->route_size = INIT_ALLOC_SIZE_S;
-    node->route_counter = 0;
+    node->routes = hash_map_create();
 
     // Add node to network
     network_add_node(network, node);
@@ -156,7 +149,6 @@ static Trip *new_trip(const char *id, int departure, int arrival,
     trip->vehicle = vehicle;
     trip->next = next;
     trip->route = route;
-    // Reservations
     trip->reservations = array_list_create();
     return trip;
 }
@@ -179,16 +171,7 @@ static void network_add_vehicle(Network *network, Vehicle *vehicle) {
 }
 
 static void node_add_route(Node *node, Route *route) {
-    // Check if route already exists (only check last)
-    if (node->route_counter > 0 &&
-        node->routes[node->route_counter - 1] == route)
-        return;
-    if (node->route_counter == node->route_size) {
-        node->route_size += INIT_ALLOC_SIZE_S;
-        // printf("Reallocating route size of node \"%s\" (%ldx%ld bytes).\n",
-        //        node->id, node->route_size, sizeof(void *));
-        node->routes =
-            (Route **)realloc(node->routes, sizeof(Route *) * node->route_size);
-    }
-    node->routes[node->route_counter++] = route;
+    // Check if route already exists is not necessary; the hashmap overwrites
+    // already existing routes with the same id.
+    hash_map_put(node->routes, route->id, (void *)route);
 }
