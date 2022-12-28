@@ -12,6 +12,8 @@
 #ifndef OSURS_DS_ARRAYLIST_H_
 #define OSURS_DS_ARRAYLIST_H_
 
+#include <stddef.h>
+
 /**
  * @brief Arraylist
  *
@@ -22,8 +24,8 @@
  */
 typedef struct {
     void** elements; /**< Data elements array. */
-    int capacity;    /**< Number of elements in the list. */
-    int size;        /**< List capacity. */
+    size_t capacity; /**< Number of elements in the list. */
+    size_t size;     /**< List capacity. */
 } ArrayList;
 
 /**

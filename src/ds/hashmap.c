@@ -84,6 +84,20 @@ void* hash_map_get(HashMap* map, const char* key) {
     return NULL;
 }
 
+void* hash_map_get_random(HashMap* map) {
+    if (map->size == 0) return NULL;
+    size_t stop = rand() % map->size;
+    size_t count = 0;
+    for (size_t i = 0; i < map->capacity; i++) {
+        HashMapEntry* entry = map->entries[i];
+        while (entry != NULL) {
+            if (count == stop) return entry->value;
+            entry = entry->next;
+            ++count;
+        }
+    }
+}
+
 void hash_map_remove(HashMap* map, const char* key) {
     unsigned int index = hash(key, map->capacity);
     HashMapEntry* entry = map->entries[index];

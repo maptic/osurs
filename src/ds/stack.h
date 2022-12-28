@@ -14,6 +14,7 @@
 #define OSURS_DS_STACK_H_
 
 #include <stdbool.h>
+#include <stddef.h>
 
 /**
  * @brief Stack node
@@ -35,7 +36,7 @@ typedef struct StackNode {
  */
 typedef struct Stack {
     StackNode* top; /**< Pointer to the top of the stack. */
-    int size;       /**< Number of elements in the stack. */
+    size_t size;    /**< Number of elements in the stack. */
 } Stack;
 
 /**

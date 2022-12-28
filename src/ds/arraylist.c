@@ -42,7 +42,7 @@ void array_list_add_at(ArrayList* list, int index, void* element) {
         exit(1);
     }
     array_list_ensure_capacity(list);
-    for (int i = list->size; i > index; i--) {
+    for (size_t i = list->size; i > index; i--) {
         list->elements[i] = list->elements[i - 1];
     }
     list->elements[index] = element;

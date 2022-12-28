@@ -23,6 +23,8 @@
 #ifndef OSURS_DS_LINKEDLIST_H_
 #define OSURS_DS_LINKEDLIST_H_
 
+#include <stddef.h>
+
 /**
  * @brief Linked list node
  *
@@ -47,7 +49,7 @@ typedef struct ListNode {
 typedef struct LinkedList {
     ListNode* head; /**< Pointer to the head of the list. */
     ListNode* tail; /**< Pointer to the tail of the list. */
-    int size;       /**< Number of elements in the list. */
+    size_t size;       /**< Number of elements in the list. */
 } LinkedList;
 
 /**

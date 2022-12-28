@@ -84,6 +84,16 @@ void hash_map_put(HashMap* map, const char* key, void* value);
 void* hash_map_get(HashMap* map, const char* key);
 
 /**
+ * @brief Get a random value.
+ *
+ * Returns a random void pointer to a value or NULL if the hashmap is empty.
+ *
+ * @param map A hashmap.
+ * @return void*
+ */
+void* hash_map_get_random(HashMap* map);
+
+/**
  * @brief Remove an entry from the hashmap.
  *
  * @param map A hashmap structure.
