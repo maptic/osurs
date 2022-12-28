@@ -1,10 +1,12 @@
 <map id="connection_t" name="connection_t">
-<area shape="rect" id="node1" title="A connection." alt="" coords="231,292,336,319"/>
-<area shape="rect" id="node2" href="$structstop__t.html" title="A stop." alt="" coords="24,7,87,33"/>
-<area shape="rect" id="node4" href="$structroute__t.html" title="A route." alt="" coords="106,97,174,124"/>
-<area shape="rect" id="node8" href="$structreservation__t.html" title="A reservation." alt="" coords="19,292,127,319"/>
-<area shape="rect" id="node3" href="$structnode__t.html" title="A node." alt="" coords="25,201,92,228"/>
-<area shape="rect" id="node5" href="$structtrip__t.html" title="A trip." alt="" coords="161,201,217,228"/>
-<area shape="rect" id="node6" href="$structvehicle__t.html" title="A vehicle." alt="" coords="350,97,431,124"/>
-<area shape="rect" id="node7" href="$structcomposition__t.html" title="A composition." alt="" coords="333,7,448,33"/>
+<area shape="rect" id="node1" title="A connection." alt="" coords="311,560,417,587"/>
+<area shape="rect" id="node2" href="$structstop__t.html" title="A stop." alt="" coords="370,275,433,301"/>
+<area shape="rect" id="node7" href="$structroute__t.html" title="A route." alt="" coords="319,365,387,392"/>
+<area shape="rect" id="node3" href="$structnode__t.html" title="A node." alt="" coords="368,184,435,211"/>
+<area shape="rect" id="node4" href="$structHashMap.html" title="A hashmap." alt="" coords="360,95,443,121"/>
+<area shape="rect" id="node5" href="$structHashMapEntry.html" title="Entry of the hashmap." alt="" coords="343,5,460,32"/>
+<area shape="rect" id="node6" href="$structtrip__t.html" title="A trip." alt="" coords="256,469,312,496"/>
+<area shape="rect" id="node8" href="$structvehicle__t.html" title="A vehicle." alt="" coords="22,365,103,392"/>
+<area shape="rect" id="node9" href="$structcomposition__t.html" title="A composition." alt="" coords="5,275,120,301"/>
+<area shape="rect" id="node10" href="$structArrayList.html" title="Arraylist." alt="" coords="128,365,208,392"/>
 </map>

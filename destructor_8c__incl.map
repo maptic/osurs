@@ -1,6 +1,14 @@
 <map id="src/network/destructor.c" name="src/network/destructor.c">
-<area shape="rect" id="node1" title="Network destruction." alt="" coords="5,5,184,32"/>
-<area shape="rect" id="node2" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="31,80,158,107"/>
-<area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="40,155,149,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="59,229,130,256"/>
+<area shape="rect" id="node1" title="Network destruction." alt="" coords="411,5,589,32"/>
+<area shape="rect" id="node2" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="437,80,563,107"/>
+<area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="445,155,555,181"/>
+<area shape="rect" id="node4" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="404,229,492,256"/>
+<area shape="rect" id="node12" title=" " alt="" coords="517,229,587,256"/>
+<area shape="rect" id="node5" href="$arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,304,160,331"/>
+<area shape="rect" id="node7" href="$hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,304,344,331"/>
+<area shape="rect" id="node8" href="$linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,304,527,331"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title="Queue data structure." alt="" coords="710,304,850,331"/>
+<area shape="rect" id="node11" href="$stack_8h.html" title="Stack data structure." alt="" coords="551,304,686,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="319,379,393,405"/>
+<area shape="rect" id="node10" title=" " alt="" coords="657,379,740,405"/>
 </map>

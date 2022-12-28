@@ -78,13 +78,15 @@ Collaboration diagram for trip_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtrip__t__coll__graph.png" border="0" usemap="#atrip__t_coll__map" alt="Collaboration graph"/></div>
 <map name="atrip__t_coll__map" id="atrip__t_coll__map">
-<area shape="rect" title="A trip." alt="" coords="183,184,239,211"/>
-<area shape="rect" href="structroute__t.html" title="A route." alt="" coords="74,273,142,300"/>
-<area shape="rect" href="structreservation__t.html" title="A reservation." alt="" coords="186,559,294,585"/>
-<area shape="rect" href="structnode__t.html" title="A node." alt="" coords="5,363,72,389"/>
-<area shape="rect" href="structstop__t.html" title="A stop." alt="" coords="82,453,145,480"/>
-<area shape="rect" href="structvehicle__t.html" title="A vehicle." alt="" coords="170,95,251,121"/>
-<area shape="rect" href="structcomposition__t.html" title="A composition." alt="" coords="153,5,268,32"/>
+<area shape="rect" title="A trip." alt="" coords="200,275,256,301"/>
+<area shape="rect" href="structroute__t.html" title="A route." alt="" coords="126,365,194,392"/>
+<area shape="rect" href="structstop__t.html" title="A stop." alt="" coords="33,275,95,301"/>
+<area shape="rect" href="structnode__t.html" title="A node." alt="" coords="31,184,97,211"/>
+<area shape="rect" href="structHashMap.html" title="A hashmap." alt="" coords="23,95,105,121"/>
+<area shape="rect" href="structHashMapEntry.html" title="Entry of the hashmap." alt="" coords="5,5,123,32"/>
+<area shape="rect" href="structvehicle__t.html" title="A vehicle." alt="" coords="166,184,247,211"/>
+<area shape="rect" href="structcomposition__t.html" title="A composition." alt="" coords="149,95,264,121"/>
+<area shape="rect" href="structArrayList.html" title="Arraylist." alt="" coords="272,184,352,211"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -102,12 +104,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a763f088438bddaa9e9ec719131e2565c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af436f9f99a19c26085c24957ba0372a2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structroute__t.html">route_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtrip__t.html#af436f9f99a19c26085c24957ba0372a2">route</a></td></tr>
 <tr class="separator:af436f9f99a19c26085c24957ba0372a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce75c18e7212b365f9b073e242225e3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structreservation__t.html">reservation_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtrip__t.html#a4ce75c18e7212b365f9b073e242225e3">reservations</a></td></tr>
-<tr class="separator:a4ce75c18e7212b365f9b073e242225e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae338ec0c2bbcf273ef57cadc76a40193"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtrip__t.html#ae338ec0c2bbcf273ef57cadc76a40193">reservation_counter</a></td></tr>
-<tr class="separator:ae338ec0c2bbcf273ef57cadc76a40193"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45da5cd14c0e16a3ad99fdeeb34472d5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtrip__t.html#a45da5cd14c0e16a3ad99fdeeb34472d5">reservation_size</a></td></tr>
-<tr class="separator:a45da5cd14c0e16a3ad99fdeeb34472d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa018f625dc1dba77abb77287d68f90e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structArrayList.html">ArrayList</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtrip__t.html#aa018f625dc1dba77abb77287d68f90e0">reservations</a></td></tr>
+<tr class="separator:aa018f625dc1dba77abb77287d68f90e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A trip. </p>
@@ -173,44 +171,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="ae338ec0c2bbcf273ef57cadc76a40193"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae338ec0c2bbcf273ef57cadc76a40193">&#9670;&nbsp;</a></span>reservation_counter</h2>
+<a id="aa018f625dc1dba77abb77287d68f90e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa018f625dc1dba77abb77287d68f90e0">&#9670;&nbsp;</a></span>reservations</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t trip_t::reservation_counter</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Number of reservations in the network. </p>
-
-</div>
-</div>
-<a id="a45da5cd14c0e16a3ad99fdeeb34472d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45da5cd14c0e16a3ad99fdeeb34472d5">&#9670;&nbsp;</a></span>reservation_size</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t trip_t::reservation_size</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Allocated size for reservations. </p>
-
-</div>
-</div>
-<a id="a4ce75c18e7212b365f9b073e242225e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ce75c18e7212b365f9b073e242225e3">&#9670;&nbsp;</a></span>reservations</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structreservation__t.html">reservation_t</a>** trip_t::reservations</td>
+          <td class="memname"><a class="el" href="structArrayList.html">ArrayList</a>* trip_t::reservations</td>
         </tr>
       </table>
 </div><div class="memdoc">

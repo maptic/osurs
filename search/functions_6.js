@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['optimize_5freservation_190',['optimize_reservation',['../optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b',1,'optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count):&#160;optimize.c'],['../optimize_8c.html#a63722cc5b79bbc5a73a83685d286888b',1,'optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count):&#160;optimize.c']]],
-  ['optimize_5ftrip_191',['optimize_trip',['../olal_8h.html#a0533a3cf32fe3f8cd93a56ee5b32cd99',1,'optimize_trip(Trip *t):&#160;olal.c'],['../olal_8c.html#a0533a3cf32fe3f8cd93a56ee5b32cd99',1,'optimize_trip(Trip *t):&#160;olal.c']]]
+  ['import_5fmatsim_282',['import_matsim',['../io_8h.html#a5861ffba2c10e00c9b9da84b9f8e2fa6',1,'import_matsim(Network *network, const char *schedule_file, const char *vehicle_file):&#160;matsim.c'],['../matsim_8c.html#a5861ffba2c10e00c9b9da84b9f8e2fa6',1,'import_matsim(Network *network, const char *schedule_file, const char *vehicle_file):&#160;matsim.c']]],
+  ['import_5fnetwork_283',['import_network',['../io_8h.html#a947c4f0a79ccbeb39ee5d293597feec1',1,'import_network(Network *network, const char *filename):&#160;import.c'],['../import_8c.html#a947c4f0a79ccbeb39ee5d293597feec1',1,'import_network(Network *network, const char *filename):&#160;import.c']]],
+  ['import_5freservations_284',['import_reservations',['../io_8h.html#a401da52e2ced72b53fd2d206eef36422',1,'import_reservations(Network *network, const char *filename):&#160;import.c'],['../import_8c.html#a401da52e2ced72b53fd2d206eef36422',1,'import_reservations(Network *network, const char *filename):&#160;import.c']]]
 ];

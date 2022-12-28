@@ -1,5 +1,13 @@
 <map id="include/osurs/optimize.h" name="include/osurs/optimize.h">
-<area shape="rect" id="node1" title="Optimization of space utilization on routs." alt="" coords="5,5,187,32"/>
-<area shape="rect" id="node2" href="$types_8h.html" title="Data types of osurs." alt="" coords="41,80,151,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="61,155,131,181"/>
+<area shape="rect" id="node1" title="Optimization of space utilization on routs." alt="" coords="409,5,591,32"/>
+<area shape="rect" id="node2" href="$types_8h.html" title="Data types of osurs." alt="" coords="445,80,555,107"/>
+<area shape="rect" id="node3" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="404,155,492,181"/>
+<area shape="rect" id="node11" title=" " alt="" coords="517,155,587,181"/>
+<area shape="rect" id="node4" href="$arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,229,160,256"/>
+<area shape="rect" id="node6" href="$hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,229,344,256"/>
+<area shape="rect" id="node7" href="$linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,229,527,256"/>
+<area shape="rect" id="node8" href="$queue_8h.html" title="Queue data structure." alt="" coords="710,229,850,256"/>
+<area shape="rect" id="node10" href="$stack_8h.html" title="Stack data structure." alt="" coords="551,229,686,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="319,304,393,331"/>
+<area shape="rect" id="node9" title=" " alt="" coords="657,304,740,331"/>
 </map>

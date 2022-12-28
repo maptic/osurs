@@ -1,8 +1,16 @@
 <map id="src/network/getter.c" name="src/network/getter.c">
-<area shape="rect" id="node1" title="Access network structures." alt="" coords="57,5,207,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
-<area shape="rect" id="node4" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="191,80,318,107"/>
-<area shape="rect" id="node5" href="$types_8h.html" title="Data types of osurs." alt="" coords="200,155,309,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="219,229,290,256"/>
+<area shape="rect" id="node1" title="Access network structures." alt="" coords="302,5,453,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="251,80,317,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="342,80,413,107"/>
+<area shape="rect" id="node4" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="437,80,563,107"/>
+<area shape="rect" id="node5" href="$types_8h.html" title="Data types of osurs." alt="" coords="445,155,555,181"/>
+<area shape="rect" id="node6" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="404,229,492,256"/>
+<area shape="rect" id="node14" title=" " alt="" coords="517,229,587,256"/>
+<area shape="rect" id="node7" href="$arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,304,160,331"/>
+<area shape="rect" id="node9" href="$hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,304,344,331"/>
+<area shape="rect" id="node10" href="$linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,304,527,331"/>
+<area shape="rect" id="node11" href="$queue_8h.html" title="Queue data structure." alt="" coords="710,304,850,331"/>
+<area shape="rect" id="node13" href="$stack_8h.html" title="Stack data structure." alt="" coords="551,304,686,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="319,379,393,405"/>
+<area shape="rect" id="node12" title=" " alt="" coords="657,379,740,405"/>
 </map>

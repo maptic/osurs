@@ -1,8 +1,8 @@
 <map id="include/osurs/io.h" name="include/osurs/io.h">
-<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="276,5,412,32"/>
-<area shape="rect" id="node2" href="$export_8c.html" title="Export network to a file." alt="" coords="5,80,120,107"/>
-<area shape="rect" id="node3" href="$import_8c.html" title="Import a network file." alt="" coords="144,80,259,107"/>
-<area shape="rect" id="node4" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="283,80,405,107"/>
-<area shape="rect" id="node5" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="430,80,533,107"/>
-<area shape="rect" id="node6" href="$main_8c.html" title="The osurs command line interface." alt="" coords="557,80,646,107"/>
+<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="229,5,365,32"/>
+<area shape="rect" id="node2" href="$cli_8c.html" title="Command line interface for converting transit schedules and printing networks." alt="" coords="5,80,76,107"/>
+<area shape="rect" id="node3" href="$export_8c.html" title="Export network to a file." alt="" coords="101,80,215,107"/>
+<area shape="rect" id="node4" href="$import_8c.html" title="Import a network file." alt="" coords="239,80,354,107"/>
+<area shape="rect" id="node5" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="378,80,501,107"/>
+<area shape="rect" id="node6" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="525,80,628,107"/>
 </map>

@@ -1,7 +1,15 @@
 <map id="include/osurs/io.h" name="include/osurs/io.h">
-<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="5,5,141,32"/>
-<area shape="rect" id="node2" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="12,80,135,107"/>
-<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="10,155,137,181"/>
-<area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="19,229,128,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="38,304,109,331"/>
+<area shape="rect" id="node1" title="Input and output of networks and its structures." alt="" coords="432,5,568,32"/>
+<area shape="rect" id="node2" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="439,80,561,107"/>
+<area shape="rect" id="node3" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="437,155,563,181"/>
+<area shape="rect" id="node4" href="$types_8h.html" title="Data types of osurs." alt="" coords="445,229,555,256"/>
+<area shape="rect" id="node5" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="404,304,492,331"/>
+<area shape="rect" id="node13" title=" " alt="" coords="517,304,587,331"/>
+<area shape="rect" id="node6" href="$arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,379,160,405"/>
+<area shape="rect" id="node8" href="$hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,379,344,405"/>
+<area shape="rect" id="node9" href="$linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,379,527,405"/>
+<area shape="rect" id="node10" href="$queue_8h.html" title="Queue data structure." alt="" coords="710,379,850,405"/>
+<area shape="rect" id="node12" href="$stack_8h.html" title="Stack data structure." alt="" coords="551,379,686,405"/>
+<area shape="rect" id="node7" title=" " alt="" coords="319,453,393,480"/>
+<area shape="rect" id="node11" title=" " alt="" coords="657,453,740,480"/>
 </map>

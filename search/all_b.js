@@ -1,22 +1,11 @@
 var searchData=
 [
-  ['res_5fcount_83',['res_count',['../structseat__t.html#a1f6b13f4ed172b8d7a41a0282ea7d045',1,'seat_t']]],
-  ['res_5fid_84',['res_id',['../structreservation__t.html#a644f3c90784ff5113c9956c8537546af',1,'reservation_t']]],
-  ['res_5fid_5farr_85',['res_id_arr',['../structseat__t.html#a1131bea5e010d1e5094feb9d5feb026f',1,'seat_t']]],
-  ['reservation_86',['Reservation',['../types_8h.html#a8be82d57518f84df3ceb7a5dce2fce0c',1,'types.h']]],
-  ['reservation_2ec_87',['reservation.c',['../reservation_8c.html',1,'']]],
-  ['reservation_5fcounter_88',['reservation_counter',['../structtrip__t.html#ae338ec0c2bbcf273ef57cadc76a40193',1,'trip_t']]],
-  ['reservation_5fsize_89',['reservation_size',['../structtrip__t.html#a45da5cd14c0e16a3ad99fdeeb34472d5',1,'trip_t']]],
-  ['reservation_5ft_90',['reservation_t',['../structreservation__t.html',1,'']]],
-  ['reservations_91',['reservations',['../structtrip__t.html#a4ce75c18e7212b365f9b073e242225e3',1,'trip_t']]],
-  ['reserve_2eh_92',['reserve.h',['../reserve_8h.html',1,'']]],
-  ['reserved_93',['reserved',['../structstop__t.html#ad5d5934323c8c2fba9958d2e43f44412',1,'stop_t']]],
-  ['root_5fstop_94',['root_stop',['../structroute__t.html#a32f8f0a73816efeb2544b5a65c80e1dc',1,'route_t']]],
-  ['root_5ftrip_95',['root_trip',['../structroute__t.html#a4c9fe468841595524333826137d43a39',1,'route_t']]],
-  ['route_96',['Route',['../types_8h.html#a92908330e634aa399a69376274b7d361',1,'types.h']]],
-  ['route_97',['route',['../structtrip__t.html#af436f9f99a19c26085c24957ba0372a2',1,'trip_t']]],
-  ['route_5fcounter_98',['route_counter',['../structnode__t.html#a3c66ad33e8952311fc316531bc61e2ee',1,'node_t::route_counter()'],['../structnetwork__t.html#acc4e655a0b61aecad9cc91480aeba25a',1,'network_t::route_counter()']]],
-  ['route_5fsize_99',['route_size',['../structnode__t.html#a912422029c814b0e7cb71897619c5a34',1,'node_t::route_size()'],['../structroute__t.html#ab09ef317570900b77c1f52f7e8cdb976',1,'route_t::route_size()'],['../structnetwork__t.html#a75e755a4bca61dc3e1936027d84f099e',1,'network_t::route_size()']]],
-  ['route_5ft_100',['route_t',['../structroute__t.html',1,'']]],
-  ['routes_101',['routes',['../structnode__t.html#ac82fddaab4e2b3ba77867c19f1d21232',1,'node_t::routes()'],['../structnetwork__t.html#acea48a70659db10745e6d7c14b0300b0',1,'network_t::routes()']]]
+  ['olal_2ec_106',['olal.c',['../olal_8c.html',1,'']]],
+  ['olal_2eh_107',['olal.h',['../olal_8h.html',1,'']]],
+  ['optimization_20of_20space_20utilization_20in_20reservation_20systems_108',['Optimization of space utilization in reservation systems',['../index.html',1,'']]],
+  ['optimize_2ec_109',['optimize.c',['../optimize_8c.html',1,'']]],
+  ['optimize_2eh_110',['optimize.h',['../optimize_8h.html',1,'']]],
+  ['optimize_5freservation_111',['optimize_reservation',['../optimize_8h.html#a63722cc5b79bbc5a73a83685d286888b',1,'optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count):&#160;optimize.c'],['../optimize_8c.html#a63722cc5b79bbc5a73a83685d286888b',1,'optimize_reservation(unsigned int res_arr[], int res_arr_count, int res_ids[], int segment_count, int seat_ids[], int seat_count):&#160;optimize.c']]],
+  ['optimize_5ftrip_112',['optimize_trip',['../olal_8h.html#a0533a3cf32fe3f8cd93a56ee5b32cd99',1,'optimize_trip(Trip *t):&#160;olal.c'],['../olal_8c.html#a0533a3cf32fe3f8cd93a56ee5b32cd99',1,'optimize_trip(Trip *t):&#160;olal.c']]],
+  ['orig_113',['orig',['../structconnection__t.html#a5e8d51575a4e5b5abc8e68ae3edc84f9',1,'connection_t::orig()'],['../structreservation__t.html#adbb097c0095d44083d3cadfb9b85b667',1,'reservation_t::orig()']]]
 ];

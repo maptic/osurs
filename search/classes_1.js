@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['network_5ft_135',['network_t',['../structnetwork__t.html',1,'']]],
-  ['node_5ft_136',['node_t',['../structnode__t.html',1,'']]]
+  ['carrier_5ft_201',['carrier_t',['../structcarrier__t.html',1,'']]],
+  ['composition_5ft_202',['composition_t',['../structcomposition__t.html',1,'']]],
+  ['connection_5ft_203',['connection_t',['../structconnection__t.html',1,'']]]
 ];

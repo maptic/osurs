@@ -1,5 +1,19 @@
 var searchData=
 [
-  ['utils_2ec_122',['utils.c',['../utils_8c.html',1,'']]],
-  ['utils_2eh_123',['utils.h',['../utils_8h.html',1,'']]]
+  ['res_5fcount_140',['res_count',['../structseat__t.html#a1f6b13f4ed172b8d7a41a0282ea7d045',1,'seat_t']]],
+  ['res_5fid_141',['res_id',['../structreservation__t.html#a644f3c90784ff5113c9956c8537546af',1,'reservation_t']]],
+  ['res_5fid_5farr_142',['res_id_arr',['../structseat__t.html#a1131bea5e010d1e5094feb9d5feb026f',1,'seat_t']]],
+  ['reservation_143',['Reservation',['../types_8h.html#a8be82d57518f84df3ceb7a5dce2fce0c',1,'types.h']]],
+  ['reservation_2ec_144',['reservation.c',['../reservation_8c.html',1,'']]],
+  ['reservation_5ft_145',['reservation_t',['../structreservation__t.html',1,'']]],
+  ['reservations_146',['reservations',['../structtrip__t.html#aa018f625dc1dba77abb77287d68f90e0',1,'trip_t']]],
+  ['reserve_2eh_147',['reserve.h',['../reserve_8h.html',1,'']]],
+  ['reserved_148',['reserved',['../structstop__t.html#ad5d5934323c8c2fba9958d2e43f44412',1,'stop_t']]],
+  ['root_5fstop_149',['root_stop',['../structroute__t.html#a32f8f0a73816efeb2544b5a65c80e1dc',1,'route_t']]],
+  ['root_5ftrip_150',['root_trip',['../structroute__t.html#a4c9fe468841595524333826137d43a39',1,'route_t']]],
+  ['route_151',['Route',['../types_8h.html#a92908330e634aa399a69376274b7d361',1,'types.h']]],
+  ['route_152',['route',['../structtrip__t.html#af436f9f99a19c26085c24957ba0372a2',1,'trip_t']]],
+  ['route_5fsize_153',['route_size',['../structroute__t.html#ab09ef317570900b77c1f52f7e8cdb976',1,'route_t']]],
+  ['route_5ft_154',['route_t',['../structroute__t.html',1,'']]],
+  ['routes_155',['routes',['../structnode__t.html#a31c88c7c8999e828c38087cb217c35f1',1,'node_t::routes()'],['../structnetwork__t.html#a7a6608b69218763c230b0fe4fe6ae77c',1,'network_t::routes()']]]
 ];

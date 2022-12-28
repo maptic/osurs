@@ -1,9 +1,17 @@
 var searchData=
 [
-  ['id_33',['id',['../structnode__t.html#a9122082e3b684769db26915c4692303c',1,'node_t::id()'],['../structtrip__t.html#a843d85914d15e40ff8851770ab0d3969',1,'trip_t::id()'],['../structroute__t.html#a9e64ebdc7951c628328a1223559778bd',1,'route_t::id()'],['../structvehicle__t.html#ae09acb3d95653100f25cfad3e73484b4',1,'vehicle_t::id()'],['../structcomposition__t.html#a1e1b7ac7f02b85e888df09056d6d2a37',1,'composition_t::id()']]],
-  ['import_2ec_34',['import.c',['../import_8c.html',1,'']]],
-  ['import_5fmatsim_35',['import_matsim',['../io_8h.html#a5861ffba2c10e00c9b9da84b9f8e2fa6',1,'import_matsim(Network *network, const char *schedule_file, const char *vehicle_file):&#160;matsim.c'],['../matsim_8c.html#a5861ffba2c10e00c9b9da84b9f8e2fa6',1,'import_matsim(Network *network, const char *schedule_file, const char *vehicle_file):&#160;matsim.c']]],
-  ['import_5fnetwork_36',['import_network',['../io_8h.html#a947c4f0a79ccbeb39ee5d293597feec1',1,'import_network(Network *network, const char *filename):&#160;import.c'],['../import_8c.html#a947c4f0a79ccbeb39ee5d293597feec1',1,'import_network(Network *network, const char *filename):&#160;import.c']]],
-  ['import_5freservations_37',['import_reservations',['../io_8h.html#a401da52e2ced72b53fd2d206eef36422',1,'import_reservations(Network *network, const char *filename):&#160;import.c'],['../import_8c.html#a401da52e2ced72b53fd2d206eef36422',1,'import_reservations(Network *network, const char *filename):&#160;import.c']]],
-  ['io_2eh_38',['io.h',['../io_8h.html',1,'']]]
+  ['hash_5fmap_5fclear_48',['hash_map_clear',['../hashmap_8c.html#add8501f7a2da11cf4b3552d5fd99378f',1,'hash_map_clear(HashMap *map):&#160;hashmap.c'],['../hashmap_8h.html#add8501f7a2da11cf4b3552d5fd99378f',1,'hash_map_clear(HashMap *map):&#160;hashmap.c']]],
+  ['hash_5fmap_5fcreate_49',['hash_map_create',['../hashmap_8c.html#ab8639c0b3fe34351e1d9ba50c39043d5',1,'hash_map_create():&#160;hashmap.c'],['../hashmap_8h.html#ab8639c0b3fe34351e1d9ba50c39043d5',1,'hash_map_create():&#160;hashmap.c']]],
+  ['hash_5fmap_5ffree_50',['hash_map_free',['../hashmap_8h.html#a1f8ba6e40c3ce76058251b1538a879ba',1,'hash_map_free(HashMap *map):&#160;hashmap.c'],['../hashmap_8c.html#a1f8ba6e40c3ce76058251b1538a879ba',1,'hash_map_free(HashMap *map):&#160;hashmap.c']]],
+  ['hash_5fmap_5fget_51',['hash_map_get',['../hashmap_8h.html#a54ffe784c97c34d6b924091914ae9dff',1,'hash_map_get(HashMap *map, const char *key):&#160;hashmap.c'],['../hashmap_8c.html#a54ffe784c97c34d6b924091914ae9dff',1,'hash_map_get(HashMap *map, const char *key):&#160;hashmap.c']]],
+  ['hash_5fmap_5fget_5frandom_52',['hash_map_get_random',['../hashmap_8h.html#a530c92e39076b493da0882ad62528cf1',1,'hash_map_get_random(HashMap *map):&#160;hashmap.c'],['../hashmap_8c.html#a530c92e39076b493da0882ad62528cf1',1,'hash_map_get_random(HashMap *map):&#160;hashmap.c']]],
+  ['hash_5fmap_5finit_53',['hash_map_init',['../hashmap_8c.html#a3e8ac0dfbe3968bdf096e5f21b280398',1,'hash_map_init(HashMap *map):&#160;hashmap.c'],['../hashmap_8h.html#a3e8ac0dfbe3968bdf096e5f21b280398',1,'hash_map_init(HashMap *map):&#160;hashmap.c']]],
+  ['hash_5fmap_5fprint_54',['hash_map_print',['../hashmap_8c.html#ab79ddc2a401e9996bbec582e4a05bce1',1,'hash_map_print(HashMap *map):&#160;hashmap.c'],['../hashmap_8h.html#ab79ddc2a401e9996bbec582e4a05bce1',1,'hash_map_print(HashMap *map):&#160;hashmap.c']]],
+  ['hash_5fmap_5fput_55',['hash_map_put',['../hashmap_8c.html#ae2f90a7ec796581414d2242b01565b06',1,'hash_map_put(HashMap *map, const char *key, void *value):&#160;hashmap.c'],['../hashmap_8h.html#ae2f90a7ec796581414d2242b01565b06',1,'hash_map_put(HashMap *map, const char *key, void *value):&#160;hashmap.c']]],
+  ['hash_5fmap_5fremove_56',['hash_map_remove',['../hashmap_8c.html#a1347344061e43f310c397dfc5dc1f9dd',1,'hash_map_remove(HashMap *map, const char *key):&#160;hashmap.c'],['../hashmap_8h.html#a1347344061e43f310c397dfc5dc1f9dd',1,'hash_map_remove(HashMap *map, const char *key):&#160;hashmap.c']]],
+  ['hashmap_57',['HashMap',['../hashmap_8h.html#aebe1ad36f469ee273aa6f228ab38501c',1,'HashMap():&#160;hashmap.h'],['../structHashMap.html',1,'HashMap']]],
+  ['hashmap_2ec_58',['hashmap.c',['../hashmap_8c.html',1,'']]],
+  ['hashmap_2eh_59',['hashmap.h',['../hashmap_8h.html',1,'']]],
+  ['hashmapentry_60',['HashMapEntry',['../hashmap_8h.html#adf6275b956313af133186419018efac3',1,'HashMapEntry():&#160;hashmap.h'],['../structHashMapEntry.html',1,'HashMapEntry']]],
+  ['head_61',['head',['../structQueue.html#af66c00417110000f03d37b86c91134a9',1,'Queue::head()'],['../structLinkedList.html#afbe741ab285216e996df95ed3491112a',1,'LinkedList::head()']]]
 ];

@@ -78,13 +78,9 @@ Collaboration diagram for node_t:</div>
 <div class="dyncontent">
 <div class="center"><img src="structnode__t__coll__graph.png" border="0" usemap="#anode__t_coll__map" alt="Collaboration graph"/></div>
 <map name="anode__t_coll__map" id="anode__t_coll__map">
-<area shape="rect" title="A node." alt="" coords="71,5,138,32"/>
-<area shape="rect" href="structstop__t.html" title="A stop." alt="" coords="5,96,68,123"/>
-<area shape="rect" href="structroute__t.html" title="A route." alt="" coords="119,187,187,213"/>
-<area shape="rect" href="structtrip__t.html" title="A trip." alt="" coords="174,291,230,317"/>
-<area shape="rect" href="structreservation__t.html" title="A reservation." alt="" coords="32,380,140,407"/>
-<area shape="rect" href="structvehicle__t.html" title="A vehicle." alt="" coords="259,187,340,213"/>
-<area shape="rect" href="structcomposition__t.html" title="A composition." alt="" coords="243,96,358,123"/>
+<area shape="rect" title="A node." alt="" coords="31,184,97,211"/>
+<area shape="rect" href="structHashMap.html" title="A hashmap." alt="" coords="23,95,105,121"/>
+<area shape="rect" href="structHashMapEntry.html" title="Entry of the hashmap." alt="" coords="5,5,123,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -96,12 +92,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a442e6aae8f73574173fdfc196f5b3dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56fbdb121e3b7511fad52f6e019e0078"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnode__t.html#a56fbdb121e3b7511fad52f6e019e0078">y</a></td></tr>
 <tr class="separator:a56fbdb121e3b7511fad52f6e019e0078"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac82fddaab4e2b3ba77867c19f1d21232"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structroute__t.html">route_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnode__t.html#ac82fddaab4e2b3ba77867c19f1d21232">routes</a></td></tr>
-<tr class="separator:ac82fddaab4e2b3ba77867c19f1d21232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c66ad33e8952311fc316531bc61e2ee"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnode__t.html#a3c66ad33e8952311fc316531bc61e2ee">route_counter</a></td></tr>
-<tr class="separator:a3c66ad33e8952311fc316531bc61e2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a912422029c814b0e7cb71897619c5a34"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnode__t.html#a912422029c814b0e7cb71897619c5a34">route_size</a></td></tr>
-<tr class="separator:a912422029c814b0e7cb71897619c5a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c88c7c8999e828c38087cb217c35f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structHashMap.html">HashMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnode__t.html#a31c88c7c8999e828c38087cb217c35f1">routes</a></td></tr>
+<tr class="separator:a31c88c7c8999e828c38087cb217c35f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A node. </p>
@@ -122,48 +114,18 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a3c66ad33e8952311fc316531bc61e2ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c66ad33e8952311fc316531bc61e2ee">&#9670;&nbsp;</a></span>route_counter</h2>
+<a id="a31c88c7c8999e828c38087cb217c35f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31c88c7c8999e828c38087cb217c35f1">&#9670;&nbsp;</a></span>routes</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t node_t::route_counter</td>
+          <td class="memname"><a class="el" href="structHashMap.html">HashMap</a>* node_t::routes</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The number of routes passing the node. </p>
-
-</div>
-</div>
-<a id="a912422029c814b0e7cb71897619c5a34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a912422029c814b0e7cb71897619c5a34">&#9670;&nbsp;</a></span>route_size</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t node_t::route_size</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The allocated size of the routes array. </p>
-
-</div>
-</div>
-<a id="ac82fddaab4e2b3ba77867c19f1d21232"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac82fddaab4e2b3ba77867c19f1d21232">&#9670;&nbsp;</a></span>routes</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structroute__t.html">route_t</a>** node_t::routes</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Array with routes passing the node. </p>
+<p><a class="el" href="structHashMap.html" title="A hashmap.">HashMap</a> with routes passing the node. </p>
 
 </div>
 </div>

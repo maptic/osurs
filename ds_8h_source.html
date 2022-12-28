@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>osurs: src/main.c File Reference</title>
+<title>osurs: include/osurs/ds.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,51 +62,26 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_e18da3170263ec3a51f2200942d5dc3d.html">osurs</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">main.c File Reference</div>  </div>
+<div class="title">ds.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>The osurs command line interface.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="io_8h_source.html">osurs/io.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="olal_8h_source.html">osurs/olal.h</a>&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for main.c:</div>
-<div class="dyncontent">
-<div class="center"><img src="main_8c__incl.png" border="0" usemap="#asrc_2main_8c" alt=""/></div>
-<map name="asrc_2main_8c" id="asrc_2main_8c">
-<area shape="rect" title="The osurs command line interface." alt="" coords="159,5,248,32"/>
-<area shape="rect" href="io_8h.html" title="Input and output of networks and its structures." alt="" coords="45,80,130,107"/>
-<area shape="rect" href="olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="155,80,252,107"/>
-<area shape="rect" title=" " alt="" coords="277,80,343,107"/>
-<area shape="rect" href="reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="26,155,149,181"/>
-<area shape="rect" href="network_8h.html" title="Network for reservation optimization." alt="" coords="5,229,132,256"/>
-<area shape="rect" href="types_8h.html" title="Data types of osurs." alt="" coords="90,304,199,331"/>
-<area shape="rect" title=" " alt="" coords="109,379,180,405"/>
-<area shape="rect" href="optimize_8h.html" title="Optimization of space utilization on routs." alt="" coords="157,229,287,256"/>
-</map>
-</div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
-<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The osurs command line interface. </p>
-<p>(tbd.)</p>
-<dl class="section date"><dt>Date</dt><dd>: 2022-07-19 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>: Merlin Unterfinger </dd></dl>
-</div></div><!-- contents -->
+<a href="ds_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifndef OSURS_DS_H_</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define OSURS_DS_H_</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;../../src/ds/arraylist.h&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;../../src/ds/hashmap.h&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;../../src/ds/linkedlist.h&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;../../src/ds/queue.h&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;../../src/ds/stack.h&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// OSURS_DS_H_</span></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

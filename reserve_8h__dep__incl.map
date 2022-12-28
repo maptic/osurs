@@ -1,13 +1,13 @@
 <map id="include/osurs/reserve.h" name="include/osurs/reserve.h">
-<area shape="rect" id="node1" title="Connection routing, checking seat availability and reservation." alt="" coords="608,5,781,32"/>
-<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="321,80,457,107"/>
-<area shape="rect" id="node8" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="527,80,675,107"/>
-<area shape="rect" id="node10" href="$connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="699,80,879,107"/>
-<area shape="rect" id="node11" href="$reservation_8c.html" title="Placing reservations for found connections." alt="" coords="903,80,1086,107"/>
-<area shape="rect" id="node3" href="$export_8c.html" title="Export network to a file." alt="" coords="5,155,120,181"/>
-<area shape="rect" id="node4" href="$import_8c.html" title="Import a network file." alt="" coords="144,155,259,181"/>
-<area shape="rect" id="node5" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="283,155,405,181"/>
-<area shape="rect" id="node6" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="430,155,533,181"/>
-<area shape="rect" id="node7" href="$main_8c.html" title="The osurs command line interface." alt="" coords="557,155,646,181"/>
-<area shape="rect" id="node9" href="$olal_8c.html" title="Optimization logic abstraction layer." alt="" coords="670,155,778,181"/>
+<area shape="rect" id="node1" title="Connection routing, checking seat availability and reservation." alt="" coords="626,5,799,32"/>
+<area shape="rect" id="node2" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="299,80,435,107"/>
+<area shape="rect" id="node8" href="$olal_8h.html" title="Optimize logic abstraction layer." alt="" coords="545,80,693,107"/>
+<area shape="rect" id="node10" href="$connection_8c.html" title="Routing connections between nodes on the network without transfers." alt="" coords="717,80,897,107"/>
+<area shape="rect" id="node11" href="$reservation_8c.html" title="Placing reservations for found connections." alt="" coords="921,80,1104,107"/>
+<area shape="rect" id="node3" href="$cli_8c.html" title="Command line interface for converting transit schedules and printing networks." alt="" coords="5,155,76,181"/>
+<area shape="rect" id="node4" href="$export_8c.html" title="Export network to a file." alt="" coords="101,155,215,181"/>
+<area shape="rect" id="node5" href="$import_8c.html" title="Import a network file." alt="" coords="239,155,354,181"/>
+<area shape="rect" id="node6" href="$matsim_8c.html" title="Import a MATSim transit schedule from XML." alt="" coords="378,155,501,181"/>
+<area shape="rect" id="node7" href="$print_8c.html" title="Input and output of networks and its structures." alt="" coords="525,155,628,181"/>
+<area shape="rect" id="node9" href="$olal_8c.html" title="Optimization logic abstraction layer." alt="" coords="652,155,760,181"/>
 </map>
