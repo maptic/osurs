@@ -10,6 +10,10 @@
 #include "osurs/io.h"
 #include "utils.h"
 
+#define INIT_ALLOC_SIZE_S 10
+#define INIT_ALLOC_SIZE_M 100
+#define INIT_ALLOC_SIZE_L 1000
+
 // Private declarations
 
 typedef struct carrier_t Carrier;
