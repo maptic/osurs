@@ -33,6 +33,18 @@ void hash_map_init(HashMap* map) {
         exit(1);
     }
     memset(map->entries, 0, sizeof(HashMapEntry*) * map->capacity);
+    map->dynamic_alloc = 0;
+}
+
+HashMap* hash_map_create() {
+    HashMap* map = malloc(sizeof(HashMap));
+    if (map == NULL) {
+        perror("Error allocating memory for hash map");
+        exit(1);
+    }
+    hash_map_init(map);
+    map->dynamic_alloc = 1;
+    return map;
 }
 
 void hash_map_put(HashMap* map, const char* key, void* value) {
@@ -127,6 +139,7 @@ void hash_map_free(HashMap* map) {
     map->entries = NULL;
     map->size = 0;
     map->capacity = 0;
+    if (map->dynamic_alloc) free(map);
 }
 
 // private implementations

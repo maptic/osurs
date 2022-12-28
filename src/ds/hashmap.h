@@ -38,6 +38,7 @@ typedef struct HashMap {
     HashMapEntry** entries; /**< Buckets for the entries. */
     int size;               /**< Number of entries in the hashmap. */
     int capacity;           /**< Bucket capacity of the hashmap. */
+    int dynamic_alloc;      /**< Where is the map stored: 0=stack, 1=heap. */
 } HashMap;
 
 /**
@@ -46,6 +47,13 @@ typedef struct HashMap {
  * @param map A hashmap.
  */
 void hash_map_init(HashMap* map);
+
+/**
+ * @brief Create a hashmap on the heap.
+ *
+ * @return HashMap*
+ */
+HashMap* hash_map_create();
 
 /**
  * @brief Put a new entry into the hashmap.
