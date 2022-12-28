@@ -70,7 +70,7 @@ TEST(NetworkTest, Create) {
     Node *SH = new_node(network, "Schaffhausen", 2689629.9, 1283767.0);
     Node *ZG = new_node(network, "Zug", 2681612.9, 1225323.5);
     Node *ZUE = new_node(network, "Zürich HB", 2683036.5, 1248101.0);
-    EXPECT_EQ(network->node_counter, 18);
+    EXPECT_EQ(network->nodes->size, 18);
 
     // Compositions
     Composition *ic2 =
@@ -79,7 +79,7 @@ TEST(NetworkTest, Create) {
         new_composition(network, "ICN", 476);  // IC 5, IC 21, IC 51
     Composition *fvd = new_composition(network, "FV-Dosto", 606);  // IC 1
     Composition *gir = new_composition(network, "Giruno", 405);    // IC 2
-    EXPECT_EQ(network->composition_counter, 4);
+    EXPECT_EQ(network->compositions->size, 4);
 
     // Vehicles
     Vehicle *ic2_1 = new_vehicle(network, "ic2-1", ic2);
@@ -90,7 +90,7 @@ TEST(NetworkTest, Create) {
     Vehicle *fvd_2 = new_vehicle(network, "fvd-2", fvd);
     Vehicle *gir_1 = new_vehicle(network, "gir-1", gir);
     Vehicle *gir_2 = new_vehicle(network, "gir-2", gir);
-    EXPECT_EQ(network->vehicle_counter, 8);
+    EXPECT_EQ(network->vehicles->size, 8);
 
     // Add routes for line IC 1
     const char *route_id = "ic-1-we";
@@ -117,9 +117,9 @@ TEST(NetworkTest, Create) {
               route_size, trip_ids, departures, vehicles,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 1);
+    EXPECT_EQ(network->routes->size, 1);
     for (size_t i = 0; i < route_size; ++i) {
-        EXPECT_EQ(nodes[i]->route_counter, 1);
+        EXPECT_EQ(nodes[i]->routes->size, 1);
     }
 
     // Reverse direction
@@ -143,9 +143,9 @@ TEST(NetworkTest, Create) {
               route_size, trip_ids2, departures, vehicles2,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 2);
+    EXPECT_EQ(network->routes->size, 2);
     for (size_t i = 0; i < route_size; ++i) {
-        EXPECT_EQ(nodes[i]->route_counter, 2);
+        EXPECT_EQ(nodes[i]->routes->size, 2);
     }
 
     // Add routes for line IC 2
@@ -171,7 +171,7 @@ TEST(NetworkTest, Create) {
               route_size3, trip_ids3, departures3, vehicles3,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 3);
+    EXPECT_EQ(network->routes->size, 3);
 
     // Reverse direction
     const char *route_id4 = "ic-2-sn";
@@ -196,7 +196,7 @@ TEST(NetworkTest, Create) {
               route_size3, trip_ids4, departures4, vehicles4,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 4);
+    EXPECT_EQ(network->routes->size, 4);
 
     // Add routes for line IC 6
     const char *route_id5 = "ic-6-ns";
@@ -221,7 +221,7 @@ TEST(NetworkTest, Create) {
               route_size5, trip_ids5, departures5, vehicles5,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 5);
+    EXPECT_EQ(network->routes->size, 5);
 
     // Reverse direction
     const char *route_id6 = "ic-6-sn";
@@ -247,7 +247,7 @@ TEST(NetworkTest, Create) {
               route_size5, trip_ids6, departures6, vehicles6,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 6);
+    EXPECT_EQ(network->routes->size, 6);
 
     // Add routes for line IC 21
     const char *route_id7 = "ic-21-ns";
@@ -274,7 +274,7 @@ TEST(NetworkTest, Create) {
               route_size7, trip_ids7, departures7, vehicles7,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 7);
+    EXPECT_EQ(network->routes->size, 7);
 
     // Reverse direction
     const char *route_id8 = "ic-21-sn";
@@ -300,7 +300,7 @@ TEST(NetworkTest, Create) {
               route_size7, trip_ids8, departures8, vehicles8,
               trip_size  // Trip properties
     );
-    EXPECT_EQ(network->route_counter, 8);
+    EXPECT_EQ(network->routes->size, 8);
 
     // Export test data
     // export_network(network, "intercity_network.xml");

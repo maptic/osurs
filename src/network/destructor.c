@@ -21,32 +21,48 @@ static void delete_reservation(Reservation *reservation);
 
 void delete_node(Node *node) {
     free(node->id);
-    free(node->routes);
+    hash_map_free(node->routes);
     free(node);
 }
 
 void delete_network(Network *network) {
     // Free routes
-    for (size_t i = 0; i < network->route_counter; ++i) {
-        delete_route(network->routes[i]);
+    for (size_t i = 0; i < network->routes->capacity; i++) {
+        HashMapEntry *entry = network->routes->entries[i];
+        while (entry != NULL) {
+            delete_route((Route *)entry->value);
+            entry = entry->next;
+        }
     }
     // Free vehicles
-    for (size_t i = 0; i < network->vehicle_counter; ++i) {
-        delete_vehicle(network->vehicles[i]);
+    for (size_t i = 0; i < network->vehicles->capacity; i++) {
+        HashMapEntry *entry = network->vehicles->entries[i];
+        while (entry != NULL) {
+            delete_vehicle((Vehicle *)entry->value);
+            entry = entry->next;
+        }
     }
     // Free compositions
-    for (size_t i = 0; i < network->composition_counter; ++i) {
-        delete_composition(network->compositions[i]);
+    for (size_t i = 0; i < network->compositions->capacity; i++) {
+        HashMapEntry *entry = network->compositions->entries[i];
+        while (entry != NULL) {
+            delete_composition((Composition *)entry->value);
+            entry = entry->next;
+        }
     }
     // Free nodes
-    for (size_t i = 0; i < network->node_counter; ++i) {
-        delete_node(network->nodes[i]);
+    for (size_t i = 0; i < network->nodes->capacity; i++) {
+        HashMapEntry *entry = network->nodes->entries[i];
+        while (entry != NULL) {
+            delete_node((Node *)entry->value);
+            entry = entry->next;
+        }
     }
-    // Free arrays
-    free(network->routes);
-    free(network->vehicles);
-    free(network->compositions);
-    free(network->nodes);
+    // Free hashmaps
+    hash_map_free(network->routes);
+    hash_map_free(network->vehicles);
+    hash_map_free(network->compositions);
+    hash_map_free(network->nodes);
     // Free struct
     free(network);
 }
@@ -70,10 +86,10 @@ static void delete_vehicle(Vehicle *vehicle) {
 }
 
 static void delete_trip(Trip *trip) {
-    for (size_t i = 0; i < trip->reservation_counter; ++i) {
-        delete_reservation(trip->reservations[i]);
+    for (size_t i = 0; i < trip->reservations->size; ++i) {
+        delete_reservation((Reservation*)array_list_get(trip->reservations, i));
     }
-    free(trip->reservations);
+    array_list_free(trip->reservations);
     free(trip->id);
     free(trip);
 }

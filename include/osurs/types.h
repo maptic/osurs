@@ -11,6 +11,7 @@
 #ifndef OSURS_TYPES_H_
 #define OSURS_TYPES_H_
 
+#include <osurs/ds.h>
 #include <stdlib.h>
 
 #define MINUTES 60
@@ -38,9 +39,7 @@ typedef struct node_t {
     char *id;                /**< Identifier. */
     double x;                /**< X coordinate. */
     double y;                /**< Y coordinate. */
-    struct route_t **routes; /**< Array with routes passing the node. */
-    size_t route_counter;    /**< The number of routes passing the node. */
-    size_t route_size;       /**< The allocated size of the routes array. */
+    HashMap *routes;         /**< HashMap with routes passing the node. */
 } Node;
 
 /**
@@ -79,9 +78,7 @@ typedef struct trip_t {
                                   with this trip / departure. */
     struct trip_t *next;   /**< The next trip starting after the current one. */
     struct route_t *route; /**< The route the trip corresponds to. */
-    struct reservation_t **reservations; /**< Reservation in the network. */
-    size_t reservation_counter; /**< Number of reservations in the network. */
-    size_t reservation_size;    /**< Allocated size for reservations. */
+    ArrayList *reservations; /**< Reservation in the network. */
 } Trip;
 
 /**
@@ -131,18 +128,10 @@ typedef struct composition_t {
  * and off.
  */
 typedef struct network_t {
-    struct node_t **nodes;       /**< Nodes in the network. */
-    size_t node_counter;         /**< Number of nodes in the network. */
-    size_t node_size;            /**< Allocated size for nodes. */
-    struct route_t **routes;     /**< Routes in the network. */
-    size_t route_counter;        /**< Number of routes in the network. */
-    size_t route_size;           /**< Allocated size for routes. */
-    struct vehicle_t **vehicles; /**< Vehicles in the network. */
-    size_t vehicle_counter;      /**< Number of vehicles in the network. */
-    size_t vehicle_size;         /**< Allocated size for vehicles. */
-    struct composition_t **compositions; /**< Compositions in the network. */
-    size_t composition_counter; /**< Number of compositions in the network. */
-    size_t composition_size;    /**< Allocated size for compositions. */
+    HashMap *nodes;        /**< Nodes in the network. */
+    HashMap *routes;       /**< Routes in the network. */
+    HashMap *vehicles;     /**< Vehicles in the network. */
+    HashMap *compositions; /**< Compositions in the network. */
 } Network;
 
 /**
@@ -172,7 +161,7 @@ typedef struct connection_t {
  * equal to the available seats.
  */
 typedef struct reservation_t {
-    int res_id;          /**< Reservation id */
+    int res_id;          /**< Reservation id. */
     int seats;           /**< Reserved seats. */
     struct stop_t *orig; /**< The orig stop of the reservation. */
     struct stop_t *dest; /**< The orig stop of the reservation. */
@@ -186,9 +175,9 @@ typedef struct reservation_t {
  * A seat contains an array of reservations.
  */
 typedef struct seat_t {
-    int seat_id;     /**< Seat id */
-    int res_count;   /**< Number of reservations */
-    int *res_id_arr; /**< Array that contains each reservation id */
+    int seat_id;     /**< Seat id. */
+    int res_count;   /**< Number of reservations. */
+    int *res_id_arr; /**< Array that contains each reservation id. */
 } Seat;
 
 /**

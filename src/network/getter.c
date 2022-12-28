@@ -15,37 +15,35 @@
 // Public implementations
 
 Node *get_node(Network *network, const char *id) {
-    for (int i = 0; i < network->node_counter; ++i) {
-        if (strcmp(network->nodes[i]->id, id) == 0) return network->nodes[i];
+    Node *node = (Node *)hash_map_get(network->nodes, id);
+    if (node == NULL) {
+        printf("Node %s not found.\n", id);
     }
-    printf("Node %s not found.\n", id);
-    return NULL;
+    return node;
 }
 
 Vehicle *get_vehicle(Network *network, const char *id) {
-    for (int i = 0; i < network->vehicle_counter; ++i) {
-        if (strcmp(network->vehicles[i]->id, id) == 0)
-            return network->vehicles[i];
+    Vehicle *vehicle = (Vehicle *)hash_map_get(network->vehicles, id);
+    if (vehicle == NULL) {
+        printf("Vehicle %s not found.\n", id);
     }
-    printf("Vehicle %s not found.\n", id);
-    return NULL;
+    return vehicle;
 }
 
 Composition *get_composition(Network *network, const char *id) {
-    for (int i = 0; i < network->composition_counter; ++i) {
-        if (strcmp(network->compositions[i]->id, id) == 0)
-            return network->compositions[i];
+    Composition *comp = (Composition *)hash_map_get(network->compositions, id);
+    if (comp == NULL) {
+        printf("Composition %s not found.\n", id);
     }
-    printf("Composition %s not found.\n", id);
-    return NULL;
+    return comp;
 }
 
 Route *get_route(Network *network, const char *id) {
-    for (int i = 0; i < network->route_counter; ++i) {
-        if (strcmp(network->routes[i]->id, id) == 0) return network->routes[i];
+    Route *route = (Route *)hash_map_get(network->routes, id);
+    if (route == NULL) {
+        printf("Route %s not found.\n", id);
     }
-    printf("Route %s not found.\n", id);
-    return NULL;
+    return route;
 }
 
 Trip *get_trip(Route *route, const char *id) {
