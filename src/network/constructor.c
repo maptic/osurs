@@ -29,19 +29,11 @@ Network *new_network() {
     // Nodes
     network->nodes = hash_map_create();
     // Routes
-    network->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE_L);
-    network->route_size = INIT_ALLOC_SIZE_L;
-    network->route_counter = 0;
+    network->routes = hash_map_create();
     // Compositions
-    network->compositions =
-        (Composition **)malloc(sizeof(Composition *) * INIT_ALLOC_SIZE_S);
-    network->composition_size = INIT_ALLOC_SIZE_S;
-    network->composition_counter = 0;
+    network->compositions = hash_map_create();
     // Vehicles
-    network->vehicles =
-        (Vehicle **)malloc(sizeof(Vehicle *) * INIT_ALLOC_SIZE_L);
-    network->vehicle_size = INIT_ALLOC_SIZE_L;
-    network->vehicle_counter = 0;
+    network->vehicles = hash_map_create();
 
     return network;
 }
@@ -173,14 +165,7 @@ static Trip *new_trip(const char *id, int departure, int arrival,
 }
 
 static void network_add_route(Network *network, Route *route) {
-    if (network->route_counter == network->route_size) {
-        network->route_size += INIT_ALLOC_SIZE_L;
-        // printf("Reallocating route size of network (%ldx%ld bytes).\n",
-        //        network->route_size, sizeof(void *));
-        network->routes = (Route **)realloc(
-            network->routes, sizeof(Route *) * network->route_size);
-    }
-    network->routes[network->route_counter++] = route;
+    hash_map_put(network->routes, route->id, (void *)route);
 }
 
 static void network_add_node(Network *network, Node *node) {
@@ -189,26 +174,11 @@ static void network_add_node(Network *network, Node *node) {
 
 static void network_add_composition(Network *network,
                                     Composition *composition) {
-    if (network->composition_counter == network->composition_size) {
-        network->composition_size += INIT_ALLOC_SIZE_S;
-        // printf("Reallocating composition size of network (%ldx%ld bytes).\n",
-        //        network->composition_size, sizeof(void *));
-        network->compositions = (Composition **)realloc(
-            network->compositions,
-            sizeof(Composition *) * network->composition_size);
-    }
-    network->compositions[network->composition_counter++] = composition;
+    hash_map_put(network->compositions, composition->id, (void *)composition);
 }
 
 static void network_add_vehicle(Network *network, Vehicle *vehicle) {
-    if (network->vehicle_counter == network->vehicle_size) {
-        network->vehicle_size += INIT_ALLOC_SIZE_L;
-        // printf("Reallocating vehicle size of network (%ldx%ld bytes).\n",
-        //        network->vehicle_size, sizeof(void *));
-        network->vehicles = (Vehicle **)realloc(
-            network->vehicles, sizeof(Vehicle *) * network->vehicle_size);
-    }
-    network->vehicles[network->vehicle_counter++] = vehicle;
+    hash_map_put(network->vehicles, vehicle->id, (void *)vehicle);
 }
 
 static void node_add_route(Node *node, Route *route) {

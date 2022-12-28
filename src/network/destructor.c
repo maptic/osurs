@@ -27,30 +27,41 @@ void delete_node(Node *node) {
 
 void delete_network(Network *network) {
     // Free routes
-    for (size_t i = 0; i < network->route_counter; ++i) {
-        delete_route(network->routes[i]);
-    }
-    // Free vehicles
-    for (size_t i = 0; i < network->vehicle_counter; ++i) {
-        delete_vehicle(network->vehicles[i]);
-    }
-    // Free compositions
-    for (size_t i = 0; i < network->composition_counter; ++i) {
-        delete_composition(network->compositions[i]);
-    }
-    // Free nodes
-    for (size_t i = 0; i < network->nodes->capacity; i++) {
-        HashMapEntry* entry = network->nodes->entries[i];
+    for (size_t i = 0; i < network->routes->capacity; i++) {
+        HashMapEntry *entry = network->routes->entries[i];
         while (entry != NULL) {
-            delete_node((Node*)entry->value);
+            delete_route((Route *)entry->value);
             entry = entry->next;
         }
     }
-
-    // Free arrays and hashmaps
-    free(network->routes);
-    free(network->vehicles);
-    free(network->compositions);
+    // Free vehicles
+    for (size_t i = 0; i < network->vehicles->capacity; i++) {
+        HashMapEntry *entry = network->vehicles->entries[i];
+        while (entry != NULL) {
+            delete_vehicle((Vehicle *)entry->value);
+            entry = entry->next;
+        }
+    }
+    // Free compositions
+    for (size_t i = 0; i < network->compositions->capacity; i++) {
+        HashMapEntry *entry = network->compositions->entries[i];
+        while (entry != NULL) {
+            delete_composition((Composition *)entry->value);
+            entry = entry->next;
+        }
+    }
+    // Free nodes
+    for (size_t i = 0; i < network->nodes->capacity; i++) {
+        HashMapEntry *entry = network->nodes->entries[i];
+        while (entry != NULL) {
+            delete_node((Node *)entry->value);
+            entry = entry->next;
+        }
+    }
+    // Free hashmaps
+    hash_map_free(network->routes);
+    hash_map_free(network->vehicles);
+    hash_map_free(network->compositions);
     hash_map_free(network->nodes);
     // Free struct
     free(network);

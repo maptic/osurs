@@ -132,16 +132,10 @@ typedef struct composition_t {
  * and off.
  */
 typedef struct network_t {
-    HashMap *nodes;              /**< Nodes in the network. */
-    struct route_t **routes;     /**< Routes in the network. */
-    size_t route_counter;        /**< Number of routes in the network. */
-    size_t route_size;           /**< Allocated size for routes. */
-    struct vehicle_t **vehicles; /**< Vehicles in the network. */
-    size_t vehicle_counter;      /**< Number of vehicles in the network. */
-    size_t vehicle_size;         /**< Allocated size for vehicles. */
-    struct composition_t **compositions; /**< Compositions in the network. */
-    size_t composition_counter; /**< Number of compositions in the network. */
-    size_t composition_size;    /**< Allocated size for compositions. */
+    HashMap *nodes;        /**< Nodes in the network. */
+    HashMap *routes;       /**< Routes in the network. */
+    HashMap *vehicles;     /**< Vehicles in the network. */
+    HashMap *compositions; /**< Compositions in the network. */
 } Network;
 
 /**

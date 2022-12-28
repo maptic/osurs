@@ -93,36 +93,48 @@ void print_network(Network *network) {
     printf(
         "<network nodes=\"%ld\" composition=\"%ld\" vehicles=\"%ld\" "
         "routes=\"%ld\" >\n",
-        network->nodes->size, network->composition_counter,
-        network->vehicle_counter, network->route_counter);
+        network->nodes->size, network->compositions->size,
+        network->vehicles->size, network->routes->size);
     // Nodes
     printf("%*s<nodes>\n", indent + INDENT_DEPTH, INDENT_CHARS);
     for (size_t i = 0; i < network->nodes->capacity; i++) {
-        HashMapEntry* entry = network->nodes->entries[i];
+        HashMapEntry *entry = network->nodes->entries[i];
         while (entry != NULL) {
-            print_node((Node*)entry->value, indent + 2 * INDENT_DEPTH);
+            print_node((Node *)entry->value, indent + 2 * INDENT_DEPTH);
+            entry = entry->next;
         }
     }
     printf("%*s</nodes>\n", indent + INDENT_DEPTH, INDENT_CHARS);
     // Compositions
     printf("%*s<compositions>\n", indent + INDENT_DEPTH, INDENT_CHARS);
-    for (size_t i = 0; i < network->composition_counter; ++i) {
-        print_composition(network->compositions[i], indent + 2 * INDENT_DEPTH);
+    for (size_t i = 0; i < network->compositions->capacity; i++) {
+        HashMapEntry *entry = network->compositions->entries[i];
+        while (entry != NULL) {
+            print_composition((Composition *)entry->value,
+                              indent + 2 * INDENT_DEPTH);
+            entry = entry->next;
+        }
     }
     printf("%*s</compositions>\n", indent + INDENT_DEPTH, INDENT_CHARS);
     // Vehicles
     printf("%*s<vehicles>\n", indent + INDENT_DEPTH, INDENT_CHARS);
-    for (size_t i = 0; i < network->vehicle_counter; ++i) {
-        print_vehicle(network->vehicles[i], indent + 2 * INDENT_DEPTH);
+    for (size_t i = 0; i < network->vehicles->capacity; i++) {
+        HashMapEntry *entry = network->vehicles->entries[i];
+        while (entry != NULL) {
+            print_vehicle((Vehicle *)entry->value, indent + 2 * INDENT_DEPTH);
+            entry = entry->next;
+        }
     }
     printf("%*s</vehicles>\n", indent + INDENT_DEPTH, INDENT_CHARS);
     // Routes
     printf("%*s<routes>\n", indent + INDENT_DEPTH, INDENT_CHARS);
-    for (size_t i = 0; i < network->route_counter; ++i) {
-        Route *route = network->routes[i];
-        Stop *curr_stop = route->root_stop;
-        Trip *curr_trip = route->root_trip;
-        print_route(route, indent + 2 * INDENT_DEPTH);
+    for (size_t i = 0; i < network->routes->capacity; i++) {
+        HashMapEntry *entry = network->routes->entries[i];
+        while (entry != NULL) {
+            Route *route = (Route *)entry->value;
+            print_route(route, indent + 2 * INDENT_DEPTH);
+            entry = entry->next;
+        }
     }
     printf("%*s</routes>\n", indent + INDENT_DEPTH, INDENT_CHARS);
     printf("</network>\n");
