@@ -93,12 +93,15 @@ void print_network(Network *network) {
     printf(
         "<network nodes=\"%ld\" composition=\"%ld\" vehicles=\"%ld\" "
         "routes=\"%ld\" >\n",
-        network->node_counter, network->composition_counter,
+        network->nodes->size, network->composition_counter,
         network->vehicle_counter, network->route_counter);
     // Nodes
     printf("%*s<nodes>\n", indent + INDENT_DEPTH, INDENT_CHARS);
-    for (size_t i = 0; i < network->node_counter; ++i) {
-        print_node(network->nodes[i], indent + 2 * INDENT_DEPTH);
+    for (size_t i = 0; i < network->nodes->capacity; i++) {
+        HashMapEntry* entry = network->nodes->entries[i];
+        while (entry != NULL) {
+            print_node((Node*)entry->value, indent + 2 * INDENT_DEPTH);
+        }
     }
     printf("%*s</nodes>\n", indent + INDENT_DEPTH, INDENT_CHARS);
     // Compositions

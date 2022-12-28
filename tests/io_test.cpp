@@ -68,7 +68,7 @@ TEST(IOTest, ReadMatsim) {
 
     // Test
     EXPECT_EQ(success, 1);
-    EXPECT_EQ(network->node_counter, 17);
+    EXPECT_EQ(network->nodes->size, 17);
     EXPECT_EQ(network->route_counter, 2);
 
     // Check connection: Success

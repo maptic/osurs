@@ -51,7 +51,7 @@ int export_network(Network *network, const char *filename) {
     /* Start an element named "network". Since this is the first
      * element, this will be the root element of the document. */
     xmlTextWriterStartElement(writer, "network");
-    sprintf(buf, "%ld", network->node_counter);
+    sprintf(buf, "%ld", network->nodes->size);
     xmlTextWriterWriteAttribute(writer, "nodes", buf);
     sprintf(buf, "%ld", network->composition_counter);
     xmlTextWriterWriteAttribute(writer, "compositions", buf);
@@ -62,18 +62,22 @@ int export_network(Network *network, const char *filename) {
 
     // Nodes
     xmlTextWriterStartElement(writer, "nodes");
-    for (size_t i = 0; i < network->node_counter; ++i) {
-        Node *node = network->nodes[i];
-        xmlTextWriterStartElement(writer, "node");
-        sprintf(buf, "%s", node->id);
-        xmlTextWriterWriteAttribute(writer, "id", buf);
-        sprintf(buf, "%.5f", node->x);
-        xmlTextWriterWriteAttribute(writer, "x", buf);
-        sprintf(buf, "%.5f", node->y);
-        xmlTextWriterWriteAttribute(writer, "y", buf);
-        sprintf(buf, "%ld", node->route_counter);
-        xmlTextWriterWriteAttribute(writer, "routes", buf);
-        xmlTextWriterEndElement(writer);
+    for (size_t i = 0; i < network->nodes->capacity; i++) {
+        HashMapEntry* entry = network->nodes->entries[i];
+        while (entry != NULL) {
+            Node *node = (Node*)entry->value;
+            xmlTextWriterStartElement(writer, "node");
+            sprintf(buf, "%s", node->id);
+            xmlTextWriterWriteAttribute(writer, "id", buf);
+            sprintf(buf, "%.5f", node->x);
+            xmlTextWriterWriteAttribute(writer, "x", buf);
+            sprintf(buf, "%.5f", node->y);
+            xmlTextWriterWriteAttribute(writer, "y", buf);
+            sprintf(buf, "%ld", node->route_counter);
+            xmlTextWriterWriteAttribute(writer, "routes", buf);
+            xmlTextWriterEndElement(writer);
+            entry = entry->next;
+        }
     }
     xmlTextWriterEndElement(writer);
 

@@ -70,7 +70,7 @@ TEST(NetworkTest, Create) {
     Node *SH = new_node(network, "Schaffhausen", 2689629.9, 1283767.0);
     Node *ZG = new_node(network, "Zug", 2681612.9, 1225323.5);
     Node *ZUE = new_node(network, "Zürich HB", 2683036.5, 1248101.0);
-    EXPECT_EQ(network->node_counter, 18);
+    EXPECT_EQ(network->nodes->size, 18);
 
     // Compositions
     Composition *ic2 =

@@ -11,6 +11,7 @@
 #ifndef OSURS_TYPES_H_
 #define OSURS_TYPES_H_
 
+#include <osurs/ds.h>
 #include <stdlib.h>
 
 #define MINUTES 60
@@ -131,9 +132,7 @@ typedef struct composition_t {
  * and off.
  */
 typedef struct network_t {
-    struct node_t **nodes;       /**< Nodes in the network. */
-    size_t node_counter;         /**< Number of nodes in the network. */
-    size_t node_size;            /**< Allocated size for nodes. */
+    HashMap *nodes;              /**< Nodes in the network. */
     struct route_t **routes;     /**< Routes in the network. */
     size_t route_counter;        /**< Number of routes in the network. */
     size_t route_size;           /**< Allocated size for routes. */

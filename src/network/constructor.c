@@ -27,9 +27,7 @@ static void node_add_route(Node *node, Route *route);
 Network *new_network() {
     Network *network = (Network *)malloc(sizeof(Network));
     // Nodes
-    network->nodes = (Node **)malloc(sizeof(Node *) * INIT_ALLOC_SIZE_L);
-    network->node_size = INIT_ALLOC_SIZE_L;
-    network->node_counter = 0;
+    network->nodes = hash_map_create();
     // Routes
     network->routes = (Route **)malloc(sizeof(Route *) * INIT_ALLOC_SIZE_L);
     network->route_size = INIT_ALLOC_SIZE_L;
@@ -186,14 +184,7 @@ static void network_add_route(Network *network, Route *route) {
 }
 
 static void network_add_node(Network *network, Node *node) {
-    if (network->node_counter == network->node_size) {
-        network->node_size += INIT_ALLOC_SIZE_L;
-        // printf("Reallocating node size of network (%ldx%ld bytes).\n",
-        //        network->node_size, sizeof(void *));
-        network->nodes = (Node **)realloc(network->nodes,
-                                          sizeof(Node *) * network->node_size);
-    }
-    network->nodes[network->node_counter++] = node;
+    hash_map_put(network->nodes, node->id, (void *)node);
 }
 
 static void network_add_composition(Network *network,

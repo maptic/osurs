@@ -39,14 +39,19 @@ void delete_network(Network *network) {
         delete_composition(network->compositions[i]);
     }
     // Free nodes
-    for (size_t i = 0; i < network->node_counter; ++i) {
-        delete_node(network->nodes[i]);
+    for (size_t i = 0; i < network->nodes->capacity; i++) {
+        HashMapEntry* entry = network->nodes->entries[i];
+        while (entry != NULL) {
+            delete_node((Node*)entry->value);
+            entry = entry->next;
+        }
     }
-    // Free arrays
+
+    // Free arrays and hashmaps
     free(network->routes);
     free(network->vehicles);
     free(network->compositions);
-    free(network->nodes);
+    hash_map_free(network->nodes);
     // Free struct
     free(network);
 }

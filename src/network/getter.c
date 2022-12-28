@@ -15,11 +15,11 @@
 // Public implementations
 
 Node *get_node(Network *network, const char *id) {
-    for (int i = 0; i < network->node_counter; ++i) {
-        if (strcmp(network->nodes[i]->id, id) == 0) return network->nodes[i];
+    Node *node = (Node *)hash_map_get(network->nodes, id);
+    if (node == NULL) {
+        printf("Node %s not found.\n", id);
     }
-    printf("Node %s not found.\n", id);
-    return NULL;
+    return node;
 }
 
 Vehicle *get_vehicle(Network *network, const char *id) {
