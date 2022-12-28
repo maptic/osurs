@@ -20,7 +20,7 @@ The **osurs** library contains the following modules with corresponding headers:
 ```mermaid
 graph RL;
   subgraph libosurs;
-    osurs/network.h-->|#include|osurs/ds/*.h;
+    osurs/types.h-->|#include|osurs/ds.h;
     osurs/network.h-->|#include|osurs/types.h;
     osurs/reserve.h-->|#include|osurs/network.h;
     osurs/io.h-->|#include|osurs/reserve.h
