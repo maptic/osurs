@@ -5,6 +5,8 @@
  * @author: Merlin Unterfinger
  */
 
+#include "uuid.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,14 +17,12 @@
 #include <unistd.h>
 #endif
 
-#define UUID_LEN 36
-
 void generate_uuid(char *buffer) {
     static const char *chars = "0123456789abcdef";
     int i;
 
 #ifdef _WIN32
-    // Use the CryptGenRandom function to generate random bytes on Windows
+    // Use the CryptGenRandom function to generate random bytes on Windows.
     HCRYPTPROV hCryptProv;
     if (!CryptAcquireContext(&hCryptProv, NULL, NULL, PROV_RSA_FULL,
                              CRYPT_VERIFYCONTEXT)) {
@@ -30,7 +30,7 @@ void generate_uuid(char *buffer) {
         exit(1);
     }
 
-    // Seed the rand function with the random bytes
+    // Seed the rand function with the random bytes.
     unsigned seed;
     if (!CryptGenRandom(hCryptProv, sizeof(seed), (BYTE *)&seed)) {
         fprintf(stderr, "Error generating random bytes\n");
@@ -41,14 +41,15 @@ void generate_uuid(char *buffer) {
     // Release the cryptographic context
     CryptReleaseContext(hCryptProv, 0);
 #else
-    // Use the /dev/urandom device to generate random bytes on Unix-like systems
+    // Use the /dev/urandom device to generate random bytes on Unix-like
+    // systems.
     int fd = open("/dev/urandom", O_RDONLY);
     if (fd < 0) {
         perror("Error opening /dev/urandom");
         exit(1);
     }
 
-    // Seed the rand function with the random bytes
+    // Seed the rand function with the random bytes.
     unsigned seed;
     if (read(fd, &seed, sizeof(seed)) < 0) {
         perror("Error reading from /dev/urandom");
@@ -56,7 +57,7 @@ void generate_uuid(char *buffer) {
     }
     srand(seed);
 
-    // Close the /dev/urandom device
+    // Close the /dev/urandom device.
     close(fd);
 #endif
 

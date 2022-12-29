@@ -33,7 +33,7 @@ Reservation *new_reservation(Connection *connection, int seats, char *id) {
     res->trip = connection->trip;
     res->seats = seats;
 
-    // Generate UUID
+    // Generate UUID.
     if (id == NULL) {
         generate_uuid(res->id);
     } else {
