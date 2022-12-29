@@ -6,9 +6,9 @@
  */
 
 #include <string.h>
-#include <uuid/uuid.h>
 
 #include "osurs/reserve.h"
+#include "uuid.h"
 
 // Private declarations
 
@@ -35,9 +35,7 @@ Reservation *new_reservation(Connection *connection, int seats, char *id) {
 
     // Generate UUID
     if (id == NULL) {
-        uuid_t uuid;
-        uuid_generate(uuid);
-        uuid_unparse(uuid, res->id);
+        generate_uuid(res->id);
     } else {
         strcpy(res->id, id);
     }
