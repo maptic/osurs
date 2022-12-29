@@ -30,9 +30,11 @@ void print_vehicle(Vehicle *vehicle, int indent) {
 }
 
 void print_reservation(Reservation *reservation, int indent) {
-    printf("%*s<reservation orig_nid=\"%s\" dest_nid=\"%s\" seats=\"%d\" />\n",
-           indent, INDENT_CHARS, reservation->orig->node->id,
-           reservation->dest->node->id, reservation->seats);
+    printf(
+        "%*s<reservation id=\"%s\" orig_nid=\"%s\" dest_nid=\"%s\" "
+        "seats=\"%d\" />\n",
+        indent, INDENT_CHARS, reservation->id, reservation->orig->node->id,
+        reservation->dest->node->id, reservation->seats);
 }
 
 void print_seat(Seat *seat, int indent) {

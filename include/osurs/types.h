@@ -36,10 +36,10 @@ struct seat_collection_t;
  * A node is a stop location used by different routes.
  */
 typedef struct node_t {
-    char *id;                /**< Identifier. */
-    double x;                /**< X coordinate. */
-    double y;                /**< Y coordinate. */
-    HashMap *routes;         /**< HashMap with routes passing the node. */
+    char *id;        /**< Identifier. */
+    double x;        /**< X coordinate. */
+    double y;        /**< Y coordinate. */
+    HashMap *routes; /**< HashMap with routes passing the node. */
 } Node;
 
 /**
@@ -161,8 +161,9 @@ typedef struct connection_t {
  * equal to the available seats.
  */
 typedef struct reservation_t {
-    int res_id;          /**< Reservation id. */
-    int seats;           /**< Reserved seats. */
+    char id[37]; /**< Automatically generated UUID of the reservation. */
+    int res_id;  /**< Reservation id. */
+    int seats;   /**< Reserved seats. */
     struct stop_t *orig; /**< The orig stop of the reservation. */
     struct stop_t *dest; /**< The orig stop of the reservation. */
     struct trip_t *trip; /**< The trip on which the reservation is placed. */

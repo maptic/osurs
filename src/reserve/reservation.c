@@ -5,6 +5,9 @@
  * @author: Merlin Unterfinger
  */
 
+#include <string.h>
+#include <uuid/uuid.h>
+
 #include "osurs/reserve.h"
 
 // Private declarations
@@ -14,7 +17,7 @@ static int get_next_id();
 
 // Public definitions
 
-Reservation *new_reservation(Connection *connection, int seats) {
+Reservation *new_reservation(Connection *connection, int seats, char *id) {
     Reservation *res = NULL;
     int trip_count;
 
@@ -30,7 +33,16 @@ Reservation *new_reservation(Connection *connection, int seats) {
     res->trip = connection->trip;
     res->seats = seats;
 
-    // Generate res_id
+    // Generate UUID
+    if (id == NULL) {
+        uuid_t uuid;
+        uuid_generate(uuid);
+        uuid_unparse(uuid, res->id);
+    } else {
+        strcpy(res->id, id);
+    }
+
+    // TODO: move to olal.
     res->res_id = get_next_id();
 
     // Connect trip to reservation.
