@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <reservations>
-    <reservation id="56BDB7F3-E91E-44FC-9041-7D07D262AEC3" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
-    <reservation id="F6763A53-F3EA-4FC2-96A9-9EF91E2E652B" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
-    <reservation id="956EAB48-5238-4B7A-9235-32F028732CA0" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
-    <reservation id="1AFD9A89-7AB2-4741-9A2E-23B331FBD37F" rid="ic-1-ew" tid="ic-1-ew-3" nid_orig="Zürich HB" nid_dest="Lausanne" seats="10"/>
-    <reservation id="A3E641D3-36DD-43EF-9688-2199B80C9B95" rid="ic-1-ew" tid="ic-1-ew-4" nid_orig="Zürich HB" nid_dest="Lausanne" seats="7"/>
-    <reservation id="8B1327DD-2F43-4FCD-901B-C602E310C2F8" rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="2"/>
-    <reservation id="F0386918-A41F-400A-A08B-8DEB17444193" rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="1"/>
-    <reservation id="A27A8B2B-B077-4187-ACFC-3200BE7E92E5" rid="ic-2-ns" tid="ic-2-ns-5" nid_orig="Zürich HB" nid_dest="Lugano" seats="5"/>
+    <reservation id="b08ac4fe-b897-bc27-a5cc-7efef9b20779" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation id="06e77e9c-0684-1293-d5b9-902d11d988a2" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation id="19ff611a-5903-ae16-da31-6d5f6ecb85ab" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation id="9a9a2d4c-ee5f-9935-2ad2-53f9e2bd9f8c" rid="ic-1-ew" tid="ic-1-ew-3" nid_orig="Zürich HB" nid_dest="Lausanne" seats="10"/>
+    <reservation id="a49a0156-a8d0-43c9-8f22-cdaa0734a39f" rid="ic-1-ew" tid="ic-1-ew-4" nid_orig="Zürich HB" nid_dest="Lausanne" seats="7"/>
+    <reservation id="5edb3c66-c7dc-173e-2a90-fe6895a48944" rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="2"/>
+    <reservation id="f221000b-b8bd-476e-37f2-9b69f90e2e76" rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="1"/>
+    <reservation id="d1e1b45a-0e7b-8cd9-3d70-0f1d54f68f12" rid="ic-2-ns" tid="ic-2-ns-5" nid_orig="Zürich HB" nid_dest="Lugano" seats="5"/>
 </reservations>
