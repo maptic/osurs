@@ -1,7 +1,7 @@
 /**
  * @brief Generating UUIDs.
  * @file uuid.h
- * @date: 2022-07-19
+ * @date: 2022-12-29
  * @author: Merlin Unterfinger
  */
 
