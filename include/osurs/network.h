@@ -97,6 +97,18 @@ Route *new_route(Network *network, const char *id, Node *nodes[],
                  size_t route_size, const char *trip_ids[], int departures[],
                  Vehicle *vehicles[], size_t trip_size);
 
+/**
+ * @brief Create a new seat.
+ *
+ * Initializes the seat properties and allocates the memory for the reservation
+ * array.
+ *
+ * @param seat_id The id of the seat.
+ * @return Returns a pointer to the new Seat struct.
+ */
+Seat* new_seat(int seat_id);
+
+
 // Getters
 
 /**
@@ -156,5 +168,15 @@ Trip *get_trip(Route *route, const char *id);
  * @param network The network to delete and free.
  */
 void delete_network(Network *network);
+
+/**
+ * @brief Delete a seat
+ *
+ * Frees the memory of the given seat on the heap.
+ *
+ * @param seat The seat to delete.
+ */
+void delete_seat(Seat *seat);
+
 
 #endif  // OSURS_NETWORK_H_

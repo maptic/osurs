@@ -63,10 +63,10 @@ TEST(OlalTest, BasicTest) {
     EXPECT_EQ(result_collection->seat_arr[1]->res_id_arr[0], r2->res_id);
     EXPECT_EQ(result_collection->seat_arr[1]->res_id_arr[1], r3->res_id);
 
-    delete_seat_collection(result_collection);
     delete_connection(c1);
     delete_connection(c2);
     delete_connection(c3);
     delete_connection(c4);
     delete_network(network);
+    delete_seat_collection(result_collection);
 }

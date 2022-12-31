@@ -69,7 +69,7 @@ SeatCollection* optimize_trip(Trip* t) {
     // call the optimization method
     SeatCollection* result = optimize_reservation(
         logical_res_arr, t->reservations->size, res_ids,
-        (int)t->route->route_size - 1, t->vehicle->composition->seat_ids,
+        (int)t->route->route_size - 1, t->vehicle->composition->seats,
         t->vehicle->composition->seat_count);
 
     free(res_ids);

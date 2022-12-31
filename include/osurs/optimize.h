@@ -13,17 +13,7 @@
 #define OSURS_OPTIMIZE_H_
 
 #include "osurs/types.h"
-
-/**
- * @brief Create a new seat.
- *
- * Initializes the seat properties and allocates the memory for the reservation
- * array.
- *
- * @param seat_id The id of the seat.
- * @return Returns a pointer to the new Seat struct.
- */
-Seat* new_seat(int seat_id);
+#include "osurs/network.h"
 
 /**
  * @brief Adds a new reservation to the seat.
@@ -37,25 +27,16 @@ Seat* new_seat(int seat_id);
 void seat_add_reservation(Seat* seat, int res_id);
 
 /**
- * @brief Delete a seat
- *
- * Frees the memory of the given seat on the heap.
- *
- * @param seat The seat to delete.
- */
-void delete_seat(Seat* seat);
-
-/**
  * @brief Create a new seat collection.
  *
  * Initializes the seat collection properties and allocates the memory for the
  * seat array.
  *
  * @param seat_count The Number of seats.
- * @param seat_ids[] Array that contains all the seat ids.
+ * @param seats[] Array that contains all the seat objects.
  * @return Returns a pointer to the new Seat_collection struct.
  */
-SeatCollection* new_seat_collection(int seat_count, int seat_ids[]);
+SeatCollection* new_seat_collection(int seat_count, Seat** seats);
 
 /**
  * @brief Delete a seat collection
@@ -96,6 +77,6 @@ int space_available(unsigned int res_arr[], int res_count, int segment_count,
  */
 SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
                                      int res_ids[], int segment_count,
-                                     int seat_ids[], int seat_count);
+                                     Seat** seats, int seat_count);
 
 #endif  // OSURS_OPTIMIZE_H_

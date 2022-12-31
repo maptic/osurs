@@ -9,47 +9,25 @@
 
 // Public definitions
 
-// Seat constructor
-Seat* new_seat(int seat_id) {
-    Seat* seat = (Seat*)malloc(sizeof(Seat));
-    seat->res_count = 0;
-    seat->seat_id = seat_id;
-    seat->res_id_arr = (int*)malloc(sizeof(unsigned int) * 8);
-    return seat;
-}
-
 // Add a new reservation to a seat
 void seat_add_reservation(Seat* seat, int res_id) {
     seat->res_id_arr[seat->res_count] = res_id;
     seat->res_count++;
 }
 
-// Seat destructor
-void delete_seat(Seat* seat) {
-    if (seat == NULL) return;
-    free(seat->res_id_arr);
-    free(seat);
-}
-
 // Seat collection constructor
-SeatCollection* new_seat_collection(int seat_count, int seat_ids[]) {
+SeatCollection* new_seat_collection(int seat_count, Seat** seats) {
     SeatCollection* collection =
         (SeatCollection*)malloc(sizeof(SeatCollection));
     collection->seat_count = seat_count;
-    collection->seat_arr = (Seat**)malloc(seat_count * sizeof(Seat*));
-    for (int i = 0; i < seat_count; ++i) {
-        collection->seat_arr[i] = new_seat(seat_ids[i]);
-    }
+    collection->seat_arr = seats;
     return collection;
 }
 
 // Seat collection destructor
 void delete_seat_collection(SeatCollection* collection) {
-    for (int i = 0; i < collection->seat_count; ++i) {
-        delete_seat(collection->seat_arr[i]);
-    }
-    free(collection->seat_arr);
     free(collection);
+    collection = NULL;
 }
 
 int space_available(unsigned int res_arr[], int res_count, int segment_count,
@@ -72,7 +50,7 @@ int space_available(unsigned int res_arr[], int res_count, int segment_count,
 
 SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
                                      int res_ids[], int segment_count,
-                                     int seat_ids[], int seat_count) {
+                                     Seat** seats, int seat_count) {
     // parameter check
     if (res_arr_count <= 0) {
         return NULL;
@@ -83,7 +61,7 @@ SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
         return NULL;
     }
 
-    SeatCollection* collection = new_seat_collection(seat_count, seat_ids);
+    SeatCollection* collection = new_seat_collection(seat_count, seats);
 
     // iterate over each seat
     for (int i = 0; i < seat_count; ++i) {

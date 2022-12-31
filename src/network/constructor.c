@@ -115,15 +115,24 @@ Composition *new_composition(Network *network, const char *id, int seat_count) {
     composition->seat_count = seat_count;
     // Generate a dummy seat_id array
     // Will be replaced with real seat id with final composition implementation
-    composition->seat_ids = (int *)malloc(sizeof(int) * seat_count);
+    composition->seats = (Seat *)malloc(sizeof(Seat) * seat_count);
     for (int i = 0; i < seat_count; ++i) {
-        composition->seat_ids[i] = i + 100;
+        composition->seats[i] = new_seat(i + 100);
     }
 
     // Add composition to network
     network_add_composition(network, composition);
 
     return composition;
+}
+
+// Seat constructor
+Seat* new_seat(int seat_id) {
+    Seat* seat = (Seat*)malloc(sizeof(Seat));
+    seat->res_count = 0;
+    seat->seat_id = seat_id;
+    seat->res_id_arr = (int*)malloc(sizeof(unsigned int) * 8);
+    return seat;
 }
 
 // Private implementations

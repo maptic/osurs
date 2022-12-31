@@ -75,9 +75,19 @@ static void delete_stop(Stop *stop) {
 }
 
 static void delete_composition(Composition *composition) {
-    free(composition->id);
-    free(composition->seat_ids);
-    free(composition);
+    if (composition != NULL) {
+        free(composition->id);
+        if (composition->seats != NULL)
+        {
+            for (int i = 0; i < composition->seat_count; ++i) {
+                delete_seat(composition->seats[i]);
+            }
+            free(composition->seats);
+            composition->seats = NULL;
+        }
+        free(composition);
+        composition = NULL;
+    }
 }
 
 static void delete_vehicle(Vehicle *vehicle) {
@@ -122,4 +132,11 @@ static void delete_route(Route *route) {
     // Free struct
     free(route->id);
     free(route);
+}
+
+void delete_seat(Seat* seat) {
+    if (seat == NULL) return;
+    free(seat->res_id_arr);
+    free(seat);
+    seat = NULL;
 }

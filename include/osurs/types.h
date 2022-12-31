@@ -109,6 +109,17 @@ typedef struct vehicle_t {
 } Vehicle;
 
 /**
+ * @brief A seat
+ *
+ * A seat contains an array of reservations.
+ */
+typedef struct seat_t {
+    int seat_id;     /**< Seat id. */
+    int res_count;   /**< Number of reservations. */
+    int* res_id_arr; /**< Array that contains each reservation id. */
+} Seat;
+
+/**
  * @brief A composition.
  *
  * A composition reflects a combination of containers / groups with au defined
@@ -118,7 +129,7 @@ typedef struct composition_t {
     char *id;       /**< Identifier. */
     int seat_count; /**< The seat capacity of the composition (TODO: Replace
                   with groups in future). */
-    int *seat_ids;  /**< The seat id array */
+    Seat **seats;  /**< The seat array */
 } Composition;
 
 /**
@@ -169,17 +180,6 @@ typedef struct reservation_t {
     struct trip_t *trip; /**< The trip on which the reservation is placed. */
 
 } Reservation;
-
-/**
- * @brief A seat
- *
- * A seat contains an array of reservations.
- */
-typedef struct seat_t {
-    int seat_id;     /**< Seat id. */
-    int res_count;   /**< Number of reservations. */
-    int *res_id_arr; /**< Array that contains each reservation id. */
-} Seat;
 
 /**
  * @brief A seat collection
