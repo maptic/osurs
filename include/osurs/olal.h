@@ -22,6 +22,6 @@
  *
  * @return A pointer to the optimized seat collection.
  **/
-SeatCollection* optimize_trip(Trip* t);
+SeatCollection* optimize_trip(Trip* t, order_method o_method);
 
 #endif  // OSURS_OLAL_H_

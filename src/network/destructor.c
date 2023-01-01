@@ -136,7 +136,7 @@ static void delete_route(Route *route) {
 
 void delete_seat(Seat* seat) {
     if (seat == NULL) return;
-    free(seat->res_id_arr);
+    free(seat->res_arr);
     free(seat);
     seat = NULL;
 }

@@ -15,16 +15,26 @@
 #include "osurs/types.h"
 #include "osurs/network.h"
 
+/** enum for the seat ordering method*/
+typedef enum {
+    fill,
+    spatial_even
+} order_method;
+
 /**
  * @brief Adds a new reservation to the seat.
- *
- * Initializes the seat properties and allocates the memory for the reservation
- * array.
  *
  * @param seat The seat to which the reservation should be added.
  * @param res_id The reservation id.
  */
-void seat_add_reservation(Seat* seat, int res_id);
+void seat_add_reservation(Seat* seat, Reservation* res);
+
+/**
+ * @brief Removes all the reservations of a seat.
+ *
+ * @param seat The seat from which all reservations should be removed.
+ */
+void seat_remove_reservations(Seat* seat);
 
 /**
  * @brief Create a new seat collection.
@@ -52,14 +62,14 @@ void delete_seat_collection(SeatCollection* collection);
  *
  * Checks if the given reservation fits into the current configuration.
  *
- * @param res_arr[] The logical representation of each reservation.
+ * @param log_res_arr[] The logical representation of each reservation.
  * @param res_count The number of reservations in the res_array.
  * @param segment_count The number of segments on the route. (stops - 1)
  * @param seat_count The number of seats.
  * @param new_res The logical representation of the new reservation.
  * @return Returns 1 if there is enough space available otherwise 0.
  */
-int space_available(unsigned int res_arr[], int res_count, int segment_count,
+int space_available(unsigned int log_res_arr[], int res_count, int segment_count,
                     unsigned int seat_count, unsigned int new_res);
 
 /**
@@ -67,7 +77,7 @@ int space_available(unsigned int res_arr[], int res_count, int segment_count,
  *
  * Places the reservations on the seats in a way that optimizes the capacity.
  *
- * @param res_arr[] The logical representation of each reservation.
+ * @param log_res_arr[] The logical representation of each reservation.
  * @param res_arr_count The number of reservations in the res_array.
  * @param res_ids[] Array that contains the reservation ids
  * @param segment_count The number of segments on the route. (stops - 1)
@@ -75,8 +85,8 @@ int space_available(unsigned int res_arr[], int res_count, int segment_count,
  * @param seat_count The number of seats in the composition.
  * @return Returns a pointer of the optimized Seat_collection.
  */
-SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
-                                     int res_ids[], int segment_count,
-                                     Seat** seats, int seat_count);
+SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
+                                     Reservation** res_ids, int segment_count,
+                                     Seat** seats, int seat_count, order_method method);
 
 #endif  // OSURS_OPTIMIZE_H_

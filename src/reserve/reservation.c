@@ -40,9 +40,6 @@ Reservation *new_reservation(Connection *connection, int seats, char *id) {
         strcpy(res->id, id);
     }
 
-    // TODO: move to olal.
-    res->res_id = get_next_id();
-
     // Connect trip to reservation.
     trip_add_reservation(connection->trip, res);
 
@@ -64,8 +61,3 @@ Reservation *new_reservation(Connection *connection, int seats, char *id) {
 static void trip_add_reservation(Trip *trip, Reservation *reservation) {
     array_list_add(trip->reservations, (void *)reservation);
 }
-
-static int get_next_id() {
-    static int count = 0;
-    return count++;
-};

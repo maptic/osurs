@@ -131,7 +131,7 @@ Seat* new_seat(int seat_id) {
     Seat* seat = (Seat*)malloc(sizeof(Seat));
     seat->res_count = 0;
     seat->seat_id = seat_id;
-    seat->res_id_arr = (int*)malloc(sizeof(unsigned int) * 8);
+    seat->res_arr = (Reservation*)malloc(sizeof(Reservation*) * sizeof(unsigned int) * 8);
     return seat;
 }
 

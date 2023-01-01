@@ -8,7 +8,7 @@
 #include "osurs/olal.h"
 
 // optimizes the seat reservations on the given trip
-SeatCollection* optimize_trip(Trip* t) {
+SeatCollection* optimize_trip(Trip* t, order_method o_method) {
     // get first stop of the route
     Stop* current_stop = t->route->root_stop;
     // create a temporary array to store the logical representation of the
@@ -52,8 +52,10 @@ SeatCollection* optimize_trip(Trip* t) {
         used_seat_count += ((Reservation*)t->reservations->elements[i])->seats;
     }
 
-    // reshape the logical representation array and create the res_id array
-    int* res_ids = (int*)malloc(sizeof(int) * used_seat_count);
+    // sort by occurrence
+
+    // reshape the logical representation array and create the res_arr array
+    Reservation** res_arr = (Reservation**)malloc(sizeof(Reservation*) * used_seat_count);
     unsigned int* logical_res_arr =
         (unsigned int*)malloc(sizeof(unsigned int) * used_seat_count);
     int seat_pos = 0;
@@ -61,18 +63,17 @@ SeatCollection* optimize_trip(Trip* t) {
         for (int j = 0; j < ((Reservation*)t->reservations->elements[i])->seats;
              ++j) {
             logical_res_arr[seat_pos] = temp_logical_res_arr[i];
-            res_ids[seat_pos++] =
-                ((Reservation*)t->reservations->elements[i])->res_id;
+            res_arr[seat_pos++] = ((Reservation*)t->reservations->elements[i]);
         }
     }
 
     // call the optimization method
     SeatCollection* result = optimize_reservation(
-        logical_res_arr, t->reservations->size, res_ids,
+        logical_res_arr, t->reservations->size, res_arr,
         (int)t->route->route_size - 1, t->vehicle->composition->seats,
-        t->vehicle->composition->seat_count);
+        t->vehicle->composition->seat_count, o_method);
 
-    free(res_ids);
+    free(res_arr);
     free(temp_logical_res_arr);
     free(logical_res_arr);
 

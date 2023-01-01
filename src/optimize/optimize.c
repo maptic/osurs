@@ -10,9 +10,17 @@
 // Public definitions
 
 // Add a new reservation to a seat
-void seat_add_reservation(Seat* seat, int res_id) {
-    seat->res_id_arr[seat->res_count] = res_id;
+void seat_add_reservation(Seat* seat, Reservation* res) {
+    seat->res_arr[seat->res_count] = res;
     seat->res_count++;
+}
+
+// Remove all reservations of a seat
+void seat_remove_reservations(Seat* seat) {
+    for (int i = 0; i < seat->res_count; ++i) {
+        seat->res_arr[i] = NULL;
+    }
+    seat->res_count = 0;
 }
 
 // Seat collection constructor
@@ -30,14 +38,14 @@ void delete_seat_collection(SeatCollection* collection) {
     collection = NULL;
 }
 
-int space_available(unsigned int res_arr[], int res_count, int segment_count,
+int space_available(unsigned int log_res_arr[], int res_count, int segment_count,
                     unsigned int seat_count, unsigned int new_res) {
     // iterate over each segment
     for (int i = 0; i < segment_count; ++i) {
         // sum all reservations for the specific segment
         unsigned int sum = 0;
         for (int j = 0; j < res_count; ++j) {
-            sum += (res_arr[j] & ((unsigned int)1 << i)) >> i;
+            sum += (log_res_arr[j] & ((unsigned int)1 << i)) >> i;
         }
         sum += (new_res & ((unsigned int)1 << i)) >> i;
         // if the sum exceeds the available space return 0
@@ -48,9 +56,9 @@ int space_available(unsigned int res_arr[], int res_count, int segment_count,
     return 1;
 }
 
-SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
-                                     int res_ids[], int segment_count,
-                                     Seat** seats, int seat_count) {
+SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
+                                     Reservation** res_arr, int segment_count,
+                                     Seat** seats, int seat_count, order_method method) {
     // parameter check
     if (res_arr_count <= 0) {
         return NULL;
@@ -61,7 +69,14 @@ SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
         return NULL;
     }
 
-    SeatCollection* collection = new_seat_collection(seat_count, seats);
+    // unordered seat array
+    Seat** unordered_seats;
+    if (method != fill) {
+        unordered_seats = (Seat*)malloc(sizeof(Seat) * seat_count);
+        for (int i = 0; i < seat_count; ++i) {
+            unordered_seats[i] = new_seat(0);
+        }
+    }
 
     // iterate over each seat
     for (int i = 0; i < seat_count; ++i) {
@@ -70,7 +85,7 @@ SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
         // iterate over each reservation
         for (int j = 0; j < res_arr_count; ++j) {
             //
-            if (res_arr[j] != 0) {
+            if (log_res_arr[j] != 0) {
                 // break if a seat is fully booked (over all segments)
                 // fully booked = logical representation of all ones
                 // all ones = 2^segment_count - 1
@@ -79,17 +94,50 @@ SeatCollection* optimize_reservation(unsigned int res_arr[], int res_arr_count,
                 }
                 // add the reservation to the current seat if there is space
                 // bitwise AND equals to 0 if there is no overlap
-                if ((current_res_config & res_arr[j]) == 0) {
+                if ((current_res_config & log_res_arr[j]) == 0) {
                     // add the logical representation of the current reservation
                     // to the current seat representation (bitwise OR)
-                    current_res_config |= res_arr[j];
+                    current_res_config |= log_res_arr[j];
                     // add the reservation id to the seat
-                    seat_add_reservation(collection->seat_arr[i], res_ids[j]);
+                    if (method == fill) {
+                        seat_add_reservation(seats[i], res_arr[j]);
+                    } 
+                    else {
+                        seat_add_reservation(unordered_seats[i], res_arr[j]);
+                    }
                     // remove the reservation from the array
-                    res_arr[j] = 0;
+                    log_res_arr[j] = 0;
                 }
             }
         }
     }
+
+    switch (method) {
+    case fill:
+        break;
+    case spatial_even:
+        // clear all persisting reservations on the given seats of the composition
+        for (int i = 0; i < seat_count; ++i) {
+            seat_remove_reservations(seats[i]);
+        }
+
+        // distribute the reserved seats spatial even over the seats given in the composition
+        // TODO:
+
+        // if it was an even seat count add the last seat to the last position of the array
+        if (seat_count % 2 == 0) {
+            //seats[seat_count -1]
+        }
+
+        for (int i = 0; i < seat_count; ++i) {
+            free(unordered_seats[i]);
+        }
+        free(unordered_seats);
+
+    }
+
+    SeatCollection* collection = new_seat_collection(seat_count, seats);
+
     return collection;
 }
+

@@ -109,6 +109,21 @@ typedef struct vehicle_t {
 } Vehicle;
 
 /**
+ * @brief A reservation.
+ *
+ * A reservation is a booked connection. The booked seats have to be smaller or
+ * equal to the available seats.
+ */
+typedef struct reservation_t {
+    char id[37]; /**< Automatically generated UUID of the reservation. */
+    int seats;   /**< Reserved seats. */
+    struct stop_t* orig; /**< The orig stop of the reservation. */
+    struct stop_t* dest; /**< The orig stop of the reservation. */
+    struct trip_t* trip; /**< The trip on which the reservation is placed. */
+
+} Reservation;
+
+/**
  * @brief A seat
  *
  * A seat contains an array of reservations.
@@ -116,7 +131,7 @@ typedef struct vehicle_t {
 typedef struct seat_t {
     int seat_id;     /**< Seat id. */
     int res_count;   /**< Number of reservations. */
-    int* res_id_arr; /**< Array that contains each reservation id. */
+    Reservation** res_arr; /**< Array that contains each reservation. */
 } Seat;
 
 /**
@@ -164,22 +179,6 @@ typedef struct connection_t {
     struct connection_t
         *prev; /**< Previous connection or NULL if at the start of the chain. */
 } Connection;
-
-/**
- * @brief A reservation.
- *
- * A reservation is a booked connection. The booked seats have to be smaller or
- * equal to the available seats.
- */
-typedef struct reservation_t {
-    char id[37]; /**< Automatically generated UUID of the reservation. */
-    int res_id;  /**< Reservation id. */
-    int seats;   /**< Reserved seats. */
-    struct stop_t *orig; /**< The orig stop of the reservation. */
-    struct stop_t *dest; /**< The orig stop of the reservation. */
-    struct trip_t *trip; /**< The trip on which the reservation is placed. */
-
-} Reservation;
 
 /**
  * @brief A seat collection

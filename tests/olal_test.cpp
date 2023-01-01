@@ -54,14 +54,14 @@ TEST(OlalTest, BasicTest) {
     Reservation* r3 = new_reservation(c3, 1, NULL);
     Reservation* r4 = new_reservation(c4, 1, NULL);
 
-    SeatCollection* result_collection = optimize_trip(c1->trip);
+    SeatCollection* result_collection = optimize_trip(c1->trip, fill);
 
     EXPECT_EQ(result_collection->seat_arr[0]->res_count, 2);
     EXPECT_EQ(result_collection->seat_arr[1]->res_count, 2);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_id_arr[0], r1->res_id);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_id_arr[1], r4->res_id);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_id_arr[0], r2->res_id);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_id_arr[1], r3->res_id);
+    EXPECT_EQ(result_collection->seat_arr[0]->res_arr[0]->id, r1->id);
+    EXPECT_EQ(result_collection->seat_arr[0]->res_arr[1]->id, r4->id);
+    EXPECT_EQ(result_collection->seat_arr[1]->res_arr[0]->id, r2->id);
+    EXPECT_EQ(result_collection->seat_arr[1]->res_arr[1]->id, r3->id);
 
     delete_connection(c1);
     delete_connection(c2);
