@@ -86,15 +86,15 @@ void create_tree_node(Seat** seats, Seat** unordered_seats, Queue* node_param_qu
 	}
 	(*cptr)++;
 
-	if (np->d >= 1) {
+	if (np->d > 0) {
 		tree_node_params* np_l = (tree_node_params*)malloc(sizeof(tree_node_params));
 		np_l->m = (int)(floor((double)np->m - np->d));
 		np_l->d = floor(np->d) / 2;
-		queue_enqueue(node_param_queue, (void*)&np_l);
+		queue_enqueue(node_param_queue, (void*)np_l);
 		tree_node_params* np_u = (tree_node_params*)malloc(sizeof(tree_node_params));
 		np_u->m = (int)(ceil((double)np->m + np->d));
 		np_u->d = floor(np->d) / 2;
-		queue_enqueue(node_param_queue, (void*)&np_u);
+		queue_enqueue(node_param_queue, (void*)np_u);
 	}
 	free(np);
 }

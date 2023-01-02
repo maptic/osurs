@@ -75,7 +75,7 @@ TEST(OlalTest, BasicTest) {
     delete_seat_collection(result_collection);
 }
 
-TEST(OlalTest, SpatialDistribiutionTest) {
+TEST(OlalTest, SimpleSpatialDistribiutionTest) {
     // Initialize network
     Network* network = new_network();
     // Nodes
