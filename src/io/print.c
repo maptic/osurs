@@ -181,12 +181,3 @@ void print_connection(Connection *connection) {
     }
     printf("</connection>\n");
 }
-
-void print_seat_collection(SeatCollection *collection, int indent) {
-    printf("%*s<collection seat_count=\"%d\">\n", indent, INDENT_CHARS,
-           collection->seat_count);
-    for (int i = 0; i < collection->seat_count; ++i) {
-        print_seat(collection->seat_arr[i], indent + INDENT_DEPTH);
-    }
-    printf("%*s</collection>\n", indent, INDENT_CHARS);
-}

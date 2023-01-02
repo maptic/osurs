@@ -44,22 +44,19 @@ TEST(OptimizeTest, OptimizeReservation) {
         seats[i] = new_seat(i + 100);
     }
 
-    SeatCollection* result_collection = optimize_reservation(
+    optimize_reservation(
         log_res_arr, res_count, res_arr, max_segment_length, seats, seat_count, fill);
 
-    EXPECT_EQ(result_collection->seat_arr[0]->seat_id, seats[0]->seat_id);
-    EXPECT_EQ(result_collection->seat_arr[1]->seat_id, seats[1]->seat_id);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_count, 2);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_count, 2);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_arr[0], res_arr[0]);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_arr[1], res_arr[3]);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_arr[0], res_arr[1]);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_arr[1], res_arr[2]);
+    EXPECT_EQ(seats[0]->res_count, 2);
+    EXPECT_EQ(seats[1]->res_count, 2);
+    EXPECT_EQ(seats[0]->res_arr[0]->id, res_arr[0]->id);
+    EXPECT_EQ(seats[0]->res_arr[1]->id, res_arr[3]->id);
+    EXPECT_EQ(seats[1]->res_arr[0]->id, res_arr[1]->id);
+    EXPECT_EQ(seats[1]->res_arr[1]->id, res_arr[2]->id);
 
     for (int i = 0; i < res_count; ++i) {
         free(res_arr[i]->seat_arr);
         free(res_arr[i]);
     }
     free(res_arr);
-    delete_seat_collection(result_collection);
 }

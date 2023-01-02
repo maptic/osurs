@@ -182,15 +182,4 @@ typedef struct connection_t {
         *prev; /**< Previous connection or NULL if at the start of the chain. */
 } Connection;
 
-/**
- * @brief A seat collection
- *
- * The seat collection represents multiple seats over which the reservations
- * were distributed/optimized.
- */
-typedef struct seat_collection_t {
-    Seat **seat_arr; /**< Array that contains all the available seats. */
-    int seat_count;  /**< Number of seats in the collection. */
-} SeatCollection;
-
 #endif  // OSURS_TYPES_H_

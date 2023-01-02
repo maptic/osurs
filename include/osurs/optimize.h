@@ -52,27 +52,6 @@ void reservation_add_seat(Reservation* res, Seat* seat);
 void reservations_remove_seats(Reservation* res);
 
 /**
- * @brief Create a new seat collection.
- *
- * Initializes the seat collection properties and allocates the memory for the
- * seat array.
- *
- * @param seat_count The Number of seats.
- * @param seats[] Array that contains all the seat objects.
- * @return Returns a pointer to the new Seat_collection struct.
- */
-SeatCollection* new_seat_collection(int seat_count, Seat** seats);
-
-/**
- * @brief Delete a seat collection
- *
- * Frees the memory of the given seat collection on the heap.
- *
- * @param collection The seat collection to delete.
- */
-void delete_seat_collection(SeatCollection* collection);
-
-/**
  * @brief Check if there is enough space available
  *
  * Checks if the given reservation fits into the current configuration.
@@ -98,9 +77,8 @@ int space_available(unsigned int log_res_arr[], int res_count, int segment_count
  * @param segment_count The number of segments on the route. (stops - 1)
  * @param seat_ids[] Array that contains the seat ids
  * @param seat_count The number of seats in the composition.
- * @return Returns a pointer of the optimized Seat_collection.
  */
-SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
+void optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
                                      Reservation** res_ids, int segment_count,
                                      Seat** seats, int seat_count, order_method method);
 

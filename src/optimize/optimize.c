@@ -39,21 +39,6 @@ void reservations_remove_seats(Reservation* res) {
 	res->seat_arr_index = 0;
 }
 
-// Seat collection constructor
-SeatCollection* new_seat_collection(int seat_count, Seat** seats) {
-	SeatCollection* collection =
-		(SeatCollection*)malloc(sizeof(SeatCollection));
-	collection->seat_count = seat_count;
-	collection->seat_arr = seats;
-	return collection;
-}
-
-// Seat collection destructor
-void delete_seat_collection(SeatCollection* collection) {
-	free(collection);
-	collection = NULL;
-}
-
 int space_available(unsigned int log_res_arr[], int res_count, int segment_count,
 	unsigned int seat_count, unsigned int new_res) {
 	// iterate over each segment
@@ -108,7 +93,7 @@ void create_tree_node(Seat** seats, Seat** unordered_seats, Queue* node_param_qu
 	free(np);
 }
 
-SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
+void optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
 	Reservation** res_arr, int segment_count,
 	Seat** seats, int seat_count, order_method method) {
 	// parameter check
@@ -222,9 +207,5 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 	default:
 		break;
 	}
-
-	SeatCollection* collection = new_seat_collection(seat_count, seats);
-
-	return collection;
 }
 

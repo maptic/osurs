@@ -54,14 +54,14 @@ TEST(OlalTest, BasicTest) {
     Reservation* r3 = new_reservation(c3, 1, NULL);
     Reservation* r4 = new_reservation(c4, 1, NULL);
 
-    SeatCollection* result_collection = optimize_trip(c1->trip, fill);
+    optimize_trip(c1->trip, fill);
 
-    EXPECT_EQ(result_collection->seat_arr[0]->res_count, 2);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_count, 2);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_arr[0]->id, r1->id);
-    EXPECT_EQ(result_collection->seat_arr[0]->res_arr[1]->id, r4->id);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_arr[0]->id, r2->id);
-    EXPECT_EQ(result_collection->seat_arr[1]->res_arr[1]->id, r3->id);
+    EXPECT_EQ(train->seats[0]->res_count, 2);
+    EXPECT_EQ(train->seats[1]->res_count, 2);
+    EXPECT_EQ(train->seats[0]->res_arr[0]->id, r1->id);
+    EXPECT_EQ(train->seats[0]->res_arr[1]->id, r4->id);
+    EXPECT_EQ(train->seats[1]->res_arr[0]->id, r2->id);
+    EXPECT_EQ(train->seats[1]->res_arr[1]->id, r3->id);
     EXPECT_EQ(r1->seat_arr[0]->seat_id, train->seats[0]->seat_id);
     EXPECT_EQ(r2->seat_arr[0]->seat_id, train->seats[1]->seat_id);
     EXPECT_EQ(r3->seat_arr[0]->seat_id, train->seats[1]->seat_id);
@@ -72,7 +72,6 @@ TEST(OlalTest, BasicTest) {
     delete_connection(c3);
     delete_connection(c4);
     delete_network(network);
-    delete_seat_collection(result_collection);
 }
 
 TEST(OlalTest, SimpleSpatialDistributionTest) {
@@ -131,7 +130,7 @@ TEST(OlalTest, SimpleSpatialDistributionTest) {
     Reservation* r6 = new_reservation(c6, 1, NULL);
     Reservation* r7 = new_reservation(c7, 1, NULL);
 
-    SeatCollection* result_collection = optimize_trip(c1->trip, spatial_even);
+    optimize_trip(c1->trip, spatial_even);
 
     EXPECT_EQ(r1->seat_arr[0], train->seats[3]);
     EXPECT_EQ(r2->seat_arr[0], train->seats[1]);
@@ -149,5 +148,4 @@ TEST(OlalTest, SimpleSpatialDistributionTest) {
     delete_connection(c6);
     delete_connection(c7);
     delete_network(network);
-    delete_seat_collection(result_collection);
 }

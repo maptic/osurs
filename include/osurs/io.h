@@ -147,12 +147,4 @@ void print_reservation(Reservation *reservation, int indent);
  */
 void print_seat(Seat *seat, int indent);
 
-/**
- * @brief Print seat collection.
- *
- * @param collection The seat collection struct to print.
- * @param indent The indent for printing.
- */
-void print_seat_collection(SeatCollection *collection, int indent);
-
 #endif  // OSURS_IO_H_
