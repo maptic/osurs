@@ -329,7 +329,6 @@ TEST(PriorityQueueTest, Remove) {
     priority_queue_free(queue);
 }
 
-
 TEST(PriorityQueueTest, ChangePriority) {
     PriorityQueue* queue = priority_queue_create();
     int value1 = 5;
