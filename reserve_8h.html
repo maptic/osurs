@@ -127,9 +127,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a97bd8d6896b77a9156952e3d5487e987"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#ac7a41ce4d89ee6775b80355ab2abccbd">Connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reserve_8h.html#a97bd8d6896b77a9156952e3d5487e987">select_connection</a> (<a class="el" href="types_8h.html#ac7a41ce4d89ee6775b80355ab2abccbd">Connection</a> *connection, int seats)</td></tr>
 <tr class="memdesc:a97bd8d6896b77a9156952e3d5487e987"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects the best connection.  <a href="reserve_8h.html#a97bd8d6896b77a9156952e3d5487e987">More...</a><br /></td></tr>
 <tr class="separator:a97bd8d6896b77a9156952e3d5487e987"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa779258c97d35a2fafe85fad7440f371"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a8be82d57518f84df3ceb7a5dce2fce0c">Reservation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reserve_8h.html#aa779258c97d35a2fafe85fad7440f371">new_reservation</a> (<a class="el" href="types_8h.html#ac7a41ce4d89ee6775b80355ab2abccbd">Connection</a> *connection, int seats)</td></tr>
-<tr class="memdesc:aa779258c97d35a2fafe85fad7440f371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new reservation.  <a href="reserve_8h.html#aa779258c97d35a2fafe85fad7440f371">More...</a><br /></td></tr>
-<tr class="separator:aa779258c97d35a2fafe85fad7440f371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9519e9e89f86c51199f654020d8b8a6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a8be82d57518f84df3ceb7a5dce2fce0c">Reservation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reserve_8h.html#a9519e9e89f86c51199f654020d8b8a6c">new_reservation</a> (<a class="el" href="types_8h.html#ac7a41ce4d89ee6775b80355ab2abccbd">Connection</a> *connection, int seats, char *id)</td></tr>
+<tr class="memdesc:a9519e9e89f86c51199f654020d8b8a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new reservation.  <a href="reserve_8h.html#a9519e9e89f86c51199f654020d8b8a6c">More...</a><br /></td></tr>
+<tr class="separator:a9519e9e89f86c51199f654020d8b8a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47a02bf1a7474cbfd25eb60a235c088b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reserve_8h.html#a47a02bf1a7474cbfd25eb60a235c088b">delete_connection</a> (<a class="el" href="types_8h.html#ac7a41ce4d89ee6775b80355ab2abccbd">Connection</a> *connection)</td></tr>
 <tr class="memdesc:a47a02bf1a7474cbfd25eb60a235c088b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a connection.  <a href="reserve_8h.html#a47a02bf1a7474cbfd25eb60a235c088b">More...</a><br /></td></tr>
 <tr class="separator:a47a02bf1a7474cbfd25eb60a235c088b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,8 +263,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa779258c97d35a2fafe85fad7440f371"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa779258c97d35a2fafe85fad7440f371">&#9670;&nbsp;</a></span>new_reservation()</h2>
+<a id="a9519e9e89f86c51199f654020d8b8a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9519e9e89f86c51199f654020d8b8a6c">&#9670;&nbsp;</a></span>new_reservation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,7 +279,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>seats</em>&#160;</td>
+          <td class="paramname"><em>seats</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -295,6 +301,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">connection</td><td>The connection to reserve. </td></tr>
     <tr><td class="paramname">seats</td><td>The number of seats to reserve. </td></tr>
+    <tr><td class="paramname">id</td><td>The UUID of the reservation or NULL to generate a new one. </td></tr>
   </table>
   </dd>
 </dl>
