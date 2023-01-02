@@ -25,7 +25,7 @@ void seat_remove_reservations(Seat* seat) {
 	seat->res_count = 0;
 }
 
-// add new seat to a resrvation
+// add new seat to a reservation
 void reservation_add_seat(Reservation* res, Seat* seat) {
 	res->seat_arr[res->seat_arr_index] = seat;
 	res->seat_arr_index++;
@@ -72,25 +72,34 @@ int space_available(unsigned int log_res_arr[], int res_count, int segment_count
 	return 1;
 }
 
-
+// tree node parameter struct
 typedef struct {
 	int m;
 	double d;
 }tree_node_params;
 
+// breadth first tree creation
+// processes the first element of the given queue and adds the child nodes to the queue
 void create_tree_node(Seat** seats, Seat** unordered_seats, Queue* node_param_queue, int* cptr) {
+	// dequeue the first element
 	tree_node_params* np = ((tree_node_params*)queue_dequeue(node_param_queue));
+	// add the reservation to the seat and vice versa
 	for (int i = 0; i < unordered_seats[(*cptr)]->res_count; ++i) {
 		seat_add_reservation(seats[np->m], unordered_seats[(*cptr)]->res_arr[i]);
 		reservation_add_seat(unordered_seats[(*cptr)]->res_arr[i], seats[np->m]);
 	}
+	// increase the node counter
 	(*cptr)++;
 
+	// add the child nodes to the queue
+	// if the distance to the next childe nodes equals to zero the leaves of the tree are reached
 	if (np->d > 0) {
+		// add the child node on the lower end
 		tree_node_params* np_l = (tree_node_params*)malloc(sizeof(tree_node_params));
 		np_l->m = (int)(floor((double)np->m - np->d));
 		np_l->d = floor(np->d) / 2;
 		queue_enqueue(node_param_queue, (void*)np_l);
+		// add the child node on the upper end
 		tree_node_params* np_u = (tree_node_params*)malloc(sizeof(tree_node_params));
 		np_u->m = (int)(ceil((double)np->m + np->d));
 		np_u->d = floor(np->d) / 2;
@@ -164,25 +173,35 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 		}
 	}
 
-	// distribute the reserved seats spatial even over the seats given in the composition
+	
 	switch (method) {
 	case fill:
 		break;
+
 	case spatial_even:;
+		// distribute the reserved seats spatial even over the seats given in the composition
+		// ignore the last seat if it is an even amount of seats
 		int seat_count_odd = (seat_count % 2 == 0) ? seat_count - 1 : seat_count;
+		// last seat index
 		int upper_bound = seat_count_odd - 1;
+		// root node parameters
 		tree_node_params* tp = (tree_node_params*)malloc(sizeof(tree_node_params));
+		// center position of root node
 		tp->m = (int)(upper_bound / 2);
+		// distance to next child node
 		tp->d = (double)tp->m / 2;
+		// node counter
 		int counter = 0;
-
+		// node processing queue
 		Queue* n_q = queue_create();
+		// enqueue the root element
 		queue_enqueue(n_q, (void*)tp);
-
+		// breadth first tree creation
+		// iterate over all nodes (could also be done recursive but due to the fact that the 
+		// number of nodes is already known an iterative approach is the better solution)
 		for (int i = 0; i < seat_count_odd; ++i) {
 			create_tree_node(seats, unordered_seats, n_q, &counter);
 		}
-
 		queue_free(n_q);
 
 		// if it was an even seat count add the last seat to the last position of the array
@@ -193,11 +212,13 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 			}
 		}
 
+		// free the unordered seat array
 		for (int i = 0; i < seat_count; ++i) {
 			free(unordered_seats[i]);
 		}
 		free(unordered_seats);
 		break;
+
 	default:
 		break;
 	}
