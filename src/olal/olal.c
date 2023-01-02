@@ -52,7 +52,7 @@ void optimize_trip(Trip* t, order_method o_method) {
         used_seat_count += ((Reservation*)t->reservations->elements[i])->seat_count;
     }
 
-    // sort by occurrence
+    // TODO: sort by occurrence
 
     // reshape the logical representation array and create the res_arr array
     Reservation** res_arr = (Reservation**)malloc(sizeof(Reservation*) * used_seat_count);

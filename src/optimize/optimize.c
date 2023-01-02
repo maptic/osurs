@@ -65,16 +65,13 @@ typedef struct {
 
 // breadth first tree creation
 // processes the first element of the given queue and adds the child nodes to the queue
-void create_tree_node(Seat** seats, Seat** unordered_seats, Queue* node_param_queue, int* cptr) {
+void create_tree_node(Queue* index_queue, Queue* node_param_queue, Seat** unordered_seats) {
 	// dequeue the first element
 	tree_node_params* np = ((tree_node_params*)queue_dequeue(node_param_queue));
-	// add the reservation to the seat and vice versa
-	for (int i = 0; i < unordered_seats[(*cptr)]->res_count; ++i) {
-		seat_add_reservation(seats[np->m], unordered_seats[(*cptr)]->res_arr[i]);
-		reservation_add_seat(unordered_seats[(*cptr)]->res_arr[i], seats[np->m]);
-	}
-	// increase the node counter
-	(*cptr)++;
+	int* mi = (int*)malloc(sizeof(int));
+	*mi = np->m;
+	// enqueue the index to the queue
+	queue_enqueue(index_queue, (void*)mi);
 
 	// add the child nodes to the queue
 	// if the distance to the next childe nodes equals to zero the leaves of the tree are reached
@@ -158,7 +155,7 @@ void optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
 		}
 	}
 
-	
+
 	switch (method) {
 	case fill:
 		break;
@@ -181,13 +178,26 @@ void optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
 		Queue* n_q = queue_create();
 		// enqueue the root element
 		queue_enqueue(n_q, (void*)tp);
+		// index queue
+		Queue* m_q = queue_create();
 		// breadth first tree creation
 		// iterate over all nodes (could also be done recursive but due to the fact that the 
 		// number of nodes is already known an iterative approach is the better solution)
 		for (int i = 0; i < seat_count_odd; ++i) {
-			create_tree_node(seats, unordered_seats, n_q, &counter);
+			create_tree_node(m_q, n_q, unordered_seats);
 		}
 		queue_free(n_q);
+
+		for (int i = 0; i < seat_count_odd; ++i) {
+			int* mi = ((int*)queue_dequeue(m_q));
+			// add the reservation to the seat and vice versa
+			for (int j = 0; j < unordered_seats[i]->res_count; ++j) {
+				seat_add_reservation(seats[*mi], unordered_seats[i]->res_arr[j]);
+				reservation_add_seat(unordered_seats[i]->res_arr[j], seats[*mi]);
+			}
+			free(mi);
+		}
+		queue_free(m_q);
 
 		// if it was an even seat count add the last seat to the last position of the array
 		if (seat_count % 2 == 0) {
