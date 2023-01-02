@@ -4,6 +4,7 @@ extern "C" {
 #include "../src/ds/arraylist.h"
 #include "../src/ds/hashmap.h"
 #include "../src/ds/linkedlist.h"
+#include "../src/ds/priority.h"
 #include "../src/ds/queue.h"
 #include "../src/ds/stack.h"
 }
@@ -238,6 +239,122 @@ TEST(LinkedListTest, TestRemoveLast) {
     EXPECT_EQ(*(int *)linked_list_get_last(&list), i1);
 
     linked_list_clear(&list);
+}
+
+// PriorityQueue
+
+TEST(PriorityQueueTest, Create) {
+    PriorityQueue* queue = priority_queue_create();
+    EXPECT_NE(queue, nullptr);
+    priority_queue_free(queue);
+}
+
+TEST(PriorityQueueTest, Add) {
+    PriorityQueue* queue = priority_queue_create();
+    int value1 = 5;
+    int value2 = 10;
+    int value3 = 15;
+    PriorityQueueNode* node2 = priority_queue_add(queue, 2, &value2);
+    PriorityQueueNode* node1 = priority_queue_add(queue, 3, &value1);
+    PriorityQueueNode* node3 = priority_queue_add(queue, 1, &value3);
+    EXPECT_EQ(node1->data, &value1);
+    EXPECT_EQ(node1->priority, 3);
+    EXPECT_EQ(node2->data, &value2);
+    EXPECT_EQ(node2->priority, 2);
+    EXPECT_EQ(node3->data, &value3);
+    EXPECT_EQ(node3->priority, 1);
+    priority_queue_free(queue);
+}
+
+
+TEST(PriorityQueueTest, Peek) {
+    PriorityQueue* queue = priority_queue_create();
+    int value1 = 5;
+    int value2 = 10;
+    int value3 = 15;
+    priority_queue_add(queue, 2, &value2);
+    priority_queue_add(queue, 3, &value1);
+    priority_queue_add(queue, 1, &value3);
+    int* result = (int*) priority_queue_peek(queue);
+    EXPECT_EQ(*result, value3);
+    priority_queue_free(queue);
+}
+
+TEST(PriorityQueueTest, Poll) {
+    PriorityQueue* queue = priority_queue_create();
+    int value1 = 5;
+    int value2 = 10;
+    int value3 = 15;
+    int value4 = 20;
+    int value5 = 25;
+    priority_queue_add(queue, 3, &value1);
+    priority_queue_add(queue, 2, &value2);
+    priority_queue_add(queue, 1, &value3);
+    priority_queue_add(queue, 4, &value4);
+    priority_queue_add(queue, 5, &value5);
+    int* result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value3);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value2);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value1);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value4);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value5);
+    priority_queue_free(queue);
+}
+
+TEST(PriorityQueueTest, Remove) {
+    PriorityQueue* queue = priority_queue_create();
+    int value1 = 5;
+    int value2 = 10;
+    int value3 = 15;
+    int value4 = 20;
+    int value5 = 25;
+    PriorityQueueNode* node1 = priority_queue_add(queue, 3, &value1);
+    PriorityQueueNode* node2 = priority_queue_add(queue, 2, &value2);
+    PriorityQueueNode* node3 = priority_queue_add(queue, 1, &value3);
+    PriorityQueueNode* node4 = priority_queue_add(queue, 4, &value4);
+    PriorityQueueNode* node5 = priority_queue_add(queue, 5, &value5);
+    void* data = priority_queue_remove(queue, node2);
+    int* result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value3);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value1);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value4);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value5);
+    priority_queue_free(queue);
+}
+
+
+TEST(PriorityQueueTest, ChangePriority) {
+    PriorityQueue* queue = priority_queue_create();
+    int value1 = 5;
+    int value2 = 10;
+    int value3 = 15;
+    int value4 = 20;
+    int value5 = 25;
+    PriorityQueueNode* node1 = priority_queue_add(queue, 3, &value1);
+    PriorityQueueNode* node2 = priority_queue_add(queue, 2, &value2);
+    PriorityQueueNode* node3 = priority_queue_add(queue, 1, &value3);
+    PriorityQueueNode* node4 = priority_queue_add(queue, 4, &value4);
+    PriorityQueueNode* node5 = priority_queue_add(queue, 5, &value5);
+    priority_queue_change_priority(queue, node2, 6);
+    priority_queue_change_priority(queue, node4, 2);
+    int* result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value3);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value4);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value1);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value5);
+    result = (int*) priority_queue_poll(queue);
+    EXPECT_EQ(*result, value2);
+    priority_queue_free(queue);
 }
 
 // Queue
