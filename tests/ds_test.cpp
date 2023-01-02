@@ -240,6 +240,47 @@ TEST(LinkedListTest, TestRemoveLast) {
     linked_list_clear(&list);
 }
 
+TEST(LinkedListTest, TestRemoveNode) {
+    LinkedList* list = linked_list_create();
+
+    int i1 = 1;
+    linked_list_add_last(list, (void*)&i1);
+    ListNode* n1 = list->tail;
+    int i2 = 2;
+    linked_list_add_last(list, (void*)&i2);
+    ListNode* n2 = list->tail;
+    int i3 = 3;
+    linked_list_add_last(list, (void*)&i3);
+    ListNode* n3 = list->tail;
+    int i4 = 4;
+    linked_list_add_last(list, (void*)&i4);
+    ListNode* n4 = list->tail;
+    int i5 = 5;
+    linked_list_add_last(list, (void*)&i5);
+    ListNode* n5 = list->tail;
+
+    EXPECT_EQ(list->size, 5);
+    linked_list_remove_node(list, n3);
+    EXPECT_EQ(list->size, 4);
+    EXPECT_EQ(*(int*)linked_list_get_first(list), i1);
+    EXPECT_EQ(*(int*)linked_list_get_last(list), i5);
+    EXPECT_EQ(*((int*)list->head->next->data), i2);
+    EXPECT_EQ(*((int*)list->head->next->next->data), i4);
+
+    linked_list_remove_node(list, n1);
+    EXPECT_EQ(list->size, 3);
+    EXPECT_EQ(*(int*)linked_list_get_first(list), i2);
+    EXPECT_EQ(*(int*)linked_list_get_last(list), i5);
+    EXPECT_EQ(*((int*)list->head->next->data), i4);
+
+    linked_list_remove_node(list, n5);
+    EXPECT_EQ(list->size, 2);
+    EXPECT_EQ(*(int*)linked_list_get_first(list), i2);
+    EXPECT_EQ(*(int*)linked_list_get_last(list), i4);
+
+    linked_list_free(list);
+}
+
 // Queue
 
 TEST(QueueTest, TestCreate) {

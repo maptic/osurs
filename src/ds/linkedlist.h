@@ -116,6 +116,17 @@ void* linked_list_remove_first(LinkedList* list);
 void* linked_list_remove_last(LinkedList* list);
 
 /**
+ * @brief Remove the given element from a LinkedList
+ *
+ * This function removes the given element from a LinkedList. If the list 
+ * is empty, the function returns NULL.
+ * 
+ * @param list The LinkedList from which the element will be removed.
+ * @param node The ListNode which should be removed.
+ */
+void linked_list_remove_node(LinkedList* list, ListNode* node);
+
+/**
  * @brief Get the first element of a LinkedList
  *
  * This function returns a pointer to the first element of a LinkedList, without
