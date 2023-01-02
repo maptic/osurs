@@ -65,13 +65,12 @@ typedef struct {
 
 // breadth first tree creation
 // processes the first element of the given queue and adds the child nodes to the queue
-void create_tree_node(Queue* index_queue, Queue* node_param_queue, Seat** unordered_seats) {
+void create_tree_node(Queue* node_param_queue, Seat** unordered_seats, Queue* seat_queue,
+	LinkedList* seat_list, ListNode** seat_list_node_arr) {
 	// dequeue the first element
 	tree_node_params* np = ((tree_node_params*)queue_dequeue(node_param_queue));
-	int* mi = (int*)malloc(sizeof(int));
-	*mi = np->m;
-	// enqueue the index to the queue
-	queue_enqueue(index_queue, (void*)mi);
+	// enqueue the seat of the list to the queue
+	queue_enqueue(seat_queue, (void*)seat_list_node_arr[np->m]);
 
 	// add the child nodes to the queue
 	// if the distance to the next childe nodes equals to zero the leaves of the tree are reached
@@ -178,26 +177,39 @@ void optimize_reservation(unsigned int log_res_arr[], int res_arr_count,
 		Queue* n_q = queue_create();
 		// enqueue the root element
 		queue_enqueue(n_q, (void*)tp);
-		// index queue
-		Queue* m_q = queue_create();
+		// seat queue
+		Queue* seat_queue = queue_create();
+		// linked list of seats (spatialy linked)
+		LinkedList* seat_list = linked_list_create();
+		// array of list nodes to access individual ListNode element by index
+		ListNode** seat_list_node_arr = (ListNode**)malloc(sizeof(ListNode*) * seat_count_odd);
+		// fill the seats into the list and the array
+		for (int i = 0; i < seat_count_odd; ++i) {
+			linked_list_add_last(seat_list, (void*)seats[i]);
+			seat_list_node_arr[i] = seat_list->tail;
+		}
 		// breadth first tree creation
 		// iterate over all nodes (could also be done recursive but due to the fact that the 
 		// number of nodes is already known an iterative approach is the better solution)
 		for (int i = 0; i < seat_count_odd; ++i) {
-			create_tree_node(m_q, n_q, unordered_seats);
+			create_tree_node(n_q, unordered_seats, seat_queue, seat_list, seat_list_node_arr);
 		}
+		// the parameter queue as well as the listNode array is no longer needed
 		queue_free(n_q);
+		free(seat_list_node_arr);
 
+		// cycle over all unsorted seats and place them on the prepared composition seat given by the seat_queue 
 		for (int i = 0; i < seat_count_odd; ++i) {
-			int* mi = ((int*)queue_dequeue(m_q));
+			ListNode* nls = ((ListNode*)queue_dequeue(seat_queue));
 			// add the reservation to the seat and vice versa
 			for (int j = 0; j < unordered_seats[i]->res_count; ++j) {
-				seat_add_reservation(seats[*mi], unordered_seats[i]->res_arr[j]);
-				reservation_add_seat(unordered_seats[i]->res_arr[j], seats[*mi]);
+				seat_add_reservation(nls->data, unordered_seats[i]->res_arr[j]);
+				reservation_add_seat(unordered_seats[i]->res_arr[j], nls->data);
 			}
-			free(mi);
 		}
-		queue_free(m_q);
+		queue_free(seat_queue);
+		linked_list_clear(seat_list);
+		linked_list_free(seat_list);
 
 		// if it was an even seat count add the last seat to the last position of the array
 		if (seat_count % 2 == 0) {
