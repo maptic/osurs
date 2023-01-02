@@ -66,7 +66,6 @@ void* linked_list_remove_first(LinkedList* list) {
     if (list->head == NULL) {
         return NULL;
     }
-
     ListNode* node = list->head;
     list->head = node->next;
     if (list->head != NULL) {

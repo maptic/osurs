@@ -357,6 +357,22 @@ TEST(PriorityQueueTest, ChangePriority) {
     priority_queue_free(queue);
 }
 
+TEST(PriorityQueueTest, Resize) {
+    PriorityQueue *queue = priority_queue_create();
+    int max_iter = 100;
+    int arr[max_iter];
+    for (int i = 0; i < max_iter; i++) {
+        arr[i] = i;
+        priority_queue_add(queue, i, (void*)&arr[i]);
+    }
+    EXPECT_EQ(queue->capacity, 160);
+    for (int i = 0; i < max_iter; i++) {
+        priority_queue_poll(queue);
+    }
+    EXPECT_EQ(queue->capacity, 10);
+    priority_queue_free(queue);
+}
+
 // Queue
 
 TEST(QueueTest, TestCreate) {
