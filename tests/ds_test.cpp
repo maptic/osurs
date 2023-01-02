@@ -418,6 +418,62 @@ TEST(QueueTest, TestEnqueueDequeue) {
     queue_free(queue);
 }
 
+TEST(QueueTest, TestRemoveNode) {
+    Queue* queue = queue_create();
+
+    int i1 = 1;
+    queue_enqueue(queue, (void*)&i1);
+    QueueNode* n1 = queue->tail;
+    int i2 = 2;
+    queue_enqueue(queue, (void*)&i2);
+    QueueNode* n2 = queue->tail;
+    int i3 = 3;
+    queue_enqueue(queue, (void*)&i3);
+    QueueNode* n3 = queue->tail;
+
+    queue_remove_node(queue, n2);
+    EXPECT_EQ(queue->head->data, (void*)&i1);
+    EXPECT_EQ(queue->tail->data, (void*)&i3);
+    EXPECT_EQ(queue->head->next->data, (void*)&i3);
+
+    queue_remove_node(queue, n3);
+    EXPECT_EQ(queue->head->data, (void*)&i1);
+    EXPECT_EQ(queue->tail->data, (void*)&i1);
+
+    queue_remove_node(queue, n1);
+    EXPECT_TRUE(queue_is_empty(queue));
+
+    queue_free(queue);
+}
+
+TEST(QueueTest, TestRemoveNodeByValue) {
+    Queue* queue = queue_create();
+
+    int i1 = 1;
+    queue_enqueue(queue, (void*)&i1);
+    QueueNode* n1 = queue->tail;
+    int i2 = 2;
+    queue_enqueue(queue, (void*)&i2);
+    QueueNode* n2 = queue->tail;
+    int i3 = 3;
+    queue_enqueue(queue, (void*)&i3);
+    QueueNode* n3 = queue->tail;
+
+    queue_remove_node_by_value(queue, (void*)&i2);
+    EXPECT_EQ(queue->head->data, (void*)&i1);
+    EXPECT_EQ(queue->tail->data, (void*)&i3);
+    EXPECT_EQ(queue->head->next->data, (void*)&i3);
+
+    queue_remove_node_by_value(queue, (void*)&i3);
+    EXPECT_EQ(queue->head->data, (void*)&i1);
+    EXPECT_EQ(queue->tail->data, (void*)&i1);
+
+    queue_remove_node_by_value(queue, (void*)&i1);
+    EXPECT_TRUE(queue_is_empty(queue));
+
+    queue_free(queue);
+}
+
 TEST(QueueTest, TestIsEmpty) {
     Queue *queue = queue_create();
     EXPECT_TRUE(queue_is_empty(queue));

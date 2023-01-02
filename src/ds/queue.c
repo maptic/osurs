@@ -56,6 +56,67 @@ void* queue_dequeue(Queue* queue) {
     return data;
 }
 
+void queue_remove_node(Queue* queue, QueueNode* node) {
+    if (queue->head == NULL) {
+        fprintf(stderr, "Error: Queue is empty\n");
+        exit(1);
+    }
+    if (queue->head == node) {
+        queue_dequeue(queue);
+        return;
+    }
+    QueueNode* current = queue->head;
+    while (current->next != NULL) {
+        if (current->next == node) {
+            if (current->next == queue->tail) {
+                queue->tail = current;
+                current->next = NULL;
+            }
+            else {
+                current->next = node->next;
+            }
+            free(node);
+            return;
+        }
+        else {
+            current = current->next;
+        }
+    }
+    fprintf(stderr, "Error: Node to remove from queue not found\n");
+    exit(1);
+}
+
+void queue_remove_node_by_value(Queue* queue, void* data) {
+    if (queue->head == NULL) {
+        fprintf(stderr, "Error: Queue is empty\n");
+        exit(1);
+    }
+    if (queue->head->data == data) {
+        queue_dequeue(queue);
+        return;
+    }
+    QueueNode* current = queue->head;
+    while (current->next != NULL) {
+        if (current->next->data == data) {
+            QueueNode* node = current->next;
+            if (current->next == queue->tail) {
+                queue->tail = current;
+                current->next = NULL;
+            }
+            else {
+                current->next = node->next;
+            }
+            free(node);
+            return;
+        }
+        else {
+            current = current->next;
+        }
+    }
+    fprintf(stderr, "Error: Element to remove from queue not found\n");
+    exit(1);
+}
+
 bool queue_is_empty(Queue* queue) { return queue->head == NULL; }
 
 void queue_clear(Queue* queue) {

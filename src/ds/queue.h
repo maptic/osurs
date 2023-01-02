@@ -81,6 +81,28 @@ void queue_enqueue(Queue* queue, void* data);
 void* queue_dequeue(Queue* queue);
 
 /**
+ * @brief Remove a node from the Queue
+ *
+ * This function removes the given node from the Queue. If the queue is empty, 
+ * the function returns NULL.
+ *
+ * @param queue The Queue from which the node will be removed.
+ * @param node The node to remove.
+ */
+void queue_remove_node(Queue* queue, QueueNode* node);
+
+/**
+ * @brief Remove a node from the queue that contains the given value
+ *
+ * This function removes the first node with the given value from the Queue. 
+ * If the queue is empty, the function returns NULL.
+ *
+ * @param queue The Queue from which the node will be removed.
+ * @param data The element to be removed from the queue.
+ */
+void queue_remove_node_by_value(Queue* queue, void* data);
+
+/**
  * @brief Check if a Queue is empty
  *
  * This function checks if a Queue is empty (contains no elements).

@@ -102,6 +102,9 @@ void* linked_list_remove_last(LinkedList* list) {
 }
 
 void linked_list_remove_node(LinkedList* list, ListNode* node) {
+	if (list->tail == NULL) {
+		return;
+	}
 	if (list->head == node) {
 		linked_list_remove_first(list);
 		return;
