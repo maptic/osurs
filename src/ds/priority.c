@@ -99,13 +99,15 @@ void priority_queue_free(PriorityQueue *queue) {
 static void priority_queue_resize(PriorityQueue *queue) {
     if (queue->size == queue->capacity) {
         queue->capacity *= 2;
-        queue->heap = realloc(queue->heap, queue->capacity * sizeof(PriorityQueueNode*));
-    } else if (queue->capacity > INITIAL_CAPACITY && queue->size < queue->capacity / 2) {
+        queue->heap =
+            realloc(queue->heap, queue->capacity * sizeof(PriorityQueueNode *));
+    } else if (queue->capacity > INITIAL_CAPACITY &&
+               queue->size < queue->capacity / 2) {
         queue->capacity /= 2;
-        queue->heap = realloc(queue->heap, queue->capacity * sizeof(PriorityQueueNode*));
+        queue->heap =
+            realloc(queue->heap, queue->capacity * sizeof(PriorityQueueNode *));
     }
 }
-
 
 static int priority_queue_parent(int index) { return (index - 1) / 2; }
 

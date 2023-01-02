@@ -244,19 +244,19 @@ TEST(LinkedListTest, TestRemoveLast) {
 // PriorityQueue
 
 TEST(PriorityQueueTest, Create) {
-    PriorityQueue* queue = priority_queue_create();
+    PriorityQueue *queue = priority_queue_create();
     EXPECT_NE(queue, nullptr);
     priority_queue_free(queue);
 }
 
 TEST(PriorityQueueTest, Add) {
-    PriorityQueue* queue = priority_queue_create();
+    PriorityQueue *queue = priority_queue_create();
     int value1 = 5;
     int value2 = 10;
     int value3 = 15;
-    PriorityQueueNode* node2 = priority_queue_add(queue, 2, &value2);
-    PriorityQueueNode* node1 = priority_queue_add(queue, 3, &value1);
-    PriorityQueueNode* node3 = priority_queue_add(queue, 1, &value3);
+    PriorityQueueNode *node2 = priority_queue_add(queue, 2, &value2);
+    PriorityQueueNode *node1 = priority_queue_add(queue, 3, &value1);
+    PriorityQueueNode *node3 = priority_queue_add(queue, 1, &value3);
     EXPECT_EQ(node1->data, &value1);
     EXPECT_EQ(node1->priority, 3);
     EXPECT_EQ(node2->data, &value2);
@@ -266,22 +266,21 @@ TEST(PriorityQueueTest, Add) {
     priority_queue_free(queue);
 }
 
-
 TEST(PriorityQueueTest, Peek) {
-    PriorityQueue* queue = priority_queue_create();
+    PriorityQueue *queue = priority_queue_create();
     int value1 = 5;
     int value2 = 10;
     int value3 = 15;
     priority_queue_add(queue, 2, &value2);
     priority_queue_add(queue, 3, &value1);
     priority_queue_add(queue, 1, &value3);
-    int* result = (int*) priority_queue_peek(queue);
+    int *result = (int *)priority_queue_peek(queue);
     EXPECT_EQ(*result, value3);
     priority_queue_free(queue);
 }
 
 TEST(PriorityQueueTest, Poll) {
-    PriorityQueue* queue = priority_queue_create();
+    PriorityQueue *queue = priority_queue_create();
     int value1 = 5;
     int value2 = 10;
     int value3 = 15;
@@ -292,86 +291,86 @@ TEST(PriorityQueueTest, Poll) {
     priority_queue_add(queue, 1, &value3);
     priority_queue_add(queue, 4, &value4);
     priority_queue_add(queue, 5, &value5);
-    int* result = (int*) priority_queue_poll(queue);
+    int *result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value3);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value2);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value1);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value4);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value5);
     priority_queue_free(queue);
 }
 
 TEST(PriorityQueueTest, DuplicatePriorities) {
-  PriorityQueue* queue = priority_queue_create();
-  PriorityQueueNode* node1 = priority_queue_add(queue, 5, (void*)1);
-  PriorityQueueNode* node2 = priority_queue_add(queue, 5, (void*)2);
-  PriorityQueueNode* node3 = priority_queue_add(queue, 5, (void*)3);
-  PriorityQueueNode* node4 = priority_queue_add(queue, 3, (void*)4);
-  PriorityQueueNode* node5 = priority_queue_add(queue, 7, (void*)5);
-  PriorityQueueNode* node6 = priority_queue_add(queue, 1, (void*)6);
-  EXPECT_EQ(priority_queue_peek(queue), (void*)6);
-  EXPECT_EQ(priority_queue_poll(queue), (void*)6);
-  EXPECT_EQ(priority_queue_poll(queue), (void*)4);
-  EXPECT_EQ(priority_queue_poll(queue), (void*)1);
-  EXPECT_EQ(priority_queue_poll(queue), (void*)2);
-  EXPECT_EQ(priority_queue_poll(queue), (void*)3);
-  EXPECT_EQ(priority_queue_poll(queue), (void*)5);
-  EXPECT_EQ(priority_queue_peek(queue), (void*)NULL);
-  EXPECT_EQ(queue->size, 0);
-  priority_queue_free(queue);
+    PriorityQueue *queue = priority_queue_create();
+    PriorityQueueNode *node1 = priority_queue_add(queue, 5, (void *)1);
+    PriorityQueueNode *node2 = priority_queue_add(queue, 5, (void *)2);
+    PriorityQueueNode *node3 = priority_queue_add(queue, 5, (void *)3);
+    PriorityQueueNode *node4 = priority_queue_add(queue, 3, (void *)4);
+    PriorityQueueNode *node5 = priority_queue_add(queue, 7, (void *)5);
+    PriorityQueueNode *node6 = priority_queue_add(queue, 1, (void *)6);
+    EXPECT_EQ(priority_queue_peek(queue), (void *)6);
+    EXPECT_EQ(priority_queue_poll(queue), (void *)6);
+    EXPECT_EQ(priority_queue_poll(queue), (void *)4);
+    EXPECT_EQ(priority_queue_poll(queue), (void *)1);
+    EXPECT_EQ(priority_queue_poll(queue), (void *)2);
+    EXPECT_EQ(priority_queue_poll(queue), (void *)3);
+    EXPECT_EQ(priority_queue_poll(queue), (void *)5);
+    EXPECT_EQ(priority_queue_peek(queue), (void *)NULL);
+    EXPECT_EQ(queue->size, 0);
+    priority_queue_free(queue);
 }
 
 TEST(PriorityQueueTest, Remove) {
-    PriorityQueue* queue = priority_queue_create();
+    PriorityQueue *queue = priority_queue_create();
     int value1 = 5;
     int value2 = 10;
     int value3 = 15;
     int value4 = 20;
     int value5 = 25;
-    PriorityQueueNode* node1 = priority_queue_add(queue, 3, &value1);
-    PriorityQueueNode* node2 = priority_queue_add(queue, 2, &value2);
-    PriorityQueueNode* node3 = priority_queue_add(queue, 1, &value3);
-    PriorityQueueNode* node4 = priority_queue_add(queue, 4, &value4);
-    PriorityQueueNode* node5 = priority_queue_add(queue, 5, &value5);
-    void* data = priority_queue_remove(queue, node2);
-    int* result = (int*) priority_queue_poll(queue);
+    PriorityQueueNode *node1 = priority_queue_add(queue, 3, &value1);
+    PriorityQueueNode *node2 = priority_queue_add(queue, 2, &value2);
+    PriorityQueueNode *node3 = priority_queue_add(queue, 1, &value3);
+    PriorityQueueNode *node4 = priority_queue_add(queue, 4, &value4);
+    PriorityQueueNode *node5 = priority_queue_add(queue, 5, &value5);
+    void *data = priority_queue_remove(queue, node2);
+    int *result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value3);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value1);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value4);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value5);
     priority_queue_free(queue);
 }
 
 TEST(PriorityQueueTest, ChangePriority) {
-    PriorityQueue* queue = priority_queue_create();
+    PriorityQueue *queue = priority_queue_create();
     int value1 = 5;
     int value2 = 10;
     int value3 = 15;
     int value4 = 20;
     int value5 = 25;
-    PriorityQueueNode* node1 = priority_queue_add(queue, 3, &value1);
-    PriorityQueueNode* node2 = priority_queue_add(queue, 2, &value2);
-    PriorityQueueNode* node3 = priority_queue_add(queue, 1, &value3);
-    PriorityQueueNode* node4 = priority_queue_add(queue, 4, &value4);
-    PriorityQueueNode* node5 = priority_queue_add(queue, 5, &value5);
+    PriorityQueueNode *node1 = priority_queue_add(queue, 3, &value1);
+    PriorityQueueNode *node2 = priority_queue_add(queue, 2, &value2);
+    PriorityQueueNode *node3 = priority_queue_add(queue, 1, &value3);
+    PriorityQueueNode *node4 = priority_queue_add(queue, 4, &value4);
+    PriorityQueueNode *node5 = priority_queue_add(queue, 5, &value5);
     priority_queue_change_priority(queue, node2, 6);
     priority_queue_change_priority(queue, node4, 2);
-    int* result = (int*) priority_queue_poll(queue);
+    int *result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value3);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value4);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value1);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value5);
-    result = (int*) priority_queue_poll(queue);
+    result = (int *)priority_queue_poll(queue);
     EXPECT_EQ(*result, value2);
     priority_queue_free(queue);
 }
@@ -382,7 +381,7 @@ TEST(PriorityQueueTest, Resize) {
     int arr[max_iter];
     for (int i = 0; i < max_iter; i++) {
         arr[i] = i;
-        priority_queue_add(queue, i, (void*)&arr[i]);
+        priority_queue_add(queue, i, (void *)&arr[i]);
     }
     EXPECT_EQ(queue->capacity, 160);
     for (int i = 0; i < max_iter; i++) {
