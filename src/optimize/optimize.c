@@ -112,6 +112,14 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 		return NULL;
 	}
 
+	// clear all persisting reservations on the given seats of the composition and vice versa.
+	for (int i = 0; i < seat_count; ++i) {
+		seat_remove_reservations(seats[i]);
+	}
+	for (int i = 0; i < res_arr_count; ++i) {
+		reservations_remove_seats(res_arr[i]);
+	}
+
 	// unordered seat array
 	Seat** unordered_seats;
 	if (method != fill) {
@@ -156,22 +164,11 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 		}
 	}
 
+	// distribute the reserved seats spatial even over the seats given in the composition
 	switch (method) {
 	case fill:
 		break;
-	case spatial_even:
-		// clear all persisting reservations on the given seats of the composition and vice versa.
-		for (int i = 0; i < seat_count; ++i) {
-			seat_remove_reservations(seats[i]);
-		}
-		for (int i = 0; i < res_arr_count; ++i) {
-			reservations_remove_seats(res_arr[i]);
-		}
-
-		// distribute the reserved seats spatial even over the seats given in the composition
-		// TODO:
-		Queue* n_q = queue_create();
-
+	case spatial_even:;
 		int seat_count_odd = (seat_count % 2 == 0) ? seat_count - 1 : seat_count;
 		int upper_bound = seat_count_odd - 1;
 		tree_node_params* tp = (tree_node_params*)malloc(sizeof(tree_node_params));
@@ -179,6 +176,7 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 		tp->d = (double)tp->m / 2;
 		int counter = 0;
 
+		Queue* n_q = queue_create();
 		queue_enqueue(n_q, (void*)tp);
 
 		for (int i = 0; i < seat_count_odd; ++i) {
@@ -199,7 +197,9 @@ SeatCollection* optimize_reservation(unsigned int log_res_arr[], int res_arr_cou
 			free(unordered_seats[i]);
 		}
 		free(unordered_seats);
-
+		break;
+	default:
+		break;
 	}
 
 	SeatCollection* collection = new_seat_collection(seat_count, seats);
