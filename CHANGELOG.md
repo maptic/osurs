@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `ds.h`: Data structures for efficient data handling.
 - `io.h`: Importing and exporting networks (network, vehicles and reservations).
   - Importer for MATSim transit schedules.
 - `network.h`: Structures to represent a network of a reservation system.

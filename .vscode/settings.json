@@ -18,6 +18,8 @@
         "Goldau",
         "googletest",
         "graphviz",
+        "HCRYPTPROV",
+        "heapify",
         "libosurs",
         "Linkedlist",
         "Lugano",
@@ -32,6 +34,7 @@
         "STRNE",
         "struct",
         "Unterfinger",
-        "valgrind"
+        "valgrind",
+        "VERIFYCONTEXT"
     ]
 }

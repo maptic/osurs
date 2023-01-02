@@ -16,6 +16,9 @@
  * node in the list. Linked lists are useful for situations where it is
  * necessary to insert or remove elements from the middle of a list, as they do
  * not require the reallocation of memory like arrays do.
+ *  - @b PriorityQueue: An adaptable priority queue is a type of priority queue
+ * that allows the priorities of its elements to be changed after they have been
+ * added to the queue, using so-called location-aware entries.
  *  - @b Queue: A linear data structure that follows the first-in, first-out
  * (FIFO) principle. Queues are useful for situations where it is necessary to
  * process items in the order in which they were received.
@@ -34,6 +37,7 @@
 #include "../../src/ds/arraylist.h"
 #include "../../src/ds/hashmap.h"
 #include "../../src/ds/linkedlist.h"
+#include "../../src/ds/priority.h"
 #include "../../src/ds/queue.h"
 #include "../../src/ds/stack.h"
 
