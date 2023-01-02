@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vehicle_408',['Vehicle',['../types_8h.html#ad3272e94a452800049063befbc8f67a2',1,'types.h']]]
+  ['trip_430',['Trip',['../types_8h.html#a7decf3192ed74e2646c1ae130c2e944f',1,'types.h']]]
 ];

@@ -1,20 +1,21 @@
 <map id="src/io/import.c" name="src/io/import.c">
-<area shape="rect" id="node1" title="Import a network file." alt="" coords="343,5,457,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="129,80,247,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="271,80,342,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="367,80,433,107"/>
-<area shape="rect" id="node5" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="457,80,543,107"/>
-<area shape="rect" id="node18" href="$utils_8h.html" title="IO helper and utils methods." alt="" coords="567,80,630,107"/>
-<area shape="rect" id="node6" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="439,155,561,181"/>
-<area shape="rect" id="node7" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="437,229,563,256"/>
-<area shape="rect" id="node8" href="$types_8h.html" title="Data types of osurs." alt="" coords="445,304,555,331"/>
-<area shape="rect" id="node9" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="404,379,492,405"/>
-<area shape="rect" id="node17" title=" " alt="" coords="517,379,587,405"/>
+<area shape="rect" id="node1" title="Import a network file." alt="" coords="431,5,545,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="217,80,335,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="359,80,430,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="455,80,521,107"/>
+<area shape="rect" id="node5" href="$io_8h.html" title="Input and output of networks and its structures." alt="" coords="545,80,631,107"/>
+<area shape="rect" id="node19" href="$utils_8h.html" title="IO helper and utils methods." alt="" coords="655,80,718,107"/>
+<area shape="rect" id="node6" href="$reserve_8h.html" title="Connection routing, checking seat availability and reservation." alt="" coords="527,155,649,181"/>
+<area shape="rect" id="node7" href="$network_8h.html" title="Network for reservation optimization." alt="" coords="525,229,651,256"/>
+<area shape="rect" id="node8" href="$types_8h.html" title="Data types of osurs." alt="" coords="533,304,643,331"/>
+<area shape="rect" id="node9" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="492,379,580,405"/>
+<area shape="rect" id="node18" title=" " alt="" coords="605,379,675,405"/>
 <area shape="rect" id="node10" href="$arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,453,160,480"/>
 <area shape="rect" id="node12" href="$hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,453,344,480"/>
 <area shape="rect" id="node13" href="$linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,453,527,480"/>
-<area shape="rect" id="node14" href="$queue_8h.html" title="Queue data structure." alt="" coords="710,453,850,480"/>
-<area shape="rect" id="node16" href="$stack_8h.html" title="Stack data structure." alt="" coords="551,453,686,480"/>
+<area shape="rect" id="node14" href="$priority_8h.html" title="Adaptable priority queue data structure." alt="" coords="551,453,697,480"/>
+<area shape="rect" id="node15" href="$queue_8h.html" title="Queue data structure." alt="" coords="879,453,1019,480"/>
+<area shape="rect" id="node17" href="$stack_8h.html" title="Stack data structure." alt="" coords="721,453,855,480"/>
 <area shape="rect" id="node11" title=" " alt="" coords="319,528,393,555"/>
-<area shape="rect" id="node15" title=" " alt="" coords="657,528,740,555"/>
+<area shape="rect" id="node16" title=" " alt="" coords="827,528,909,555"/>
 </map>

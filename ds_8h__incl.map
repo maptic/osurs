@@ -1,10 +1,11 @@
 <map id="include/osurs/ds.h" name="include/osurs/ds.h">
-<area shape="rect" id="node1" title="Data structures for efficient data handling." alt="" coords="379,5,517,32"/>
+<area shape="rect" id="node1" title="Data structures for efficient data handling." alt="" coords="467,5,605,32"/>
 <area shape="rect" id="node2" href="$arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,80,160,107"/>
 <area shape="rect" id="node4" href="$hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,80,344,107"/>
 <area shape="rect" id="node5" href="$linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,80,527,107"/>
-<area shape="rect" id="node6" href="$queue_8h.html" title="Queue data structure." alt="" coords="710,80,850,107"/>
-<area shape="rect" id="node8" href="$stack_8h.html" title="Stack data structure." alt="" coords="551,80,686,107"/>
+<area shape="rect" id="node6" href="$priority_8h.html" title="Adaptable priority queue data structure." alt="" coords="551,80,697,107"/>
+<area shape="rect" id="node7" href="$queue_8h.html" title="Queue data structure." alt="" coords="879,80,1019,107"/>
+<area shape="rect" id="node9" href="$stack_8h.html" title="Stack data structure." alt="" coords="721,80,855,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="319,155,393,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="657,155,740,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="827,155,909,181"/>
 </map>

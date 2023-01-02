@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['queue_213',['Queue',['../structQueue.html',1,'']]],
-  ['queuenode_214',['QueueNode',['../structQueueNode.html',1,'']]]
+  ['priorityqueue_224',['PriorityQueue',['../structPriorityQueue.html',1,'']]],
+  ['priorityqueuenode_225',['PriorityQueueNode',['../structPriorityQueueNode.html',1,'']]]
 ];

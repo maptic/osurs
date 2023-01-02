@@ -76,6 +76,7 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="arraylist_8h_source.html">../../src/ds/arraylist.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hashmap_8h_source.html">../../src/ds/hashmap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="linkedlist_8h_source.html">../../src/ds/linkedlist.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="priority_8h_source.html">../../src/ds/priority.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="queue_8h_source.html">../../src/ds/queue.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stack_8h_source.html">../../src/ds/stack.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -83,14 +84,15 @@ Include dependency graph for ds.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="ds_8h__incl.png" border="0" usemap="#ainclude_2osurs_2ds_8h" alt=""/></div>
 <map name="ainclude_2osurs_2ds_8h" id="ainclude_2osurs_2ds_8h">
-<area shape="rect" title="Data structures for efficient data handling." alt="" coords="379,5,517,32"/>
+<area shape="rect" title="Data structures for efficient data handling." alt="" coords="467,5,605,32"/>
 <area shape="rect" href="arraylist_8h.html" title="Arraylist data structure." alt="" coords="5,80,160,107"/>
 <area shape="rect" href="hashmap_8h.html" title="Hashmap data structure." alt="" coords="184,80,344,107"/>
 <area shape="rect" href="linkedlist_8h.html" title="Linkedlist data structure." alt="" coords="369,80,527,107"/>
-<area shape="rect" href="queue_8h.html" title="Queue data structure." alt="" coords="710,80,850,107"/>
-<area shape="rect" href="stack_8h.html" title="Stack data structure." alt="" coords="551,80,686,107"/>
+<area shape="rect" href="priority_8h.html" title="Adaptable priority queue data structure." alt="" coords="551,80,697,107"/>
+<area shape="rect" href="queue_8h.html" title="Queue data structure." alt="" coords="879,80,1019,107"/>
+<area shape="rect" href="stack_8h.html" title="Stack data structure." alt="" coords="721,80,855,107"/>
 <area shape="rect" title=" " alt="" coords="319,155,393,181"/>
-<area shape="rect" title=" " alt="" coords="657,155,740,181"/>
+<area shape="rect" title=" " alt="" coords="827,155,909,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -127,6 +129,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <li><b><a class="el" href="structArrayList.html" title="Arraylist.">ArrayList</a>:</b> A dynamic array data structure that automatically resizes itself as elements are added or removed. Array lists are useful for situations where fast random access to elements is required, as they provide constant time access to any element in the list.</li>
 <li><b><a class="el" href="structHashMap.html" title="A hashmap.">HashMap</a>:</b> A data structure that maps keys to values using a hash function. Hash maps are useful for situations where it is necessary to quickly search for and retrieve values based on a key.</li>
 <li><b><a class="el" href="structLinkedList.html" title="Linked list.">LinkedList</a>:</b> A linear data structure that consists of a set of nodes, where each node contains a data element and a reference (link) to the next node in the list. Linked lists are useful for situations where it is necessary to insert or remove elements from the middle of a list, as they do not require the reallocation of memory like arrays do.</li>
+<li><b><a class="el" href="structPriorityQueue.html" title="A priority queue.">PriorityQueue</a>:</b> An adaptable priority queue is a type of priority queue that allows the priorities of its elements to be changed after they have been added to the queue, using so-called location-aware entries.</li>
 <li><b><a class="el" href="structQueue.html" title="Queue.">Queue</a>:</b> A linear data structure that follows the first-in, first-out (FIFO) principle. Queues are useful for situations where it is necessary to process items in the order in which they were received.</li>
 <li><b><a class="el" href="structStack.html" title="Stack.">Stack</a>:</b> A linear data structure that follows the last-in, first-out (LIFO) principle. Stacks are useful for situations where it is necessary to process items in the reverse order in which they were received.</li>
 </ul>
