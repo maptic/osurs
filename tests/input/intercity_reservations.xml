@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <reservations>
-    <reservation rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
-    <reservation rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
-    <reservation rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
-    <reservation rid="ic-1-ew" tid="ic-1-ew-3" nid_orig="Zürich HB" nid_dest="Lausanne" seats="10"/>
-    <reservation rid="ic-1-ew" tid="ic-1-ew-4" nid_orig="Zürich HB" nid_dest="Lausanne" seats="7"/>
-    <reservation rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="2"/>
-    <reservation rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="1"/>
-    <reservation rid="ic-2-ns" tid="ic-2-ns-5" nid_orig="Zürich HB" nid_dest="Lugano" seats="5"/>
+    <reservation id="b08ac4fe-b897-bc27-a5cc-7efef9b20779" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation id="06e77e9c-0684-1293-d5b9-902d11d988a2" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation id="19ff611a-5903-ae16-da31-6d5f6ecb85ab" rid="ic-1-ew" tid="ic-1-ew-2" nid_orig="Zürich HB" nid_dest="Lausanne" seats="1"/>
+    <reservation id="9a9a2d4c-ee5f-9935-2ad2-53f9e2bd9f8c" rid="ic-1-ew" tid="ic-1-ew-3" nid_orig="Zürich HB" nid_dest="Lausanne" seats="10"/>
+    <reservation id="a49a0156-a8d0-43c9-8f22-cdaa0734a39f" rid="ic-1-ew" tid="ic-1-ew-4" nid_orig="Zürich HB" nid_dest="Lausanne" seats="7"/>
+    <reservation id="5edb3c66-c7dc-173e-2a90-fe6895a48944" rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="2"/>
+    <reservation id="f221000b-b8bd-476e-37f2-9b69f90e2e76" rid="ic-2-ns" tid="ic-2-ns-3" nid_orig="Zürich HB" nid_dest="Lugano" seats="1"/>
+    <reservation id="d1e1b45a-0e7b-8cd9-3d70-0f1d54f68f12" rid="ic-2-ns" tid="ic-2-ns-5" nid_orig="Zürich HB" nid_dest="Lugano" seats="5"/>
 </reservations>

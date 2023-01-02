@@ -172,6 +172,7 @@ static void reservation_parser(xmlNode *xml_node, Network *network,
     while (xml_node) {
         if (xml_node->type == XML_ELEMENT_NODE) {
             if (xmlStrcmp(xml_node->name, "reservation") == 0) {
+                char *id_tmp = xmlGetProp(xml_node, "id");
                 char *rid_tmp = xmlGetProp(xml_node, "rid");
                 char *tid_tmp = xmlGetProp(xml_node, "tid");
                 char *nid_orig_tmp = xmlGetProp(xml_node, "nid_orig");
@@ -220,7 +221,7 @@ static void reservation_parser(xmlNode *xml_node, Network *network,
                 // Create new reservation
                 int seats;
                 sscanf(seats_tmp, "%d", &seats);
-                if (new_reservation(conn, seats) == NULL) {
+                if (new_reservation(conn, seats, id_tmp) == NULL) {
                     printf(
                         "ERROR: Failed to create reservation (%s -> %s, "
                         "trip=%s, seats=%d).\n",
@@ -229,6 +230,7 @@ static void reservation_parser(xmlNode *xml_node, Network *network,
 
                 // Free heap
                 delete_connection(conn);
+                xmlFree(id_tmp);
                 xmlFree(rid_tmp);
                 xmlFree(tid_tmp);
                 xmlFree(nid_orig_tmp);

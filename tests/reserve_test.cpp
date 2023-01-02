@@ -65,27 +65,27 @@ TEST(ReserveTest, NewReservation) {
     Connection *con2 = new_connection(orig, dest2, 60 * 60 * 8);
 
     // Create reservations
-    Reservation *res1 = new_reservation(con1, 2);
+    Reservation *res1 = new_reservation(con1, 2, NULL);
     EXPECT_TRUE(res1 != NULL);
-    Reservation *res2 = new_reservation(con1, 1);
+    Reservation *res2 = new_reservation(con1, 1, NULL);
     EXPECT_TRUE(res2 != NULL);
-    Reservation *res3 = new_reservation(con1->next->next, 5);
+    Reservation *res3 = new_reservation(con1->next->next, 5, NULL);
     EXPECT_TRUE(res3 != NULL);
-    Reservation *res4 = new_reservation(con2, 1);
+    Reservation *res4 = new_reservation(con2, 1, NULL);
     EXPECT_TRUE(res4 != NULL);
-    Reservation *res5 = new_reservation(con2, 1);
+    Reservation *res5 = new_reservation(con2, 1, NULL);
     EXPECT_TRUE(res5 != NULL);
-    Reservation *res6 = new_reservation(con2, 1);
+    Reservation *res6 = new_reservation(con2, 1, NULL);
     EXPECT_TRUE(res6 != NULL);
-    Reservation *res7 = new_reservation(con2->next, 10);
+    Reservation *res7 = new_reservation(con2->next, 10, NULL);
     EXPECT_TRUE(res7 != NULL);
-    Reservation *res8 = new_reservation(con2->next->next, 7);
+    Reservation *res8 = new_reservation(con2->next->next, 7, NULL);
     EXPECT_TRUE(res8 != NULL);
 
     // Expect failing
-    Reservation *res9 = new_reservation(con2->next->next, INT_MAX);
+    Reservation *res9 = new_reservation(con2->next->next, INT_MAX, NULL);
     EXPECT_TRUE(res9 == NULL);
-    Reservation *res10 = new_reservation(NULL, 1);
+    Reservation *res10 = new_reservation(NULL, 1, NULL);
     EXPECT_TRUE(res10 == NULL);
 
     // Export test data

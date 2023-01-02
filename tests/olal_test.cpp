@@ -49,10 +49,10 @@ TEST(OlalTest, BasicTest) {
     Connection* c4 = new_connection(n3, n4, 12 * HOURS);
 
     // Add reservations
-    Reservation* r1 = new_reservation(c1, 1);
-    Reservation* r2 = new_reservation(c2, 1);
-    Reservation* r3 = new_reservation(c3, 1);
-    Reservation* r4 = new_reservation(c4, 1);
+    Reservation* r1 = new_reservation(c1, 1, NULL);
+    Reservation* r2 = new_reservation(c2, 1, NULL);
+    Reservation* r3 = new_reservation(c3, 1, NULL);
+    Reservation* r4 = new_reservation(c4, 1, NULL);
 
     SeatCollection* result_collection = optimize_trip(c1->trip);
 

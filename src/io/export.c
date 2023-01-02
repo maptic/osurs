@@ -252,6 +252,7 @@ int export_reservations(Network *network, const char *filename) {
                         Reservation *res = (Reservation *)array_list_get(
                             curr_trip->reservations, i);
                         xmlTextWriterStartElement(writer, "reservation");
+                        xmlTextWriterWriteAttribute(writer, "id", res->id);
                         sprintf(buf, "%s", route->id);
                         xmlTextWriterWriteAttribute(writer, "rid", buf);
                         sprintf(buf, "%s", curr_trip->id);
