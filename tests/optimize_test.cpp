@@ -29,7 +29,7 @@ TEST(OptimizeTest, OptimizeReservation) {
         res->orig = NULL;
         res->dest = NULL;
         res->trip = NULL;
-        res->seats = 1;
+        res->seat_count = 1;
         generate_uuid(res->id);
         res_arr[i] = res;
     }

@@ -17,13 +17,13 @@ static int get_next_id();
 
 // Public definitions
 
-Reservation *new_reservation(Connection *connection, int seats, char *id) {
+Reservation *new_reservation(Connection *connection, int seat_count, char *id) {
     Reservation *res = NULL;
     int trip_count;
 
     // Check connection and seat availability.
-    if (connection == NULL || seats > connection->available ||
-        !check_connection(connection, seats, &trip_count))
+    if (connection == NULL || seat_count > connection->available ||
+        !check_connection(connection, seat_count, &trip_count))
         return res;
 
     // Allocate reservation struct.
@@ -31,7 +31,9 @@ Reservation *new_reservation(Connection *connection, int seats, char *id) {
     res->orig = connection->orig;
     res->dest = connection->dest;
     res->trip = connection->trip;
-    res->seats = seats;
+    res->seat_count = seat_count;
+    res->seat_arr_index = 0;
+    res->seat_arr = (Seat**)malloc(sizeof(Seat*) * seat_count);
 
     // Generate UUID.
     if (id == NULL) {
@@ -47,7 +49,7 @@ Reservation *new_reservation(Connection *connection, int seats, char *id) {
     Stop *curr_stop = connection->orig;
     while (1) {
         // Increase reservation counter.
-        curr_stop->reserved[trip_count] += seats;
+        curr_stop->reserved[trip_count] += seat_count;
         // Stop if destination is reached.
         if (curr_stop == connection->dest) break;
         curr_stop = curr_stop->next;

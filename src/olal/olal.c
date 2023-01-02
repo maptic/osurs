@@ -49,7 +49,7 @@ SeatCollection* optimize_trip(Trip* t, order_method o_method) {
     // count the total number of seat reservations
     int used_seat_count = 0;
     for (int i = 0; i < t->reservations->size; ++i) {
-        used_seat_count += ((Reservation*)t->reservations->elements[i])->seats;
+        used_seat_count += ((Reservation*)t->reservations->elements[i])->seat_count;
     }
 
     // sort by occurrence
@@ -60,7 +60,7 @@ SeatCollection* optimize_trip(Trip* t, order_method o_method) {
         (unsigned int*)malloc(sizeof(unsigned int) * used_seat_count);
     int seat_pos = 0;
     for (int i = 0; i < t->reservations->size; ++i) {
-        for (int j = 0; j < ((Reservation*)t->reservations->elements[i])->seats;
+        for (int j = 0; j < ((Reservation*)t->reservations->elements[i])->seat_count;
              ++j) {
             logical_res_arr[seat_pos] = temp_logical_res_arr[i];
             res_arr[seat_pos++] = ((Reservation*)t->reservations->elements[i]);

@@ -88,11 +88,11 @@ Connection *select_connection(Connection *connection, int seats);
  * and connected to the network.
  *
  * @param connection The connection to reserve.
- * @param seats The number of seats to reserve.
+ * @param seat_count The number of seats to reserve.
  * @param id The UUID of the reservation or NULL to generate a new one.
  * @return Returns a reservation or null if no seats are available.
  */
-Reservation *new_reservation(Connection *connection, int seats, char *id);
+Reservation *new_reservation(Connection *connection, int seat_count, char *id);
 
 // Destructor-like methods
 

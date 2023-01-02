@@ -116,7 +116,9 @@ typedef struct vehicle_t {
  */
 typedef struct reservation_t {
     char id[37]; /**< Automatically generated UUID of the reservation. */
-    int seats;   /**< Reserved seats. */
+    int seat_count;   /**< Reserved seats. */
+    struct seat_t** seat_arr; /**< Seat array */
+    int seat_arr_index; /**< The current index of the seat array */
     struct stop_t* orig; /**< The orig stop of the reservation. */
     struct stop_t* dest; /**< The orig stop of the reservation. */
     struct trip_t* trip; /**< The trip on which the reservation is placed. */

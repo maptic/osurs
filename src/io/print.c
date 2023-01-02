@@ -32,9 +32,9 @@ void print_vehicle(Vehicle *vehicle, int indent) {
 void print_reservation(Reservation *reservation, int indent) {
     printf(
         "%*s<reservation id=\"%s\" orig_nid=\"%s\" dest_nid=\"%s\" "
-        "seats=\"%d\" />\n",
+        "seat_count=\"%d\" />\n",
         indent, INDENT_CHARS, reservation->id, reservation->orig->node->id,
-        reservation->dest->node->id, reservation->seats);
+        reservation->dest->node->id, reservation->seat_count);
 }
 
 void print_seat(Seat *seat, int indent) {
@@ -183,7 +183,7 @@ void print_connection(Connection *connection) {
 }
 
 void print_seat_collection(SeatCollection *collection, int indent) {
-    printf("%*s<collection seats=\"%d\">\n", indent, INDENT_CHARS,
+    printf("%*s<collection seat_count=\"%d\">\n", indent, INDENT_CHARS,
            collection->seat_count);
     for (int i = 0; i < collection->seat_count; ++i) {
         print_seat(collection->seat_arr[i], indent + INDENT_DEPTH);

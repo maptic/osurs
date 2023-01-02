@@ -113,9 +113,7 @@ Composition *new_composition(Network *network, const char *id, int seat_count) {
     Composition *composition = (Composition *)malloc(sizeof(Composition));
     composition->id = strdup(id);
     composition->seat_count = seat_count;
-    // Generate a dummy seat_id array
-    // Will be replaced with real seat id with final composition implementation
-    composition->seats = (Seat *)malloc(sizeof(Seat) * seat_count);
+    composition->seats = (Seat **)malloc(sizeof(Seat*) * seat_count);
     for (int i = 0; i < seat_count; ++i) {
         composition->seats[i] = new_seat(i + 100);
     }
@@ -131,7 +129,7 @@ Seat* new_seat(int seat_id) {
     Seat* seat = (Seat*)malloc(sizeof(Seat));
     seat->res_count = 0;
     seat->seat_id = seat_id;
-    seat->res_arr = (Reservation*)malloc(sizeof(Reservation*) * sizeof(unsigned int) * 8);
+    seat->res_arr = (Reservation**)malloc(sizeof(Reservation*) * sizeof(unsigned int) * 8);
     return seat;
 }
 

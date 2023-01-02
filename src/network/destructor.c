@@ -104,7 +104,10 @@ static void delete_trip(Trip *trip) {
     free(trip);
 }
 
-static void delete_reservation(Reservation *reservation) { free(reservation); }
+static void delete_reservation(Reservation *reservation) {
+    free(reservation->seat_arr);
+    free(reservation); 
+}
 
 static void delete_route(Route *route) {
     // Free stops

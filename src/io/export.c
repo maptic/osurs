@@ -261,8 +261,8 @@ int export_reservations(Network *network, const char *filename) {
                         xmlTextWriterWriteAttribute(writer, "nid_orig", buf);
                         sprintf(buf, "%s", res->dest->node->id);
                         xmlTextWriterWriteAttribute(writer, "nid_dest", buf);
-                        sprintf(buf, "%d", res->seats);
-                        xmlTextWriterWriteAttribute(writer, "seats", buf);
+                        sprintf(buf, "%d", res->seat_count);
+                        xmlTextWriterWriteAttribute(writer, "seat_count", buf);
                         xmlTextWriterEndElement(writer);
                     }
                 }

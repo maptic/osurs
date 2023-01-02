@@ -37,6 +37,21 @@ void seat_add_reservation(Seat* seat, Reservation* res);
 void seat_remove_reservations(Seat* seat);
 
 /**
+ * @brief Adds a new seat to the reservation.
+ *
+ * @param res The reservation to which the seat should be added.
+ * @param seat The seat.
+ */
+void reservation_add_seat(Reservation* res, Seat* seat);
+
+/**
+ * @brief Removes all the seats of a reservation.
+ *
+ * @param res The reservation from which all seats should be removed.
+ */
+void reservations_remove_seats(Reservation* res);
+
+/**
  * @brief Create a new seat collection.
  *
  * Initializes the seat collection properties and allocates the memory for the
