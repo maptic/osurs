@@ -305,6 +305,26 @@ TEST(PriorityQueueTest, Poll) {
     priority_queue_free(queue);
 }
 
+TEST(PriorityQueueTest, DuplicatePriorities) {
+  PriorityQueue* queue = priority_queue_create();
+  PriorityQueueNode* node1 = priority_queue_add(queue, 5, (void*)1);
+  PriorityQueueNode* node2 = priority_queue_add(queue, 5, (void*)2);
+  PriorityQueueNode* node3 = priority_queue_add(queue, 5, (void*)3);
+  PriorityQueueNode* node4 = priority_queue_add(queue, 3, (void*)4);
+  PriorityQueueNode* node5 = priority_queue_add(queue, 7, (void*)5);
+  PriorityQueueNode* node6 = priority_queue_add(queue, 1, (void*)6);
+  EXPECT_EQ(priority_queue_peek(queue), (void*)6);
+  EXPECT_EQ(priority_queue_poll(queue), (void*)6);
+  EXPECT_EQ(priority_queue_poll(queue), (void*)4);
+  EXPECT_EQ(priority_queue_poll(queue), (void*)1);
+  EXPECT_EQ(priority_queue_poll(queue), (void*)2);
+  EXPECT_EQ(priority_queue_poll(queue), (void*)3);
+  EXPECT_EQ(priority_queue_poll(queue), (void*)5);
+  EXPECT_EQ(priority_queue_peek(queue), (void*)NULL);
+  EXPECT_EQ(queue->size, 0);
+  priority_queue_free(queue);
+}
+
 TEST(PriorityQueueTest, Remove) {
     PriorityQueue* queue = priority_queue_create();
     int value1 = 5;
@@ -328,7 +348,6 @@ TEST(PriorityQueueTest, Remove) {
     EXPECT_EQ(*result, value5);
     priority_queue_free(queue);
 }
-
 
 TEST(PriorityQueueTest, ChangePriority) {
     PriorityQueue* queue = priority_queue_create();
@@ -354,6 +373,22 @@ TEST(PriorityQueueTest, ChangePriority) {
     EXPECT_EQ(*result, value5);
     result = (int*) priority_queue_poll(queue);
     EXPECT_EQ(*result, value2);
+    priority_queue_free(queue);
+}
+
+TEST(PriorityQueueTest, Resize) {
+    PriorityQueue *queue = priority_queue_create();
+    int max_iter = 100;
+    int arr[max_iter];
+    for (int i = 0; i < max_iter; i++) {
+        arr[i] = i;
+        priority_queue_add(queue, i, (void*)&arr[i]);
+    }
+    EXPECT_EQ(queue->capacity, 160);
+    for (int i = 0; i < max_iter; i++) {
+        priority_queue_poll(queue);
+    }
+    EXPECT_EQ(queue->capacity, 10);
     priority_queue_free(queue);
 }
 

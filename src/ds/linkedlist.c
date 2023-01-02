@@ -34,6 +34,7 @@ void linked_list_add_first(LinkedList* list, void* data) {
     }
     node->data = data;
     node->next = list->head;
+    node->prev = NULL;  // Initialize the prev pointer to NULL to avoid valgrind error: Conditional jump or move depends on uninitialised value(s)
     if (list->head != NULL) {
         list->head->prev = node;
     }
@@ -52,6 +53,7 @@ void linked_list_add_last(LinkedList* list, void* data) {
     }
     node->data = data;
     node->prev = list->tail;
+    node->next = NULL;  // Initialize the next pointer to NULL to avoid valgrind error: Conditional jump or move depends on uninitialised value(s)
     if (list->tail != NULL) {
         list->tail->next = node;
     }
@@ -66,7 +68,6 @@ void* linked_list_remove_first(LinkedList* list) {
     if (list->head == NULL) {
         return NULL;
     }
-
     ListNode* node = list->head;
     list->head = node->next;
     if (list->head != NULL) {
