@@ -23,19 +23,20 @@ TEST(OptimizeTest, SpaceAvailable) {
 }
 
 TEST(OptimizeTest, OptimizeReservation) {
-    Reservation** res_arr = (Reservation**)malloc(sizeof(Reservation*) * 4);
-    for (int i = 0; i < 4; ++i) {
+    unsigned int res_count = 4;
+    Reservation** res_arr = (Reservation**)malloc(sizeof(Reservation*) * res_count);
+    for (int i = 0; i < res_count; ++i) {
         Reservation* res = (Reservation*)malloc(sizeof(Reservation));
         res->orig = NULL;
         res->dest = NULL;
         res->trip = NULL;
         res->seat_count = 1;
+        res->seat_arr_index = 0;
+        res->seat_arr = (Seat**)malloc(sizeof(Seat*) * res->seat_count);
         generate_uuid(res->id);
         res_arr[i] = res;
     }
-    int res_ids[] = {10, 20, 30, 40};
     unsigned int log_res_arr[] = {3, 1, 6, 4};
-    unsigned int res_count = 4;
     int max_segment_length = 3;
     int seat_count = 2;
     Seat* seats[2];
@@ -55,5 +56,10 @@ TEST(OptimizeTest, OptimizeReservation) {
     EXPECT_EQ(result_collection->seat_arr[1]->res_arr[0], res_arr[1]);
     EXPECT_EQ(result_collection->seat_arr[1]->res_arr[1], res_arr[2]);
 
+    for (int i = 0; i < res_count; ++i) {
+        free(res_arr[i]->seat_arr);
+        free(res_arr[i]);
+    }
+    free(res_arr);
     delete_seat_collection(result_collection);
 }
