@@ -69,7 +69,7 @@ void optimize_trip(Trip* t, order_method o_method) {
 
     // call the optimization method
     optimize_reservation(
-        logical_res_arr, t->reservations->size, res_arr,
+        logical_res_arr, used_seat_count, res_arr,
         (int)t->route->route_size - 1, t->vehicle->composition->seats,
         t->vehicle->composition->seat_count, o_method);
 

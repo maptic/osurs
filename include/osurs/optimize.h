@@ -18,7 +18,7 @@
 /** enum for the seat ordering method*/
 typedef enum {
     fill,
-    spatial_even
+    spatial_uniform
 } order_method;
 
 /**

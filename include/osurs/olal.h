@@ -19,6 +19,7 @@
  * @brief Optimize seat reservations on given trip
  *
  * @param t The trip that needs to be optimized.
+ * @param o_method The ordering method to arrange the reservations among the seats.
  *
  * @return A pointer to the optimized seat collection.
  **/
