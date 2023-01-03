@@ -38,7 +38,7 @@ typedef struct PriorityQueueNode {
  * @note The fields of this struct are intended for internal use only and should
  * not be accessed directly
  */
-typedef struct {
+typedef struct PriorityQueue {
     PriorityQueueNode **heap;
     int capacity;
     int size;

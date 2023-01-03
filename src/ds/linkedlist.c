@@ -27,59 +27,60 @@ LinkedList* linked_list_create() {
 }
 
 void linked_list_add_first(LinkedList* list, void* data) {
-	ListNode* node = malloc(sizeof(ListNode));
-	if (node == NULL) {
-		perror("Error allocating memory for first linked list node");
-		exit(1);
-	}
-	node->data = data;
-	node->next = list->head;
-	if (list->head != NULL) {
-		list->head->prev = node;
-	}
-	list->head = node;
-	if (list->tail == NULL) {
-		list->tail = node;
-	}
-	list->size++;
+    ListNode* node = malloc(sizeof(ListNode));
+    if (node == NULL) {
+        perror("Error allocating memory for first linked list node");
+        exit(1);
+    }
+    node->data = data;
+    node->next = list->head;
+    node->prev = NULL;  // Initialize the prev pointer to NULL to avoid valgrind error: Conditional jump or move depends on uninitialised value(s)
+    if (list->head != NULL) {
+        list->head->prev = node;
+    }
+    list->head = node;
+    if (list->tail == NULL) {
+        list->tail = node;
+    }
+    list->size++;
 }
 
 void linked_list_add_last(LinkedList* list, void* data) {
-	ListNode* node = malloc(sizeof(ListNode));
-	if (node == NULL) {
-		perror("Error allocating memory for last linked list node");
-		exit(1);
-	}
-	node->data = data;
-	node->prev = list->tail;
-	if (list->tail != NULL) {
-		list->tail->next = node;
-	}
-	list->tail = node;
-	if (list->head == NULL) {
-		list->head = node;
-	}
-	list->size++;
+    ListNode* node = malloc(sizeof(ListNode));
+    if (node == NULL) {
+        perror("Error allocating memory for last linked list node");
+        exit(1);
+    }
+    node->data = data;
+    node->prev = list->tail;
+    node->next = NULL;  // Initialize the next pointer to NULL to avoid valgrind error: Conditional jump or move depends on uninitialised value(s)
+    if (list->tail != NULL) {
+        list->tail->next = node;
+    }
+    list->tail = node;
+    if (list->head == NULL) {
+        list->head = node;
+    }
+    list->size++;
 }
 
 void* linked_list_remove_first(LinkedList* list) {
-	if (list->head == NULL) {
-		return NULL;
-	}
-
-	ListNode* node = list->head;
-	list->head = node->next;
-	if (list->head != NULL) {
-		list->head->prev = NULL;
-	}
-	// update the tail of the list if it was pointing to the current head
-	if (list->tail == node) {
-		list->tail = NULL;
-	}
-	list->size--;
-	void* data = node->data;
-	free(node);
-	return data;
+    if (list->head == NULL) {
+        return NULL;
+    }
+    ListNode* node = list->head;
+    list->head = node->next;
+    if (list->head != NULL) {
+        list->head->prev = NULL;
+    }
+    // update the tail of the list if it was pointing to the current head
+    if (list->tail == node) {
+        list->tail = NULL;
+    }
+    list->size--;
+    void* data = node->data;
+    free(node);
+    return data;
 }
 
 void* linked_list_remove_last(LinkedList* list) {
