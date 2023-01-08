@@ -176,6 +176,32 @@ int main(int argc, char *argv[]) {
 
 **Note:** Currently, only the strategy of sparsest distribution of reservations among seats is implemented. In a public transportation system, the sparsest distribution considering group reservations would be more likely.
 
+### Install the library
+
+Build and install the library and the command line interface.
+
+```sh
+cd osurs
+mkdir build && cd build
+cmake ..
+make
+make install
+```
+
+To use the osurs library in a project, link with the static or dynamic library when building.
+For example:
+
+```sh
+gcc main.c -o main -losurs
+```
+
+Use the `osurscli` to print a network and reservations or to convert a matsim transit schedule.
+
+```sh
+osurscli print tests/input/intercity_network.xml tests/input/intercity_reservations.xml
+osurscli convert tests/input/matsim/transitSchedule.xml tests/input/matsim/transitVehicles.xml tmp_network.xml
+```
+
 ## Development
 
 ### Trunk-based development workflow
