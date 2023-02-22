@@ -1,4 +1,4 @@
-<map id="src/ds/queue.h" name="src/ds/queue.h">
-<area shape="rect" id="node1" title="Queue data structure." alt="" coords="5,5,121,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="22,80,105,107"/>
+<map id="include/osurs/ds/queue.h" name="include/osurs/ds/queue.h">
+<area shape="rect" id="node1" title="Queue data structure." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="55,80,138,107"/>
 </map>

@@ -1,5 +1,5 @@
-<map id="src/ds/queue.h" name="src/ds/queue.h">
-<area shape="rect" id="node1" title="Queue data structure." alt="" coords="1057,5,1173,32"/>
+<map id="include/osurs/ds/queue.h" name="include/osurs/ds/queue.h">
+<area shape="rect" id="node1" title="Queue data structure." alt="" coords="1024,5,1207,32"/>
 <area shape="rect" id="node2" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="971,80,1110,107"/>
 <area shape="rect" id="node21" href="$queue_8c.html" title="Queue data structure." alt="" coords="1134,80,1249,107"/>
 <area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="961,155,1121,181"/>

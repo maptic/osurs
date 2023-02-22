@@ -1,5 +1,5 @@
-<map id="src/ds/stack.h" name="src/ds/stack.h">
-<area shape="rect" id="node1" title="Stack data structure." alt="" coords="1060,5,1171,32"/>
+<map id="include/osurs/ds/stack.h" name="include/osurs/ds/stack.h">
+<area shape="rect" id="node1" title="Stack data structure." alt="" coords="1026,5,1205,32"/>
 <area shape="rect" id="node2" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="971,80,1110,107"/>
 <area shape="rect" id="node21" href="$stack_8c.html" title="Stack data structure." alt="" coords="1135,80,1245,107"/>
 <area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="961,155,1121,181"/>

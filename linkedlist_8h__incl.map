@@ -1,4 +1,4 @@
-<map id="src/ds/linkedlist.h" name="src/ds/linkedlist.h">
-<area shape="rect" id="node1" title="Linkedlist data structure." alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="35,80,110,107"/>
+<map id="include/osurs/ds/linkedlist.h" name="include/osurs/ds/linkedlist.h">
+<area shape="rect" id="node1" title="Linkedlist data structure." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="69,80,144,107"/>
 </map>

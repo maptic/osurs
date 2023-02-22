@@ -1,5 +1,5 @@
-<map id="src/ds/linkedlist.h" name="src/ds/linkedlist.h">
-<area shape="rect" id="node1" title="Linkedlist data structure." alt="" coords="1053,5,1188,32"/>
+<map id="include/osurs/ds/linkedlist.h" name="include/osurs/ds/linkedlist.h">
+<area shape="rect" id="node1" title="Linkedlist data structure." alt="" coords="1019,5,1222,32"/>
 <area shape="rect" id="node2" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="971,80,1110,107"/>
 <area shape="rect" id="node21" href="$linkedlist_8c.html" title="Linkedlist data structure." alt="" coords="1135,80,1269,107"/>
 <area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="961,155,1121,181"/>

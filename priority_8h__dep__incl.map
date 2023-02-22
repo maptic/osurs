@@ -1,5 +1,5 @@
-<map id="src/ds/priority.h" name="src/ds/priority.h">
-<area shape="rect" id="node1" title="Adaptable priority queue data structure." alt="" coords="1056,5,1177,32"/>
+<map id="include/osurs/ds/priority.h" name="include/osurs/ds/priority.h">
+<area shape="rect" id="node1" title="Adaptable priority queue data structure." alt="" coords="1023,5,1211,32"/>
 <area shape="rect" id="node2" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="971,80,1110,107"/>
 <area shape="rect" id="node21" href="$priority_8c.html" title="Adaptable priority queue data structure." alt="" coords="1134,80,1254,107"/>
 <area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="961,155,1121,181"/>

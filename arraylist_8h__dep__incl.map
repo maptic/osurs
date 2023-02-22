@@ -1,5 +1,5 @@
-<map id="src/ds/arraylist.h" name="src/ds/arraylist.h">
-<area shape="rect" id="node1" title="Arraylist data structure." alt="" coords="1054,5,1185,32"/>
+<map id="include/osurs/ds/arraylist.h" name="include/osurs/ds/arraylist.h">
+<area shape="rect" id="node1" title="Arraylist data structure." alt="" coords="1021,5,1218,32"/>
 <area shape="rect" id="node2" href="$ds_8h.html" title="Data structures for efficient data handling." alt="" coords="971,80,1110,107"/>
 <area shape="rect" id="node21" href="$arraylist_8c.html" title="Arraylist data structure." alt="" coords="1135,80,1264,107"/>
 <area shape="rect" id="node3" href="$types_8h.html" title="Data types of osurs." alt="" coords="961,155,1121,181"/>
