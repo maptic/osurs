@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Import and export functionality for reservation format in XML.
 - New test data sets; a simplified representation of the intercity network in Switzerland.
 - Spell check extension.
+- A command line interface `osurscli` to print and convert schedules and networks.
+- Examples to show the usage of the library.
 
 ### Changed
 

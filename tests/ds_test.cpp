@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "../src/ds/arraylist.h"
-#include "../src/ds/hashmap.h"
-#include "../src/ds/linkedlist.h"
-#include "../src/ds/priority.h"
-#include "../src/ds/queue.h"
-#include "../src/ds/stack.h"
+#include "osurs/ds/arraylist.h"
+#include "osurs/ds/hashmap.h"
+#include "osurs/ds/linkedlist.h"
+#include "osurs/ds/priority.h"
+#include "osurs/ds/queue.h"
+#include "osurs/ds/stack.h"
 }
 
 // ArrayList

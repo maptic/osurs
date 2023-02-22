@@ -92,7 +92,7 @@ graph LR;
   end
 ```
 
-### Import and export
+### Input and output
 
 Networks and reservations can be persisted as separate XML files. This separation brings the advantage that the reservations (e.g. of a certain day) can be added to an already loaded network. However, it is important to delete already existing reservations from the network beforehand.
 
@@ -175,6 +175,32 @@ int main(int argc, char *argv[]) {
 ```
 
 **Note:** Currently, only the strategy of sparsest distribution of reservations among seats is implemented. In a public transportation system, the sparsest distribution considering group reservations would be more likely.
+
+### Install the library
+
+Build and install the library and the command line interface.
+
+```sh
+cd osurs
+mkdir build && cd build
+cmake ..
+make
+make install
+```
+
+To use the osurs library in a project, link with the needed sublibraries when building.
+For example:
+
+```sh
+gcc main.c -o main -losurs-ds -losurs-network ...
+```
+
+Use the `osurscli` to print a network and reservations or to convert a matsim transit schedule.
+
+```sh
+osurscli print tests/input/intercity_network.xml tests/input/intercity_reservations.xml
+osurscli convert tests/input/matsim/transitSchedule.xml tests/input/matsim/transitVehicles.xml tmp_network.xml
+```
 
 ## Development
 

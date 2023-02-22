@@ -5,7 +5,7 @@
  * @author Merlin Unterfinger
  */
 
-#include "priority.h"
+#include "osurs/ds/priority.h"
 
 #include <stdio.h>
 #include <stdlib.h>
