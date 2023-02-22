@@ -5,7 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
-#include "hashmap.h"
+#include "osurs/ds/hashmap.h"
 
 #include <stdio.h>
 #include <stdlib.h>

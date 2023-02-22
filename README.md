@@ -92,7 +92,7 @@ graph LR;
   end
 ```
 
-### Import and export
+### Input and output
 
 Networks and reservations can be persisted as separate XML files. This separation brings the advantage that the reservations (e.g. of a certain day) can be added to an already loaded network. However, it is important to delete already existing reservations from the network beforehand.
 
@@ -188,11 +188,11 @@ make
 make install
 ```
 
-To use the osurs library in a project, link with the static or dynamic library when building.
+To use the osurs library in a project, link with the needed sublibraries when building.
 For example:
 
 ```sh
-gcc main.c -o main -losurs
+gcc main.c -o main -losurs-ds -losurs-network ...
 ```
 
 Use the `osurscli` to print a network and reservations or to convert a matsim transit schedule.

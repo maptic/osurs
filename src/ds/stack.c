@@ -5,7 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
-#include "stack.h"
+#include "osurs/ds/stack.h"
 
 #include <stdio.h>
 #include <stdlib.h>
