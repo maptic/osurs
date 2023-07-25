@@ -5,7 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
-#include "linkedlist.h"
+#include "osurs/ds/linkedlist.h"
 
 #include <stdio.h>
 #include <stdlib.h>

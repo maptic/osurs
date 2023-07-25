@@ -5,7 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
-#include "arraylist.h"
+#include "osurs/ds/arraylist.h"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -5,7 +5,7 @@
  * @author: Merlin Unterfinger
  */
 
-#include "queue.h"
+#include "osurs/ds/queue.h"
 
 #include <stdio.h>
 #include <stdlib.h>
